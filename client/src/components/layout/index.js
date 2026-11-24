@@ -1,6 +1,7 @@
 // Import from this barrel only. Never deep-path into this folder.
 export { default as AdminLayout } from './AdminLayout';
 export { default as AdminNav } from './AdminNav';
+export { default as DeveloperSignature } from './DeveloperSignature';
 export { default as Footer } from './Footer';
 export { default as InstructorLayout } from './InstructorLayout';
 export { default as InstructorNav } from './InstructorNav';
