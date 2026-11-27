@@ -36,20 +36,20 @@ const InstructorStudents = () => {
   if (!user || user.role !== "instructor") return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+    <div className="min-h-screen bg-brand-50">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold text-ink ">
                 👨‍🎓 Your Students
               </h1>
               <p className="mt-2 text-gray-600">
                 View and manage students enrolled in your courses
               </p>
               <div className="mt-4 flex items-center space-x-2">
-                <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
+                <div className="w-3 h-3 bg-success rounded-full"></div>
                 <span className="text-sm text-gray-600">Total Students: {students?.length || 0}</span>
               </div>
             </div>
@@ -59,7 +59,7 @@ const InstructorStudents = () => {
         {isLoading ? (
           <div className="bg-white rounded-xl shadow-lg p-12">
             <div className="flex flex-col items-center">
-              <div className="animate-spin h-12 w-12 border-4 border-emerald-500 border-t-transparent rounded-full mb-4" />
+              <div className="animate-spin h-12 w-12 border-4 border-success border-t-transparent rounded-full mb-4" />
               <p className="text-gray-600">Loading your students...</p>
             </div>
           </div>
@@ -67,7 +67,7 @@ const InstructorStudents = () => {
           <div className="bg-white rounded-xl shadow-lg overflow-hidden">
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
+                <thead className="bg-canvas">
                   <tr>
                     <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Student
@@ -91,12 +91,12 @@ const InstructorStudents = () => {
                           <div className="h-12 w-12 flex-shrink-0">
                             {avatar ? (
                               <img
-                                className="h-12 w-12 rounded-full object-cover ring-2 ring-emerald-200"
+                                className="h-12 w-12 rounded-full object-cover ring-2 ring-success-soft"
                                 src={avatar}
                                 alt={name}
                               />
                             ) : (
-                              <div className="h-12 w-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center">
+                              <div className="h-12 w-12 success rounded-full flex items-center justify-center">
                                 <span className="text-white text-lg font-bold">
                                   {name?.charAt(0)?.toUpperCase() || '?'}
                                 </span>
@@ -127,7 +127,7 @@ const InstructorStudents = () => {
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-success-soft text-success-dark">
                           ✅ Active
                         </span>
                       </td>
@@ -149,7 +149,7 @@ const InstructorStudents = () => {
               </p>
               <button
                 onClick={() => navigate('/instructor/courses')}
-                className="inline-flex items-center px-6 py-3 border border-transparent rounded-xl shadow-lg text-sm font-medium text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transform transition-all duration-200 hover:scale-105"
+                className="inline-flex items-center px-6 py-3 border border-transparent rounded-xl shadow-lg text-sm font-medium text-white success-dark hover:success-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-success transition-all duration-200 "
               >
                 📚 View My Courses
               </button>

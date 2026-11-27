@@ -62,8 +62,8 @@ const AddLesson = () => {
       message="Your files are uploading, please wait..."
     />
   ) : (
-    <div className="max-w-2xl w-full mx-auto mt-12 p-8 bg-white rounded-2xl shadow-lg border border-border-light">
-      <h2 className="text-3xl font-bold mb-8 text-center text-text-primary">
+    <div className="max-w-2xl w-full mx-auto mt-12 p-8 bg-white rounded-2xl shadow-lg border border-line">
+      <h2 className="text-3xl font-bold mb-8 text-center text-ink">
         ➕ Add New Lesson
       </h2>
 

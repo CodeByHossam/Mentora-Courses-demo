@@ -122,11 +122,11 @@ const AdminSystemLogs = () => {
   const getLogLevelColor = (level) => {
     switch (level) {
       case "error":
-        return "bg-red-100 text-red-800 border-red-200";
+        return "bg-error-soft text-error-dark border-error-soft";
       case "warning":
-        return "bg-yellow-100 text-yellow-800 border-yellow-200";
+        return "bg-warning-soft text-warning-dark border-warning-soft";
       case "info":
-        return "bg-blue-100 text-blue-800 border-blue-200";
+        return "bg-brand-100 text-brand-800 border-brand-200";
       case "debug":
         return "bg-gray-100 text-gray-800 border-gray-200";
       default:
@@ -156,13 +156,13 @@ const AdminSystemLogs = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-50">
+    <div className="min-h-screen bg-canvas">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-slate-600 to-gray-600 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold text-ink ">
                 📋 System Logs
               </h1>
               <p className="mt-2 text-gray-600">
@@ -178,7 +178,7 @@ const AdminSystemLogs = () => {
                   <span className="text-sm text-gray-600">Filtered: {filteredLogs.length}</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <div className={`w-3 h-3 rounded-full ${autoRefresh ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                  <div className={`w-3 h-3 rounded-full ${autoRefresh ? 'bg-success' : 'bg-error'}`}></div>
                   <span className="text-sm text-gray-600">
                     Auto-refresh: {autoRefresh ? 'On' : 'Off'}
                   </span>
@@ -190,7 +190,7 @@ const AdminSystemLogs = () => {
                 onClick={() => setAutoRefresh(!autoRefresh)}
                 className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
                   autoRefresh 
-                    ? 'bg-green-600 text-white hover:bg-green-700' 
+                    ? 'bg-success-dark text-white hover:bg-success-dark' 
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }`}
               >
@@ -198,13 +198,13 @@ const AdminSystemLogs = () => {
               </button>
               <button
                 onClick={handleExportLogs}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 font-medium"
+                className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-all duration-200 font-medium"
               >
                 📥 Export Logs
               </button>
               <button
                 onClick={handleClearLogs}
-                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all duration-200 font-medium"
+                className="px-4 py-2 bg-error-dark text-white rounded-lg hover:bg-error-dark transition-all duration-200 font-medium"
               >
                 🗑️ Clear Logs
               </button>
@@ -273,7 +273,7 @@ const AdminSystemLogs = () => {
           ) : (
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
+                <thead className="bg-canvas">
                   <tr>
                     <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Level
@@ -321,7 +321,7 @@ const AdminSystemLogs = () => {
                           {log.details && <div>Details: {log.details}</div>}
                           {log.userId && <div>User: {log.userId}</div>}
                           {log.ip && <div>IP: {log.ip}</div>}
-                          {log.error && <div className="text-red-600">Error: {log.error}</div>}
+                          {log.error && <div className="text-error-dark">Error: {log.error}</div>}
                           {log.responseTime && <div>Response: {log.responseTime}</div>}
                         </div>
                       </td>
@@ -352,9 +352,9 @@ const AdminSystemLogs = () => {
             
             return (
               <div key={level} className={`bg-white rounded-xl shadow-lg p-6 border-l-4 ${
-                level === 'error' ? 'border-red-500' :
-                level === 'warning' ? 'border-yellow-500' :
-                level === 'info' ? 'border-blue-500' : 'border-gray-500'
+                level === 'error' ? 'border-error' :
+                level === 'warning' ? 'border-warning' :
+                level === 'info' ? 'border-brand-500' : 'border-gray-500'
               }`}>
                 <div className="flex items-center justify-between">
                   <div>

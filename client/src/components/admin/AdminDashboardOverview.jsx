@@ -1,5 +1,6 @@
 import React from "react";
 import AdminDashboardFinancial from "./AdminDashboardFinancial";
+import { getToneClasses } from "../../utils/toneClasses";
 
 const AdminDashboardOverview = ({ userStats, adminAccount, billingLoading, recentTransactions, paymentStats }) => {
   return (
@@ -7,7 +8,7 @@ const AdminDashboardOverview = ({ userStats, adminAccount, billingLoading, recen
         {/* Enhanced Analytics Grid */}
         <section className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-            <svg className="w-6 h-6 mr-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 mr-3 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
             Platform Analytics
@@ -79,11 +80,11 @@ const AdminDashboardOverview = ({ userStats, adminAccount, billingLoading, recen
                 color: "red"
               }
             ].map(({ label, value, change, changeType, icon, color }) => (
-              <div key={label} className={`bg-white overflow-hidden shadow-lg rounded-lg border-l-4 border-${color}-500`}>
+              <div key={label} className={`bg-white overflow-hidden shadow-lg rounded-lg border-l-4 ${getToneClasses(color).borderLeft}`}>
                 <div className="p-5">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
-                      <div className={`w-8 h-8 bg-${color}-500 rounded-full flex items-center justify-center`}>
+                      <div className={`w-8 h-8 ${getToneClasses(color).solid} rounded-full flex items-center justify-center`}>
                         <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={icon} />
                         </svg>
@@ -95,11 +96,11 @@ const AdminDashboardOverview = ({ userStats, adminAccount, billingLoading, recen
                         <dd className="flex items-baseline">
                           <div className="text-2xl font-semibold text-gray-900">{value}</div>
                           <div className={`ml-2 flex items-baseline text-sm font-semibold ${
-                            changeType === 'positive' ? 'text-green-600' :
-                            changeType === 'negative' ? 'text-red-600' : 'text-gray-500'
+                            changeType === 'positive' ? 'text-success-dark' :
+                            changeType === 'negative' ? 'text-error-dark' : 'text-gray-500'
                           }`}>
                             {changeType === 'positive' && (
-                              <svg className="self-center flex-shrink-0 h-3 w-3 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                              <svg className="self-center flex-shrink-0 h-3 w-3 text-success" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
                               </svg>
                             )}

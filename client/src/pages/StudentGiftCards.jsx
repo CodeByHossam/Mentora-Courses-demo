@@ -82,21 +82,21 @@ const StudentGiftCards = () => {
 
   const getCardTypeColor = (type) => {
     const colorMap = {
-      admin_issued: 'bg-gradient-to-br from-sky-500 to-sky-600',
-      welcome_bonus: 'bg-gradient-to-br from-green-500 to-green-600',
-      commission_reward: 'bg-gradient-to-br from-purple-500 to-purple-600',
-      referral_bonus: 'bg-gradient-to-br from-pink-500 to-pink-600',
-      achievement_reward: 'bg-gradient-to-br from-yellow-500 to-yellow-600',
-      promotional: 'bg-gradient-to-br from-indigo-500 to-indigo-600',
-      compensation: 'bg-gradient-to-br from-red-500 to-red-600'
+      admin_issued: 'bg-brand',
+      welcome_bonus: 'bg-success',
+      commission_reward: 'bg-brand',
+      referral_bonus: 'bg-brand',
+      achievement_reward: 'bg-warning',
+      promotional: 'bg-brand',
+      compensation: 'bg-error'
     };
-    return colorMap[type] || 'bg-gradient-to-br from-gray-500 to-gray-600';
+    return colorMap[type] || 'bg-brand';
   };
 
   const getStatusColor = (isActive, expiryDate) => {
-    if (!isActive) return 'bg-red-100 text-red-800';
-    if (expiryDate && new Date(expiryDate) < new Date()) return 'bg-orange-100 text-orange-800';
-    return 'bg-green-100 text-green-800';
+    if (!isActive) return 'bg-error-soft text-error-dark';
+    if (expiryDate && new Date(expiryDate) < new Date()) return 'bg-warning-soft text-warning-dark';
+    return 'bg-success-soft text-success-dark';
   };
 
   const getStatusText = (isActive, expiryDate) => {
@@ -107,7 +107,7 @@ const StudentGiftCards = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-indigo-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-7xl mx-auto">
           <div className="animate-pulse">
             <div className="h-8 bg-gray-200 rounded w-1/4 mb-6"></div>
@@ -124,14 +124,14 @@ const StudentGiftCards = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-indigo-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
-            <h2 className="text-lg font-semibold text-red-800 mb-2">Error Loading Gift Cards</h2>
-            <p className="text-red-600 mb-4">Unable to load your gift cards. Please try again.</p>
+          <div className="bg-error-soft border border-error-soft rounded-xl p-6 text-center">
+            <h2 className="text-lg font-semibold text-error-dark mb-2">Error Loading Gift Cards</h2>
+            <p className="text-error-dark mb-4">Unable to load your gift cards. Please try again.</p>
             <button
               onClick={() => refetch()}
-              className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+              className="px-4 py-2 bg-error-dark text-white rounded-lg hover:bg-error-dark transition-colors"
             >
               Retry
             </button>
@@ -147,7 +147,7 @@ const StudentGiftCards = () => {
         {/* Header */}
         <div className="mb-8 bg-white p-4 shadow rounded-xl">
           <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-            <Gift className="w-8 h-8 text-sky-600" />
+            <Gift className="w-8 h-8 text-brand-600" />
             My Gift Cards
           </h1>
           <p className="text-gray-600 mt-2">View gift cards and rewards issued by administrators</p>
@@ -161,8 +161,8 @@ const StudentGiftCards = () => {
                 <p className="text-sm font-medium text-gray-600">Total Gift Cards</p>
                 <p className="text-xl font-bold text-gray-900">{stats.totalCards || 0}</p>
               </div>
-              <div className="p-3 bg-sky-100 rounded-full">
-                <Gift className="w-6 h-6 text-sky-600" />
+              <div className="p-3 bg-brand-100 rounded-full">
+                <Gift className="w-6 h-6 text-brand-600" />
               </div>
             </div>
           </div>
@@ -175,8 +175,8 @@ const StudentGiftCards = () => {
                   {stats.activeCards || 0}
                 </p>
               </div>
-              <div className="p-3 bg-green-100 rounded-full">
-                <Zap className="w-6 h-6 text-green-600" />
+              <div className="p-3 bg-success-soft rounded-full">
+                <Zap className="w-6 h-6 text-success-dark" />
               </div>
             </div>
           </div>
@@ -187,8 +187,8 @@ const StudentGiftCards = () => {
                 <p className="text-sm font-medium text-gray-600">Total Value</p>
                 <p className="text-xl font-bold text-gray-900">{formatCurrency(totalValue)}</p>
               </div>
-              <div className="p-3 bg-purple-100 rounded-full">
-                <DollarSign className="w-6 h-6 text-purple-600" />
+              <div className="p-3 bg-brand-100 rounded-full">
+                <DollarSign className="w-6 h-6 text-brand-600" />
               </div>
             </div>
           </div>
@@ -202,7 +202,7 @@ const StudentGiftCards = () => {
               <select
                 value={filters.giftCardType}
                 onChange={(e) => setFilters(prev => ({ ...prev, giftCardType: e.target.value }))}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="all">All Types</option>
                 <option value="admin_issued">Admin Issued</option>
@@ -218,7 +218,7 @@ const StudentGiftCards = () => {
               <select
                 value={filters.isActive}
                 onChange={(e) => setFilters(prev => ({ ...prev, isActive: e.target.value }))}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="all">All Status</option>
                 <option value="active">Active</option>
@@ -316,7 +316,7 @@ const StudentGiftCards = () => {
                     )}
                     <div>
                       <span className="font-medium text-gray-700">Status: </span>
-                      <span className={`font-medium ${card.isActive ? 'text-green-600' : 'text-red-600'}`}>
+                      <span className={`font-medium ${card.isActive ? 'text-success-dark' : 'text-error-dark'}`}>
                         {card.isActive ? 'Active' : 'Inactive'}
                       </span>
                     </div>
@@ -349,7 +349,7 @@ const StudentGiftCards = () => {
                   onClick={() => setCurrentPage(i + 1)}
                   className={`px-3 py-2 rounded-lg ${
                     currentPage === i + 1
-                      ? 'bg-sky-600 text-white'
+                      ? 'bg-brand-600 text-white'
                       : 'border border-gray-300 hover:bg-gray-50'
                   }`}
                 >

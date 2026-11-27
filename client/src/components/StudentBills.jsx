@@ -26,8 +26,7 @@ import {
   FileText,
   AlertCircle
 } from 'lucide-react';
-import Card from './Card';
-import Button from './Button';
+import { Card, Button } from './common/index.js';
 
 const StudentBills = ({ userId }) => {
   const [bills, setBills] = useState([]);
@@ -116,10 +115,10 @@ const StudentBills = ({ userId }) => {
 
   const getStatusBadge = (status) => {
     const statusConfig = {
-      paid: { color: 'bg-green-100 text-green-800', icon: CheckCircle },
-      pending: { color: 'bg-yellow-100 text-yellow-800', icon: Clock },
-      overdue: { color: 'bg-red-100 text-red-800', icon: AlertCircle },
-      failed: { color: 'bg-red-100 text-red-800', icon: XCircle }
+      paid: { color: 'bg-success-soft text-success-dark', icon: CheckCircle },
+      pending: { color: 'bg-warning-soft text-warning-dark', icon: Clock },
+      overdue: { color: 'bg-error-soft text-error-dark', icon: AlertCircle },
+      failed: { color: 'bg-error-soft text-error-dark', icon: XCircle }
     };
 
     const config = statusConfig[status] || statusConfig.pending;
@@ -135,9 +134,9 @@ const StudentBills = ({ userId }) => {
 
   const getPaymentMethodBadge = (method) => {
     const methodConfig = {
-      stripe: { color: 'bg-purple-100 text-purple-800', label: 'Card' },
-      paypal: { color: 'bg-blue-100 text-blue-800', label: 'PayPal' },
-      direct_transfer: { color: 'bg-green-100 text-green-800', label: 'Bank Transfer' }
+      stripe: { color: 'bg-brand-100 text-brand-800', label: 'Card' },
+      paypal: { color: 'bg-brand-100 text-brand-800', label: 'PayPal' },
+      direct_transfer: { color: 'bg-success-soft text-success-dark', label: 'Bank Transfer' }
     };
 
     const config = methodConfig[method] || { color: 'bg-gray-100 text-gray-800', label: method };
@@ -177,7 +176,7 @@ const StudentBills = ({ userId }) => {
         <Card className="p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold flex items-center">
-              <AlertCircle className="w-5 h-5 mr-2 text-orange-600" />
+              <AlertCircle className="w-5 h-5 mr-2 text-warning-dark" />
               Outstanding Bills ({outstandingBills.length})
             </h3>
           </div>
@@ -187,7 +186,7 @@ const StudentBills = ({ userId }) => {
               <div 
                 key={bill._id || `${bill.description}-${bill.dueDate}`} 
                 className={`p-4 border rounded-lg ${
-                  isOverdue(bill.dueDate) ? 'border-red-200 bg-red-50' : 'border-yellow-200 bg-yellow-50'
+                  isOverdue(bill.dueDate) ? 'border-error-soft bg-error-soft' : 'border-warning-soft bg-warning-soft'
                 }`}
               >
                 <div className="flex items-center justify-between">
@@ -232,7 +231,7 @@ const StudentBills = ({ userId }) => {
       {payments.length > 0 && (
         <Card className="p-6">
           <h3 className="text-lg font-semibold mb-4 flex items-center">
-            <FileText className="w-5 h-5 mr-2 text-blue-600" />
+            <FileText className="w-5 h-5 mr-2 text-brand-600" />
             Recent Payments
           </h3>
           
@@ -305,16 +304,16 @@ const StudentBills = ({ userId }) => {
       {paidBills.length > 0 && (
         <Card className="p-6">
           <h3 className="text-lg font-semibold mb-4 flex items-center">
-            <CheckCircle className="w-5 h-5 mr-2 text-green-600" />
+            <CheckCircle className="w-5 h-5 mr-2 text-success-dark" />
             Paid Bills ({paidBills.length})
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {paidBills.slice(0, 6).map((bill) => (
-              <div key={bill._id || `${bill.description}-${bill.paidAt}`} className="p-3 bg-green-50 border border-green-200 rounded-lg">
+              <div key={bill._id || `${bill.description}-${bill.paidAt}`} className="p-3 bg-success-soft border border-success-soft rounded-lg">
                 <p className="font-medium text-gray-900 text-sm">{bill.description}</p>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-sm font-semibold text-green-700">
+                  <span className="text-sm font-semibold text-success-dark">
                     ${bill.amount?.toFixed(2)}
                   </span>
                   <span className="text-xs text-gray-600">

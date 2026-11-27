@@ -68,7 +68,7 @@ const StudentNav = ({
       <div
         className={`transition-all duration-300 flex ${
           isSidebarOpen ? "justify-center" : "justify-start"
-        } items-center bg-soDark px-4 py-4 lg:px-10 w-full border-b shadow-sm`}
+        } items-center bg-brand-900 px-4 py-4 lg:px-10 w-full border-b shadow-sm`}
         style={{ borderColor: "var(--card-border)" }}
       >
         <button
@@ -90,7 +90,7 @@ const StudentNav = ({
         className={`
           fixed top-0 left-0 pt-16 md:pt-0 lg:pt-24 h-screen flex flex-col bg-white border-r z-40
            ease-in-out
-          transition-[width,transform,opacity]
+          transition-[width,,opacity]
           ${
             isSidebarOpen
               ? "translate-x-0 opacity-100"
@@ -171,7 +171,7 @@ const StudentNav = ({
                     ${
                       active
                         ? "bg-darkColor text-white"
-                        : "text-secondary hover:bg-accent"
+                        : "text-secondary hover:bg-brand-50"
                     }
                   `}
                 >
@@ -200,8 +200,8 @@ const StudentNav = ({
                   className={`w-full flex items-center rounded-lg px-3 py-2 text-sm transition
                     ${
                       active
-                        ? "bg-soDark text-white"
-                        : "text-secondary hover:bg-accent"
+                        ? "bg-brand-900 text-white"
+                        : "text-secondary hover:bg-brand-50"
                     }
                   `}
                 >
@@ -225,7 +225,7 @@ const StudentNav = ({
         <div className="p-4 border-t">
           <button
             onClick={handleLogout}
-            className="flex items-center w-full px-3 py-2 text-sm text-red-600 rounded-lg hover:bg-red-50"
+            className="flex items-center w-full px-3 py-2 text-sm text-error-dark rounded-lg hover:bg-error-soft"
           >
             <LogOut size={20} />
             <span

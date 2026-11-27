@@ -58,9 +58,9 @@ const StartConversation = ({ isOpen, onClose, preSelectedInstructor = null, preS
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-brand-50">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center">
               <MessageSquare className="w-5 h-5 text-white" />
             </div>
             <h2 className="text-xl font-bold text-gray-900">Start New Conversation</h2>
@@ -77,7 +77,7 @@ const StartConversation = ({ isOpen, onClose, preSelectedInstructor = null, preS
         <div className="p-6 space-y-6">
           {isLoading ? (
             <div className="text-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand-500 mx-auto"></div>
               <p className="text-gray-500 mt-2">Loading instructors...</p>
             </div>
           ) : (
@@ -94,12 +94,12 @@ const StartConversation = ({ isOpen, onClose, preSelectedInstructor = null, preS
                       onClick={() => handleInstructorSelect(instructor)}
                       className={`p-4 border-2 rounded-lg cursor-pointer transition-all ${
                         selectedInstructor?._id === instructor._id
-                          ? "border-blue-500 bg-blue-50"
+                          ? "border-brand-500 bg-brand-50"
                           : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
                       }`}
                     >
                       <div className="flex items-start space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center flex-shrink-0">
+                        <div className="w-10 h-10 bg-brand-400 rounded-full flex items-center justify-center flex-shrink-0">
                           <User className="w-5 h-5 text-white" />
                         </div>
                         <div className="flex-1">
@@ -109,7 +109,7 @@ const StartConversation = ({ isOpen, onClose, preSelectedInstructor = null, preS
                             {instructor.courses.map((course) => (
                               <span
                                 key={course._id}
-                                className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800"
+                                className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-brand-100 text-brand-800"
                               >
                                 <BookOpen className="w-3 h-3 mr-1" />
                                 {course.title}
@@ -141,7 +141,7 @@ const StartConversation = ({ isOpen, onClose, preSelectedInstructor = null, preS
                       onClick={() => setSelectedCourse(null)}
                       className={`p-3 border rounded-lg cursor-pointer transition-all ${
                         !selectedCourse
-                          ? "border-blue-500 bg-blue-50"
+                          ? "border-brand-500 bg-brand-50"
                           : "border-gray-200 hover:border-gray-300"
                       }`}
                     >
@@ -153,7 +153,7 @@ const StartConversation = ({ isOpen, onClose, preSelectedInstructor = null, preS
                         onClick={() => setSelectedCourse(course)}
                         className={`p-3 border rounded-lg cursor-pointer transition-all ${
                           selectedCourse?._id === course._id
-                            ? "border-blue-500 bg-blue-50"
+                            ? "border-brand-500 bg-brand-50"
                             : "border-gray-200 hover:border-gray-300"
                         }`}
                       >
@@ -175,7 +175,7 @@ const StartConversation = ({ isOpen, onClose, preSelectedInstructor = null, preS
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
                     placeholder="Enter message subject..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                   />
                 </div>
               )}
@@ -191,7 +191,7 @@ const StartConversation = ({ isOpen, onClose, preSelectedInstructor = null, preS
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Type your message..."
                     rows={4}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none"
                   />
                 </div>
               )}
@@ -211,7 +211,7 @@ const StartConversation = ({ isOpen, onClose, preSelectedInstructor = null, preS
             <button
               onClick={handleSendMessage}
               disabled={!subject.trim() || !message.trim() || isSending}
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+              className="px-6 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
             >
               {isSending ? (
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>

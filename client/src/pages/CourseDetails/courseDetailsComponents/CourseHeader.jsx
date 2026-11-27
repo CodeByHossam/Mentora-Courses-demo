@@ -24,7 +24,7 @@ const CourseHeader = ({
   if (!course) {
     return (
       <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-10 border border-gray-200">
-        <h1 className="text-3xl text-center font-extrabold tracking-tight py-6 px-2 bg-white text-accent-dark border-b border-gray-100 shadow-sm">
+        <h1 className="text-3xl text-center font-extrabold tracking-tight py-6 px-2 bg-white text-brand-200 border-b border-gray-100 shadow-sm">
           Loading...
         </h1>
       </div>
@@ -41,7 +41,7 @@ const CourseHeader = ({
       </div>
       <div className="flex flex-col lg:flex-row">
         {/* Left: Course Image */}
-        <div className="sm:w-full md:w-2/5 lg:w-1/3   flex-shrink-0 relative bg-gradient-to-br from-green-500 to-blue-600 flex items-center justify-center"
+        <div className="sm:w-full md:w-2/5 lg:w-1/3 flex-shrink-0 relative bg-brand flex items-center justify-center"
              style={{ minHeight: 250, maxHeight: 350 }}>
           {course?.imageUrl ? (
             <img
@@ -67,10 +67,10 @@ const CourseHeader = ({
                 ${course?.price}
               </span>
               <div className="flex items-center gap-4">
-                <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                <div className="bg-brand-100 text-brand-800 px-3 py-1 rounded-full text-sm font-medium">
                   {course?.level}
                 </div>
-                <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                <div className="bg-success-soft text-success-dark px-3 py-1 rounded-full text-sm font-medium">
                   {course?.students} students
                 </div>
               </div>
@@ -130,7 +130,7 @@ const CourseHeader = ({
                 {isAuthenticated && currentUser?.role === "student" && (
                   <button
                     onClick={() => navigate(`/messages?instructor=${course.instructor?._id}`)}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 text-sm font-medium"
+                    className="bg-brand-600 text-white px-4 py-2 rounded-lg hover:bg-brand-700 transition-colors flex items-center gap-2 text-sm font-medium"
                   >
                     💬 Chat
                   </button>
@@ -150,7 +150,7 @@ const CourseHeader = ({
                 (currentUser?.role === "instructor" && course?.instructor?._id === currentUser?.id)) && (
                 <button
                   onClick={() => navigate(`/courses/${courseId}/learn`)}
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 flex items-center space-x-2 font-semibold shadow-md hover:shadow-lg"
+                  className="bg-brand text-white px-6 py-2 rounded-lg hover:bg-brand-700 transition-all duration-200 flex items-center space-x-2 font-semibold shadow-md hover:shadow-lg"
                 >
                   <BookOpen size={18} />
                   <span>Go to Lessons</span>
@@ -167,7 +167,7 @@ const CourseHeader = ({
                   className={`${
                     notEnrolledContent
                       ? "bg-gray-300"
-                      : "bg-yellow-500 hover:bg-yellow-600"
+                      : "bg-warning hover:bg-warning-dark"
                   } text-white px-5 py-2 rounded-lg transition flex items-center space-x-2 cursor-pointer`}
                 >
                   <Edit size={18} />
@@ -183,7 +183,7 @@ const CourseHeader = ({
                     isEnrolled
                       ? "bg-gray-300 text-gray-700 px-5 py-2 rounded-lg cursor-not-allowed"
                       : hasPendingRequest
-                      ? "bg-yellow-500 text-white px-5 py-2 rounded-lg cursor-not-allowed"
+                      ? "bg-warning text-white px-5 py-2 rounded-lg cursor-not-allowed"
                       : "bg-[rgb(33,98,58)] text-white px-5 py-2 rounded-lg hover:bg-[rgb(48,146,85)] transition"
                   }
                 >
@@ -234,7 +234,7 @@ const CourseHeader = ({
                     >
                       {userRatingInput >= num ? (
                         <Star
-                          className="w-7 h-7 text-yellow-400 cursor-pointer"
+                          className="w-7 h-7 text-warning cursor-pointer"
                           fill="currentColor"
                         />
                       ) : (
@@ -244,7 +244,7 @@ const CourseHeader = ({
                   ))}
                 </div>
                 {typeof ratingInfo?.userRating !== "undefined" && (
-                  <span className="ml-2 text-green-600 font-medium">
+                  <span className="ml-2 text-success-dark font-medium">
                     (You rated: {ratingInfo.userRating})
                   </span>
                 )}

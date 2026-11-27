@@ -20,6 +20,7 @@ import {
   Bell,
   Mail,
 } from 'lucide-react';
+import { getToneClasses } from '../utils/toneClasses';
 import { 
   useGetDeletionStatisticsQuery,
   useBulkDeleteCommentsMutation,
@@ -283,39 +284,39 @@ const AdminBulkDelete = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-yellow-500">
+            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-warning">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">With Relationships</p>
-                  <p className="text-2xl font-bold text-yellow-600">
+                  <p className="text-2xl font-bold text-warning-dark">
                     {Object.values(statistics.relationshipModels || {}).reduce((sum, count) => sum + count, 0)}
                   </p>
                 </div>
-                <AlertTriangle className="w-8 h-8 text-yellow-500" />
+                <AlertTriangle className="w-8 h-8 text-warning" />
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500">
+            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-error">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Sensitive Data</p>
-                  <p className="text-2xl font-bold text-red-600">
+                  <p className="text-2xl font-bold text-error-dark">
                     {Object.values(statistics.sensitiveModels || {}).reduce((sum, count) => sum + count, 0)}
                   </p>
                 </div>
-                <Shield className="w-8 h-8 text-red-500" />
+                <Shield className="w-8 h-8 text-error" />
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500">
+            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-brand-500">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Protected</p>
-                  <p className="text-2xl font-bold text-purple-600">
+                  <p className="text-2xl font-bold text-brand-600">
                     {Object.values(statistics.protectedModels || {}).reduce((sum, count) => sum + count, 0)}
                   </p>
                 </div>
-                <Database className="w-8 h-8 text-purple-500" />
+                <Database className="w-8 h-8 text-brand-500" />
               </div>
             </div>
           </div>
@@ -324,15 +325,15 @@ const AdminBulkDelete = () => {
         {/* Safe Operations */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <CheckCircle className="w-6 h-6 text-green-600" />
+            <CheckCircle className="w-6 h-6 text-success-dark" />
             Safe Deletion Operations
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {safeOperations.map((operation) => (
               <div key={operation.name} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
                 <div className="flex items-start justify-between mb-4">
-                  <operation.icon className={`w-8 h-8 text-${operation.color}-600`} />
-                  <span className={`px-3 py-1 rounded-full text-sm font-medium bg-${operation.color}-100 text-${operation.color}-800`}>
+                  <operation.icon className={`w-8 h-8 ${getToneClasses(operation.color).icon}`} />
+                  <span className={`px-3 py-1 rounded-full text-sm font-medium ${getToneClasses(operation.color).badge}`}>
                     {operation.count} records
                   </span>
                 </div>
@@ -344,7 +345,7 @@ const AdminBulkDelete = () => {
                   className={`w-full px-4 py-2 rounded-lg font-medium transition-colors ${
                     operation.count === 0 
                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      : 'bg-red-600 text-white hover:bg-red-700'
+                      : 'bg-error-dark text-white hover:bg-error-dark'
                   }`}
                 >
                   {operationLoading ? (
@@ -361,15 +362,15 @@ const AdminBulkDelete = () => {
         {/* Sensitive Operations */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <AlertTriangle className="w-6 h-6 text-red-600" />
+            <AlertTriangle className="w-6 h-6 text-error-dark" />
             Sensitive Operations (Financial Data)
           </h2>
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+          <div className="bg-error-soft border border-error-soft rounded-lg p-4 mb-6">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5" />
+              <AlertTriangle className="w-5 h-5 text-error-dark mt-0.5" />
               <div>
-                <h3 className="font-semibold text-red-800">⚠️ Warning: Financial Data</h3>
-                <p className="text-red-700 text-sm">
+                <h3 className="font-semibold text-error-dark">⚠️ Warning: Financial Data</h3>
+                <p className="text-error-dark text-sm">
                   These operations delete financial records. This may affect billing, payments, and financial reporting. 
                   Ensure you have proper backups and legal compliance before proceeding.
                 </p>
@@ -378,10 +379,10 @@ const AdminBulkDelete = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {sensitiveOperations.map((operation) => (
-              <div key={operation.name} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow border-2 border-red-200">
+              <div key={operation.name} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow border-2 border-error-soft">
                 <div className="flex items-start justify-between mb-4">
-                  <operation.icon className="w-8 h-8 text-red-600" />
-                  <span className="px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
+                  <operation.icon className="w-8 h-8 text-error-dark" />
+                  <span className="px-3 py-1 rounded-full text-sm font-medium bg-error-soft text-error-dark">
                     {operation.count} records
                   </span>
                 </div>
@@ -393,7 +394,7 @@ const AdminBulkDelete = () => {
                   className={`w-full px-4 py-2 rounded-lg font-medium transition-colors ${
                     operation.count === 0 
                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      : 'bg-red-600 text-white hover:bg-red-700'
+                      : 'bg-error-dark text-white hover:bg-error-dark'
                   }`}
                 >
                   {operationLoading ? (
@@ -409,11 +410,11 @@ const AdminBulkDelete = () => {
 
         {/* Nuclear Option */}
         <div className="mb-8">
-          <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-xl shadow-lg p-8 text-white">
+          <div className="bg-error rounded-xl shadow-lg p-8 text-white">
             <div className="text-center">
               <AlertTriangle className="w-12 h-12 mx-auto mb-4" />
               <h2 className="text-2xl font-bold mb-2">☢️ Nuclear Option</h2>
-              <p className="text-red-100 mb-6 max-w-2xl mx-auto">
+              <p className="text-error-soft mb-6 max-w-2xl mx-auto">
                 Delete ALL non-critical data in one operation. This includes comments, tests, notifications, 
                 messages, and other safe-to-delete records. Financial and user data will be preserved.
               </p>
@@ -426,7 +427,7 @@ const AdminBulkDelete = () => {
                   extraData: { nuclear: true }
                 })}
                 disabled={operationLoading}
-                className="bg-white text-red-600 px-8 py-3 rounded-lg font-bold hover:bg-red-50 transition-colors disabled:opacity-50"
+                className="bg-white text-error-dark px-8 py-3 rounded-lg font-bold hover:bg-error-soft transition-colors disabled:opacity-50"
               >
                 {operationLoading ? (
                   <Loader2 className="w-5 h-5 animate-spin mx-auto" />
@@ -443,7 +444,7 @@ const AdminBulkDelete = () => {
           <button
             onClick={() => fetchStatistics()}
             disabled={loading}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center gap-2 mx-auto"
+            className="bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 transition-colors disabled:opacity-50 flex items-center gap-2 mx-auto"
           >
             <RefreshCw className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`} />
             Refresh Statistics
@@ -456,7 +457,7 @@ const AdminBulkDelete = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
             <div className="text-center mb-6">
-              <AlertTriangle className="w-12 h-12 text-red-600 mx-auto mb-4" />
+              <AlertTriangle className="w-12 h-12 text-error-dark mx-auto mb-4" />
               <h3 className="text-xl font-bold text-gray-900 mb-2">Confirm Deletion</h3>
               <p className="text-gray-600">
                 You are about to delete <strong>{currentOperation.name}</strong>. 
@@ -468,8 +469,8 @@ const AdminBulkDelete = () => {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Type the following text to confirm deletion:
               </label>
-              <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-3">
-                <code className="text-red-800 font-mono text-sm font-bold">
+              <div className="bg-error-soft border border-error-soft rounded-lg p-3 mb-3">
+                <code className="text-error-dark font-mono text-sm font-bold">
                   {currentOperation.confirmText}
                 </code>
               </div>
@@ -477,7 +478,7 @@ const AdminBulkDelete = () => {
                 type="text"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent font-mono"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-error focus:border-transparent font-mono"
                 placeholder={currentOperation.confirmText}
               />
             </div>
@@ -497,7 +498,7 @@ const AdminBulkDelete = () => {
               <button
                 onClick={() => handleDelete(currentOperation)}
                 disabled={confirmPassword !== currentOperation.confirmText || operationLoading}
-                className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50"
+                className="flex-1 px-4 py-2 bg-error-dark text-white rounded-lg hover:bg-error-dark transition-colors disabled:opacity-50"
               >
                 {operationLoading ? (
                   <Loader2 className="w-4 h-4 animate-spin mx-auto" />
@@ -515,12 +516,12 @@ const AdminBulkDelete = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
             <div className="text-center">
-              <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-4" />
+              <CheckCircle className="w-12 h-12 text-success-dark mx-auto mb-4" />
               <h3 className="text-xl font-bold text-gray-900 mb-2">Success!</h3>
               <p className="text-gray-600 mb-6">{successMessage}</p>
               <button
                 onClick={() => setShowSuccessModal(false)}
-                className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors"
+                className="bg-success-dark text-white px-6 py-2 rounded-lg hover:bg-success-dark transition-colors"
               >
                 OK
               </button>
@@ -534,12 +535,12 @@ const AdminBulkDelete = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
             <div className="text-center">
-              <XCircle className="w-12 h-12 text-red-600 mx-auto mb-4" />
+              <XCircle className="w-12 h-12 text-error-dark mx-auto mb-4" />
               <h3 className="text-xl font-bold text-gray-900 mb-2">Error</h3>
               <p className="text-gray-600 mb-6">{errorMessage}</p>
               <button
                 onClick={() => setShowErrorModal(false)}
-                className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors"
+                className="bg-error-dark text-white px-6 py-2 rounded-lg hover:bg-error-dark transition-colors"
               >
                 OK
               </button>

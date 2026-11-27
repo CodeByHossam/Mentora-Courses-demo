@@ -113,7 +113,7 @@ const CreateCourse = () => {
         <div className="card rounded-2xl p-4 sm:p-6 lg:p-8 mb-6 sm:mb-8">
           <div className="text-center">
             <div className="text-4xl sm:text-5xl lg:text-6xl mb-3 sm:mb-4">✨</div>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold" style={{background: 'linear-gradient(to right, var(--success), var(--info))', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent'}}>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-ink">
               Create New Course
             </h1>
             <p className="mt-2 text-sm sm:text-base text-secondary max-w-2xl mx-auto">
@@ -124,7 +124,7 @@ const CreateCourse = () => {
 
         {/* Form Section */}
         <div className="card rounded-2xl overflow-hidden">
-          <div className="px-4 sm:px-6 lg:px-8 py-4 sm:py-6" style={{background: 'linear-gradient(to right, var(--success), var(--info))'}}>
+          <div className="px-4 sm:px-6 lg:px-8 py-4 sm:py-6 bg-brand">
             <h2 className="text-xl font-bold text-white flex items-center">
               <span className="mr-2">📚</span>
               Course Information
@@ -163,7 +163,7 @@ const CreateCourse = () => {
                 value={formData.description}
                 onChange={handleChange}
                 placeholder="Describe what students will learn in this course..."
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 resize-none"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-success focus:border-transparent transition-all duration-200 resize-none"
               />
             </div>
 
@@ -174,7 +174,7 @@ const CreateCourse = () => {
                   💰 Price (USD)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
                   <input
                     type="number"
                     name="price"
@@ -184,7 +184,7 @@ const CreateCourse = () => {
                     value={formData.price}
                     onChange={handleChange}
                     placeholder="0.00"
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-success focus:border-transparent transition-all duration-200"
                   />
                 </div>
               </div>
@@ -200,7 +200,7 @@ const CreateCourse = () => {
                   value={formData.duration}
                   onChange={handleChange}
                   placeholder="10"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-success focus:border-transparent transition-all duration-200"
                 />
               </div>
             </div>
@@ -216,7 +216,7 @@ const CreateCourse = () => {
                   required
                   value={formData.category}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-success focus:border-transparent transition-all duration-200"
                 >
                   <option value="">Select a category</option>
                   {!categoriesLoading &&
@@ -236,7 +236,7 @@ const CreateCourse = () => {
                   required
                   value={formData.level}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-success focus:border-transparent transition-all duration-200"
                 >
                   {LEVELS.map((lvl) => (
                     <option key={lvl} value={lvl}>
@@ -261,7 +261,7 @@ const CreateCourse = () => {
                 value={formData.topics}
                 onChange={handleChange}
                 placeholder="HTML, CSS, JavaScript, React, Node.js"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-success focus:border-transparent transition-all duration-200"
               />
               <p className="text-xs text-gray-500 mt-1">
                 Separate topics with commas to help students find your course
@@ -269,7 +269,7 @@ const CreateCourse = () => {
             </div>
 
             {/* Image Upload Section */}
-            <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-6">
+            <div className="bg-success rounded-xl p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
                 🖼️ Course Image
               </h3>
@@ -285,11 +285,11 @@ const CreateCourse = () => {
                       accept="image/*"
                       onChange={handleFileChange}
                       disabled={!!formData.imageUrl}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-success focus:border-transparent transition-all duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed"
                     />
                   </div>
                   {formData.imageUrl && (
-                    <p className="text-xs text-amber-600 mt-1 flex items-center">
+                    <p className="text-xs text-warning-dark mt-1 flex items-center">
                       <span className="mr-1">⚠️</span>
                       File upload disabled - remove URL to upload file
                     </p>
@@ -307,10 +307,10 @@ const CreateCourse = () => {
                     onChange={handleUrlChange}
                     placeholder="https://example.com/course-image.jpg"
                     disabled={!!imageFile}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-success focus:border-transparent transition-all duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed"
                   />
                   {imageFile && (
-                    <p className="text-xs text-amber-600 mt-1 flex items-center">
+                    <p className="text-xs text-warning-dark mt-1 flex items-center">
                       <span className="mr-1">⚠️</span>
                       URL input disabled - remove file to enter URL
                     </p>
@@ -326,9 +326,9 @@ const CreateCourse = () => {
                     <img
                       src={imageFile ? URL.createObjectURL(imageFile) : formData.imageUrl}
                       alt="Course preview"
-                      className="w-48 h-32 object-cover rounded-lg shadow-md border-2 border-emerald-200"
+                      className="w-48 h-32 object-cover rounded-lg shadow-md border-2 border-success-soft"
                     />
-                    <div className="absolute top-2 right-2 bg-emerald-500 text-white text-xs px-2 py-1 rounded-full">
+                    <div className="absolute top-2 right-2 bg-success text-white text-xs px-2 py-1 rounded-full">
                       ✓ Preview
                     </div>
                   </div>
@@ -348,7 +348,7 @@ const CreateCourse = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 px-6 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-lg hover:from-emerald-700 hover:to-teal-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium transform hover:scale-105 disabled:transform-none"
+                className="flex-1 px-6 py-3 success-dark text-white rounded-lg hover:bg-success transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium "
               >
                 {loading ? (
                   <div className="flex items-center justify-center">

@@ -30,7 +30,7 @@ import {
   useDeleteAdminNoteMutation,
   useGetReceiptUrlQuery,
 } from "../store/services/enrollmentRequestApi";
-import ProgressLoader from "../components/ProgressLoader";
+import { ProgressLoader } from '../components/common/index.js';
 import { handleApiError, handleApiSuccess } from "../utils/apiErrorHandler";
 import { useCreatePaymentMutation } from "../store/services/paymentApi";
 import { useConfirm } from "../hooks/useConfirm";
@@ -181,11 +181,11 @@ const InstructorPayments = () => {
   const getStatusIcon = (status) => {
     switch (status) {
       case 'approved':
-        return <CheckCircle className="w-4 h-4 text-green-600" />;
+        return <CheckCircle className="w-4 h-4 text-success-dark" />;
       case 'rejected':
-        return <XCircle className="w-4 h-4 text-red-600" />;
+        return <XCircle className="w-4 h-4 text-error-dark" />;
       case 'pending':
-        return <Clock className="w-4 h-4 text-yellow-600" />;
+        return <Clock className="w-4 h-4 text-warning-dark" />;
       default:
         return <AlertCircle className="w-4 h-4 text-gray-600" />;
     }
@@ -195,11 +195,11 @@ const InstructorPayments = () => {
     const baseClasses = "px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1";
     switch (status) {
       case 'approved':
-        return `${baseClasses} bg-green-100 text-green-800`;
+        return `${baseClasses} bg-success-soft text-success-dark`;
       case 'rejected':
-        return `${baseClasses} bg-red-100 text-red-800`;
+        return `${baseClasses} bg-error-soft text-error-dark`;
       case 'pending':
-        return `${baseClasses} bg-yellow-100 text-yellow-800`;
+        return `${baseClasses} bg-warning-soft text-warning-dark`;
       default:
         return `${baseClasses} bg-gray-100 text-gray-800`;
     }
@@ -209,11 +209,11 @@ const InstructorPayments = () => {
     const baseClasses = "px-2 py-1 rounded text-xs font-medium";
     switch (method) {
       case 'stripe':
-        return `${baseClasses} bg-blue-100 text-blue-800`;
+        return `${baseClasses} bg-brand-100 text-brand-800`;
       case 'paypal':
-        return `${baseClasses} bg-yellow-100 text-yellow-800`;
+        return `${baseClasses} bg-warning-soft text-warning-dark`;
       case 'direct_transfer':
-        return `${baseClasses} bg-green-100 text-green-800`;
+        return `${baseClasses} bg-success-soft text-success-dark`;
       default:
         return `${baseClasses} bg-gray-100 text-gray-800`;
     }
@@ -242,7 +242,7 @@ const InstructorPayments = () => {
     if (role === 'automatic') {
       return (
         <div className="text-sm">
-          <div className="font-medium text-blue-600">🤖 Automatic</div>
+          <div className="font-medium text-brand-600">🤖 Automatic</div>
           <div className="text-gray-500 text-xs">
             {approvedAt ? new Date(approvedAt).toLocaleDateString() : ''}
           </div>
@@ -290,7 +290,7 @@ const InstructorPayments = () => {
     if (receiptLoading) {
       return (
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
-          <div className="animate-spin h-4 w-4 border-2 border-blue-600 border-t-transparent rounded-full"></div>
+          <div className="animate-spin h-4 w-4 border-2 border-brand-600 border-t-transparent rounded-full"></div>
           <span className="text-sm text-gray-600">Loading receipt...</span>
         </div>
       );
@@ -298,7 +298,7 @@ const InstructorPayments = () => {
 
     if (receiptError) {
       return (
-        <span className="inline-flex items-center px-3 py-1 bg-red-100 text-red-800 text-sm rounded">
+        <span className="inline-flex items-center px-3 py-1 bg-error-soft text-error-dark text-sm rounded">
           📄 Receipt unavailable
         </span>
       );
@@ -312,7 +312,7 @@ const InstructorPayments = () => {
             className={`inline-flex items-center px-3 py-2 text-white text-sm rounded-lg transition-colors font-medium ${
               showReceipt 
                 ? 'bg-gray-600 hover:bg-gray-700' 
-                : 'bg-blue-600 hover:bg-blue-700'
+                : 'bg-brand-600 hover:bg-brand-700'
             }`}
           >
             {showReceipt ? (
@@ -325,7 +325,7 @@ const InstructorPayments = () => {
             <>
               <button
                 onClick={handleDownloadReceipt}
-                className="inline-flex items-center px-3 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700 transition-colors font-medium"
+                className="inline-flex items-center px-3 py-2 bg-success-dark text-white text-sm rounded-lg hover:bg-success-dark transition-colors font-medium"
               >
                 💾 Download Receipt
               </button>
@@ -333,7 +333,7 @@ const InstructorPayments = () => {
                 href={receiptData.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-3 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+                className="inline-flex items-center px-3 py-2 bg-brand-600 text-white text-sm rounded-lg hover:bg-brand-700 transition-colors font-medium"
               >
                 🔗 Open in New Tab
               </a>
@@ -366,9 +366,9 @@ const InstructorPayments = () => {
 
   if (isError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-red-50 to-pink-50 flex items-center justify-center">
+      <div className="min-h-screen bg-brand-50 flex items-center justify-center">
         <div className="bg-white p-8 rounded-xl shadow-lg text-center">
-          <XCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <XCircle className="w-16 h-16 text-error mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Failed to Load Data</h2>
           <p className="text-gray-600">Unable to load payment information. Please try again later.</p>
         </div>
@@ -377,7 +377,7 @@ const InstructorPayments = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-brand-50 p-4 sm:p-6 lg:p-8">
       <ConfirmationModalWrapper />
       
       {/* Header Section */}
@@ -385,18 +385,18 @@ const InstructorPayments = () => {
         <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="p-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl">
+              <div className="p-3 bg-brand-600 rounded-xl">
                 <CreditCard className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                <h1 className="text-3xl font-bold text-ink ">
                   💳 Payments & Enrollment
                 </h1>
                 <p className="text-gray-600 mt-1">Manage enrollment requests and direct transfers</p>
               </div>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-bold text-blue-600">
+              <div className="text-2xl font-bold text-brand-600">
                 {(requests?.length || 0) + (transfers?.length || 0)}
               </div>
               <div className="text-sm text-gray-500">Total Items</div>
@@ -413,7 +413,7 @@ const InstructorPayments = () => {
               onClick={() => setActiveTab('enrollment-requests')}
               className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
                 activeTab === 'enrollment-requests'
-                  ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg'
+                  ? 'bg-brand text-white shadow-lg'
                   : 'text-gray-600 hover:bg-gray-50'
               }`}
             >
@@ -421,7 +421,7 @@ const InstructorPayments = () => {
               📋 Enrollment Requests
               {requests?.length > 0 && (
                 <span className={`px-2 py-1 rounded-full text-xs font-bold ${
-                  activeTab === 'enrollment-requests' ? 'bg-white/20 text-white' : 'bg-blue-100 text-blue-600'
+                  activeTab === 'enrollment-requests' ? 'bg-white/20 text-white' : 'bg-brand-100 text-brand-600'
                 }`}>
                   {requests.length}
                 </span>
@@ -431,7 +431,7 @@ const InstructorPayments = () => {
               onClick={() => setActiveTab('direct-transfers')}
               className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
                 activeTab === 'direct-transfers'
-                  ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg'
+                  ? 'bg-success text-white shadow-lg'
                   : 'text-gray-600 hover:bg-gray-50'
               }`}
             >
@@ -439,7 +439,7 @@ const InstructorPayments = () => {
               💰 Direct Transfers
               {transfers?.length > 0 && (
                 <span className={`px-2 py-1 rounded-full text-xs font-bold ${
-                  activeTab === 'direct-transfers' ? 'bg-white/20 text-white' : 'bg-green-100 text-green-600'
+                  activeTab === 'direct-transfers' ? 'bg-white/20 text-white' : 'bg-success-soft text-success-dark'
                 }`}>
                   {transfers.length}
                 </span>
@@ -498,59 +498,59 @@ const EnrollmentRequestsTab = ({
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-600">⏳ Pending</p>
-            <p className="text-2xl font-bold text-yellow-600">
+            <p className="text-2xl font-bold text-warning-dark">
               {requests?.filter(r => r.status === 'pending').length || 0}
             </p>
           </div>
-          <Clock className="w-8 h-8 text-yellow-500" />
+          <Clock className="w-8 h-8 text-warning" />
         </div>
       </div>
       <div className="bg-white rounded-xl shadow-lg p-4 border border-gray-100">
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-600">✅ Approved</p>
-            <p className="text-2xl font-bold text-green-600">
+            <p className="text-2xl font-bold text-success-dark">
               {requests?.filter(r => r.status === 'approved').length || 0}
             </p>
           </div>
-          <CheckCircle className="w-8 h-8 text-green-500" />
+          <CheckCircle className="w-8 h-8 text-success" />
         </div>
       </div>
       <div className="bg-white rounded-xl shadow-lg p-4 border border-gray-100">
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-600">❌ Rejected</p>
-            <p className="text-2xl font-bold text-red-600">
+            <p className="text-2xl font-bold text-error-dark">
               {requests?.filter(r => r.status === 'rejected').length || 0}
             </p>
           </div>
-          <XCircle className="w-8 h-8 text-red-500" />
+          <XCircle className="w-8 h-8 text-error" />
         </div>
       </div>
       <div className="bg-white rounded-xl shadow-lg p-4 border border-gray-100">
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-600">💰 Total Amount</p>
-            <p className="text-2xl font-bold text-blue-600">
+            <p className="text-2xl font-bold text-brand-600">
               ${requests?.reduce((sum, r) => sum + (r.transferredAmount || 0), 0).toFixed(2) || '0.00'}
             </p>
           </div>
-          <DollarSign className="w-8 h-8 text-blue-500" />
+          <DollarSign className="w-8 h-8 text-brand-500" />
         </div>
       </div>
     </div>
 
     {/* Workflow Information */}
-    <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
+    <div className="bg-brand-50 border border-brand-200 rounded-xl p-4 mb-6">
       <div className="flex items-start">
         <div className="flex-shrink-0">
-          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-            <span className="text-blue-600 text-lg">💡</span>
+          <div className="w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center">
+            <span className="text-brand-600 text-lg">💡</span>
           </div>
         </div>
         <div className="ml-3">
-          <h3 className="text-sm font-medium text-blue-800">Unified Approval Workflow</h3>
-          <div className="mt-1 text-sm text-blue-700">
+          <h3 className="text-sm font-medium text-brand-800">Unified Approval Workflow</h3>
+          <div className="mt-1 text-sm text-brand-700">
             <p className="mb-1">
               <strong>For Direct Transfer Payments:</strong> Use the "Direct Transfers" tab to approve payments. 
               This will automatically approve the enrollment request, enroll the student, and record billing.
@@ -579,7 +579,7 @@ const EnrollmentRequestsTab = ({
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center space-x-2 mb-2">
-                    <div className="h-8 w-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center">
+                    <div className="h-8 w-8 bg-brand-600 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs font-bold">
                         {r.student?.name?.charAt(0)?.toUpperCase() || '?'}
                       </span>
@@ -608,9 +608,9 @@ const EnrollmentRequestsTab = ({
                       <span className="text-gray-600">💰 Amount:</span>
                       <span className="font-medium">
                         {r.paymentMethod === 'direct_transfer' && r.transferredAmount ? (
-                          <span className="text-green-600">💰 ${r.transferredAmount.toFixed(2)}</span>
+                          <span className="text-success-dark">💰 ${r.transferredAmount.toFixed(2)}</span>
                         ) : r.course?.price ? (
-                          <span className="text-blue-600">💰 ${r.course.price}</span>
+                          <span className="text-brand-600">💰 ${r.course.price}</span>
                         ) : (
                           <span className="text-gray-400">-</span>
                         )}
@@ -642,7 +642,7 @@ const EnrollmentRequestsTab = ({
                 <button
                   disabled={r.status !== "pending" || updating || isProcessing}
                   onClick={() => handleDecision(r._id, "approved")}
-                  className="flex-1 min-w-0 inline-flex items-center justify-center px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
+                  className="flex-1 min-w-0 inline-flex items-center justify-center px-3 py-2 bg-success-dark text-white rounded-lg hover:bg-success-dark disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
                 >
                   <CheckCircle className="w-4 h-4 mr-1" />
                   ✅ Approve
@@ -650,7 +650,7 @@ const EnrollmentRequestsTab = ({
                 <button
                   disabled={r.status !== "pending" || updating || isProcessing}
                   onClick={() => handleDecision(r._id, "rejected")}
-                  className="flex-1 min-w-0 inline-flex items-center justify-center px-3 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
+                  className="flex-1 min-w-0 inline-flex items-center justify-center px-3 py-2 bg-warning-dark text-white rounded-lg hover:bg-warning-dark disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
                 >
                   <XCircle className="w-4 h-4 mr-1" />
                   ❌ Reject
@@ -658,7 +658,7 @@ const EnrollmentRequestsTab = ({
                 <button
                   onClick={() => handleDelete(r._id)}
                   disabled={isProcessing}
-                  className="inline-flex items-center justify-center px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
+                  className="inline-flex items-center justify-center px-3 py-2 bg-error-dark text-white rounded-lg hover:bg-error-dark disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -668,7 +668,7 @@ const EnrollmentRequestsTab = ({
                       selectedRequestId === r._id ? null : r._id
                     )
                   }
-                  className="inline-flex items-center justify-center px-3 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors duration-200 text-sm font-medium"
+                  className="inline-flex items-center justify-center px-3 py-2 text-brand-600 border border-brand-600 rounded-lg hover:bg-brand-50 transition-colors duration-200 text-sm font-medium"
                 >
                   {selectedRequestId === r._id ? (
                     <><ChevronUp className="w-4 h-4 mr-1" /> 🔼 Hide</>
@@ -680,11 +680,11 @@ const EnrollmentRequestsTab = ({
               
               {/* Mobile Details */}
               {selectedRequestId === r._id && (
-                <div className="mt-4 p-4 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg space-y-4">
+                <div className="mt-4 p-4 bg-brand-50 rounded-lg space-y-4">
                   {/* Bank Transfer Details */}
                   {r.paymentMethod === 'direct_transfer' && (
                     <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h4 className="font-semibold text-blue-800 mb-3 flex items-center">
+                      <h4 className="font-semibold text-brand-800 mb-3 flex items-center">
                         <DollarSign className="w-5 h-5 mr-2" />
                         🏦 Bank Transfer Details
                       </h4>
@@ -701,8 +701,8 @@ const EnrollmentRequestsTab = ({
                       
                       {/* Bank Transfer Proof */}
                       {r.bankTransferProof && r.bankTransferProof.fileName && (
-                        <div className="mt-4 pt-3 border-t border-blue-200">
-                          <strong className="text-blue-800">Transfer Proof:</strong>
+                        <div className="mt-4 pt-3 border-t border-brand-200">
+                          <strong className="text-brand-800">Transfer Proof:</strong>
                           <div className="mt-2">
                             <ReceiptViewer 
                               requestId={r._id} 
@@ -721,7 +721,7 @@ const EnrollmentRequestsTab = ({
                     </label>
                     <textarea
                       rows={3}
-                      className="w-full rounded-md border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                      className="w-full rounded-md border border-gray-300 shadow-sm focus:ring-brand-500 focus:border-brand-500 text-sm"
                       value={adminNotes[r._id] || ""}
                       onChange={(e) =>
                         setAdminNotes((prev) => ({
@@ -734,7 +734,7 @@ const EnrollmentRequestsTab = ({
                     <button
                       onClick={() => handleAddNote(r._id)}
                       disabled={updating || isProcessing}
-                      className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-300 transition-colors duration-200 text-sm font-medium"
+                      className="mt-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:bg-gray-300 transition-colors duration-200 text-sm font-medium"
                     >
                       💾 Save Note
                     </button>
@@ -748,7 +748,7 @@ const EnrollmentRequestsTab = ({
         {/* Desktop Table View */}
         <div className="hidden lg:block overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
+            <thead className="bg-canvas">
               <tr>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                   👤 Student
@@ -783,7 +783,7 @@ const EnrollmentRequestsTab = ({
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="h-10 w-10 flex-shrink-0">
-                          <div className="h-10 w-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center">
+                          <div className="h-10 w-10 bg-brand-600 rounded-full flex items-center justify-center">
                             <span className="text-white text-sm font-bold">
                               {r.student?.name?.charAt(0)?.toUpperCase() || '?'}
                             </span>
@@ -815,11 +815,11 @@ const EnrollmentRequestsTab = ({
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       {r.paymentMethod === 'direct_transfer' && r.transferredAmount ? (
-                        <span className="font-medium text-green-600">
+                        <span className="font-medium text-success-dark">
                           💰 ${r.transferredAmount.toFixed(2)}
                         </span>
                       ) : r.course?.price ? (
-                        <span className="font-medium text-blue-600">
+                        <span className="font-medium text-brand-600">
                           💰 ${r.course.price}
                         </span>
                       ) : (
@@ -844,7 +844,7 @@ const EnrollmentRequestsTab = ({
                         <button
                           disabled={r.status !== "pending" || updating || isProcessing}
                           onClick={() => handleDecision(r._id, "approved")}
-                          className="inline-flex items-center px-3 py-1 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
+                          className="inline-flex items-center px-3 py-1 bg-success-dark text-white rounded-lg hover:bg-success-dark disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
                           title="Approve Request"
                         >
                           <CheckCircle className="w-4 h-4 mr-1" />
@@ -853,7 +853,7 @@ const EnrollmentRequestsTab = ({
                         <button
                           disabled={r.status !== "pending" || updating || isProcessing}
                           onClick={() => handleDecision(r._id, "rejected")}
-                          className="inline-flex items-center px-3 py-1 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
+                          className="inline-flex items-center px-3 py-1 bg-warning-dark text-white rounded-lg hover:bg-warning-dark disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
                           title="Reject Request"
                         >
                           <XCircle className="w-4 h-4 mr-1" />
@@ -862,7 +862,7 @@ const EnrollmentRequestsTab = ({
                         <button
                           onClick={() => handleDelete(r._id)}
                           disabled={isProcessing}
-                          className="inline-flex items-center px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
+                          className="inline-flex items-center px-3 py-1 bg-error-dark text-white rounded-lg hover:bg-error-dark disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 text-sm font-medium"
                           title="Delete Request"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -876,7 +876,7 @@ const EnrollmentRequestsTab = ({
                             selectedRequestId === r._id ? null : r._id
                           )
                         }
-                        className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200"
+                        className="inline-flex items-center text-brand-600 hover:text-brand-800 font-medium transition-colors duration-200"
                       >
                         {selectedRequestId === r._id ? (
                           <><ChevronUp className="w-4 h-4 mr-1" /> 🔼 Hide</>
@@ -888,11 +888,11 @@ const EnrollmentRequestsTab = ({
                   </tr>
                   {selectedRequestId === r._id && (
                     <tr>
-                      <td colSpan={8} className="bg-gradient-to-r from-gray-50 to-blue-50 p-6">
+                      <td colSpan={8} className="bg-brand-50 p-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                           <div className="bg-white rounded-lg p-4 shadow-sm">
                             <h4 className="font-semibold text-gray-800 mb-3 flex items-center">
-                              <Users className="w-5 h-5 mr-2 text-blue-500" />
+                              <Users className="w-5 h-5 mr-2 text-brand-500" />
                               👤 Student Information
                             </h4>
                             <p><strong>Name:</strong> {r.student?.name || "Unknown"}</p>
@@ -900,9 +900,9 @@ const EnrollmentRequestsTab = ({
                             <p><strong>Course:</strong> {r.course?.title || "N/A"}</p>
                             <p><strong>Status:</strong> 
                               <span className={`ml-2 px-2 py-1 rounded text-sm ${
-                                r.status === 'approved' ? 'bg-green-100 text-green-800' :
-                                r.status === 'rejected' ? 'bg-red-100 text-red-800' :
-                                'bg-yellow-100 text-yellow-800'
+                                r.status === 'approved' ? 'bg-success-soft text-success-dark' :
+                                r.status === 'rejected' ? 'bg-error-soft text-error-dark' :
+                                'bg-warning-soft text-warning-dark'
                               }`}>
                                 {r.status || "Status not defined"}
                               </span>
@@ -911,8 +911,8 @@ const EnrollmentRequestsTab = ({
                           
                           {/* Bank Transfer Details */}
                           {r.paymentMethod === 'direct_transfer' && (
-                            <div className="bg-blue-50 rounded-lg p-4 shadow-sm">
-                              <h4 className="font-semibold text-blue-800 mb-3 flex items-center">
+                            <div className="bg-brand-50 rounded-lg p-4 shadow-sm">
+                              <h4 className="font-semibold text-brand-800 mb-3 flex items-center">
                                 <DollarSign className="w-5 h-5 mr-2" />
                                 🏦 Bank Transfer Details
                               </h4>
@@ -927,8 +927,8 @@ const EnrollmentRequestsTab = ({
                               
                               {/* Bank Transfer Proof */}
                               {r.bankTransferProof && r.bankTransferProof.fileName && (
-                                <div className="mt-4 pt-3 border-t border-blue-200">
-                                  <strong className="text-blue-800">Transfer Proof:</strong>
+                                <div className="mt-4 pt-3 border-t border-brand-200">
+                                  <strong className="text-brand-800">Transfer Proof:</strong>
                                   <div className="mt-2">
                                     <ReceiptViewer 
                                       requestId={r._id} 
@@ -948,7 +948,7 @@ const EnrollmentRequestsTab = ({
                           </label>
                           <textarea
                             rows={3}
-                            className="w-full rounded-md border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                            className="w-full rounded-md border border-gray-300 shadow-sm focus:ring-brand-500 focus:border-brand-500 text-sm"
                             value={adminNotes[r._id] || ""}
                             onChange={(e) =>
                               setAdminNotes((prev) => ({
@@ -961,7 +961,7 @@ const EnrollmentRequestsTab = ({
                           <button
                             onClick={() => handleAddNote(r._id)}
                             disabled={updating || isProcessing}
-                            className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-300 transition-colors duration-200 text-sm font-medium"
+                            className="mt-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:bg-gray-300 transition-colors duration-200 text-sm font-medium"
                           >
                             💾 Save Note
                           </button>
@@ -979,7 +979,7 @@ const EnrollmentRequestsTab = ({
   </div>
 );
 
-// Direct Transfers Tab Component  
+// Direct Transfers Tab Component 
 const DirectTransfersTab = ({ transfers, handleApprove, isApproving }) => (
   <div className="max-w-7xl mx-auto">
     {transfers.length === 0 ? (
@@ -992,7 +992,7 @@ const DirectTransfersTab = ({ transfers, handleApprove, isApproving }) => (
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
+            <thead className="bg-canvas">
               <tr>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                   👤 Student
@@ -1017,7 +1017,7 @@ const DirectTransfersTab = ({ transfers, handleApprove, isApproving }) => (
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="h-10 w-10 flex-shrink-0">
-                        <div className="h-10 w-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center">
+                        <div className="h-10 w-10 success rounded-full flex items-center justify-center">
                           <span className="text-white text-sm font-bold">
                             {p.student?.name?.charAt(0)?.toUpperCase() || '?'}
                           </span>
@@ -1039,12 +1039,12 @@ const DirectTransfersTab = ({ transfers, handleApprove, isApproving }) => (
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-lg font-bold text-green-600">
+                    <span className="text-lg font-bold text-success-dark">
                       💰 ${p.amount}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                    <span className="px-3 py-1 rounded-full text-sm font-medium bg-warning-soft text-warning-dark">
                       ⏳ {p.status}
                     </span>
                   </td>
@@ -1052,7 +1052,7 @@ const DirectTransfersTab = ({ transfers, handleApprove, isApproving }) => (
                     <button
                       onClick={() => handleApprove(p._id)}
                       disabled={isApproving}
-                      className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 font-medium"
+                      className="inline-flex items-center px-4 py-2 bg-success-dark text-white rounded-lg hover:bg-success-dark disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 font-medium"
                     >
                       {isApproving ? (
                         <>

@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useId, useState, useEffect } from 'react';
 import { validateField, sanitizeInput } from '../../utils/validation';
 
 /**
- * Enhanced form input component with built-in validation and sanitization
+ * Form input with inline validation. Errors are associated with the input for
+ * assistive technology, and autocomplete is left to the caller/browser so
+ * password managers keep working.
  */
 const FormInput = ({
   name,
@@ -16,10 +18,16 @@ const FormInput = ({
   validationRules = {},
   className = '',
   disabled = false,
-  autoComplete = 'off',
+  autoComplete,
   helpText,
+  id,
   ...props
 }) => {
+  const generatedId = useId();
+  const inputId = id || generatedId;
+  const errorId = `${inputId}-error`;
+  const helpId = `${inputId}-help`;
+
   const [errors, setErrors] = useState([]);
   const [touched, setTouched] = useState(false);
   const [sanitizedValue, setSanitizedValue] = useState(value || '');
@@ -28,71 +36,67 @@ const FormInput = ({
     setSanitizedValue(value || '');
   }, [value]);
 
-  const handleChange = (e) => {
-    const newValue = e.target.value;
-    const sanitized = sanitizeInput(newValue, validationRules.allowHtml);
-
-    setSanitizedValue(sanitized);
-
-    if (onChange) {
-      onChange({
-        ...e,
-        target: {
-          ...e.target,
-          name,
-          value: sanitized
-        }
-      });
-    }
-
-    // Validate on change if field has been touched
-    if (touched) {
-      validateInput(sanitized);
-    }
-  };
-
-  const handleBlur = (e) => {
-    setTouched(true);
-    validateInput(sanitizedValue);
-
-    if (onBlur) {
-      onBlur(e);
-    }
-  };
-
   const validateInput = (inputValue) => {
     const validation = validateField(name, inputValue, {
       required,
-      ...validationRules
+      ...validationRules,
     });
-
     setErrors(validation.errors);
     return validation.isValid;
   };
 
-  const hasErrors = errors.length > 0 && touched;
-  const inputClasses = `
-    w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 transition-colors
-    ${hasErrors
-      ? 'border-error focus:ring-error focus:border-error'
-      : 'border-gray-300 focus:ring-primary focus:border-primary'
+  const handleChange = (event) => {
+    const sanitized = sanitizeInput(event.target.value, validationRules.allowHtml);
+    setSanitizedValue(sanitized);
+
+    if (onChange) {
+      onChange({
+        ...event,
+        target: {
+          ...event.target,
+          name,
+          value: sanitized,
+        },
+      });
     }
-    ${disabled ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'}
-    ${className}
-  `.trim();
+
+    if (touched) validateInput(sanitized);
+  };
+
+  const handleBlur = (event) => {
+    setTouched(true);
+    validateInput(sanitizedValue);
+    if (onBlur) onBlur(event);
+  };
+
+  const hasErrors = errors.length > 0 && touched;
+  const describedBy = [
+    hasErrors ? errorId : null,
+    helpText && !hasErrors ? helpId : null,
+  ].filter(Boolean).join(' ') || undefined;
+
+  const inputClasses = [
+    'w-full rounded-md border px-3 py-2 text-base',
+    'focus:outline-none focus:ring-2 transition-colors duration-150',
+    hasErrors
+      ? 'border-error focus:border-error focus:ring-error'
+      : 'border-line focus:border-brand focus:ring-brand',
+    disabled ? 'cursor-not-allowed bg-canvas text-ink-muted' : 'bg-white',
+    className,
+  ].filter(Boolean).join(' ');
 
   return (
     <div className="mb-4">
       {label && (
-        <label htmlFor={name} className="block text-sm font-medium text-secondary mb-1">
+        <label htmlFor={inputId} className="mb-1 block text-sm font-medium text-ink-soft">
           {label}
-          {required && <span className="text-error ml-1">*</span>}
+          {required && <span className="ml-1 text-error" aria-hidden="true">*</span>}
         </label>
       )}
 
       <div className="relative">
         <input
-          id={name}
+          id={inputId}
           name={name}
           type={type}
           value={sanitizedValue}
@@ -102,12 +106,14 @@ const FormInput = ({
           className={inputClasses}
           disabled={disabled}
           autoComplete={autoComplete}
+          aria-invalid={hasErrors || undefined}
+          aria-describedby={describedBy}
           {...props}
         />
 
         {hasErrors && (
-          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-            <svg className="h-5 w-5 text-error" fill="currentColor" viewBox="0 0 20 20">
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+            <svg className="h-5 w-5 text-error" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
             </svg>
           </div>
@@ -115,19 +121,15 @@ const FormInput = ({
       </div>
 
       {hasErrors && (
-        <div className="mt-1">
+        <div id={errorId} role="alert" aria-live="polite" className="mt-1">
           {errors.map((error, index) => (
-            <p key={index} className="text-sm text-error">
-              {error}
-            </p>
+            <p key={index} className="text-sm text-error">{error}</p>
           ))}
         </div>
       )}
 
       {helpText && !hasErrors && (
-        <p className="mt-1 text-sm text-muted">
-          {helpText}
-        </p>
+        <p id={helpId} className="mt-1 text-sm text-ink-muted">{helpText}</p>
       )}
     </div>
   );

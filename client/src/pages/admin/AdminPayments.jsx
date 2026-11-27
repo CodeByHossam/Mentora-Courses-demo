@@ -139,15 +139,15 @@ const AdminPayments = () => {
   // Get status color helper
   const getStatusColor = (status) => {
     const colors = {
-      paid: 'bg-green-100 text-green-800',
-      pending: 'bg-yellow-100 text-yellow-800',
-      failed: 'bg-red-100 text-red-800',
+      paid: 'bg-success-soft text-success-dark',
+      pending: 'bg-warning-soft text-warning-dark',
+      failed: 'bg-error-soft text-error-dark',
       refunded: 'bg-gray-100 text-gray-800',
-      cancelled: 'bg-red-100 text-red-800',
-      submitted: 'bg-blue-100 text-blue-800',
-      completed: 'bg-green-100 text-green-800',
-      approved: 'bg-green-100 text-green-800',
-      rejected: 'bg-red-100 text-red-800'
+      cancelled: 'bg-error-soft text-error-dark',
+      submitted: 'bg-brand-100 text-brand-800',
+      completed: 'bg-success-soft text-success-dark',
+      approved: 'bg-success-soft text-success-dark',
+      rejected: 'bg-error-soft text-error-dark'
     };
     return colors[status] || 'bg-gray-100 text-gray-800';
   };
@@ -251,10 +251,10 @@ const AdminPayments = () => {
 
   const getStatusBadge = (status) => {
     const statusConfig = {
-      paid: { color: 'bg-green-100 text-green-800', icon: CheckCircle },
-      pending: { color: 'bg-yellow-100 text-yellow-800', icon: Clock },
-      failed: { color: 'bg-red-100 text-red-800', icon: XCircle },
-      processing: { color: 'bg-blue-100 text-blue-800', icon: RefreshCw }
+      paid: { color: 'bg-success-soft text-success-dark', icon: CheckCircle },
+      pending: { color: 'bg-warning-soft text-warning-dark', icon: Clock },
+      failed: { color: 'bg-error-soft text-error-dark', icon: XCircle },
+      processing: { color: 'bg-brand-100 text-brand-800', icon: RefreshCw }
     };
 
     const config = statusConfig[status] || statusConfig.pending;
@@ -270,10 +270,10 @@ const AdminPayments = () => {
 
   const getMethodBadge = (method) => {
     const methodConfig = {
-      stripe: { color: 'bg-purple-100 text-purple-800', label: 'Stripe' },
-      paypal: { color: 'bg-blue-100 text-blue-800', label: 'PayPal' },
-      direct_transfer: { color: 'bg-green-100 text-green-800', label: 'Bank Transfer' },
-      credit_payment: { color: 'bg-orange-100 text-orange-800', label: 'Credit Payment' },
+      stripe: { color: 'bg-brand-100 text-brand-800', label: 'Stripe' },
+      paypal: { color: 'bg-brand-100 text-brand-800', label: 'PayPal' },
+      direct_transfer: { color: 'bg-success-soft text-success-dark', label: 'Bank Transfer' },
+      credit_payment: { color: 'bg-warning-soft text-warning-dark', label: 'Credit Payment' },
       cash: { color: 'bg-gray-100 text-gray-800', label: 'Cash' }
     };
 
@@ -301,7 +301,7 @@ const AdminPayments = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
+          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-brand-600" />
           <p>Loading payment data...</p>
         </div>
       </div>

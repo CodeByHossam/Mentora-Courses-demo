@@ -46,11 +46,11 @@ const StudentPayments = () => {
 
   const getStatusBadge = (status) => {
     const badges = {
-      paid: { color: "bg-green-100 text-green-800 border-green-200", icon: CheckCircle, text: "Paid" },
-      completed: { color: "bg-green-100 text-green-800 border-green-200", icon: CheckCircle, text: "Completed" },
-      pending: { color: "bg-yellow-100 text-yellow-800 border-yellow-200", icon: Clock, text: "Pending" },
-      failed: { color: "bg-red-100 text-red-800 border-red-200", icon: AlertCircle, text: "Failed" },
-      processing: { color: "bg-blue-100 text-blue-800 border-blue-200", icon: Clock, text: "Processing" }
+      paid: { color: "bg-success-soft text-success-dark border-success-soft", icon: CheckCircle, text: "Paid" },
+      completed: { color: "bg-success-soft text-success-dark border-success-soft", icon: CheckCircle, text: "Completed" },
+      pending: { color: "bg-warning-soft text-warning-dark border-warning-soft", icon: Clock, text: "Pending" },
+      failed: { color: "bg-error-soft text-error-dark border-error-soft", icon: AlertCircle, text: "Failed" },
+      processing: { color: "bg-brand-100 text-brand-800 border-brand-200", icon: Clock, text: "Processing" }
     };
     
     const badge = badges[status] || badges.pending;
@@ -117,11 +117,11 @@ const StudentPayments = () => {
   // Loading state
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-center min-h-[400px]">
             <div className="text-center">
-              <Loader2 className="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
+              <Loader2 className="w-12 h-12 text-brand-600 animate-spin mx-auto mb-4" />
               <p className="text-gray-600">Loading your payment history...</p>
             </div>
           </div>
@@ -133,10 +133,10 @@ const StudentPayments = () => {
   // Error state
   if (isError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-6xl mx-auto">
           <div className="bg-white rounded-xl p-12 text-center shadow-lg">
-            <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+            <AlertCircle className="w-16 h-16 text-error mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
               Error Loading Payments
             </h3>
@@ -145,7 +145,7 @@ const StudentPayments = () => {
             </p>
             <button
               onClick={handleRefresh}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center"
+              className="bg-brand-600 text-white px-6 py-2 rounded-lg hover:bg-brand-700 transition-colors inline-flex items-center"
             >
               <RefreshCw className="w-4 h-4 mr-2" />
               Try Again
@@ -175,10 +175,10 @@ const StudentPayments = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Total Paid</p>
-                <p className="text-2xl font-bold text-green-600">${totalPaid.toFixed(2)}</p>
+                <p className="text-2xl font-bold text-success-dark">${totalPaid.toFixed(2)}</p>
               </div>
-              <div className="p-3 bg-green-100 rounded-full">
-                <DollarSign className="w-6 h-6 text-green-600" />
+              <div className="p-3 bg-success-soft rounded-full">
+                <DollarSign className="w-6 h-6 text-success-dark" />
               </div>
             </div>
           </div>
@@ -187,10 +187,10 @@ const StudentPayments = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Pending Payments</p>
-                <p className="text-2xl font-bold text-yellow-600">${pendingAmount.toFixed(2)}</p>
+                <p className="text-2xl font-bold text-warning-dark">${pendingAmount.toFixed(2)}</p>
               </div>
-              <div className="p-3 bg-yellow-100 rounded-full">
-                <Clock className="w-6 h-6 text-yellow-600" />
+              <div className="p-3 bg-warning-soft rounded-full">
+                <Clock className="w-6 h-6 text-warning-dark" />
               </div>
             </div>
           </div>
@@ -199,10 +199,10 @@ const StudentPayments = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Total Transactions</p>
-                <p className="text-2xl font-bold text-blue-600">{payments.length}</p>
+                <p className="text-2xl font-bold text-brand-600">{payments.length}</p>
               </div>
-              <div className="p-3 bg-blue-100 rounded-full">
-                <Receipt className="w-6 h-6 text-blue-600" />
+              <div className="p-3 bg-brand-100 rounded-full">
+                <Receipt className="w-6 h-6 text-brand-600" />
               </div>
             </div>
           </div>
@@ -213,13 +213,13 @@ const StudentPayments = () => {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
             <div className="flex items-center space-x-4">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <input
                   type="text"
                   placeholder="Search payments..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                 />
               </div>
               
@@ -228,7 +228,7 @@ const StudentPayments = () => {
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
-                  className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                 >
                   <option value="all">All Payments</option>
                   <option value="paid">Paid</option>
@@ -241,7 +241,7 @@ const StudentPayments = () => {
 
             <button 
               onClick={handleRefresh}
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center"
+              className="bg-brand-600 text-white px-4 py-2 rounded-lg hover:bg-brand-700 transition-colors flex items-center"
             >
               <RefreshCw className="w-4 h-4 mr-2" />
               Refresh
@@ -264,7 +264,7 @@ const StudentPayments = () => {
             </p>
             <button
               onClick={() => navigate("/courses")}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center"
+              className="bg-brand-600 text-white px-6 py-2 rounded-lg hover:bg-brand-700 transition-colors inline-flex items-center"
             >
               <ExternalLink className="w-4 h-4 mr-2" />
               Browse Courses
@@ -336,7 +336,7 @@ const StudentPayments = () => {
                       {payment.status === "failed" && (
                         <button
                           onClick={() => handleRetryPayment(payment)}
-                          className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium flex items-center"
+                          className="bg-success-dark text-white px-4 py-2 rounded-lg hover:bg-success-dark transition-colors text-sm font-medium flex items-center"
                         >
                           <RefreshCw className="w-4 h-4 mr-2" />
                           Retry Payment
@@ -345,7 +345,7 @@ const StudentPayments = () => {
                       
                       <button
                         onClick={() => setSelectedPayment(payment)}
-                        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium flex items-center"
+                        className="bg-brand-600 text-white px-4 py-2 rounded-lg hover:bg-brand-700 transition-colors text-sm font-medium flex items-center"
                       >
                         <Eye className="w-4 h-4 mr-2" />
                         View Details
@@ -353,7 +353,7 @@ const StudentPayments = () => {
                     </div>
                     
                     {(payment.status === "pending" || payment.status === "processing") && (
-                      <div className="text-sm text-yellow-600 font-medium">
+                      <div className="text-sm text-warning-dark font-medium">
                         {payment.status === "processing" ? "Processing..." : "Pending..."}
                       </div>
                     )}
@@ -365,26 +365,26 @@ const StudentPayments = () => {
         )}
 
         {/* Payment Methods Info */}
-        <div className="mt-8 bg-blue-50 border border-blue-200 rounded-xl p-6">
+        <div className="mt-8 bg-brand-50 border border-brand-200 rounded-xl p-6">
           <div className="flex items-start">
-            <AlertCircle className="w-6 h-6 text-blue-600 mt-1 mr-3 flex-shrink-0" />
+            <AlertCircle className="w-6 h-6 text-brand-600 mt-1 mr-3 flex-shrink-0" />
             <div>
-              <h4 className="text-lg font-semibold text-blue-900 mb-2">Payment Information</h4>
-              <ul className="text-blue-800 space-y-1 text-sm">
+              <h4 className="text-lg font-semibold text-brand-900 mb-2">Payment Information</h4>
+              <ul className="text-brand-800 space-y-1 text-sm">
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-brand-400 rounded-full mr-3"></span>
                   We accept credit cards, PayPal, and bank transfers
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-brand-400 rounded-full mr-3"></span>
                   All payments are processed securely with industry-standard encryption
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-brand-400 rounded-full mr-3"></span>
                   Payment details are available for all completed transactions
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-brand-400 rounded-full mr-3"></span>
                   Contact support if you have any payment-related questions
                 </li>
               </ul>
@@ -448,7 +448,7 @@ const StudentPayments = () => {
               <div className="mt-6">
                 <button
                   onClick={() => setSelectedPayment(null)}
-                  className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                  className="w-full bg-brand-600 text-white px-4 py-2 rounded-lg hover:bg-brand-700 transition-colors"
                 >
                   Close
                 </button>

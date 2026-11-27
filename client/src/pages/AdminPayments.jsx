@@ -139,15 +139,15 @@ const AdminPayments = () => {
   // Get status color helper
   const getStatusColor = (status) => {
     const colors = {
-      paid: 'bg-green-100 text-green-800',
-      pending: 'bg-yellow-100 text-yellow-800',
-      failed: 'bg-red-100 text-red-800',
+      paid: 'bg-success-soft text-success-dark',
+      pending: 'bg-warning-soft text-warning-dark',
+      failed: 'bg-error-soft text-error-dark',
       refunded: 'bg-gray-100 text-gray-800',
-      cancelled: 'bg-red-100 text-red-800',
-      submitted: 'bg-blue-100 text-blue-800',
-      completed: 'bg-green-100 text-green-800',
-      approved: 'bg-green-100 text-green-800',
-      rejected: 'bg-red-100 text-red-800'
+      cancelled: 'bg-error-soft text-error-dark',
+      submitted: 'bg-brand-100 text-brand-800',
+      completed: 'bg-success-soft text-success-dark',
+      approved: 'bg-success-soft text-success-dark',
+      rejected: 'bg-error-soft text-error-dark'
     };
     return colors[status] || 'bg-gray-100 text-gray-800';
   };
@@ -261,10 +261,10 @@ const AdminPayments = () => {
 
   const getStatusBadge = (status) => {
     const statusConfig = {
-      paid: { color: 'bg-green-100 text-green-800', icon: CheckCircle },
-      pending: { color: 'bg-yellow-100 text-yellow-800', icon: Clock },
-      failed: { color: 'bg-red-100 text-red-800', icon: XCircle },
-      processing: { color: 'bg-blue-100 text-blue-800', icon: RefreshCw }
+      paid: { color: 'bg-success-soft text-success-dark', icon: CheckCircle },
+      pending: { color: 'bg-warning-soft text-warning-dark', icon: Clock },
+      failed: { color: 'bg-error-soft text-error-dark', icon: XCircle },
+      processing: { color: 'bg-brand-100 text-brand-800', icon: RefreshCw }
     };
 
     const config = statusConfig[status] || statusConfig.pending;
@@ -280,10 +280,10 @@ const AdminPayments = () => {
 
   const getMethodBadge = (method) => {
     const methodConfig = {
-      stripe: { color: 'bg-purple-100 text-purple-800', label: 'Stripe' },
-      paypal: { color: 'bg-blue-100 text-blue-800', label: 'PayPal' },
-      direct_transfer: { color: 'bg-green-100 text-green-800', label: 'Bank Transfer' },
-      credit_payment: { color: 'bg-orange-100 text-orange-800', label: 'Credit Payment' },
+      stripe: { color: 'bg-brand-100 text-brand-800', label: 'Stripe' },
+      paypal: { color: 'bg-brand-100 text-brand-800', label: 'PayPal' },
+      direct_transfer: { color: 'bg-success-soft text-success-dark', label: 'Bank Transfer' },
+      credit_payment: { color: 'bg-warning-soft text-warning-dark', label: 'Credit Payment' },
       cash: { color: 'bg-gray-100 text-gray-800', label: 'Cash' }
     };
 
@@ -311,7 +311,7 @@ const AdminPayments = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
+          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-brand-600" />
           <p>Loading payment data...</p>
         </div>
       </div>
@@ -379,7 +379,7 @@ const AdminPayments = () => {
                 toast.error(`Error fixing commissions: ${error.message}`);
               }
             }}
-            className="flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+            className="flex items-center px-4 py-2 bg-success-dark text-white rounded-lg hover:bg-success-dark transition-colors"
           >
             <CheckCircle className="w-4 h-4 mr-2" />
             Fix Instructor Commissions
@@ -388,16 +388,16 @@ const AdminPayments = () => {
       </div>
 
       {/* Payment Workflow Information */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-brand-50 border border-brand-200 rounded-lg p-4">
         <div className="flex items-start">
           <div className="flex-shrink-0">
-            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-              <span className="text-blue-600 text-sm font-semibold">ℹ️</span>
+            <div className="w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center">
+              <span className="text-brand-600 text-sm font-semibold">ℹ️</span>
             </div>
           </div>
           <div className="ml-3">
-            <h3 className="text-sm font-medium text-blue-800">Payment Approval Workflows</h3>
-            <div className="mt-2 text-sm text-blue-700">
+            <h3 className="text-sm font-medium text-brand-800">Payment Approval Workflows</h3>
+            <div className="mt-2 text-sm text-brand-700">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <p className="font-medium">📚 Course Payments:</p>
@@ -425,7 +425,7 @@ const AdminPayments = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`py-4 px-2 border-b-2 font-medium text-sm flex items-center transition-colors ${
                     activeTab === tab.id
-                      ? 'border-blue-500 text-blue-600'
+                      ? 'border-brand-500 text-brand-600'
                       : 'border-transparent text-gray-500 hover:text-gray-700'
                   }`}
                 >
@@ -443,55 +443,55 @@ const AdminPayments = () => {
         <div className="space-y-8">
           {/* Key Metrics */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
+            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-success">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Total Revenue</p>
                   <p className="text-2xl font-bold text-gray-900">{formatCurrency(reportsData?.data?.overview?.totalRevenue)}</p>
                 </div>
-                <DollarSign className="h-8 w-8 text-green-500" />
+                <DollarSign className="h-8 w-8 text-success" />
               </div>
               <div className="mt-4">
-                <span className="text-sm text-green-600">↗ {reportsData?.data?.overview?.profitMargin?.toFixed(1)}% profit margin</span>
+                <span className="text-sm text-success-dark">↗ {reportsData?.data?.overview?.profitMargin?.toFixed(1)}% profit margin</span>
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
+            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-brand-500">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Admin Profit</p>
                   <p className="text-2xl font-bold text-gray-900">{formatCurrency(reportsData?.data?.overview?.totalAdminProfit)}</p>
                 </div>
-                <TrendingUp className="h-8 w-8 text-blue-500" />
+                <TrendingUp className="h-8 w-8 text-brand-500" />
               </div>
               <div className="mt-4">
-                <span className="text-sm text-blue-600">{reportsData?.data?.settings?.paymentSettings?.globalDeductionPercentage || reportsData?.data?.settings?.globalDeductionPercentage || 0}% deduction rate</span>
+                <span className="text-sm text-brand-600">{reportsData?.data?.settings?.paymentSettings?.globalDeductionPercentage || reportsData?.data?.settings?.globalDeductionPercentage || 0}% deduction rate</span>
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500">
+            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-brand-500">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Instructor Earnings</p>
                   <p className="text-2xl font-bold text-gray-900">{formatCurrency(reportsData?.data?.overview?.totalInstructorEarnings)}</p>
                 </div>
-                <Users className="h-8 w-8 text-purple-500" />
+                <Users className="h-8 w-8 text-brand-500" />
               </div>
               <div className="mt-4">
-                <span className="text-sm text-purple-600">Paid to instructors</span>
+                <span className="text-sm text-brand-600">Paid to instructors</span>
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-orange-500">
+            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-warning">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Total Payments</p>
                   <p className="text-2xl font-bold text-gray-900">{reportsData?.data?.overview?.totalPayments}</p>
                 </div>
-                <CreditCard className="h-8 w-8 text-orange-500" />
+                <CreditCard className="h-8 w-8 text-warning" />
               </div>
               <div className="mt-4">
-                <span className="text-sm text-orange-600">Avg: {formatCurrency(reportsData?.data?.overview?.averagePayment)}</span>
+                <span className="text-sm text-warning-dark">Avg: {formatCurrency(reportsData?.data?.overview?.averagePayment)}</span>
               </div>
             </div>
           </div>
@@ -499,7 +499,7 @@ const AdminPayments = () => {
           {/* Monthly Revenue Chart */}
           <div className="bg-white rounded-xl shadow-lg p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-              <Calendar className="w-5 h-5 mr-2 text-blue-500" />
+              <Calendar className="w-5 h-5 mr-2 text-brand-500" />
               Monthly Revenue Trend (Last 12 Months)
             </h3>
             <div className="space-y-4">
@@ -507,9 +507,9 @@ const AdminPayments = () => {
                 <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <span className="font-medium text-gray-700">{month.month}</span>
                   <div className="flex items-center space-x-4">
-                    <span className="text-green-600 font-semibold">{formatCurrency(month.revenue)}</span>
-                    <span className="text-blue-600 text-sm">({month.count} payments)</span>
-                    <span className="text-purple-600 text-sm">Profit: {formatCurrency(month.profit)}</span>
+                    <span className="text-success-dark font-semibold">{formatCurrency(month.revenue)}</span>
+                    <span className="text-brand-600 text-sm">({month.count} payments)</span>
+                    <span className="text-brand-600 text-sm">Profit: {formatCurrency(month.profit)}</span>
                   </div>
                 </div>
               )) || (
@@ -548,7 +548,7 @@ const AdminPayments = () => {
 
           {/* Export Button */}
           <div className="flex justify-end">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors">
+            <button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors">
               <Download className="w-4 h-4 mr-2" />
               Export Report
             </button>
@@ -562,8 +562,8 @@ const AdminPayments = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div className="flex items-center">
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <DollarSign className="w-6 h-6 text-blue-600" />
+            <div className="p-2 bg-brand-100 rounded-lg">
+              <DollarSign className="w-6 h-6 text-brand-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Revenue</p>
@@ -576,8 +576,8 @@ const AdminPayments = () => {
 
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div className="flex items-center">
-            <div className="p-2 bg-green-100 rounded-lg">
-              <TrendingUp className="w-6 h-6 text-green-600" />
+            <div className="p-2 bg-success-soft rounded-lg">
+              <TrendingUp className="w-6 h-6 text-success-dark" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Admin Fees</p>
@@ -590,8 +590,8 @@ const AdminPayments = () => {
 
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div className="flex items-center">
-            <div className="p-2 bg-purple-100 rounded-lg">
-              <CreditCard className="w-6 h-6 text-purple-600" />
+            <div className="p-2 bg-brand-100 rounded-lg">
+              <CreditCard className="w-6 h-6 text-brand-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Payments</p>
@@ -602,8 +602,8 @@ const AdminPayments = () => {
 
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div className="flex items-center">
-            <div className="p-2 bg-orange-100 rounded-lg">
-              <Users className="w-6 h-6 text-orange-600" />
+            <div className="p-2 bg-warning-soft rounded-lg">
+              <Users className="w-6 h-6 text-warning-dark" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Instructor Payments</p>
@@ -619,19 +619,19 @@ const AdminPayments = () => {
       {allPendingTransfers.length > 0 && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <h2 className="text-xl font-semibold mb-4 flex items-center">
-            <Clock className="w-5 h-5 mr-2 text-yellow-600" />
+            <Clock className="w-5 h-5 mr-2 text-warning-dark" />
             Pending Direct Transfers ({allPendingTransfers.length})
           </h2>
           <div className="space-y-4">
             {allPendingTransfers.map((payment) => (
-              <div key={payment._id} className="flex items-center justify-between p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <div key={payment._id} className="flex items-center justify-between p-4 bg-warning-soft border border-warning-soft rounded-lg">
                 <div className="flex-1">
                   <div className="flex items-center space-x-4">
                     <div>
                       <div className="flex items-center gap-2">
                         <p className="font-medium">{payment.userId?.name || payment.student?.name || 'Unknown User'}</p>
                         {payment.isBillingPayment && (
-                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-brand-100 text-brand-800">
                             Billing Payment
                           </span>
                         )}
@@ -667,7 +667,7 @@ const AdminPayments = () => {
                   <button
                     onClick={() => handleTransferAction(payment._id, 'reject', payment.isBillingPayment)}
                     disabled={actionLoading[payment._id]}
-                    className="flex items-center px-3 py-1 text-sm border border-red-300 rounded text-red-600 bg-white hover:bg-red-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    className="flex items-center px-3 py-1 text-sm border border-error rounded text-error-dark bg-white hover:bg-error-soft disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     <XCircle className="w-4 h-4 mr-1" />
                     Reject
@@ -675,7 +675,7 @@ const AdminPayments = () => {
                   <button
                     onClick={() => handleTransferAction(payment._id, 'approve', payment.isBillingPayment)}
                     disabled={actionLoading[payment._id]}
-                    className="flex items-center px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    className="flex items-center px-3 py-1 text-sm bg-brand-600 text-white rounded hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     <CheckCircle className="w-4 h-4 mr-1" />
                     Approve
@@ -694,13 +694,13 @@ const AdminPayments = () => {
           <div className="flex items-center space-x-4">
             {/* Search */}
             <div className="relative">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search payments..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500"
               />
             </div>
 
@@ -708,7 +708,7 @@ const AdminPayments = () => {
             <select
               value={filters.status}
               onChange={(e) => setFilters(prev => ({ ...prev, status: e.target.value }))}
-              className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500"
             >
               <option value="all">All Status</option>
               <option value="paid">Paid</option>
@@ -719,7 +719,7 @@ const AdminPayments = () => {
             <select
               value={filters.method}
               onChange={(e) => setFilters(prev => ({ ...prev, method: e.target.value }))}
-              className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500"
             >
               <option value="all">All Methods</option>
               <option value="stripe">Stripe</option>
@@ -858,7 +858,7 @@ const AdminPayments = () => {
                   <Filter className="w-4 h-4 mr-2" />
                   Filter
                 </button>
-                <button className="px-3 py-2 bg-blue-600 text-white rounded-lg text-sm flex items-center hover:bg-blue-700">
+                <button className="px-3 py-2 bg-brand-600 text-white rounded-lg text-sm flex items-center hover:bg-brand-700">
                   <Download className="w-4 h-4 mr-2" />
                   Export
                 </button>
@@ -902,11 +902,11 @@ const AdminPayments = () => {
                       )}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-green-600">{formatCurrency(payment.adminFee)}</div>
+                      <div className="text-sm font-medium text-success-dark">{formatCurrency(payment.adminFee)}</div>
                       <div className="text-xs text-gray-500">{payment.adminPercentage}%</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-blue-600">{formatCurrency(payment.instructorAmount)}</div>
+                      <div className="text-sm font-medium text-brand-600">{formatCurrency(payment.instructorAmount)}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className="flex items-center text-sm text-gray-900">
@@ -952,7 +952,7 @@ const AdminPayments = () => {
           {/* Monthly Revenue Chart */}
           <div className="bg-white rounded-xl shadow-lg p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-              <Calendar className="w-5 h-5 mr-2 text-blue-500" />
+              <Calendar className="w-5 h-5 mr-2 text-brand-500" />
               Monthly Revenue Trend (Last 12 Months)
             </h3>
             <div className="space-y-4">
@@ -960,9 +960,9 @@ const AdminPayments = () => {
                 <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <span className="font-medium text-gray-700">{month.month}</span>
                   <div className="flex items-center space-x-4">
-                    <span className="text-green-600 font-semibold">{formatCurrency(month.revenue)}</span>
-                    <span className="text-blue-600 text-sm">({month.count} payments)</span>
-                    <span className="text-purple-600 text-sm">Profit: {formatCurrency(month.profit)}</span>
+                    <span className="text-success-dark font-semibold">{formatCurrency(month.revenue)}</span>
+                    <span className="text-brand-600 text-sm">({month.count} payments)</span>
+                    <span className="text-brand-600 text-sm">Profit: {formatCurrency(month.profit)}</span>
                   </div>
                 </div>
               )) || (
@@ -1003,26 +1003,26 @@ const AdminPayments = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="bg-white rounded-xl shadow-lg p-6">
               <h4 className="text-md font-medium text-gray-900 mb-3 flex items-center">
-                <TrendingUp className="w-4 h-4 mr-2 text-green-500" />
+                <TrendingUp className="w-4 h-4 mr-2 text-success" />
                 Revenue Trends
               </h4>
               {reportsData?.data?.analytics?.trends ? (
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center p-2 bg-green-50 rounded">
+                  <div className="flex justify-between items-center p-2 bg-success-soft rounded">
                     <span className="text-sm text-gray-600">This Month</span>
-                    <span className="text-sm font-medium text-green-700">
+                    <span className="text-sm font-medium text-success-dark">
                       {formatCurrency(reportsData.data.analytics.trends.thisMonth)}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center p-2 bg-blue-50 rounded">
+                  <div className="flex justify-between items-center p-2 bg-brand-50 rounded">
                     <span className="text-sm text-gray-600">Last Month</span>
-                    <span className="text-sm font-medium text-blue-700">
+                    <span className="text-sm font-medium text-brand-700">
                       {formatCurrency(reportsData.data.analytics.trends.lastMonth)}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center p-2 bg-purple-50 rounded">
+                  <div className="flex justify-between items-center p-2 bg-brand-50 rounded">
                     <span className="text-sm text-gray-600">Growth Rate</span>
-                    <span className="text-sm font-medium text-purple-700">
+                    <span className="text-sm font-medium text-brand-700">
                       {reportsData.data.analytics.trends.growthRate || '0%'}
                     </span>
                   </div>
@@ -1037,26 +1037,26 @@ const AdminPayments = () => {
 
             <div className="bg-white rounded-xl shadow-lg p-6">
               <h4 className="text-md font-medium text-gray-900 mb-3 flex items-center">
-                <PieChart className="w-4 h-4 mr-2 text-blue-500" />
+                <PieChart className="w-4 h-4 mr-2 text-brand-500" />
                 Profit Analysis
               </h4>
               {reportsData?.data?.overview ? (
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center p-2 bg-green-50 rounded">
+                  <div className="flex justify-between items-center p-2 bg-success-soft rounded">
                     <span className="text-sm text-gray-600">Total Admin Profit</span>
-                    <span className="text-sm font-medium text-green-700">
+                    <span className="text-sm font-medium text-success-dark">
                       {formatCurrency(reportsData.data.overview.totalAdminProfit)}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center p-2 bg-blue-50 rounded">
+                  <div className="flex justify-between items-center p-2 bg-brand-50 rounded">
                     <span className="text-sm text-gray-600">Instructor Earnings</span>
-                    <span className="text-sm font-medium text-blue-700">
+                    <span className="text-sm font-medium text-brand-700">
                       {formatCurrency(reportsData.data.overview.totalInstructorEarnings)}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center p-2 bg-purple-50 rounded">
+                  <div className="flex justify-between items-center p-2 bg-brand-50 rounded">
                     <span className="text-sm text-gray-600">Profit Margin</span>
-                    <span className="text-sm font-medium text-purple-700">
+                    <span className="text-sm font-medium text-brand-700">
                       {reportsData.data.overview.profitMargin?.toFixed(1)}%
                     </span>
                   </div>

@@ -18,7 +18,7 @@ const StripePaymentForm = ({ course, onInitiate, loading }) => {
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-xl bg-indigo-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+        className="w-full rounded-xl bg-brand-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {loading ? "Processing..." : `Pay $${course?.finalPrice ?? 0}`}
       </button>

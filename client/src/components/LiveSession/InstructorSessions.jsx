@@ -18,20 +18,20 @@ const InstructorSessions = ({ courseId }) => {
   } = useInstructorSessions({ courseId });
 
   if (isLoading) return <div className="p-4 text-center">Loading sessions...</div>;
-  if (error) return <div className="p-4 text-center text-red-600">Failed to load sessions.</div>;
+  if (error) return <div className="p-4 text-center text-error-dark">Failed to load sessions.</div>;
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold">Live Sessions</h3>
-        <button onClick={() => setShowScheduleForm(true)} className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+        <button onClick={() => setShowScheduleForm(true)} className="flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700">
           <Plus className="w-4 h-4" /> Schedule Session
         </button>
       </div>
 
       <div className="flex gap-2">
         {['all', 'upcoming', 'live', 'completed', 'cancelled'].map((f) => (
-          <button key={f} onClick={() => setFilter(f)} className={`px-3 py-1 rounded-full text-sm ${filter === f ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'}`}>
+          <button key={f} onClick={() => setFilter(f)} className={`px-3 py-1 rounded-full text-sm ${filter === f ? 'bg-brand-600 text-white' : 'bg-gray-100 text-gray-700'}`}>
             {f.charAt(0).toUpperCase() + f.slice(1)}
           </button>
         ))}
@@ -61,19 +61,19 @@ const InstructorSessions = ({ courseId }) => {
                 </div>
                 <div className="flex gap-2 mt-3">
                   {(session.status === 'scheduled' || session.status === 'upcoming') && (
-                    <button onClick={() => handleStartSession(session._id)} disabled={isStarting} className="flex items-center gap-1 px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700 disabled:opacity-50">
+                    <button onClick={() => handleStartSession(session._id)} disabled={isStarting} className="flex items-center gap-1 px-3 py-1 bg-success-dark text-white rounded text-sm hover:bg-success-dark disabled:opacity-50">
                       <Play className="w-4 h-4" /> Start
                     </button>
                   )}
                   {session.status === 'live' && (
-                    <button onClick={() => handleEndSession(session._id)} disabled={isEnding} className="flex items-center gap-1 px-3 py-1 bg-red-600 text-white rounded text-sm hover:bg-red-700 disabled:opacity-50">
+                    <button onClick={() => handleEndSession(session._id)} disabled={isEnding} className="flex items-center gap-1 px-3 py-1 bg-error-dark text-white rounded text-sm hover:bg-error-dark disabled:opacity-50">
                       <Square className="w-4 h-4" /> End
                     </button>
                   )}
-                  <button onClick={() => handleJoinSession(session._id)} disabled={isJoining} className="flex items-center gap-1 px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 disabled:opacity-50">
+                  <button onClick={() => handleJoinSession(session._id)} disabled={isJoining} className="flex items-center gap-1 px-3 py-1 bg-brand-600 text-white rounded text-sm hover:bg-brand-700 disabled:opacity-50">
                     <Video className="w-4 h-4" /> Join
                   </button>
-                  <button onClick={() => handleUploadRecording(session)} className="flex items-center gap-1 px-3 py-1 bg-purple-600 text-white rounded text-sm hover:bg-purple-700">
+                  <button onClick={() => handleUploadRecording(session)} className="flex items-center gap-1 px-3 py-1 bg-brand-600 text-white rounded text-sm hover:bg-brand-700">
                     <Video className="w-4 h-4" /> Recording
                   </button>
                   <button onClick={() => handleDeleteSession(session._id)} disabled={isDeleting} className="flex items-center gap-1 px-3 py-1 bg-gray-600 text-white rounded text-sm hover:bg-gray-700 disabled:opacity-50">

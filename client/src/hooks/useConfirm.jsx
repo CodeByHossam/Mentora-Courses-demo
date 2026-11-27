@@ -1,28 +1,43 @@
-// hooks/useConfirm.jsx
-import React, { useState } from "react"; // ✅ Capital "React"
-import { ConfirmationModal } from "../components/common/index.js"; // ✅ Ensure this uses .jsx or .tsx too if it contains JSX
+import { useState } from 'react';
+import { ConfirmationModal } from '../components/common/index.js';
 
+/**
+ * Promise-based confirmation. Pass confirmLabel/tone for non-destructive
+ * confirmations so the action button never lies about what it will do.
+ */
 export const useConfirm = () => {
   const [confirmState, setConfirmState] = useState({
     isOpen: false,
-    title: "",
-    message: "",
+    title: '',
+    message: '',
+    confirmLabel: undefined,
+    cancelLabel: undefined,
+    tone: 'danger',
     onConfirm: () => {},
     onCancel: () => {},
   });
 
-  const confirm = ({ title, message }) =>
+  const confirm = ({
+    title,
+    message,
+    confirmLabel,
+    cancelLabel,
+    tone = 'danger',
+  }) =>
     new Promise((resolve) => {
       setConfirmState({
         isOpen: true,
         title,
         message,
+        confirmLabel,
+        cancelLabel,
+        tone,
         onConfirm: () => {
-          setConfirmState((prev) => ({ ...prev, isOpen: false }));
+          setConfirmState((previous) => ({ ...previous, isOpen: false }));
           resolve(true);
         },
         onCancel: () => {
-          setConfirmState((prev) => ({ ...prev, isOpen: false }));
+          setConfirmState((previous) => ({ ...previous, isOpen: false }));
           resolve(false);
         },
       });
@@ -33,6 +48,9 @@ export const useConfirm = () => {
       isOpen={confirmState.isOpen}
       title={confirmState.title}
       message={confirmState.message}
+      confirmLabel={confirmState.confirmLabel}
+      cancelLabel={confirmState.cancelLabel}
+      tone={confirmState.tone}
       onConfirm={confirmState.onConfirm}
       onCancel={confirmState.onCancel}
     />
@@ -41,26 +59,4 @@ export const useConfirm = () => {
   return { confirm, ConfirmationModalWrapper };
 };
 
-//usage example
-
-// import { useConfirm } from "../hooks/useConfirm";
-
-// const { confirm, ConfirmationModalWrapper } = useConfirm();
-
-// const handleClick = async () => {
-//   const confirmed = await confirm({
-//     title: "Delete this item?",
-//     message: "This action cannot be undone.",
-//   });
-
-//   if (confirmed) {
-//     // proceed
-//   }
-// return (
-//   <>
-//     <ConfirmationModalWrapper />
-// + your component logic
-//     <button onClick={handleClick}>Delete</button>
-//   </>
-
-// };
+export default useConfirm;

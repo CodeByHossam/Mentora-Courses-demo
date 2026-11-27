@@ -89,7 +89,7 @@ const AdminManageCategories = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-500"></div>
       </div>
     );
   }
@@ -104,21 +104,21 @@ const AdminManageCategories = () => {
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold text-brand ">
                 🏷️ Manage Categories
               </h1>
               <p className="mt-2 text-gray-600">
                 Create and manage course categories to organize your content
               </p>
               <div className="mt-4 flex items-center space-x-2">
-                <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                <div className="w-3 h-3 bg-brand-500 rounded-full"></div>
                 <span className="text-sm text-gray-600">Total Categories: {categories?.length || 0}</span>
               </div>
             </div>
             <div className="mt-6 sm:mt-0">
               <button
                 onClick={() => setIsAdding(true)}
-                className="inline-flex items-center px-6 py-3 border border-transparent rounded-xl shadow-lg text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transform transition-all duration-200 hover:scale-105"
+                className="inline-flex items-center px-6 py-3 border border-transparent rounded-xl shadow-lg text-sm font-medium text-white bg-brand hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-all duration-200 "
               >
                 <svg className="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -131,9 +131,9 @@ const AdminManageCategories = () => {
 
         {/* Add/Edit Form */}
         {isAdding && (
-          <div className="bg-white rounded-xl shadow-lg p-8 mb-8 border-l-4 border-purple-500">
+          <div className="bg-white rounded-xl shadow-lg p-8 mb-8 border-l-4 border-brand-500">
             <div className="flex items-center mb-6">
-              <div className="h-10 w-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4">
+              <div className="h-10 w-10 bg-brand-600 rounded-full flex items-center justify-center mr-4">
                 <span className="text-white text-lg">
                   {editingId ? "✏️" : "➕"}
                 </span>
@@ -157,7 +157,7 @@ const AdminManageCategories = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Enter category name..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all duration-200"
                   />
                 </div>
                 <div>
@@ -172,7 +172,7 @@ const AdminManageCategories = () => {
                     value={formData.description}
                     onChange={handleChange}
                     placeholder="Enter category description..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all duration-200 resize-none"
                   />
                 </div>
               </div>
@@ -187,7 +187,7 @@ const AdminManageCategories = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-3 text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-pink-600 border border-transparent rounded-lg hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transform transition-all duration-200 hover:scale-105"
+                  className="px-6 py-3 text-sm font-medium text-white bg-brand-600 border border-transparent rounded-lg hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-all duration-200 "
                 >
                   {editingId ? "💾 Update Category" : "✨ Create Category"}
                 </button>
@@ -200,7 +200,7 @@ const AdminManageCategories = () => {
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
+              <thead className="bg-canvas">
                 <tr>
                   <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Category Name
@@ -218,7 +218,7 @@ const AdminManageCategories = () => {
                   <tr key={category._id} className={`hover:bg-gray-50 transition-colors duration-200 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-25'}`}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="h-10 w-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4">
+                        <div className="h-10 w-10 bg-brand-600 rounded-full flex items-center justify-center mr-4">
                           <span className="text-white text-sm font-bold">
                             {category.name.charAt(0).toUpperCase()}
                           </span>
@@ -242,13 +242,13 @@ const AdminManageCategories = () => {
                       <div className="flex items-center space-x-3">
                         <button
                           onClick={() => handleEdit(category)}
-                          className="px-3 py-2 text-xs font-medium text-purple-600 bg-purple-50 rounded-lg hover:bg-purple-100 transition-all duration-200 hover:scale-105"
+                          className="px-3 py-2 text-xs font-medium text-brand-600 bg-brand-50 rounded-lg hover:bg-brand-100 transition-all duration-200 "
                         >
                           ✏️ Edit
                         </button>
                         <button
                           onClick={() => handleDelete(category._id)}
-                          className="px-3 py-2 text-xs font-medium text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-all duration-200 hover:scale-105"
+                          className="px-3 py-2 text-xs font-medium text-error-dark bg-error-soft rounded-lg hover:bg-error-soft transition-all duration-200 "
                         >
                           🗑️ Delete
                         </button>
@@ -265,7 +265,7 @@ const AdminManageCategories = () => {
                         <p className="text-gray-500 mb-4">Create your first category to get started</p>
                         <button
                           onClick={() => setIsAdding(true)}
-                          className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200"
+                          className="px-4 py-2 text-sm font-medium text-white bg-brand-600 rounded-lg hover:bg-brand-700 transition-all duration-200"
                         >
                           ➕ Add Category
                         </button>

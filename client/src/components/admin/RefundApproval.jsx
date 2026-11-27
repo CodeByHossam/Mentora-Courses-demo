@@ -15,10 +15,10 @@ import useRefundApproval from './useRefundApproval';
 
 const getStatusIcon = (status) => {
   switch (status) {
-    case 'pending': return <Clock className="h-5 w-5 text-yellow-500" />;
-    case 'approved': return <CheckCircle className="h-5 w-5 text-green-500" />;
-    case 'rejected': return <XCircle className="h-5 w-5 text-red-500" />;
-    case 'processing': return <RotateCw className="h-5 w-5 text-blue-500 animate-spin" />;
+    case 'pending': return <Clock className="h-5 w-5 text-warning" />;
+    case 'approved': return <CheckCircle className="h-5 w-5 text-success" />;
+    case 'rejected': return <XCircle className="h-5 w-5 text-error" />;
+    case 'processing': return <RotateCw className="h-5 w-5 text-brand-500 animate-spin" />;
     default: return <Clock className="h-5 w-5 text-gray-500" />;
   }
 };
@@ -40,7 +40,7 @@ const RefundApproval = () => {
   } = useRefundApproval();
 
   const getRequesterIcon = (requesterType) =>
-    requesterType === 'student' ? <User className="h-5 w-5 text-blue-500" /> : <GraduationCap className="h-5 w-5 text-purple-500" />;
+    requesterType === 'student' ? <User className="h-5 w-5 text-brand-500" /> : <GraduationCap className="h-5 w-5 text-brand-500" />;
 
   const RefundCard = ({ refund, showActions = false }) => (
     <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
@@ -71,10 +71,10 @@ const RefundApproval = () => {
       {refund.adminNotes && (<div className="mb-4 p-3 bg-gray-50 rounded-lg"><span className="font-medium text-gray-700">Admin Notes:</span><p className="text-gray-600 mt-1">{refund.adminNotes}</p></div>)}
       {showActions && refund.status === 'pending' && (
         <div className="flex space-x-3 pt-4 border-t border-gray-200">
-          <button onClick={() => handleApprovalAction(refund, 'approve')} className="flex-1 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center">
+          <button onClick={() => handleApprovalAction(refund, 'approve')} className="flex-1 bg-success-dark hover:bg-success-dark text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center">
             <CheckCircle className="h-4 w-4 mr-2" /> Approve
           </button>
-          <button onClick={() => handleApprovalAction(refund, 'reject')} className="flex-1 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center">
+          <button onClick={() => handleApprovalAction(refund, 'reject')} className="flex-1 bg-error-dark hover:bg-error-dark text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center">
             <XCircle className="h-4 w-4 mr-2" /> Reject
           </button>
         </div>
@@ -88,7 +88,7 @@ const RefundApproval = () => {
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center">
-              <FileText className="h-8 w-8 text-blue-600 mr-3" /> Refund Management
+              <FileText className="h-8 w-8 text-brand-600 mr-3" /> Refund Management
             </h2>
             <p className="text-gray-600 mt-1">Review and approve refund requests from students and instructors</p>
           </div>
@@ -98,10 +98,10 @@ const RefundApproval = () => {
       {refundStats && (
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {[
-            { icon: <Clock className="h-8 w-8 text-yellow-500" />, label: 'Pending', value: refundStats.pending || 0 },
-            { icon: <CheckCircle className="h-8 w-8 text-green-500" />, label: 'Approved', value: refundStats.approved || 0 },
-            { icon: <XCircle className="h-8 w-8 text-red-500" />, label: 'Rejected', value: refundStats.rejected || 0 },
-            { icon: <DollarSign className="h-8 w-8 text-blue-500" />, label: 'Total Refunded', value: formatCurrency(refundStats.totalRefunded || 0) },
+            { icon: <Clock className="h-8 w-8 text-warning" />, label: 'Pending', value: refundStats.pending || 0 },
+            { icon: <CheckCircle className="h-8 w-8 text-success" />, label: 'Approved', value: refundStats.approved || 0 },
+            { icon: <XCircle className="h-8 w-8 text-error" />, label: 'Rejected', value: refundStats.rejected || 0 },
+            { icon: <DollarSign className="h-8 w-8 text-brand-500" />, label: 'Total Refunded', value: formatCurrency(refundStats.totalRefunded || 0) },
           ].map((s, i) => (
             <div key={i} className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
               <div className="flex items-center">
@@ -119,11 +119,11 @@ const RefundApproval = () => {
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
         <div className="border-b border-gray-200">
           <nav className="flex space-x-8 px-6">
-            <button onClick={() => setActiveTab('pending')} className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'pending' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}`}>
+            <button onClick={() => setActiveTab('pending')} className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'pending' ? 'border-brand-500 text-brand-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}`}>
               Pending Requests
-              {pendingRefunds?.refunds?.length > 0 && <span className="ml-2 bg-yellow-100 text-yellow-800 text-xs font-medium px-2 py-1 rounded-full">{pendingRefunds.refunds.length}</span>}
+              {pendingRefunds?.refunds?.length > 0 && <span className="ml-2 bg-warning-soft text-warning-dark text-xs font-medium px-2 py-1 rounded-full">{pendingRefunds.refunds.length}</span>}
             </button>
-            <button onClick={() => setActiveTab('all')} className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'all' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}`}>
+            <button onClick={() => setActiveTab('all')} className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'all' ? 'border-brand-500 text-brand-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}`}>
               All Requests
             </button>
           </nav>
@@ -141,7 +141,7 @@ const RefundApproval = () => {
               ].map(() => null)}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Refund Type</label>
-                <select name="refundType" value={filters.refundType} onChange={handleFilterChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <select name="refundType" value={filters.refundType} onChange={handleFilterChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500">
                   <option value="">All Types</option>
                   <option value="course_purchase">Course Purchase</option>
                   <option value="admin_fee_overpayment">Admin Fee Overpayment</option>
@@ -149,7 +149,7 @@ const RefundApproval = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Requester Type</label>
-                <select name="requesterType" value={filters.requesterType} onChange={handleFilterChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <select name="requesterType" value={filters.requesterType} onChange={handleFilterChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500">
                   <option value="">All Users</option>
                   <option value="student">Students</option>
                   <option value="instructor">Instructors</option>
@@ -157,11 +157,11 @@ const RefundApproval = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
-                <input type="date" name="startDate" value={filters.startDate} onChange={handleFilterChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                <input type="date" name="startDate" value={filters.startDate} onChange={handleFilterChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
-                <input type="date" name="endDate" value={filters.endDate} onChange={handleFilterChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                <input type="date" name="endDate" value={filters.endDate} onChange={handleFilterChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500" />
               </div>
             </div>
           </div>
@@ -177,7 +177,7 @@ const RefundApproval = () => {
                   {pendingRefunds.refunds.map((refund) => <RefundCard key={refund._id} refund={refund} showActions={true} />)}
                 </div>
               ) : (
-                <div className="text-center py-8"><CheckCircle className="h-12 w-12 text-green-400 mx-auto mb-3" /><p className="text-gray-600">No pending refund requests</p></div>
+                <div className="text-center py-8"><CheckCircle className="h-12 w-12 text-success mx-auto mb-3" /><p className="text-gray-600">No pending refund requests</p></div>
               )}
             </>
           )}
@@ -208,27 +208,27 @@ const RefundApproval = () => {
                 <p className="text-sm text-gray-600"><span className="font-medium">Type:</span> {selectedRefund.refundType.replace(/_/g, ' ')}</p>
               </div>
               {approvalAction === 'approve' && (
-                <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <div className="mb-4 p-4 bg-success-soft border border-success-soft rounded-lg">
                   <div className="flex items-start">
-                    <Gift className="h-6 w-6 text-green-600 mt-0.5 mr-3 flex-shrink-0" />
+                    <Gift className="h-6 w-6 text-success-dark mt-0.5 mr-3 flex-shrink-0" />
                     <div>
-                      <h4 className="text-sm font-semibold text-green-900 mb-1">Gift Card Refund</h4>
-                      <p className="text-sm text-green-800">This refund will be processed as a gift card valid for 1 year. The gift card will be automatically added to the user's account balance.</p>
+                      <h4 className="text-sm font-semibold text-success-dark mb-1">Gift Card Refund</h4>
+                      <p className="text-sm text-success-dark">This refund will be processed as a gift card valid for 1 year. The gift card will be automatically added to the user's account balance.</p>
                     </div>
                   </div>
                 </div>
               )}
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Admin Notes {approvalAction === 'reject' && <span className="text-red-500">*</span>}
+                  Admin Notes {approvalAction === 'reject' && <span className="text-error">*</span>}
                 </label>
-                <textarea value={adminNotes} onChange={(e) => setAdminNotes(e.target.value)} rows={4} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder={`Provide notes for this ${approvalAction}...`} />
+                <textarea value={adminNotes} onChange={(e) => setAdminNotes(e.target.value)} rows={4} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500" placeholder={`Provide notes for this ${approvalAction}...`} />
               </div>
               {approvalAction === 'reject' && !adminNotes.trim() && (
-                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                <div className="mb-4 p-3 bg-error-soft border border-error-soft rounded-lg">
                   <div className="flex items-center">
-                    <AlertTriangle className="h-5 w-5 text-red-600 mr-2" />
-                    <p className="text-sm text-red-700">Admin notes are required when rejecting a refund request.</p>
+                    <AlertTriangle className="h-5 w-5 text-error-dark mr-2" />
+                    <p className="text-sm text-error-dark">Admin notes are required when rejecting a refund request.</p>
                   </div>
                 </div>
               )}
@@ -237,7 +237,7 @@ const RefundApproval = () => {
                 <button
                   onClick={handleSubmitApproval}
                   disabled={(isApproving || isRejecting) || (approvalAction === 'reject' && !adminNotes.trim())}
-                  className={`flex-1 px-4 py-2 text-white rounded-lg font-medium transition-colors flex items-center justify-center ${approvalAction === 'approve' ? 'bg-green-600 hover:bg-green-700 disabled:bg-green-400' : 'bg-red-600 hover:bg-red-700 disabled:bg-red-400'}`}
+                  className={`flex-1 px-4 py-2 text-white rounded-lg font-medium transition-colors flex items-center justify-center ${approvalAction === 'approve' ? 'bg-success-dark hover:bg-success-dark disabled:bg-success' : 'bg-error-dark hover:bg-error-dark disabled:bg-error'}`}
                 >
                   {(isApproving || isRejecting) ? (<><RotateCw className="h-4 w-4 mr-2 animate-spin" /> Processing...</>) : `${approvalAction === 'approve' ? 'Approve' : 'Reject'} Refund`}
                 </button>

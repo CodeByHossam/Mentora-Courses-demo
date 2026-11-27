@@ -63,7 +63,7 @@ const StudentDashboard = () => {
     return (
       <div className="min-h-screen bg-primary w-full max-w-maxAppWidth flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full text-center">
-          <h2 className="text-2xl font-bold text-red-600 mb-4">
+          <h2 className="text-2xl font-bold text-error-dark mb-4">
             Account Inactive
           </h2>
           <p className="text-gray-600 mb-4">
@@ -123,7 +123,7 @@ const StudentDashboard = () => {
       <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
           <svg
-            className="w-5 h-5 mr-2 text-yellow-500"
+            className="w-5 h-5 mr-2 text-warning"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -160,10 +160,10 @@ const StudentDashboard = () => {
                         <span
                           className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
                             request.status === "approved"
-                              ? "bg-green-100 text-green-800"
+                              ? "bg-success-soft text-success-dark"
                               : request.status === "pending"
-                              ? "bg-yellow-100 text-yellow-800"
-                              : "bg-red-100 text-red-800"
+                              ? "bg-warning-soft text-warning-dark"
+                              : "bg-error-soft text-error-dark"
                           }`}
                         >
                           {request.status}
@@ -181,7 +181,7 @@ const StudentDashboard = () => {
                         onClick={() =>
                           navigate(`/courses/${request.course._id}`)
                         }
-                        className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm font-medium transition duration-200"
+                        className="bg-success-dark hover:bg-success-dark text-white px-3 py-1 rounded text-sm font-medium transition duration-200"
                       >
                         Start Learning
                       </button>
@@ -214,7 +214,7 @@ const StudentDashboard = () => {
             </p>
             <button
               onClick={() => navigate("/courses")}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition duration-200"
+              className="bg-brand-600 hover:bg-brand-700 text-white px-6 py-2 rounded-lg font-medium transition duration-200"
             >
               Browse Courses
             </button>

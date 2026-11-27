@@ -116,10 +116,10 @@ const StudentBills = ({ userId }) => {
 
   const getStatusBadge = (status) => {
     const statusConfig = {
-      paid: { color: 'bg-green-100 text-green-800', icon: CheckCircle },
-      pending: { color: 'bg-yellow-100 text-yellow-800', icon: Clock },
-      overdue: { color: 'bg-red-100 text-red-800', icon: AlertCircle },
-      failed: { color: 'bg-red-100 text-red-800', icon: XCircle }
+      paid: { color: 'bg-success-soft text-success-dark', icon: CheckCircle },
+      pending: { color: 'bg-warning-soft text-warning-dark', icon: Clock },
+      overdue: { color: 'bg-error-soft text-error-dark', icon: AlertCircle },
+      failed: { color: 'bg-error-soft text-error-dark', icon: XCircle }
     };
 
     const config = statusConfig[status] || statusConfig.pending;
@@ -135,9 +135,9 @@ const StudentBills = ({ userId }) => {
 
   const getPaymentMethodBadge = (method) => {
     const methodConfig = {
-      stripe: { color: 'bg-purple-100 text-purple-800', label: 'Card' },
-      paypal: { color: 'bg-blue-100 text-blue-800', label: 'PayPal' },
-      direct_transfer: { color: 'bg-green-100 text-green-800', label: 'Bank Transfer' }
+      stripe: { color: 'bg-brand-100 text-brand-800', label: 'Card' },
+      paypal: { color: 'bg-brand-100 text-brand-800', label: 'PayPal' },
+      direct_transfer: { color: 'bg-success-soft text-success-dark', label: 'Bank Transfer' }
     };
 
     const config = methodConfig[method] || { color: 'bg-gray-100 text-gray-800', label: method };

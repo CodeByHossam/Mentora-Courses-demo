@@ -24,7 +24,7 @@ const AdminPaymentReports = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-brand-500"></div>
       </div>
     );
   }
@@ -32,7 +32,7 @@ const AdminPaymentReports = () => {
   if (error) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="text-red-500 text-center">
+        <div className="text-error text-center">
           <h2 className="text-2xl font-bold mb-2">Error Loading Reports</h2>
           <p>{error?.data?.message || 'Failed to load payment reports'}</p>
         </div>
@@ -59,12 +59,12 @@ const AdminPaymentReports = () => {
 
   const getStatusColor = (status) => {
     const colors = {
-      paid: 'bg-green-100 text-green-800',
-      pending: 'bg-yellow-100 text-yellow-800',
-      failed: 'bg-red-100 text-red-800',
+      paid: 'bg-success-soft text-success-dark',
+      pending: 'bg-warning-soft text-warning-dark',
+      failed: 'bg-error-soft text-error-dark',
       refunded: 'bg-gray-100 text-gray-800',
-      cancelled: 'bg-red-100 text-red-800',
-      submitted: 'bg-blue-100 text-blue-800'
+      cancelled: 'bg-error-soft text-error-dark',
+      submitted: 'bg-brand-100 text-brand-800'
     };
     return colors[status] || 'bg-gray-100 text-gray-800';
   };

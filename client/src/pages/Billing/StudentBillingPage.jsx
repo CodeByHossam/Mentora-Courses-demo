@@ -73,7 +73,7 @@ const StudentBillingPage = () => {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <RefreshCw className="w-8 h-8 animate-spin text-blue-600 mx-auto mb-4" />
+          <RefreshCw className="w-8 h-8 animate-spin text-brand-600 mx-auto mb-4" />
           <p className="text-gray-600">Loading billing information...</p>
         </div>
       </div>
@@ -84,12 +84,12 @@ const StudentBillingPage = () => {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <AlertCircle className="w-12 h-12 text-red-600 mx-auto mb-4" />
+          <AlertCircle className="w-12 h-12 text-error-dark mx-auto mb-4" />
           <p className="text-gray-900 font-semibold mb-2">Error loading billing data</p>
           <p className="text-gray-600 mb-4">{billingError?.data?.message || "Please try again"}</p>
           <button
             onClick={() => refetchBilling()}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700"
           >
             Retry
           </button>
@@ -111,10 +111,10 @@ const StudentBillingPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
 
           {/* Annual Subscription Card */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-orange-500">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-warning">
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 bg-orange-100 rounded-xl">
-                <Calendar className="w-6 h-6 text-orange-600" />
+              <div className="p-3 bg-warning-soft rounded-xl">
+                <Calendar className="w-6 h-6 text-warning-dark" />
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">Annual Subscription</h3>
@@ -123,18 +123,18 @@ const StudentBillingPage = () => {
             </div>
 
             <div className="mb-4">
-              <p className="text-4xl font-bold text-orange-600 mb-2">
+              <p className="text-4xl font-bold text-warning-dark mb-2">
                 {formatCurrency(studentAccount?.annualFees || 0)}
               </p>
               {(studentAccount?.annualFees || 0) === 0 && (
-                <p className="text-sm text-green-600">✓ No annual fee required</p>
+                <p className="text-sm text-success-dark">✓ No annual fee required</p>
               )}
             </div>
 
             {(studentAccount?.annualFees || 0) > 0 && (
               <button
                 onClick={() => navigate('/student/annual-fee-payment')}
-                className="w-full px-4 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-semibold"
+                className="w-full px-4 py-3 bg-warning-dark text-white rounded-lg hover:bg-warning-dark transition-colors font-semibold"
               >
                 Pay Annual Fee
               </button>
@@ -142,10 +142,10 @@ const StudentBillingPage = () => {
           </div>
 
           {/* Gift Cards Card */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-green-500">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-success">
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 bg-green-100 rounded-xl">
-                <Gift className="w-6 h-6 text-green-600" />
+              <div className="p-3 bg-success-soft rounded-xl">
+                <Gift className="w-6 h-6 text-success-dark" />
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">Gift Cards</h3>
@@ -154,7 +154,7 @@ const StudentBillingPage = () => {
             </div>
 
             <div className="mb-4">
-              <p className="text-4xl font-bold text-green-600 mb-2">
+              <p className="text-4xl font-bold text-success-dark mb-2">
                 {availableGiftCards.length}
               </p>
               <p className="text-sm text-gray-600">Available gift cards</p>
@@ -163,7 +163,7 @@ const StudentBillingPage = () => {
             {availableGiftCards.length > 0 && (
               <button
                 onClick={() => navigate('/student/gift-cards')}
-                className="w-full px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold"
+                className="w-full px-4 py-3 bg-success-dark text-white rounded-lg hover:bg-success-dark transition-colors font-semibold"
               >
                 View Gift Cards
               </button>
@@ -171,10 +171,10 @@ const StudentBillingPage = () => {
           </div>
 
           {/* Total Spent Card */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-blue-500">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-brand-500">
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 bg-blue-100 rounded-xl">
-                <ShoppingCart className="w-6 h-6 text-blue-600" />
+              <div className="p-3 bg-brand-100 rounded-xl">
+                <ShoppingCart className="w-6 h-6 text-brand-600" />
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">Total Spent</h3>
@@ -183,7 +183,7 @@ const StudentBillingPage = () => {
             </div>
 
             <div>
-              <p className="text-4xl font-bold text-blue-600 mb-2">
+              <p className="text-4xl font-bold text-brand-600 mb-2">
                 {formatCurrency(studentAccount?.totalCoursePurchases || 0)}
               </p>
               <p className="text-sm text-gray-600">
@@ -193,10 +193,10 @@ const StudentBillingPage = () => {
           </div>
 
           {/* Course Purchases Card */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-purple-500">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-brand-500">
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-3 bg-purple-100 rounded-xl">
-                <BookOpen className="w-6 h-6 text-purple-600" />
+              <div className="p-3 bg-brand-100 rounded-xl">
+                <BookOpen className="w-6 h-6 text-brand-600" />
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">Courses</h3>
@@ -205,7 +205,7 @@ const StudentBillingPage = () => {
             </div>
 
             <div>
-              <p className="text-4xl font-bold text-purple-600 mb-2">
+              <p className="text-4xl font-bold text-brand-600 mb-2">
                 {studentAccount?.coursePurchases?.length || 0}
               </p>
               <p className="text-sm text-gray-600">Total courses enrolled</p>
@@ -217,12 +217,12 @@ const StudentBillingPage = () => {
         {availableGiftCards.length > 0 && (
           <div className="bg-white rounded-2xl p-6 shadow-lg mb-8">
             <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-              <Gift className="w-5 h-5 mr-2 text-green-600" />
+              <Gift className="w-5 h-5 mr-2 text-success-dark" />
               Available Gift Cards
             </h3>
             <div className="space-y-3">
               {availableGiftCards.map((card, index) => (
-                <div key={index} className="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-200">
+                <div key={index} className="flex items-center justify-between p-4 bg-success-soft rounded-lg border border-success-soft">
                   <div className="flex-1">
                     <p className="font-semibold text-gray-900">{card.courseName}</p>
                     <p className="text-sm text-gray-600">
@@ -232,7 +232,7 @@ const StudentBillingPage = () => {
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-lg font-bold text-green-600">
+                    <p className="text-lg font-bold text-success-dark">
                       {formatCurrency(card.amount)}
                     </p>
                   </div>
@@ -246,7 +246,7 @@ const StudentBillingPage = () => {
         {studentAccount?.coursePurchases && studentAccount.coursePurchases.length > 0 && (
           <div className="bg-white rounded-2xl p-6 shadow-lg">
             <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-              <BookOpen className="w-5 h-5 mr-2 text-blue-600" />
+              <BookOpen className="w-5 h-5 mr-2 text-brand-600" />
               Recent Course Purchases
             </h3>
             <div className="space-y-3">
@@ -280,7 +280,7 @@ const StudentBillingPage = () => {
             <p className="text-gray-600 mb-6">Start your learning journey by enrolling in a course!</p>
             <button
               onClick={() => navigate('/courses')}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+              className="px-6 py-3 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors font-semibold"
             >
               Browse Courses
             </button>

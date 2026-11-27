@@ -27,11 +27,11 @@ function About() {
                     alt="Our Mission"
                     className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-lg"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+                  <div className="absolute inset-0 image-scrim-soft rounded-2xl"></div>
                 </div>
               </div>
               <div className="w-full lg:w-1/2 space-y-6">
-                <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+                <div className="inline-flex items-center px-4 py-2 bg-success-soft text-success-dark rounded-full text-sm font-medium">
                   🎯 Our Mission
                 </div>
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
@@ -41,13 +41,13 @@ function About() {
                   {aboutData.mission.description}
                 </p>
                 <div className="flex flex-wrap gap-3 pt-4">
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                  <span className="px-3 py-1 bg-brand-100 text-brand-800 rounded-full text-sm">
                     Quality Education
                   </span>
-                  <span className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">
+                  <span className="px-3 py-1 bg-brand-100 text-brand-800 rounded-full text-sm">
                     Expert Instructors
                   </span>
-                  <span className="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm">
+                  <span className="px-3 py-1 bg-warning-soft text-warning-dark rounded-full text-sm">
                     Global Access
                   </span>
                 </div>
@@ -56,23 +56,23 @@ function About() {
           </section>
 
           {/* Stats Section */}
-          <section className="bg-gradient-to-r from-green-600 to-blue-600 rounded-3xl shadow-xl p-8 lg:p-12 text-white">
+          <section className="bg-brand rounded-3xl shadow-xl p-8 lg:p-12 text-white">
             <div className="text-center mb-12">
               <h2 className="text-3xl lg:text-4xl font-bold mb-4">
                 Our Impact in Numbers
               </h2>
-              <p className="text-green-100 text-lg">
+              <p className="text-success-soft text-lg">
                 Transforming lives through education
               </p>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               {aboutData.stats.map((stat, index) => (
                 <div key={index} className="text-center group">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 group-hover:scale-105">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 ">
                     <h3 className="text-4xl lg:text-5xl font-bold mb-2 text-white">
                       {stat.number}
                     </h3>
-                    <p className="text-green-100 font-medium">{stat.label}</p>
+                    <p className="text-success-soft font-medium">{stat.label}</p>
                   </div>
                 </div>
               ))}
@@ -82,7 +82,7 @@ function About() {
           {/* Team Section */}
           <section>
             <div className="text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm font-medium mb-4">
+              <div className="inline-flex items-center px-4 py-2 bg-brand-100 text-brand-800 rounded-full text-sm font-medium mb-4">
                 👥 Our Team
               </div>
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -97,15 +97,15 @@ function About() {
               {aboutData.team.map((member, index) => (
                 <div
                   key={index}
-                  className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 text-center group hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                  className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 text-center group hover:shadow-xl transition-all duration-300 "
                 >
                   <div className="relative mb-6">
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-32 h-32 rounded-full mx-auto object-cover shadow-lg group-hover:scale-105 transition-transform duration-300"
+                      className="w-32 h-32 rounded-full mx-auto object-cover shadow-lg duration-300"
                     />
-                    <div className="absolute -bottom-2 -right-2 bg-green-500 rounded-full p-2">
+                    <div className="absolute -bottom-2 -right-2 bg-success rounded-full p-2">
                       <svg
                         className="w-4 h-4 text-white"
                         fill="none"
@@ -124,7 +124,7 @@ function About() {
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
                     {member.name}
                   </h3>
-                  <p className="text-green-600 font-semibold mb-3">
+                  <p className="text-success-dark font-semibold mb-3">
                     {member.role}
                   </p>
                   <p className="text-gray-600 leading-relaxed">{member.bio}</p>
@@ -136,7 +136,7 @@ function About() {
           {/* Testimonials Section */}
           <section>
             <div className="text-center mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4">
+              <div className="inline-flex items-center px-4 py-2 bg-brand-100 text-brand-800 rounded-full text-sm font-medium mb-4">
                 💬 Testimonials
               </div>
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -151,7 +151,7 @@ function About() {
               {aboutData.testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 "
                 >
                   <div className="flex items-center gap-4 mb-6">
                     <img
@@ -168,7 +168,7 @@ function About() {
                   </div>
                   <div className="mb-4">
                     <svg
-                      className="w-8 h-8 text-green-500 mb-2"
+                      className="w-8 h-8 text-success mb-2"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >

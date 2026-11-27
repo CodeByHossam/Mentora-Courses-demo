@@ -24,8 +24,7 @@ import {
   Save,
   TestTube
 } from 'lucide-react';
-import Card from '../components/Card';
-import Button from '../components/Button';
+import { Card, Button } from '../components/common/index.js';
 
 const AdminPaymentSettings = () => {
   const [settings, setSettings] = useState({
@@ -193,7 +192,7 @@ const AdminPaymentSettings = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
+          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-brand-600" />
           <p>Loading payment settings...</p>
         </div>
       </div>
@@ -236,24 +235,24 @@ const AdminPaymentSettings = () => {
             Payment Statistics
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="text-center p-4 bg-blue-50 rounded-lg">
-              <div className="text-2xl font-bold text-blue-600">{paymentStats.totalPayments}</div>
+            <div className="text-center p-4 bg-brand-50 rounded-lg">
+              <div className="text-2xl font-bold text-brand-600">{paymentStats.totalPayments}</div>
               <div className="text-sm text-gray-600">Total Payments</div>
             </div>
-            <div className="text-center p-4 bg-green-50 rounded-lg">
-              <div className="text-2xl font-bold text-green-600">
+            <div className="text-center p-4 bg-success-soft rounded-lg">
+              <div className="text-2xl font-bold text-success-dark">
                 ${paymentStats.totalRevenue?.toFixed(2) || '0.00'}
               </div>
               <div className="text-sm text-gray-600">Total Revenue</div>
             </div>
-            <div className="text-center p-4 bg-purple-50 rounded-lg">
-              <div className="text-2xl font-bold text-purple-600">
+            <div className="text-center p-4 bg-brand-50 rounded-lg">
+              <div className="text-2xl font-bold text-brand-600">
                 ${paymentStats.totalAdminFees?.toFixed(2) || '0.00'}
               </div>
               <div className="text-sm text-gray-600">Admin Fees</div>
             </div>
-            <div className="text-center p-4 bg-orange-50 rounded-lg">
-              <div className="text-2xl font-bold text-orange-600">
+            <div className="text-center p-4 bg-warning-soft rounded-lg">
+              <div className="text-2xl font-bold text-warning-dark">
                 ${paymentStats.totalInstructorPayments?.toFixed(2) || '0.00'}
               </div>
               <div className="text-sm text-gray-600">Instructor Payments</div>
@@ -274,8 +273,8 @@ const AdminPaymentSettings = () => {
             {/* Stripe */}
             <div className="flex items-center justify-between p-4 border rounded-lg">
               <div className="flex items-center">
-                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                  <CreditCard className="w-5 h-5 text-blue-600" />
+                <div className="w-10 h-10 bg-brand-100 rounded-lg flex items-center justify-center mr-3">
+                  <CreditCard className="w-5 h-5 text-brand-600" />
                 </div>
                 <div>
                   <div className="font-medium">Stripe</div>
@@ -286,9 +285,9 @@ const AdminPaymentSettings = () => {
                 {gatewayStatus.stripe && (
                   <div className="flex items-center">
                     {gatewayStatus.stripe.connected ? (
-                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <CheckCircle className="w-4 h-4 text-success" />
                     ) : (
-                      <XCircle className="w-4 h-4 text-red-500" />
+                      <XCircle className="w-4 h-4 text-error" />
                     )}
                   </div>
                 )}
@@ -316,8 +315,8 @@ const AdminPaymentSettings = () => {
             {/* PayPal */}
             <div className="flex items-center justify-between p-4 border rounded-lg">
               <div className="flex items-center">
-                <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-3">
-                  <DollarSign className="w-5 h-5 text-yellow-600" />
+                <div className="w-10 h-10 bg-warning-soft rounded-lg flex items-center justify-center mr-3">
+                  <DollarSign className="w-5 h-5 text-warning-dark" />
                 </div>
                 <div>
                   <div className="font-medium">PayPal</div>
@@ -328,9 +327,9 @@ const AdminPaymentSettings = () => {
                 {gatewayStatus.paypal && (
                   <div className="flex items-center">
                     {gatewayStatus.paypal.connected ? (
-                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <CheckCircle className="w-4 h-4 text-success" />
                     ) : (
-                      <XCircle className="w-4 h-4 text-red-500" />
+                      <XCircle className="w-4 h-4 text-error" />
                     )}
                   </div>
                 )}
@@ -358,8 +357,8 @@ const AdminPaymentSettings = () => {
             {/* Direct Transfer */}
             <div className="flex items-center justify-between p-4 border rounded-lg">
               <div className="flex items-center">
-                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
-                  <Settings className="w-5 h-5 text-green-600" />
+                <div className="w-10 h-10 bg-success-soft rounded-lg flex items-center justify-center mr-3">
+                  <Settings className="w-5 h-5 text-success-dark" />
                 </div>
                 <div>
                   <div className="font-medium">Direct Bank Transfer</div>
@@ -397,7 +396,7 @@ const AdminPaymentSettings = () => {
                 step="0.01"
                 value={settings.paymentSettings.instructorAnnualFee}
                 onChange={(e) => handleSettingChange('instructorAnnualFee', parseFloat(e.target.value) || 0)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500"
               />
             </div>
 
@@ -411,7 +410,7 @@ const AdminPaymentSettings = () => {
                 step="0.01"
                 value={settings.paymentSettings.studentAdminFee}
                 onChange={(e) => handleSettingChange('studentAdminFee', parseFloat(e.target.value) || 0)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500"
               />
             </div>
 
@@ -426,7 +425,7 @@ const AdminPaymentSettings = () => {
                 step="0.1"
                 value={settings.paymentSettings.globalDeductionPercentage}
                 onChange={(e) => handleSettingChange('globalDeductionPercentage', parseFloat(e.target.value) || 0)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500"
               />
             </div>
 
@@ -440,7 +439,7 @@ const AdminPaymentSettings = () => {
                 step="0.01"
                 value={settings.paymentSettings.minimumPaymentAmount}
                 onChange={(e) => handleSettingChange('minimumPaymentAmount', parseFloat(e.target.value) || 1)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500"
               />
             </div>
 
@@ -451,7 +450,7 @@ const AdminPaymentSettings = () => {
               <select
                 value={settings.paymentSettings.currency}
                 onChange={(e) => handleSettingChange('currency', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500"
               >
                 <option value="USD">USD - US Dollar</option>
                 <option value="EUR">EUR - Euro</option>
@@ -476,7 +475,7 @@ const AdminPaymentSettings = () => {
               type="checkbox"
               checked={settings.paymentSettings.autoEnrollOnCardPayment}
               onChange={(e) => handleSettingChange('autoEnrollOnCardPayment', e.target.checked)}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              className="h-4 w-4 text-brand-600 focus:ring-brand-500 border-gray-300 rounded"
             />
             <span className="text-sm font-medium text-gray-700">
               Auto-enroll on card payment
@@ -488,7 +487,7 @@ const AdminPaymentSettings = () => {
               type="checkbox"
               checked={settings.paymentSettings.autoEnrollOnPaypalPayment}
               onChange={(e) => handleSettingChange('autoEnrollOnPaypalPayment', e.target.checked)}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              className="h-4 w-4 text-brand-600 focus:ring-brand-500 border-gray-300 rounded"
             />
             <span className="text-sm font-medium text-gray-700">
               Auto-enroll on PayPal payment
@@ -500,7 +499,7 @@ const AdminPaymentSettings = () => {
               type="checkbox"
               checked={settings.paymentSettings.requireAdminApprovalForDirectTransfer}
               onChange={(e) => handleSettingChange('requireAdminApprovalForDirectTransfer', e.target.checked)}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              className="h-4 w-4 text-brand-600 focus:ring-brand-500 border-gray-300 rounded"
             />
             <span className="text-sm font-medium text-gray-700">
               Require admin approval for direct transfers

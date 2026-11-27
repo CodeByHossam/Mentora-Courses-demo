@@ -7,17 +7,17 @@ const CourseStatusBadge = ({ status, size = "sm", showIcon = true }) => {
         return {
           label: "Published",
           icon: "✅",
-          bgColor: "bg-green-100",
-          textColor: "text-green-800",
-          borderColor: "border-green-200"
+          bgColor: "bg-success-soft",
+          textColor: "text-success-dark",
+          borderColor: "border-success-soft"
         };
       case "draft":
         return {
           label: "Draft",
           icon: "📝",
-          bgColor: "bg-yellow-100",
-          textColor: "text-yellow-800",
-          borderColor: "border-yellow-200"
+          bgColor: "bg-warning-soft",
+          textColor: "text-warning-dark",
+          borderColor: "border-warning-soft"
         };
       case "archived":
         return {
@@ -31,9 +31,9 @@ const CourseStatusBadge = ({ status, size = "sm", showIcon = true }) => {
         return {
           label: "Draft",
           icon: "📝",
-          bgColor: "bg-yellow-100",
-          textColor: "text-yellow-800",
-          borderColor: "border-yellow-200"
+          bgColor: "bg-warning-soft",
+          textColor: "text-warning-dark",
+          borderColor: "border-warning-soft"
         };
     }
   };

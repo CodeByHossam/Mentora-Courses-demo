@@ -1,6 +1,6 @@
 // Demo-only payment modal. No card SDK, token, or external request is used.
 import { useState } from "react";
-import Modal from "./Modal";
+import { Modal } from './common/index.js';
 import { X } from "lucide-react";
 
 const PaymentModal = ({
@@ -49,7 +49,7 @@ const PaymentModal = ({
               onClick={() => setInputAmount(suggestedAmount)}
               className={`rounded px-4 py-2 ${
                 inputAmount === suggestedAmount
-                  ? "bg-blue-600 text-white"
+                  ? "bg-brand-600 text-white"
                   : "bg-gray-100 text-gray-700"
               }`}
             >
@@ -76,13 +76,13 @@ const PaymentModal = ({
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full rounded bg-green-600 py-2 text-white hover:bg-green-700 disabled:cursor-not-allowed disabled:bg-gray-400"
+            className="w-full rounded bg-success-dark py-2 text-white hover:bg-success-dark disabled:cursor-not-allowed disabled:bg-gray-400"
           >
             {isLoading ? "Processing..." : `Submit $${inputAmount} Payment`}
           </button>
         </form>
 
-        {error && <p className="mt-2 text-red-600">{error}</p>}
+        {error && <p className="mt-2 text-error-dark">{error}</p>}
       </div>
     </Modal>
   );

@@ -1,16 +1,14 @@
-// DemoChrome — banner, role switcher, badge, and reset control for the static demo.
+// DemoChrome — thin demo bar below the main nav with a user switcher and reset control.
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ChevronDown, RefreshCw, User, X } from "lucide-react";
+import { ChevronDown, RefreshCw, User } from "lucide-react";
 
 import {
   getSession,
   getSwitchableUsers,
-  isBannerDismissed,
   resetDemoData,
-  setBannerDismissed,
 } from "../../services/demoStorage";
 import { apiSlice } from "../../store/api/apiSlice";
 import { selectCurrentUser, setCredentials, switchDemoUser } from "../../store/slices/authSlice";
@@ -27,38 +25,7 @@ const USER_GROUPS = Object.freeze([
   { label: "Students", roles: ["student"] },
 ]);
 
-function DemoBanner() {
-  const [isDismissed, setIsDismissed] = useState(() => isBannerDismissed());
-
-  if (isDismissed) return null;
-
-  const handleDismiss = () => {
-    setBannerDismissed(true);
-    setIsDismissed(true);
-  };
-
-  return (
-    <div
-      role="status"
-      className="relative z-[60] flex items-center justify-center gap-3 border-b border-purple-200 bg-purple-50 px-4 py-2 text-center text-xs font-medium text-purple-800 sm:text-sm"
-    >
-      <span>
-        Demo Mode — this is a frontend-only portfolio demo. All changes are
-        stored in this browser.
-      </span>
-      <button
-        type="button"
-        onClick={handleDismiss}
-        aria-label="Dismiss demo banner"
-        className="shrink-0 rounded-full p-1 text-purple-700 transition-colors hover:bg-purple-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-600"
-      >
-        <X className="h-4 w-4" aria-hidden="true" />
-      </button>
-    </div>
-  );
-}
-
-function DemoUserSwitcher() {
+export default function DemoChrome() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(selectCurrentUser);
@@ -69,7 +36,7 @@ function DemoUserSwitcher() {
     ? user._id
     : "";
 
-  const handleChange = (event) => {
+  const handleUserChange = (event) => {
     const userId = event.target.value;
     const nextUser = users.find((item) => item.id === userId);
     if (!nextUser || userId === user?._id) return;
@@ -86,51 +53,6 @@ function DemoUserSwitcher() {
       setIsSwitching(false);
     }
   };
-
-  return (
-    <div className="fixed right-4 top-20 z-40 flex items-center gap-2 rounded-full border border-gray-200 bg-white/95 py-1.5 pl-3 pr-2 shadow-lg backdrop-blur">
-      <User className="h-4 w-4 shrink-0 text-purple-600" aria-hidden="true" />
-      <span className="hidden text-[11px] font-semibold uppercase tracking-wide text-gray-500 sm:inline">
-        Demo user
-      </span>
-      <div className="relative">
-        <select
-          aria-label="Switch demo user"
-          value={selectedUserId}
-          onChange={handleChange}
-          disabled={isSwitching}
-          className="max-w-[9rem] appearance-none rounded-full border border-gray-200 bg-white py-0.5 pl-1 pr-5 text-xs font-medium text-gray-800 outline-none focus-visible:ring-2 focus-visible:ring-purple-600 disabled:opacity-60 sm:max-w-[12rem]"
-        >
-          {!selectedUserId && <option value="">Select user</option>}
-          {USER_GROUPS.map((group) => {
-            const groupedUsers = users.filter((item) =>
-              group.roles.includes(item.role),
-            );
-            if (!groupedUsers.length) return null;
-
-            return (
-              <optgroup key={group.label} label={group.label}>
-                {groupedUsers.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.name} — {item.roleLabel}
-                  </option>
-                ))}
-              </optgroup>
-            );
-          })}
-        </select>
-        <ChevronDown
-          className="pointer-events-none absolute right-0 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-gray-500"
-          aria-hidden="true"
-        />
-      </div>
-    </div>
-  );
-}
-
-function DemoBadgeAndReset() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleReset = () => {
     try {
@@ -151,28 +73,54 @@ function DemoBadgeAndReset() {
   };
 
   return (
-    <div className="fixed right-4 top-12 z-40 flex items-center gap-2">
-      <span className="rounded-full border border-purple-200 bg-white/95 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-purple-700 shadow-sm backdrop-blur">
-        Demo Mode
-      </span>
-      <button
-        type="button"
-        onClick={handleReset}
-        className="flex items-center gap-1 rounded-full border border-gray-200 bg-white/95 px-2.5 py-1 text-[11px] font-semibold text-gray-700 shadow-sm backdrop-blur transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-600"
-      >
-        <RefreshCw className="h-3.5 w-3.5" aria-hidden="true" />
-        Reset Demo Data
-      </button>
-    </div>
-  );
-}
+    <div className="fixed left-0 right-0 top-16 z-40 h-8 border-b border-line bg-white/95 backdrop-blur md:top-20">
+      <div className="mx-auto flex h-full max-w-6xl items-center justify-end gap-2 px-4 sm:px-6 lg:px-8 sm:gap-3">
+        <User className="h-3.5 w-3.5 shrink-0 text-brand-600" aria-hidden="true" />
+        <span className="hidden text-[10px] font-semibold uppercase tracking-wide text-gray-500 sm:inline">
+          Demo user
+        </span>
+        <div className="relative">
+          <select
+            aria-label="Switch demo user"
+            value={selectedUserId}
+            onChange={handleUserChange}
+            disabled={isSwitching}
+            className="max-w-[8rem] appearance-none rounded-full border border-gray-200 bg-white py-0.5 pl-1 pr-4 text-[11px] font-medium text-gray-800 outline-none focus-visible:ring-2 focus-visible:ring-brand disabled:opacity-60 sm:max-w-[11rem]"
+          >
+            {!selectedUserId && <option value="">Select user</option>}
+            {USER_GROUPS.map((group) => {
+              const groupedUsers = users.filter((item) =>
+                group.roles.includes(item.role),
+              );
+              if (!groupedUsers.length) return null;
 
-export default function DemoChrome() {
-  return (
-    <>
-      <DemoBanner />
-      <DemoBadgeAndReset />
-      <DemoUserSwitcher />
-    </>
+              return (
+                <optgroup key={group.label} label={group.label}>
+                  {groupedUsers.map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.name} — {item.roleLabel}
+                    </option>
+                  ))}
+                </optgroup>
+              );
+            })}
+          </select>
+          <ChevronDown
+            className="pointer-events-none absolute right-1 top-1/2 h-3 w-3 -translate-y-1/2 text-gray-500"
+            aria-hidden="true"
+          />
+        </div>
+        <span className="hidden h-3 w-px bg-gray-200 sm:block" aria-hidden="true" />
+        <button
+          type="button"
+          onClick={handleReset}
+          className="flex items-center gap-1 rounded-full px-1.5 py-0.5 text-[10px] font-semibold text-gray-600 transition-colors hover:bg-gray-50 hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:text-[11px]"
+        >
+          <RefreshCw className="h-3 w-3" aria-hidden="true" />
+          <span className="hidden sm:inline">Reset Demo Data</span>
+          <span className="sm:hidden">Reset</span>
+        </button>
+      </div>
+    </div>
   );
 }

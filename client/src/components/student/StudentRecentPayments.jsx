@@ -29,7 +29,7 @@ const StudentRecentPayments = ({ recentTransactions }) => {
         ))}
       </div>
       <div className="mt-4 text-center">
-        <a href="/billing" className="text-sky-600 hover:text-sky-800 font-medium">View All Payment History</a>
+        <a href="/billing" className="text-brand-600 hover:text-brand-800 font-medium">View All Payment History</a>
       </div>
     </div>
   );

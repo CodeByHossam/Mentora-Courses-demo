@@ -27,7 +27,7 @@ const TestList = ({
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         {(currentUser?.role === "instructor" || currentUser?.role === "admin") && (
           <button
-            className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-6 py-3 rounded-xl hover:from-green-700 hover:to-blue-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+            className="bg-brand text-white px-6 py-3 rounded-xl hover:bg-success hover:bg-brand-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl "
             onClick={() => setShowAddTestModal(true)}
           >
             <Plus size={18} />
@@ -38,7 +38,7 @@ const TestList = ({
       {tests?.length > 0 ? (
         <div className="overflow-x-auto rounded-xl border border-gray-200">
           <table className="w-full min-w-[900px] bg-white">
-            <thead className="bg-gradient-to-r from-gray-50 to-blue-50">
+            <thead className="bg-brand-50">
               <tr>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 border-b border-gray-200">Test Name</th>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 border-b border-gray-200">Lesson</th>

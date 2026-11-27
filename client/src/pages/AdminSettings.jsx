@@ -160,11 +160,11 @@ const AdminSettings = () => {
   // Show loading state
   if (isLoadingSettings) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="min-h-screen bg-brand-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
-              <RefreshCw className="h-8 w-8 animate-spin mx-auto text-blue-600 mb-4" />
+              <RefreshCw className="h-8 w-8 animate-spin mx-auto text-brand-600 mb-4" />
               <p className="text-gray-600">Loading admin settings...</p>
             </div>
           </div>
@@ -176,17 +176,17 @@ const AdminSettings = () => {
   // Show error state
   if (settingsError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="min-h-screen bg-brand-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              <div className="bg-error-soft border border-error text-error-dark px-4 py-3 rounded mb-4">
                 <p className="font-medium">Error loading admin settings</p>
                 <p className="text-sm">{settingsError?.data?.message || settingsError?.message || "Unknown error"}</p>
               </div>
               <button
                 onClick={() => refetchSettings()}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors"
               >
                 <RefreshCw className="h-4 w-4 mr-2 inline" />
                 Retry
@@ -199,12 +199,12 @@ const AdminSettings = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-brand-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold" style={{background: 'linear-gradient(to right, var(--info), var(--secondary))', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent'}}>
+              <h1 className="text-3xl font-bold text-ink">
                 ⚙️ System Settings
               </h1>
               <p className="mt-2 text-secondary">
@@ -214,7 +214,7 @@ const AdminSettings = () => {
             <button
               onClick={handleSaveSettings}
               disabled={isUpdatingSettings || isUpdatingPayment}
-              className="btn-primary px-6 py-3 rounded-xl transition-all duration-200 font-medium shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="btn-primary px-6 py-3 rounded-xl transition-all duration-200 font-medium shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed "
             >
               {(isUpdatingSettings || isUpdatingPayment) ? (
                 <>
@@ -239,10 +239,9 @@ const AdminSettings = () => {
                     onClick={() => setActiveTab(tab.id)}
                     className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
                       activeTab === tab.id
-                        ? "text-white shadow-lg"
-                        : "text-secondary hover:bg-accent"
+                        ? "bg-brand text-white shadow-lg"
+                        : "text-secondary hover:bg-brand-50"
                     }`}
-                    style={activeTab === tab.id ? {background: 'linear-gradient(to right, var(--info), var(--secondary))'} : {}}
                   >
                     {tab.label}
                   </button>
@@ -292,7 +291,7 @@ const AdminSettings = () => {
                       value={settings.systemSettings?.siteDescription || settings.siteDescription || ""}
                       onChange={(e) => handleLegacySettingChange("siteDescription", e.target.value)}
                       rows={3}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     />
                   </div>
 
@@ -304,7 +303,7 @@ const AdminSettings = () => {
                       type="email"
                       value={settings.systemSettings?.supportEmail || settings.supportEmail || ""}
                       onChange={(e) => handleLegacySettingChange("supportEmail", e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     />
                   </div>
 
@@ -314,7 +313,7 @@ const AdminSettings = () => {
                         type="checkbox"
                         checked={settings.systemSettings?.allowRegistration ?? settings.allowRegistration ?? true}
                         onChange={(e) => handleLegacySettingChange("allowRegistration", e.target.checked)}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        className="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500"
                       />
                       <span className="ml-2 text-sm text-gray-700">Allow user registration</span>
                     </label>
@@ -324,7 +323,7 @@ const AdminSettings = () => {
                         type="checkbox"
                         checked={settings.systemSettings?.maintenanceMode ?? settings.maintenanceMode ?? false}
                         onChange={(e) => handleLegacySettingChange("maintenanceMode", e.target.checked)}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        className="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500"
                       />
                       <span className="ml-2 text-sm text-gray-700">Maintenance mode</span>
                     </label>
@@ -339,7 +338,7 @@ const AdminSettings = () => {
                     <button
                       onClick={handleResetPaymentSettings}
                       disabled={isResetting}
-                      className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="px-4 py-2 bg-error-dark hover:bg-error-dark text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isResetting ? (
                         <>
@@ -353,8 +352,8 @@ const AdminSettings = () => {
                   </div>
                   
                   {/* Profit Settings */}
-                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6">
-                    <h3 className="text-lg font-semibold text-green-900 mb-4 flex items-center">
+                  <div className="bg-success border border-success-soft rounded-xl p-6">
+                    <h3 className="text-lg font-semibold text-success-dark mb-4 flex items-center">
                       <span className="mr-2">📈</span>
                       Platform Profit Settings
                     </h3>
@@ -371,7 +370,7 @@ const AdminSettings = () => {
                           step="0.1"
                           value={settings.paymentSettings?.globalDeductionPercentage || settings.globalDeductionPercentage || 10}
                           onChange={(e) => handleLegacySettingChange("globalDeductionPercentage", parseFloat(e.target.value))}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-transparent"
                         />
                         <p className="text-xs text-gray-500 mt-1">
                           Percentage deducted from each course payment as platform profit
@@ -385,7 +384,7 @@ const AdminSettings = () => {
                         <select
                           value={settings.paymentSettings?.currency || settings.currency || "USD"}
                           onChange={(e) => handleLegacySettingChange("currency", e.target.value)}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-transparent"
                         >
                           <option value="USD">USD - US Dollar</option>
                           <option value="EUR">EUR - Euro</option>
@@ -398,8 +397,8 @@ const AdminSettings = () => {
                   </div>
 
                   {/* Annual User Fees */}
-                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
-                    <h3 className="text-lg font-semibold text-blue-900 mb-4 flex items-center">
+                  <div className="bg-brand-50 border border-brand-200 rounded-xl p-6">
+                    <h3 className="text-lg font-semibold text-brand-900 mb-4 flex items-center">
                       <span className="mr-2">👥</span>
                       Annual User Fees
                     </h3>
@@ -442,8 +441,8 @@ const AdminSettings = () => {
                   </div>
 
                   {/* Payment Gateway Settings */}
-                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-xl p-6">
-                    <h3 className="text-lg font-semibold text-purple-900 mb-4 flex items-center">
+                  <div className="bg-brand-50 border border-brand-200 rounded-xl p-6">
+                    <h3 className="text-lg font-semibold text-brand-900 mb-4 flex items-center">
                       <span className="mr-2">💳</span>
                       Payment Gateway Configuration
                     </h3>
@@ -459,7 +458,7 @@ const AdminSettings = () => {
                           step="0.01"
                           value={settings.paymentSettings?.minimumPaymentAmount || settings.minimumPaymentAmount || 5}
                           onChange={(e) => handleLegacySettingChange("minimumPaymentAmount", parseFloat(e.target.value))}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -477,7 +476,7 @@ const AdminSettings = () => {
                           type="checkbox"
                           checked={settings.paymentSettings?.stripeEnabled ?? settings.stripeEnabled ?? true}
                           onChange={(e) => handleLegacySettingChange("stripeEnabled", e.target.checked)}
-                          className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                          className="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500"
                         />
                       </label>
 
@@ -493,7 +492,7 @@ const AdminSettings = () => {
                           type="checkbox"
                           checked={settings.paymentSettings?.paypalEnabled ?? settings.paypalEnabled ?? true}
                           onChange={(e) => handleLegacySettingChange("paypalEnabled", e.target.checked)}
-                          className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                          className="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500"
                         />
                       </label>
 
@@ -509,15 +508,15 @@ const AdminSettings = () => {
                           type="checkbox"
                           checked={settings.paymentSettings?.directTransferEnabled ?? settings.directTransferEnabled ?? true}
                           onChange={(e) => handleLegacySettingChange("directTransferEnabled", e.target.checked)}
-                          className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                          className="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500"
                         />
                       </label>
                     </div>
                   </div>
 
                   {/* Enrollment Settings */}
-                  <div className="bg-gradient-to-r from-orange-50 to-red-50 border border-orange-200 rounded-xl p-6">
-                    <h3 className="text-lg font-semibold text-orange-900 mb-4 flex items-center">
+                  <div className="bg-brand border border-warning-soft rounded-xl p-6">
+                    <h3 className="text-lg font-semibold text-warning-dark mb-4 flex items-center">
                       <span className="mr-2">🎓</span>
                       Enrollment Automation
                     </h3>
@@ -532,7 +531,7 @@ const AdminSettings = () => {
                           type="checkbox"
                           checked={settings.paymentSettings?.autoEnrollOnCardPayment ?? settings.autoEnrollOnCardPayment ?? true}
                           onChange={(e) => handleLegacySettingChange("autoEnrollOnCardPayment", e.target.checked)}
-                          className="w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500"
+                          className="w-4 h-4 text-warning-dark border-gray-300 rounded focus:ring-warning"
                         />
                       </label>
 
@@ -545,7 +544,7 @@ const AdminSettings = () => {
                           type="checkbox"
                           checked={settings.paymentSettings?.autoEnrollOnPaypalPayment ?? settings.autoEnrollOnPaypalPayment ?? true}
                           onChange={(e) => handleLegacySettingChange("autoEnrollOnPaypalPayment", e.target.checked)}
-                          className="w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500"
+                          className="w-4 h-4 text-warning-dark border-gray-300 rounded focus:ring-warning"
                         />
                       </label>
 
@@ -558,14 +557,14 @@ const AdminSettings = () => {
                           type="checkbox"
                           checked={settings.paymentSettings?.requireAdminApprovalForDirectTransfer ?? settings.requireAdminApprovalForDirectTransfer ?? true}
                           onChange={(e) => handleLegacySettingChange("requireAdminApprovalForDirectTransfer", e.target.checked)}
-                          className="w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500"
+                          className="w-4 h-4 text-warning-dark border-gray-300 rounded focus:ring-warning"
                         />
                       </label>
                     </div>
                   </div>
 
                   {/* Profit Calculator Preview */}
-                  <div className="bg-gradient-to-r from-gray-50 to-slate-50 border border-gray-200 rounded-xl p-6">
+                  <div className="bg-canvas border border-gray-200 rounded-xl p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
                       <span className="mr-2">🧮</span>
                       Profit Calculator Preview
@@ -573,15 +572,15 @@ const AdminSettings = () => {
                     
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="text-center p-4 bg-white rounded-lg border">
-                        <div className="text-2xl font-bold text-blue-600">$100</div>
+                        <div className="text-2xl font-bold text-brand-600">$100</div>
                         <div className="text-sm text-gray-600">Course Price</div>
                       </div>
                       <div className="text-center p-4 bg-white rounded-lg border">
-                        <div className="text-2xl font-bold text-green-600">${(100 * (settings.paymentSettings?.globalDeductionPercentage || settings.globalDeductionPercentage || 10) / 100).toFixed(2)}</div>
+                        <div className="text-2xl font-bold text-success-dark">${(100 * (settings.paymentSettings?.globalDeductionPercentage || settings.globalDeductionPercentage || 10) / 100).toFixed(2)}</div>
                         <div className="text-sm text-gray-600">Platform Profit ({settings.paymentSettings?.globalDeductionPercentage || settings.globalDeductionPercentage || 10}%)</div>
                       </div>
                       <div className="text-center p-4 bg-white rounded-lg border">
-                        <div className="text-2xl font-bold text-purple-600">${(100 - (100 * (settings.paymentSettings?.globalDeductionPercentage || settings.globalDeductionPercentage || 10) / 100)).toFixed(2)}</div>
+                        <div className="text-2xl font-bold text-brand-600">${(100 - (100 * (settings.paymentSettings?.globalDeductionPercentage || settings.globalDeductionPercentage || 10) / 100)).toFixed(2)}</div>
                         <div className="text-sm text-gray-600">Instructor Earnings</div>
                       </div>
                     </div>
@@ -623,14 +622,14 @@ const AdminSettings = () => {
                     </div>
                   </div>
 
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                  <div className="bg-warning-soft border border-warning-soft rounded-lg p-4">
                     <div className="flex">
                       <div className="flex-shrink-0">
-                        <span className="text-yellow-400 text-xl">⚠️</span>
+                        <span className="text-warning text-xl">⚠️</span>
                       </div>
                       <div className="ml-3">
-                        <h3 className="text-sm font-medium text-yellow-800">Security Notice</h3>
-                        <div className="mt-2 text-sm text-yellow-700">
+                        <h3 className="text-sm font-medium text-warning-dark">Security Notice</h3>
+                        <div className="mt-2 text-sm text-warning-dark">
                           <p>Changes to security settings will affect all users. Please review carefully before saving.</p>
                         </div>
                       </div>
@@ -653,7 +652,7 @@ const AdminSettings = () => {
                         type="checkbox"
                         checked={settings.notificationSettings?.emailNotificationsEnabled ?? settings.emailNotifications ?? true}
                         onChange={(e) => handleLegacySettingChange("emailNotificationsEnabled", e.target.checked)}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        className="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500"
                       />
                     </label>
 
@@ -666,7 +665,7 @@ const AdminSettings = () => {
                         type="checkbox"
                         checked={settings.notificationSettings?.smsNotifications ?? settings.smsNotifications ?? false}
                         onChange={(e) => handleLegacySettingChange("smsNotifications", e.target.checked)}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        className="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500"
                       />
                     </label>
 
@@ -679,7 +678,7 @@ const AdminSettings = () => {
                         type="checkbox"
                         checked={settings.notificationSettings?.paymentNotificationsEnabled ?? settings.paymentNotificationsEnabled ?? true}
                         onChange={(e) => handleLegacySettingChange("paymentNotificationsEnabled", e.target.checked)}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        className="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500"
                       />
                     </label>
 
@@ -692,7 +691,7 @@ const AdminSettings = () => {
                         type="checkbox"
                         checked={settings.notificationSettings?.enrollmentNotificationsEnabled ?? settings.enrollmentNotificationsEnabled ?? true}
                         onChange={(e) => handleLegacySettingChange("enrollmentNotificationsEnabled", e.target.checked)}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        className="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500"
                       />
                     </label>
                   </div>
@@ -710,7 +709,7 @@ const AdminSettings = () => {
                     <select
                       value={settings.systemSettings?.backupFrequency || settings.backupFrequency || "daily"}
                       onChange={(e) => handleLegacySettingChange("backupFrequency", e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     >
                       <option value="hourly">Hourly</option>
                       <option value="daily">Daily</option>
@@ -720,32 +719,32 @@ const AdminSettings = () => {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <div className="bg-success-soft border border-success-soft rounded-lg p-4">
                       <div className="flex items-center">
-                        <span className="text-green-500 text-2xl mr-3">💾</span>
+                        <span className="text-success text-2xl mr-3">💾</span>
                         <div>
-                          <div className="font-medium text-green-900">Storage</div>
-                          <div className="text-sm text-green-700">85% Used</div>
+                          <div className="font-medium text-success-dark">Storage</div>
+                          <div className="text-sm text-success-dark">85% Used</div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="bg-brand-50 border border-brand-200 rounded-lg p-4">
                       <div className="flex items-center">
-                        <span className="text-blue-500 text-2xl mr-3">🔄</span>
+                        <span className="text-brand-500 text-2xl mr-3">🔄</span>
                         <div>
-                          <div className="font-medium text-blue-900">Last Backup</div>
-                          <div className="text-sm text-blue-700">2 hours ago</div>
+                          <div className="font-medium text-brand-900">Last Backup</div>
+                          <div className="text-sm text-brand-700">2 hours ago</div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                    <div className="bg-brand-50 border border-brand-200 rounded-lg p-4">
                       <div className="flex items-center">
-                        <span className="text-purple-500 text-2xl mr-3">📊</span>
+                        <span className="text-brand-500 text-2xl mr-3">📊</span>
                         <div>
-                          <div className="font-medium text-purple-900">System Load</div>
-                          <div className="text-sm text-purple-700">Normal</div>
+                          <div className="font-medium text-brand-900">System Load</div>
+                          <div className="text-sm text-brand-700">Normal</div>
                         </div>
                       </div>
                     </div>

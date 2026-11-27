@@ -37,8 +37,8 @@ const Help = () => {
         title: "Welcome to Mentora",
         subtitle: "Your Gateway to Quality Online Education",
         description: "Discover a world of learning opportunities with our comprehensive online learning platform. Connect with expert instructors, access quality courses, and track your progress.",
-        gradient: "from-blue-600 via-purple-600 to-indigo-600",
-        bgGradient: "from-blue-50 via-indigo-50 to-purple-50"
+        gradient: "bg-brand-600 bg-brand-600 bg-brand-600",
+        bgGradient: "bg-brand-50 bg-brand-50 bg-brand-50"
       };
     }
 
@@ -48,32 +48,32 @@ const Help = () => {
           title: `Welcome ${user.name}!`,
           subtitle: "Your Learning Journey Starts Here",
           description: "Access your courses, track your progress, communicate with instructors, and achieve your educational goals with our comprehensive student dashboard.",
-          gradient: "from-blue-600 via-sky-600 to-cyan-600",
-          bgGradient: "from-blue-50 via-sky-50 to-cyan-50"
+          gradient: "bg-brand-600 bg-brand-600 bg-brand-600",
+          bgGradient: "bg-brand-50 bg-brand-50 bg-brand-50"
         };
       case 'instructor':
         return {
           title: `Hello ${user.name}!`,
           subtitle: "Empower Students Through Teaching",
           description: "Manage your courses, engage with students, track their progress, and create impactful learning experiences with our instructor tools.",
-          gradient: "from-emerald-600 via-green-600 to-teal-600",
-          bgGradient: "from-emerald-50 via-green-50 to-teal-50"
+          gradient: "bg-success bg-success bg-success",
+          bgGradient: "bg-success bg-success bg-success"
         };
       case 'admin':
         return {
           title: `Admin Dashboard - ${user.name}`,
           subtitle: "Platform Management & Control",
           description: "Oversee the entire platform, manage users, monitor system performance, and ensure the best learning experience for everyone.",
-          gradient: "from-purple-600 via-violet-600 to-indigo-600",
-          bgGradient: "from-purple-50 via-violet-50 to-indigo-50"
+          gradient: "bg-brand-600 bg-brand-600 bg-brand-600",
+          bgGradient: "bg-brand-50 bg-brand-50 bg-brand-50"
         };
       default:
         return {
           title: "Welcome to Mentora",
           subtitle: "Your Gateway to Quality Online Education",
           description: "Discover a world of learning opportunities with our comprehensive online learning platform.",
-          gradient: "from-blue-600 via-purple-600 to-indigo-600",
-          bgGradient: "from-blue-50 via-indigo-50 to-purple-50"
+          gradient: "bg-brand-600 bg-brand-600 bg-brand-600",
+          bgGradient: "bg-brand-50 bg-brand-50 bg-brand-50"
         };
     }
   };

@@ -54,14 +54,14 @@ const InstructorGiftCards = () => {
 
   const getStatusColor = (isActive, expiryDate, isRedeemed) => {
     if (isRedeemed) return 'text-gray-600 bg-gray-100';
-    if (!isActive) return 'text-red-600 bg-red-100';
+    if (!isActive) return 'text-error-dark bg-error-soft';
     
     const now = new Date();
     const expiry = new Date(expiryDate);
     const daysUntilExpiry = Math.ceil((expiry - now) / (1000 * 60 * 60 * 24));
     
-    if (daysUntilExpiry <= 7) return 'text-orange-600 bg-orange-100';
-    return 'text-green-600 bg-green-100';
+    if (daysUntilExpiry <= 7) return 'text-warning-dark bg-warning-soft';
+    return 'text-success-dark bg-success-soft';
   };
 
   const getStatusText = (isActive, expiryDate, isRedeemed) => {
@@ -89,16 +89,16 @@ const InstructorGiftCards = () => {
   };
 
   const getCardTypeColor = (type, isRedeemed) => {
-    if (isRedeemed) return 'bg-gradient-to-r from-gray-400 to-gray-500';
+    if (isRedeemed) return 'bg-brand';
     switch (type) {
       case 'welcome_bonus':
-        return 'bg-gradient-to-r from-purple-500 to-pink-500';
+        return 'bg-brand';
       case 'commission_reward':
-        return 'bg-gradient-to-r from-emerald-500 to-blue-500';
+        return 'bg-brand';
       case 'compensation':
-        return 'bg-gradient-to-r from-orange-500 to-red-500';
+        return 'bg-brand';
       default:
-        return 'bg-gradient-to-r from-indigo-500 to-purple-500';
+        return 'bg-brand';
     }
   };
 
@@ -114,7 +114,7 @@ const InstructorGiftCards = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-7xl mx-auto">
           <div className="animate-pulse">
             <div className="h-8 bg-gray-200 rounded w-1/4 mb-6"></div>
@@ -131,15 +131,15 @@ const InstructorGiftCards = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-7xl mx-auto">
           <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-            <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
+            <AlertCircle className="w-12 h-12 text-error mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Failed to Load Gift Cards</h3>
             <p className="text-gray-600 mb-4">There was an error loading your gift cards.</p>
             <button
               onClick={refetch}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors"
             >
               Try Again
             </button>
@@ -155,21 +155,21 @@ const InstructorGiftCards = () => {
   const totalValue = stats.totalValue || 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-6">
+    <div className="min-h-screen bg-brand-50 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <Gift className="w-8 h-8 text-purple-600" />
+                <Gift className="w-8 h-8 text-brand-600" />
                 My Gift Cards
               </h1>
               <p className="text-gray-600 mt-2">View gift cards and rewards issued by administrators</p>
             </div>
             <div className="text-right">
               <p className="text-sm text-gray-600">Total Active Value</p>
-              <p className="text-2xl font-bold text-purple-600">{formatCurrency(totalValue)}</p>
+              <p className="text-2xl font-bold text-brand-600">{formatCurrency(totalValue)}</p>
             </div>
           </div>
 
@@ -177,8 +177,8 @@ const InstructorGiftCards = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
             <div className="bg-white rounded-xl shadow-lg p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-purple-100 rounded-lg">
-                  <Gift className="w-5 h-5 text-purple-600" />
+                <div className="p-2 bg-brand-100 rounded-lg">
+                  <Gift className="w-5 h-5 text-brand-600" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-600">Total Cards</p>
@@ -189,8 +189,8 @@ const InstructorGiftCards = () => {
 
             <div className="bg-white rounded-xl shadow-lg p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
+                <div className="p-2 bg-success-soft rounded-lg">
+                  <CheckCircle className="w-5 h-5 text-success-dark" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-600">Active Cards</p>
@@ -203,8 +203,8 @@ const InstructorGiftCards = () => {
 
             <div className="bg-white rounded-xl shadow-lg p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-orange-100 rounded-lg">
-                  <Clock className="w-5 h-5 text-orange-600" />
+                <div className="p-2 bg-warning-soft rounded-lg">
+                  <Clock className="w-5 h-5 text-warning-dark" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-600">Expiring Soon</p>
@@ -221,8 +221,8 @@ const InstructorGiftCards = () => {
 
             <div className="bg-white rounded-xl shadow-lg p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <DollarSign className="w-5 h-5 text-blue-600" />
+                <div className="p-2 bg-brand-100 rounded-lg">
+                  <DollarSign className="w-5 h-5 text-brand-600" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-600">Total Value</p>
@@ -240,7 +240,7 @@ const InstructorGiftCards = () => {
                 <select
                   value={filters.isActive}
                   onChange={(e) => setFilters(prev => ({ ...prev, isActive: e.target.value }))}
-                  className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                 >
                   <option value="all">All Cards</option>
                   <option value="active">Active Only</option>
@@ -253,7 +253,7 @@ const InstructorGiftCards = () => {
                 <select
                   value={filters.giftCardType}
                   onChange={(e) => setFilters(prev => ({ ...prev, giftCardType: e.target.value }))}
-                  className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                 >
                   <option value="all">All Types</option>
                   <option value="welcome_bonus">Welcome Bonus</option>
@@ -355,7 +355,7 @@ const InstructorGiftCards = () => {
                     )}
                     <div>
                       <span className="font-medium text-gray-700">Status: </span>
-                      <span className={`font-medium ${card.isActive ? 'text-green-600' : 'text-red-600'}`}>
+                      <span className={`font-medium ${card.isActive ? 'text-success-dark' : 'text-error-dark'}`}>
                         {card.isActive ? 'Active' : 'Inactive'}
                       </span>
                     </div>
@@ -376,7 +376,7 @@ const InstructorGiftCards = () => {
                     <button
                       onClick={() => handleClaimGiftCard(card._id)}
                       disabled={isClaiming}
-                      className="mt-4 w-full px-4 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-semibold rounded-lg hover:from-emerald-600 hover:to-green-700 transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="mt-4 w-full px-4 py-3 success-dark text-white font-semibold rounded-lg hover:bg-success transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                       <CheckCircle className="w-5 h-5" />
                       {isClaiming ? 'Claiming...' : `Claim ${formatCurrency(card.amount)}`}
@@ -406,7 +406,7 @@ const InstructorGiftCards = () => {
                   onClick={() => setCurrentPage(i + 1)}
                   className={`px-3 py-2 rounded-lg ${
                     currentPage === i + 1
-                      ? 'bg-purple-600 text-white'
+                      ? 'bg-brand-600 text-white'
                       : 'border border-gray-300 hover:bg-gray-50'
                   }`}
                 >

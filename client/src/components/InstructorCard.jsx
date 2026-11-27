@@ -13,7 +13,7 @@ const InstructorCard = ({ instructor }) => {
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 h-80 flex flex-col">
       <Link to={`/instructor/${encodeURIComponent(instructor._id)}`} className="block flex-1 flex flex-col">
-        <div className="h-48 w-full overflow-hidden flex-shrink-0 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+        <div className="h-48 w-full overflow-hidden flex-shrink-0 bg-brand-600 flex items-center justify-center">
           {instructor.avatar ? (
             <img
               src={instructor.avatar}

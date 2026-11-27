@@ -203,9 +203,9 @@ export const safeUserName = (user) => {
 export const safeImageUrl = (url, type = 'user') => {
   if (!url) {
     const icons = {
-      user: '/default-avatar.png',
-      course: '/default-course.png',
-      placeholder: '/placeholder.png'
+      user: '/images/photo-1472099645785-5658abf4ff4e.jpg',
+      course: '/images/photo-1522202176988-66273c2fd55f.jpg',
+      placeholder: '/images/photo-1522202176988-66273c2fd55f.jpg'
     };
     return icons[type] || icons.placeholder;
   }

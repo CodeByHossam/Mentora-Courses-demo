@@ -45,7 +45,7 @@ const NotificationBell = ({ className = "", showText = false }) => {
       <Bell className="w-5 h-5" />
       {/* Show badge only if there are unread notifications */}
       {unreadCount > 0 && (
-        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold border-2 border-white shadow-lg">
+        <span className="absolute -top-1 -right-1 bg-error text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold border-2 border-white shadow-lg">
           {unreadCount > 99 ? "99+" : unreadCount}
         </span>
       )}

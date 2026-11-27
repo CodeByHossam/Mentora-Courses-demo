@@ -164,7 +164,7 @@ const AdminGiftCards = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-7xl mx-auto">
           <div className="animate-pulse">
             <div className="h-8 bg-gray-200 rounded w-1/4 mb-6"></div>
@@ -185,20 +185,20 @@ const AdminGiftCards = () => {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 p-6">
+    <div className="min-h-screen bg-brand-50 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-              <Gift className="w-8 h-8 text-purple-600" />
+              <Gift className="w-8 h-8 text-brand-600" />
               Gift Card Management
             </h1>
             <p className="text-gray-600 mt-2">Create and manage gift cards for users</p>
           </div>
           <button
             onClick={() => setShowCreateModal(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors"
           >
             <Plus className="w-5 h-5" />
             Create Gift Card
@@ -213,7 +213,7 @@ const AdminGiftCards = () => {
               <select
                 value={filters.giftCardType}
                 onChange={(e) => setFilters(prev => ({ ...prev, giftCardType: e.target.value }))}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="all">All Types</option>
                 {giftCardTypes.map(type => (
@@ -227,7 +227,7 @@ const AdminGiftCards = () => {
               <select
                 value={filters.isActive}
                 onChange={(e) => setFilters(prev => ({ ...prev, isActive: e.target.value }))}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="all">All Status</option>
                 <option value="active">Active</option>
@@ -242,7 +242,7 @@ const AdminGiftCards = () => {
                 value={filters.userId}
                 onChange={(e) => setFilters(prev => ({ ...prev, userId: e.target.value }))}
                 placeholder="Filter by user ID..."
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -283,8 +283,8 @@ const AdminGiftCards = () => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="flex-shrink-0 h-10 w-10">
-                          <div className="h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center">
-                            <Users className="w-5 h-5 text-purple-600" />
+                          <div className="h-10 w-10 rounded-full bg-brand-100 flex items-center justify-center">
+                            <Users className="w-5 h-5 text-brand-600" />
                           </div>
                         </div>
                         <div className="ml-4">
@@ -303,13 +303,13 @@ const AdminGiftCards = () => {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-brand-100 text-brand-800">
                         {card.type?.replace('_', ' ') || 'Gift Card'}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                        card.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                        card.isActive ? 'bg-success-soft text-success-dark' : 'bg-error-soft text-error-dark'
                       }`}>
                         {card.isActive ? 'Active' : 'Inactive'}
                       </span>
@@ -323,7 +323,7 @@ const AdminGiftCards = () => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <button
                         onClick={() => handleDeleteClick(card)}
-                        className="text-red-600 hover:text-red-900 p-2 rounded-full hover:bg-red-50 transition-colors"
+                        className="text-error-dark hover:text-error-dark p-2 rounded-full hover:bg-error-soft transition-colors"
                         title="Delete Gift Card"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -354,7 +354,7 @@ const AdminGiftCards = () => {
                   onClick={() => setCurrentPage(i + 1)}
                   className={`px-3 py-2 rounded-lg ${
                     currentPage === i + 1
-                      ? 'bg-purple-600 text-white'
+                      ? 'bg-brand-600 text-white'
                       : 'border border-gray-300 hover:bg-gray-50'
                   }`}
                 >
@@ -399,7 +399,7 @@ const AdminGiftCards = () => {
                     value={createForm.userId}
                     onChange={(e) => setCreateForm(prev => ({ ...prev, userId: e.target.value }))}
                     placeholder="Enter user ID..."
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                   />
                 </div>
 
@@ -412,7 +412,7 @@ const AdminGiftCards = () => {
                     value={createForm.userEmail}
                     onChange={(e) => setCreateForm(prev => ({ ...prev, userEmail: e.target.value }))}
                     placeholder="Enter user email..."
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                   />
                   <p className="mt-1 text-xs text-gray-500">⚠️ At least one is required (User ID or Email)</p>
                 </div>
@@ -434,7 +434,7 @@ const AdminGiftCards = () => {
                       }));
                       setRoleError('');
                     }}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     required
                   >
                     <option value="instructor">Instructor</option>
@@ -459,7 +459,7 @@ const AdminGiftCards = () => {
                         value={createForm.courseId}
                         onChange={(e) => setCreateForm(prev => ({ ...prev, courseId: e.target.value }))}
                         placeholder="Enter course ID..."
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                       />
                     </div>
 
@@ -472,7 +472,7 @@ const AdminGiftCards = () => {
                         value={createForm.courseName}
                         onChange={(e) => setCreateForm(prev => ({ ...prev, courseName: e.target.value }))}
                         placeholder="Enter course name..."
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                       />
                       <p className="mt-1 text-xs text-gray-500">
                         ⚠️ At least one is required (Course ID or Name)
@@ -483,8 +483,8 @@ const AdminGiftCards = () => {
 
                 {/* Role error message */}
                 {roleError && (
-                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
-                    <p className="text-sm text-red-700">
+                  <div className="p-3 bg-error-soft border border-error-soft rounded-lg">
+                    <p className="text-sm text-error-dark">
                       <strong>Error:</strong> {roleError}
                     </p>
                   </div>
@@ -504,10 +504,10 @@ const AdminGiftCards = () => {
                     placeholder={createForm.userRole === 'student' ? 'Will be set from course price' : 'Enter amount...'}
                     required={createForm.userRole !== 'student'}
                     readOnly={createForm.userRole === 'student'}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:bg-gray-100"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent disabled:bg-gray-100"
                   />
                   {createForm.userRole === 'student' && (
-                    <p className="mt-1 text-xs text-blue-600">
+                    <p className="mt-1 text-xs text-brand-600">
                       ℹ️ Amount will be automatically set based on the course price
                     </p>
                   )}
@@ -520,7 +520,7 @@ const AdminGiftCards = () => {
                   <select
                     value={createForm.giftCardType}
                     onChange={(e) => setCreateForm(prev => ({ ...prev, giftCardType: e.target.value }))}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                   >
                     {giftCardTypes.map(type => (
                       <option key={type.value} value={type.value}>{type.label}</option>
@@ -537,7 +537,7 @@ const AdminGiftCards = () => {
                     onChange={(e) => setCreateForm(prev => ({ ...prev, description: e.target.value }))}
                     placeholder="Enter description..."
                     rows={3}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                   />
                 </div>
 
@@ -551,7 +551,7 @@ const AdminGiftCards = () => {
                     max="3650"
                     value={createForm.expiryDays}
                     onChange={(e) => setCreateForm(prev => ({ ...prev, expiryDays: e.target.value }))}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                   />
                 </div>
 
@@ -571,7 +571,7 @@ const AdminGiftCards = () => {
                       (createForm.userRole === 'instructor' && !createForm.amount) ||
                       (createForm.userRole === 'student' && (!createForm.courseId && !createForm.courseName))
                     }
-                    className="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    className="flex-1 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     {isCreating ? 'Creating...' : 'Create Gift Card'}
                   </button>
@@ -589,7 +589,7 @@ const AdminGiftCards = () => {
             <div className="p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                  <AlertCircle className="w-5 h-5 text-red-500" />
+                  <AlertCircle className="w-5 h-5 text-error" />
                   Delete Gift Card
                 </h3>
                 <button
@@ -614,8 +614,8 @@ const AdminGiftCards = () => {
                   </div>
                 </div>
 
-                <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-                  <p className="text-sm text-red-700">
+                <div className="mt-4 p-3 bg-error-soft border border-error-soft rounded-lg">
+                  <p className="text-sm text-error-dark">
                     <strong>Warning:</strong> This will remove {formatCurrency(giftCardToDelete.amount)} from the recipient's account and delete the gift card permanently.
                   </p>
                 </div>
@@ -631,7 +631,7 @@ const AdminGiftCards = () => {
                 <button
                   onClick={handleConfirmDelete}
                   disabled={isDeleting}
-                  className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="flex-1 px-4 py-2 bg-error-dark text-white rounded-lg hover:bg-error-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   {isDeleting ? 'Deleting...' : 'Delete Gift Card'}
                 </button>

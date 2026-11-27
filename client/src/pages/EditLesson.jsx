@@ -5,7 +5,7 @@ import {
   useUpdateLessonMutation,
 } from "../store/services/lessonApi";
 import { toast } from "react-toastify";
-import ProgressLoader from "../components/ProgressLoader";
+import { ProgressLoader } from '../components/common/index.js';
 
 const EditLesson = () => {
   const { lessonId } = useParams();
@@ -88,7 +88,7 @@ const EditLesson = () => {
   }
   if (isError || !lesson) {
     return (
-      <div className="text-center text-red-600 mt-10">
+      <div className="text-center text-error-dark mt-10">
         Failed to load lesson.
       </div>
     );

@@ -84,17 +84,17 @@ const DirectBankTransfer = ({ course, user }) => {
   };
   if (requestSubmitted) {
     return (
-      <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
+      <div className="bg-success-soft border border-success-soft rounded-xl p-6 text-center">
         <div className="text-4xl mb-4">✅</div>
-        <h3 className="font-semibold text-green-800 mb-2">
+        <h3 className="font-semibold text-success-dark mb-2">
           Enrollment Request Submitted Successfully!
         </h3>
-        <p className="text-green-700 mb-4">
+        <p className="text-success-dark mb-4">
           Your enrollment request with bank transfer proof is under review. You'll be enrolled once approved by admin.
         </p>
         <button
           onClick={() => navigate(`/courses/${course._id}`)}
-          className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+          className="px-4 py-2 bg-success-dark text-white rounded-lg hover:bg-success-dark transition-colors"
         >
           Back to Course
         </button>
@@ -104,7 +104,7 @@ const DirectBankTransfer = ({ course, user }) => {
   if (isLoadingAdmin) {
     return (
       <div className="text-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand-600 mx-auto"></div>
         <p className="mt-2 text-gray-600">Loading admin bank details...</p>
       </div>
     );
@@ -157,7 +157,7 @@ const DirectBankTransfer = ({ course, user }) => {
                   <label className="text-sm font-medium text-gray-700">
                     Amount to Transfer
                   </label>
-                  <p className="text-2xl font-bold text-green-600">
+                  <p className="text-2xl font-bold text-success-dark">
                     ${course.finalPrice}
                   </p>
                 </div>
@@ -185,7 +185,7 @@ const DirectBankTransfer = ({ course, user }) => {
                     Transfer Amount
                   </label>
                   <div className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg">
-                    <span className="text-2xl font-bold text-green-600">
+                    <span className="text-2xl font-bold text-success-dark">
                       ${course.finalPrice || course.price}
                     </span>
                   </div>
@@ -200,7 +200,7 @@ const DirectBankTransfer = ({ course, user }) => {
                     onChange={(e) =>
                       setFormData({ ...formData, bankName: e.target.value })
                     }
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
                     placeholder="Enter bank name"
                     required
                   />
@@ -221,7 +221,7 @@ const DirectBankTransfer = ({ course, user }) => {
                       })
                     }
                     placeholder="Enter transaction reference number"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500"
                     required
                   />
                 </div>
@@ -235,7 +235,7 @@ const DirectBankTransfer = ({ course, user }) => {
                     onChange={(e) =>
                       setFormData({ ...formData, transferDate: e.target.value })
                     }
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500"
                     required
                   />
                 </div>
@@ -250,14 +250,14 @@ const DirectBankTransfer = ({ course, user }) => {
                     setFormData({ ...formData, receiptFile: e.target.files[0] })
                   }
                   accept=".pdf,.jpg,.jpeg,.png"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500"
                   required
                 />
               </div>
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-green-600 text-white py-3 px-6 rounded-xl font-semibold hover:bg-green-700 disabled:opacity-50 transition-colors"
+                className="w-full bg-success-dark text-white py-3 px-6 rounded-xl font-semibold hover:bg-success-dark disabled:opacity-50 transition-colors"
               >
                 {loading ? "Submitting..." : "Submit Enrollment Request"}
               </button>

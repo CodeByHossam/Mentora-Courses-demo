@@ -23,7 +23,7 @@ import {
   useGetCourseInteractionsQuery,
 } from "../store/services/courseInteractionApi";
 import { useGetCourseQuery, useGetCourseStudentsQuery } from "../store/services/courseApi";
-import LoadingSpinner from "../components/LoadingSpinner";
+import { LoadingSpinner } from '../components/common/index.js';
 import { toast } from "react-toastify";
 
 const TestGrading = () => {
@@ -108,11 +108,11 @@ const TestGrading = () => {
   };
 
   const getGradeColor = (percentage) => {
-    if (percentage >= 90) return "text-green-600 bg-green-100";
-    if (percentage >= 80) return "text-blue-600 bg-blue-100";
-    if (percentage >= 70) return "text-yellow-600 bg-yellow-100";
-    if (percentage >= 60) return "text-orange-600 bg-orange-100";
-    return "text-red-600 bg-red-100";
+    if (percentage >= 90) return "text-success-dark bg-success-soft";
+    if (percentage >= 80) return "text-brand-600 bg-brand-100";
+    if (percentage >= 70) return "text-warning-dark bg-warning-soft";
+    if (percentage >= 60) return "text-warning-dark bg-warning-soft";
+    return "text-error-dark bg-error-soft";
   };
 
   const getStudentTestGrade = (studentId) => {
@@ -262,14 +262,14 @@ const TestGrading = () => {
                 <>
                   <button
                     onClick={handleAnswerKeyDownload}
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
+                    className="flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors duration-200 font-medium"
                   >
                     <Download className="w-5 h-5" />
                     Download Answer Key
                   </button>
                   <button
                     onClick={() => setShowAnswerKeyModal(true)}
-                    className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
+                    className="flex items-center gap-2 px-4 py-2 bg-success-dark text-white rounded-lg hover:bg-success-dark transition-colors duration-200 font-medium"
                   >
                     <Plus className="w-5 h-5" />
                     Update Answer Key
@@ -277,14 +277,14 @@ const TestGrading = () => {
                 </>
               ) : (
                 <>
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg px-4 py-2">
-                    <p className="text-yellow-800 text-sm font-medium">
+                  <div className="bg-warning-soft border border-warning-soft rounded-lg px-4 py-2">
+                    <p className="text-warning-dark text-sm font-medium">
                       ⚠️ No answer key uploaded yet
                     </p>
                   </div>
                   <button
                     onClick={() => setShowAnswerKeyModal(true)}
-                    className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
+                    className="flex items-center gap-2 px-4 py-2 bg-success-dark text-white rounded-lg hover:bg-success-dark transition-colors duration-200 font-medium"
                   >
                     <Plus className="w-5 h-5" />
                     Upload Answer Key
@@ -298,7 +298,7 @@ const TestGrading = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="bg-white rounded-xl p-4 shadow-lg">
               <div className="flex items-center gap-3">
-                <Users className="w-6 h-6 text-blue-600" />
+                <Users className="w-6 h-6 text-brand-600" />
                 <div>
                   <p className="text-sm text-gray-600">Total Students</p>
                   <p className="text-2xl font-bold text-gray-900">{enrolledStudents.length}</p>
@@ -308,7 +308,7 @@ const TestGrading = () => {
             
             <div className="bg-white rounded-xl p-4 shadow-lg">
               <div className="flex items-center gap-3">
-                <CheckCircle className="w-6 h-6 text-green-600" />
+                <CheckCircle className="w-6 h-6 text-success-dark" />
                 <div>
                   <p className="text-sm text-gray-600">Graded</p>
                   <p className="text-2xl font-bold text-gray-900">{studentsWithTestGrades.length}</p>
@@ -318,7 +318,7 @@ const TestGrading = () => {
             
             <div className="bg-white rounded-xl p-4 shadow-lg">
               <div className="flex items-center gap-3">
-                <AlertCircle className="w-6 h-6 text-orange-600" />
+                <AlertCircle className="w-6 h-6 text-warning-dark" />
                 <div>
                   <p className="text-sm text-gray-600">Pending</p>
                   <p className="text-2xl font-bold text-gray-900">
@@ -330,7 +330,7 @@ const TestGrading = () => {
             
             <div className="bg-white rounded-xl p-4 shadow-lg">
               <div className="flex items-center gap-3">
-                <Target className="w-6 h-6 text-purple-600" />
+                <Target className="w-6 h-6 text-brand-600" />
                 <div>
                   <p className="text-sm text-gray-600">Max Points</p>
                   <p className="text-2xl font-bold text-gray-900">{totalPoints || 100}</p>
@@ -385,8 +385,8 @@ const TestGrading = () => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10">
-                            <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
-                              <span className="text-sm font-medium text-blue-600">
+                            <div className="h-10 w-10 rounded-full bg-brand-100 flex items-center justify-center">
+                              <span className="text-sm font-medium text-brand-600">
                                 {student.name?.charAt(0) || 'S'}
                               </span>
                             </div>
@@ -427,7 +427,7 @@ const TestGrading = () => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <button
                           onClick={() => openGradeModal(student)}
-                          className="inline-flex items-center px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium text-sm"
+                          className="inline-flex items-center px-3 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors duration-200 font-medium text-sm"
                         >
                           <Plus className="w-4 h-4 mr-1" />
                           {testGrade ? 'Edit Grade' : 'Add Grade'}
@@ -454,7 +454,7 @@ const TestGrading = () => {
 
               <div className="mb-6">
                 <div className="flex items-center gap-3 mb-2">
-                  <Award className="w-6 h-6 text-blue-600" />
+                  <Award className="w-6 h-6 text-brand-600" />
                   <h3 className="text-xl font-bold text-gray-900">Add Grade</h3>
                 </div>
                 <p className="text-gray-600">
@@ -471,7 +471,7 @@ const TestGrading = () => {
                     type="number"
                     value={gradeForm.earnedPoints}
                     onChange={(e) => setGradeForm(prev => ({ ...prev, earnedPoints: e.target.value }))}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     placeholder="Enter points earned"
                     min="0"
                     max={totalPoints || 100}
@@ -487,7 +487,7 @@ const TestGrading = () => {
                   <textarea
                     value={gradeForm.comments}
                     onChange={(e) => setGradeForm(prev => ({ ...prev, comments: e.target.value }))}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     rows={3}
                     placeholder="Add comments about the grade..."
                   />
@@ -500,7 +500,7 @@ const TestGrading = () => {
                   <textarea
                     value={gradeForm.feedback}
                     onChange={(e) => setGradeForm(prev => ({ ...prev, feedback: e.target.value }))}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     rows={3}
                     placeholder="Provide feedback to the student..."
                   />
@@ -517,7 +517,7 @@ const TestGrading = () => {
                   <button
                     type="submit"
                     disabled={creatingGrade}
-                    className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-400 transition-colors flex items-center justify-center gap-2"
+                    className="flex-1 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:bg-brand-400 transition-colors flex items-center justify-center gap-2"
                   >
                     {creatingGrade ? (
                       <>
@@ -550,7 +550,7 @@ const TestGrading = () => {
 
               <div className="mb-6">
                 <div className="flex items-center gap-3 mb-2">
-                  <BookOpen className="w-6 h-6 text-green-600" />
+                  <BookOpen className="w-6 h-6 text-success-dark" />
                   <h3 className="text-xl font-bold text-gray-900">Upload Answer Key</h3>
                 </div>
                 <p className="text-gray-600">
@@ -566,7 +566,7 @@ const TestGrading = () => {
                   <input
                     type="file"
                     onChange={(e) => setAnswerKeyFile(e.target.files[0])}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-transparent"
                     accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.gif,.zip,.ppt,.pptx"
                     required
                   />
@@ -586,7 +586,7 @@ const TestGrading = () => {
                   <button
                     onClick={handleAnswerKeyUpload}
                     disabled={uploadingAnswerKey || !answerKeyFile}
-                    className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-green-400 transition-colors flex items-center justify-center gap-2"
+                    className="flex-1 px-4 py-2 bg-success-dark text-white rounded-lg hover:bg-success-dark disabled:bg-success transition-colors flex items-center justify-center gap-2"
                   >
                     {uploadingAnswerKey ? (
                       <>

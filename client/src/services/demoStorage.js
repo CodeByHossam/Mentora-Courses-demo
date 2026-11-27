@@ -3,7 +3,7 @@
 import { createSeedData, resolveDateMarkers } from '../data/demoSeed'
 
 const NAMESPACE = 'mentoraDemo.'
-const SCHEMA_VERSION = 1
+const SCHEMA_VERSION = 4
 const DEMO_ADMIN_ID = 'u-admin'
 
 const withKey = (key) => `${NAMESPACE}${key}`

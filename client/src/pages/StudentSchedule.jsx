@@ -50,14 +50,14 @@ const StudentSchedule = () => {
     switch (status) {
       case "scheduled":
       case "ready_to_start":
-        return "bg-blue-100 text-blue-800 border-blue-200";
+        return "bg-brand-100 text-brand-800 border-brand-200";
       case "live":
-        return "bg-green-100 text-green-800 border-green-200";
+        return "bg-success-soft text-success-dark border-success-soft";
       case "completed":
       case "ended":
         return "bg-gray-100 text-gray-800 border-gray-200";
       case "cancelled":
-        return "bg-red-100 text-red-800 border-red-200";
+        return "bg-error-soft text-error-dark border-error-soft";
       default:
         return "bg-gray-100 text-gray-800 border-gray-200";
     }
@@ -118,13 +118,13 @@ const StudentSchedule = () => {
     return (
       <div className="min-h-screen bg-primary p-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
-            <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-red-800 mb-2">Error Loading Schedule</h3>
-            <p className="text-red-600 mb-4">{error?.data?.message || "Failed to load schedule"}</p>
+          <div className="bg-error-soft border border-error-soft rounded-xl p-6 text-center">
+            <AlertCircle className="w-12 h-12 text-error mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-error-dark mb-2">Error Loading Schedule</h3>
+            <p className="text-error-dark mb-4">{error?.data?.message || "Failed to load schedule"}</p>
             <button
               onClick={refetch}
-              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+              className="bg-error-dark text-white px-4 py-2 rounded-lg hover:bg-error-dark transition-colors"
             >
               Try Again
             </button>
@@ -174,7 +174,7 @@ const StudentSchedule = () => {
               
               <button
                 onClick={goToToday}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors text-sm font-medium"
               >
                 Today
               </button>
@@ -189,7 +189,7 @@ const StudentSchedule = () => {
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="all">All Sessions</option>
                 <option value="upcoming">Upcoming</option>
@@ -211,7 +211,7 @@ const StudentSchedule = () => {
             </p>
             <button
               onClick={() => window.location.href = "/courses"}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center"
+              className="bg-brand-600 text-white px-6 py-2 rounded-lg hover:bg-brand-700 transition-colors inline-flex items-center"
             >
               <Plus className="w-4 h-4 mr-2" />
               Browse Courses
@@ -228,7 +228,7 @@ const StudentSchedule = () => {
                   </div>
                   <div className={`text-lg font-semibold mt-1 ${
                     isSameDay(day, new Date()) 
-                      ? "text-blue-600 bg-blue-100 rounded-full w-8 h-8 flex items-center justify-center mx-auto" 
+                      ? "text-brand-600 bg-brand-100 rounded-full w-8 h-8 flex items-center justify-center mx-auto" 
                       : "text-gray-700"
                   }`}>
                     {format(day, "dd")}
@@ -275,7 +275,7 @@ const StudentSchedule = () => {
                           {session.status === "live" && (
                             <button
                               onClick={() => window.open(session.meetingUrl, '_blank')}
-                              className="w-full bg-green-600 text-white px-2 py-1 rounded text-xs font-medium hover:bg-green-700 transition-colors flex items-center justify-center"
+                              className="w-full bg-success-dark text-white px-2 py-1 rounded text-xs font-medium hover:bg-success-dark transition-colors flex items-center justify-center"
                             >
                               <Video className="w-3 h-3 mr-1" />
                               Join Live
@@ -305,14 +305,14 @@ const StudentSchedule = () => {
           <div className="mt-8 bg-white rounded-xl p-6 shadow-lg">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">📋 Session Summary</h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="text-center p-4 bg-blue-50 rounded-lg">
-                <div className="text-2xl font-bold text-blue-600 mb-1">
+              <div className="text-center p-4 bg-brand-50 rounded-lg">
+                <div className="text-2xl font-bold text-brand-600 mb-1">
                   {sessions.filter(s => s.status === "scheduled" || s.status === "ready_to_start").length}
                 </div>
                 <div className="text-sm text-gray-600">Upcoming</div>
               </div>
-              <div className="text-center p-4 bg-green-50 rounded-lg">
-                <div className="text-2xl font-bold text-green-600 mb-1">
+              <div className="text-center p-4 bg-success-soft rounded-lg">
+                <div className="text-2xl font-bold text-success-dark mb-1">
                   {sessions.filter(s => s.status === "live").length}
                 </div>
                 <div className="text-sm text-gray-600">Live Now</div>
@@ -323,8 +323,8 @@ const StudentSchedule = () => {
                 </div>
                 <div className="text-sm text-gray-600">Completed</div>
               </div>
-              <div className="text-center p-4 bg-purple-50 rounded-lg">
-                <div className="text-2xl font-bold text-purple-600 mb-1">
+              <div className="text-center p-4 bg-brand-50 rounded-lg">
+                <div className="text-2xl font-bold text-brand-600 mb-1">
                   {[...new Set(sessions.map(s => s.course?._id))].length}
                 </div>
                 <div className="text-sm text-gray-600">Courses</div>

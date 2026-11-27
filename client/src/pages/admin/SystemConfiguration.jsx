@@ -126,7 +126,7 @@ const SystemConfiguration = () => {
             type="text"
             value={config.general.siteName}
             onChange={(e) => handleInputChange("general", "siteName", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
         <div>
@@ -137,7 +137,7 @@ const SystemConfiguration = () => {
             type="number"
             value={config.general.maxFileUploadSize}
             onChange={(e) => handleInputChange("general", "maxFileUploadSize", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
       </div>
@@ -150,7 +150,7 @@ const SystemConfiguration = () => {
           value={config.general.siteDescription}
           onChange={(e) => handleInputChange("general", "siteDescription", e.target.value)}
           rows={3}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
         />
       </div>
 
@@ -202,7 +202,7 @@ const SystemConfiguration = () => {
             value={config.email.smtpHost}
             onChange={(e) => handleInputChange("email", "smtpHost", e.target.value)}
             placeholder="smtp.gmail.com"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
         <div>
@@ -213,7 +213,7 @@ const SystemConfiguration = () => {
             type="number"
             value={config.email.smtpPort}
             onChange={(e) => handleInputChange("email", "smtpPort", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
       </div>
@@ -227,7 +227,7 @@ const SystemConfiguration = () => {
             type="text"
             value={config.email.smtpUser}
             onChange={(e) => handleInputChange("email", "smtpUser", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
         <div>
@@ -238,7 +238,7 @@ const SystemConfiguration = () => {
             type="password"
             value={config.email.smtpPassword}
             onChange={(e) => handleInputChange("email", "smtpPassword", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
       </div>
@@ -252,7 +252,7 @@ const SystemConfiguration = () => {
             type="email"
             value={config.email.fromEmail}
             onChange={(e) => handleInputChange("email", "fromEmail", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
         <div>
@@ -263,7 +263,7 @@ const SystemConfiguration = () => {
             type="text"
             value={config.email.fromName}
             onChange={(e) => handleInputChange("email", "fromName", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
       </div>
@@ -297,7 +297,7 @@ const SystemConfiguration = () => {
             type="number"
             value={config.security.sessionTimeout}
             onChange={(e) => handleInputChange("security", "sessionTimeout", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
         <div>
@@ -308,7 +308,7 @@ const SystemConfiguration = () => {
             type="number"
             value={config.security.passwordMinLength}
             onChange={(e) => handleInputChange("security", "passwordMinLength", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
         <div>
@@ -319,7 +319,7 @@ const SystemConfiguration = () => {
             type="number"
             value={config.security.maxLoginAttempts}
             onChange={(e) => handleInputChange("security", "maxLoginAttempts", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
       </div>
@@ -332,7 +332,7 @@ const SystemConfiguration = () => {
           type="number"
           value={config.security.lockoutDuration}
           onChange={(e) => handleInputChange("security", "lockoutDuration", e.target.value)}
-          className="w-full md:w-1/3 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full md:w-1/3 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
         />
       </div>
 
@@ -383,7 +383,7 @@ const SystemConfiguration = () => {
             type="number"
             value={config.api.rateLimit}
             onChange={(e) => handleInputChange("api", "rateLimit", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
         <div>
@@ -394,7 +394,7 @@ const SystemConfiguration = () => {
             type="number"
             value={config.api.apiTimeout}
             onChange={(e) => handleInputChange("api", "apiTimeout", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
       </div>
@@ -408,7 +408,7 @@ const SystemConfiguration = () => {
           onChange={(e) => handleInputChange("api", "corsOrigins", e.target.value)}
           rows={3}
           placeholder="http://localhost:3000,https://yourdomain.com"
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
         />
         <p className="text-sm text-gray-500 mt-1">Comma-separated list of allowed origins</p>
       </div>

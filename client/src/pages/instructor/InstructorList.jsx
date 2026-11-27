@@ -19,7 +19,7 @@ const InstructorList = () => {
     handleApiError(error);
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
-        <p className="text-red-600">
+        <p className="text-error-dark">
           {error.data?.message || "Failed to load instructors"}
         </p>
       </div>
@@ -34,14 +34,14 @@ const InstructorList = () => {
         {/* Header Section */}
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
           <div className="text-center">
-            <h1 className="text-3xl font-bold  bg-clip-text text-primary">
+            <h1 className="text-3xl font-bold text-primary">
               👨‍🏫 Meet Our Instructors
             </h1>
             <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
               Discover our talented instructors who are passionate about sharing their knowledge and helping you succeed
             </p>
             <div className="mt-4 flex justify-center items-center space-x-2">
-              <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-warning rounded-full"></div>
               <span className="text-sm text-gray-600">Total Instructors: {instructors?.length || 0}</span>
             </div>
           </div>

@@ -105,7 +105,7 @@ const AdminNav = ({
         className={`
           fixed top-0 left-0 pt-16 md:pt-0 lg:pt-24 h-screen flex flex-col bg-white border-r z-40
            ease-in-out
-          transition-[width,transform,opacity]
+          transition-[width,,opacity]
           ${
             isSidebarOpen
               ? "translate-x-0 opacity-100"
@@ -116,7 +116,7 @@ const AdminNav = ({
         style={{ borderColor: "var(--card-border)" }}
       >
         {/* ---------------- FLOATING TOGGLE BUTTON ---------------- */}
-        {/* ✅ Always visible  */}
+        {/* ✅ Always visible */}
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className="absolute -right-3 top-22 bg-white border rounded-full p-1 shadow hidden lg:flex"
@@ -184,7 +184,7 @@ const AdminNav = ({
                       ${
                         active
                           ? "bg-darkColor text-white"
-                          : "text-secondary hover:bg-accent"
+                          : "text-secondary hover:bg-brand-50"
                       }
                     `}
                 >
@@ -207,8 +207,8 @@ const AdminNav = ({
                   className={`w-full flex items-center rounded-lg px-3 py-2 text-sm transition
                       ${
                         active
-                          ? "bg-soDark text-white"
-                          : "text-secondary hover:bg-accent"
+                          ? "bg-brand-900 text-white"
+                          : "text-secondary hover:bg-brand-50"
                       }
                     `}
                 >

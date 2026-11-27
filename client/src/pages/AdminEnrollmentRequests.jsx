@@ -8,7 +8,7 @@ import {
   useDeleteAdminNoteMutation,
   useGetReceiptUrlQuery,
 } from "../store/services/enrollmentRequestApi";
-import ProgressLoader from "../components/ProgressLoader";
+import { ProgressLoader } from '../components/common/index.js';
 import { handleApiError, handleApiSuccess } from "../utils/apiErrorHandler";
 import { useCreatePaymentMutation } from "../store/services/paymentApi";
 import { useConfirm } from "../hooks/useConfirm";
@@ -35,11 +35,11 @@ const AdminEnrollmentRequests = () => {
     const baseClasses = "px-2 py-1 rounded text-xs font-medium";
     switch (method) {
       case 'stripe':
-        return `${baseClasses} bg-blue-100 text-blue-800`;
+        return `${baseClasses} bg-brand-100 text-brand-800`;
       case 'paypal':
-        return `${baseClasses} bg-yellow-100 text-yellow-800`;
+        return `${baseClasses} bg-warning-soft text-warning-dark`;
       case 'direct_transfer':
-        return `${baseClasses} bg-green-100 text-green-800`;
+        return `${baseClasses} bg-success-soft text-success-dark`;
       default:
         return `${baseClasses} bg-gray-100 text-gray-800`;
     }
@@ -68,7 +68,7 @@ const AdminEnrollmentRequests = () => {
     if (role === 'automatic') {
       return (
         <div className="text-sm">
-          <div className="font-medium text-blue-600">🤖 Automatic</div>
+          <div className="font-medium text-brand-600">🤖 Automatic</div>
           <div className="text-gray-500 text-xs">
             {approvedAt ? new Date(approvedAt).toLocaleDateString() : ''}
           </div>
@@ -225,7 +225,7 @@ const AdminEnrollmentRequests = () => {
     if (receiptLoading) {
       return (
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
-          <div className="animate-spin h-4 w-4 border-2 border-blue-600 border-t-transparent rounded-full"></div>
+          <div className="animate-spin h-4 w-4 border-2 border-brand-600 border-t-transparent rounded-full"></div>
           <span className="text-sm text-gray-600">Loading receipt...</span>
         </div>
       );
@@ -233,7 +233,7 @@ const AdminEnrollmentRequests = () => {
 
     if (receiptError) {
       return (
-        <span className="inline-flex items-center px-3 py-1 bg-red-100 text-red-800 text-sm rounded">
+        <span className="inline-flex items-center px-3 py-1 bg-error-soft text-error-dark text-sm rounded">
           📄 Receipt unavailable
         </span>
       );
@@ -247,7 +247,7 @@ const AdminEnrollmentRequests = () => {
             className={`inline-flex items-center px-3 py-2 text-white text-sm rounded-lg transition-colors font-medium ${
               showReceipt 
                 ? 'bg-gray-600 hover:bg-gray-700' 
-                : 'bg-blue-600 hover:bg-blue-700'
+                : 'bg-brand-600 hover:bg-brand-700'
             }`}
           >
             {showReceipt ? (
@@ -260,7 +260,7 @@ const AdminEnrollmentRequests = () => {
             <>
               <button
                 onClick={handleDownloadReceipt}
-                className="inline-flex items-center px-3 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700 transition-colors font-medium"
+                className="inline-flex items-center px-3 py-2 bg-success-dark text-white text-sm rounded-lg hover:bg-success-dark transition-colors font-medium"
               >
                 💾 Download Receipt
               </button>
@@ -268,7 +268,7 @@ const AdminEnrollmentRequests = () => {
                 href={receiptData.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-3 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+                className="inline-flex items-center px-3 py-2 bg-brand-600 text-white text-sm rounded-lg hover:bg-brand-700 transition-colors font-medium"
               >
                 🔗 Open in New Tab
               </a>
@@ -327,7 +327,7 @@ const AdminEnrollmentRequests = () => {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-2">
-                        <div className="h-8 w-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center">
+                        <div className="h-8 w-8 bg-brand-600 rounded-full flex items-center justify-center">
                           <span className="text-white text-xs font-bold">
                             {r.student?.name?.charAt(0)?.toUpperCase() || '?'}
                           </span>
@@ -367,9 +367,9 @@ const AdminEnrollmentRequests = () => {
                           <span className="text-gray-600">💰 Amount:</span>
                           <span className="font-medium">
                             {r.paymentMethod === 'direct_transfer' && r.transferredAmount ? (
-                              <span className="text-green-600">💰 ${r.transferredAmount.toFixed(2)}</span>
+                              <span className="text-success-dark">💰 ${r.transferredAmount.toFixed(2)}</span>
                             ) : r.course?.price ? (
-                              <span className="text-blue-600">💰 ${r.course.price}</span>
+                              <span className="text-brand-600">💰 ${r.course.price}</span>
                             ) : (
                               <span className="text-gray-400">-</span>
                             )}
@@ -389,27 +389,27 @@ const AdminEnrollmentRequests = () => {
                     <button
                       disabled={r.status !== "pending" || updating || isProcessing}
                       onClick={() => handleDecision(r._id, "approved")}
-                      className="flex-1 min-w-0 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-300 text-sm font-medium"
+                      className="flex-1 min-w-0 px-3 py-2 bg-success-dark text-white rounded-lg hover:bg-success-dark disabled:bg-gray-300 text-sm font-medium"
                     >
                       ✅ Approve
                     </button>
                     <button
                       disabled={r.status !== "pending" || updating || isProcessing}
                       onClick={() => handleDecision(r._id, "rejected")}
-                      className="flex-1 min-w-0 px-3 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 disabled:bg-gray-300 text-sm font-medium"
+                      className="flex-1 min-w-0 px-3 py-2 bg-warning-dark text-white rounded-lg hover:bg-warning-dark disabled:bg-gray-300 text-sm font-medium"
                     >
                       ❌ Reject
                     </button>
                     <button
                       onClick={() => handleDelete(r._id)}
                       disabled={isProcessing}
-                      className="px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:bg-gray-300 text-sm font-medium"
+                      className="px-3 py-2 bg-error-dark text-white rounded-lg hover:bg-error-dark disabled:bg-gray-300 text-sm font-medium"
                     >
                       🗑️ Delete
                     </button>
                     <button
                       onClick={() => setSelectedRequestId(selectedRequestId === r._id ? null : r._id)}
-                      className="px-3 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 text-sm font-medium"
+                      className="px-3 py-2 text-brand-600 border border-brand-600 rounded-lg hover:bg-brand-50 text-sm font-medium"
                     >
                       {selectedRequestId === r._id ? "🔼 Hide" : "🔽 Show"}
                     </button>
@@ -417,11 +417,11 @@ const AdminEnrollmentRequests = () => {
                   
                   {/* Mobile Details */}
                   {selectedRequestId === r._id && (
-                    <div className="mt-4 p-4 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg space-y-4">
+                    <div className="mt-4 p-4 bg-brand-50 rounded-lg space-y-4">
                       {/* Bank Transfer Details */}
                       {r.paymentMethod === 'direct_transfer' && (
                         <div className="bg-white rounded-lg p-4 shadow-sm">
-                          <h4 className="font-semibold text-blue-800 mb-3">🏦 Bank Transfer Details</h4>
+                          <h4 className="font-semibold text-brand-800 mb-3">🏦 Bank Transfer Details</h4>
                           <div className="space-y-2 text-sm">
                             <p><strong>Amount:</strong> ${r.transferredAmount?.toFixed(2) || 'N/A'}</p>
                             <p><strong>Bank:</strong> {r.transferDetails?.bankName || 'N/A'}</p>
@@ -435,8 +435,8 @@ const AdminEnrollmentRequests = () => {
                           
                           {/* Bank Transfer Proof */}
                           {r.bankTransferProof && r.bankTransferProof.fileName && (
-                            <div className="mt-4 pt-3 border-t border-blue-200">
-                              <strong className="text-blue-800">Transfer Proof:</strong>
+                            <div className="mt-4 pt-3 border-t border-brand-200">
+                              <strong className="text-brand-800">Transfer Proof:</strong>
                               <div className="mt-2">
                                 <ReceiptViewer 
                                   requestId={r._id} 
@@ -456,7 +456,7 @@ const AdminEnrollmentRequests = () => {
             {/* Desktop Table View */}
             <div className="hidden lg:block overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
+                <thead className="bg-canvas">
                   <tr>
                     <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">👤 User</th>
                     <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">📚 Course</th>
@@ -475,7 +475,7 @@ const AdminEnrollmentRequests = () => {
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <div className="h-10 w-10 flex-shrink-0">
-                              <div className="h-10 w-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center">
+                              <div className="h-10 w-10 bg-brand-600 rounded-full flex items-center justify-center">
                                 <span className="text-white text-sm font-bold">
                                   {r.student?.name?.charAt(0)?.toUpperCase() || '?'}
                                 </span>
@@ -509,11 +509,11 @@ const AdminEnrollmentRequests = () => {
                 </td>
                 <td className="p-3">
                   {r.paymentMethod === 'direct_transfer' && r.transferredAmount ? (
-                    <span className="font-medium text-green-600">
+                    <span className="font-medium text-success-dark">
                       💰 ${r.transferredAmount.toFixed(2)}
                     </span>
                   ) : r.course?.price ? (
-                    <span className="font-medium text-blue-600">
+                    <span className="font-medium text-brand-600">
                       💰 ${r.course.price}
                     </span>
                   ) : (
@@ -529,7 +529,7 @@ const AdminEnrollmentRequests = () => {
                       r.status !== "pending" || updating || isProcessing
                     }
                     onClick={() => handleDecision(r._id, "approved")}
-                    className="px-3 py-1 bg-green-600 text-white rounded disabled:bg-gray-300"
+                    className="px-3 py-1 bg-success-dark text-white rounded disabled:bg-gray-300"
                   >
                     Approve
                   </button>
@@ -538,14 +538,14 @@ const AdminEnrollmentRequests = () => {
                       r.status !== "pending" || updating || isProcessing
                     }
                     onClick={() => handleDecision(r._id, "rejected")}
-                    className="px-3 py-1 bg-yellow-600 text-white rounded disabled:bg-gray-300"
+                    className="px-3 py-1 bg-warning-dark text-white rounded disabled:bg-gray-300"
                   >
                     Reject
                   </button>
                   <button
                     onClick={() => handleDelete(r._id)}
                     disabled={isProcessing}
-                    className="px-3 py-1 bg-red-600 text-white rounded"
+                    className="px-3 py-1 bg-error-dark text-white rounded"
                   >
                     <Trash2 size={20} />
                   </button>
@@ -557,7 +557,7 @@ const AdminEnrollmentRequests = () => {
                         selectedRequestId === r._id ? null : r._id
                       )
                     }
-                    className="text-blue-600 hover:underline"
+                    className="text-brand-600 hover:underline"
                   >
                     {selectedRequestId === r._id ? "▲" : "▼"}
                   </button>
@@ -582,8 +582,8 @@ const AdminEnrollmentRequests = () => {
                       
                       {/* Bank Transfer Details */}
                       {r.paymentMethod === 'direct_transfer' && (
-                        <div className="bg-blue-50 p-3 rounded-lg">
-                          <h4 className="font-semibold text-blue-800 mb-2">Bank Transfer Details</h4>
+                        <div className="bg-brand-50 p-3 rounded-lg">
+                          <h4 className="font-semibold text-brand-800 mb-2">Bank Transfer Details</h4>
                           <p><strong>Amount:</strong> ${r.transferredAmount?.toFixed(2) || 'N/A'}</p>
                           <p><strong>Bank:</strong> {r.transferDetails?.bankName || 'N/A'}</p>
                           <p><strong>Reference:</strong> {r.transferDetails?.referenceNumber || 'N/A'}</p>
@@ -595,8 +595,8 @@ const AdminEnrollmentRequests = () => {
                           
                           {/* Bank Transfer Proof */}
                           {r.bankTransferProof && r.bankTransferProof.fileName && (
-                            <div className="mt-3 pt-2 border-t border-blue-200">
-                              <strong className="text-blue-800">Transfer Proof:</strong>
+                            <div className="mt-3 pt-2 border-t border-brand-200">
+                              <strong className="text-brand-800">Transfer Proof:</strong>
                               <div className="mt-2">
                                 <ReceiptViewer 
                                   requestId={r._id} 
@@ -620,7 +620,7 @@ const AdminEnrollmentRequests = () => {
                             const isEditing = editingNotes.hasOwnProperty(noteKey);
                             
                             return (
-                              <div key={index} className="bg-white p-3 rounded border-l-4 border-blue-500">
+                              <div key={index} className="bg-white p-3 rounded border-l-4 border-brand-500">
                                 {isEditing ? (
                                   <div>
                                     <textarea
@@ -637,7 +637,7 @@ const AdminEnrollmentRequests = () => {
                                     <div className="flex gap-2 mt-2">
                                       <button
                                         onClick={() => handleEditNote(r._id, note._id)}
-                                        className="px-2 py-1 bg-green-600 text-white rounded text-xs flex items-center gap-1"
+                                        className="px-2 py-1 bg-success-dark text-white rounded text-xs flex items-center gap-1"
                                       >
                                         <Save size={12} /> Save
                                       </button>
@@ -669,13 +669,13 @@ const AdminEnrollmentRequests = () => {
                                             ...prev,
                                             [noteKey]: note.note
                                           }))}
-                                          className="px-2 py-1 bg-blue-600 text-white rounded text-xs flex items-center gap-1"
+                                          className="px-2 py-1 bg-brand-600 text-white rounded text-xs flex items-center gap-1"
                                         >
                                           <Edit2 size={12} /> Edit
                                         </button>
                                         <button
                                           onClick={() => handleDeleteNote(r._id, note._id)}
-                                          className="px-2 py-1 bg-red-600 text-white rounded text-xs flex items-center gap-1"
+                                          className="px-2 py-1 bg-error-dark text-white rounded text-xs flex items-center gap-1"
                                         >
                                           <Trash2 size={12} /> Delete
                                         </button>
@@ -696,7 +696,7 @@ const AdminEnrollmentRequests = () => {
                     </label>
                     <textarea
                       rows={3}
-                      className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-brand-500 focus:border-brand-500 sm:text-sm"
                       value={adminNotes[r._id] || ""}
                       onChange={(e) =>
                         setAdminNotes((prev) => ({
@@ -708,7 +708,7 @@ const AdminEnrollmentRequests = () => {
                     <button
                       onClick={() => handleAddNote(r._id)}
                       disabled={updating || isProcessing}
-                      className="mt-2 px-3 py-1 bg-blue-600 text-white rounded disabled:bg-gray-300"
+                      className="mt-2 px-3 py-1 bg-brand-600 text-white rounded disabled:bg-gray-300"
                     >
                       Save Note
                     </button>

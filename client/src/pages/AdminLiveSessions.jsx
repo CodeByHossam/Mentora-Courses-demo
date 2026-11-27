@@ -29,6 +29,7 @@ import {
   Trash2,
   Ban
 } from "lucide-react";
+import { getToneClasses } from "../utils/toneClasses";
 
 const AdminLiveSessions = () => {
   const navigate = useNavigate();
@@ -294,14 +295,14 @@ const AdminLiveSessions = () => {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center">
-          <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
+          <AlertCircle className="h-12 w-12 text-error mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">Error Loading Sessions</h3>
           <p className="text-gray-600 mb-4">
             {error?.data?.message || "Failed to load live sessions"}
           </p>
           <button
             onClick={() => refetch()}
-            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
+            className="bg-error-dark hover:bg-error-dark text-white px-4 py-2 rounded-lg transition-colors"
           >
             Retry
           </button>
@@ -317,7 +318,7 @@ const AdminLiveSessions = () => {
         <div className="flex items-center justify-between">
           <div className="flex-1">
             <h1 className="text-3xl font-bold text-gray-900 flex items-center">
-              <Video className="h-8 w-8 text-blue-600 mr-3" />
+              <Video className="h-8 w-8 text-brand-600 mr-3" />
               Live Sessions Management
             </h1>
             <p className="text-gray-600 mt-2">
@@ -327,7 +328,7 @@ const AdminLiveSessions = () => {
           <div className="flex items-center space-x-3">
             <button
               onClick={() => refetch()}
-              className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+              className="flex items-center px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg transition-colors"
               disabled={isLoading}
             >
               <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
@@ -339,38 +340,38 @@ const AdminLiveSessions = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
+        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-brand-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Sessions</p>
               <p className="text-3xl font-bold text-gray-900">{stats.total}</p>
             </div>
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-              <Video className="h-6 w-6 text-blue-600" />
+            <div className="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center">
+              <Video className="h-6 w-6 text-brand-600" />
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-yellow-500">
+        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-warning">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Upcoming</p>
               <p className="text-3xl font-bold text-gray-900">{stats.upcoming}</p>
             </div>
-            <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
-              <Calendar className="h-6 w-6 text-yellow-600" />
+            <div className="w-12 h-12 bg-warning-soft rounded-lg flex items-center justify-center">
+              <Calendar className="h-6 w-6 text-warning-dark" />
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
+        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-success">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Live Now</p>
               <p className="text-3xl font-bold text-gray-900">{stats.live}</p>
             </div>
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-              <Play className="h-6 w-6 text-green-600" />
+            <div className="w-12 h-12 bg-success-soft rounded-lg flex items-center justify-center">
+              <Play className="h-6 w-6 text-success-dark" />
             </div>
           </div>
         </div>
@@ -393,23 +394,23 @@ const AdminLiveSessions = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {/* Search */}
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input
               type="text"
               placeholder="Search sessions, courses, instructors..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
             />
           </div>
 
           {/* Status Filter */}
           <div className="relative">
-            <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="pl-10 pr-8 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
+              className="pl-10 pr-8 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent appearance-none"
             >
               <option value="all">All Sessions</option>
               <option value="upcoming">Upcoming</option>
@@ -423,7 +424,7 @@ const AdminLiveSessions = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="px-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
             >
               <option value="scheduledDate">Sort by Date</option>
               <option value="course">Sort by Course</option>
@@ -436,7 +437,7 @@ const AdminLiveSessions = () => {
           <div>
             <button
               onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
-              className="flex items-center justify-center px-4 py-2 w-full border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="flex items-center justify-center px-4 py-2 w-full border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-brand-500 focus:border-transparent"
             >
               {sortOrder === "asc" ? "↑ Ascending" : "↓ Descending"}
             </button>
@@ -472,7 +473,7 @@ const AdminLiveSessions = () => {
                         <h3 className="text-xl font-semibold text-gray-900 mr-3">
                           {session.title}
                         </h3>
-                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-${statusInfo.color}-100 text-${statusInfo.color}-800`}>
+                        <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getToneClasses(statusInfo.color).badge}`}>
                           <StatusIcon className="h-4 w-4 mr-1" />
                           {statusInfo.label}
                         </span>
@@ -481,7 +482,7 @@ const AdminLiveSessions = () => {
                       <div className="flex items-center text-sm text-gray-600 mb-2">
                         <BookOpen className="h-4 w-4 mr-2" />
                         <span className="font-medium">Course:</span>
-                        <span className="ml-1 text-blue-600">{session.course?.title}</span>
+                        <span className="ml-1 text-brand-600">{session.course?.title}</span>
                       </div>
                       
                       <div className="flex items-center text-sm text-gray-600 mb-2">
@@ -524,7 +525,7 @@ const AdminLiveSessions = () => {
                               toast.error("No Zoom meeting URL available");
                             }
                           }}
-                          className="flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
+                          className="flex items-center px-4 py-2 bg-success-dark hover:bg-success-dark text-white rounded-lg transition-colors"
                         >
                           <ExternalLink className="h-4 w-4 mr-2" />
                           {statusInfo.status === "live" ? "Join Live" : "Join Session"}
@@ -535,7 +536,7 @@ const AdminLiveSessions = () => {
                       {(session.status !== "active" && session.status !== "live") && (statusInfo.status === "upcoming" || statusInfo.status === "ready") && (
                         <button
                           onClick={() => handleStartSession(session._id)}
-                          className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                          className="flex items-center px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg transition-colors"
                         >
                           <Play className="h-4 w-4 mr-2" />
                           Start Session
@@ -553,7 +554,7 @@ const AdminLiveSessions = () => {
                               toast.error("No Zoom meeting URL available");
                             }
                           }}
-                          className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                          className="flex items-center px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg transition-colors"
                         >
                           <ExternalLink className="h-4 w-4 mr-2" />
                           Open Meeting
@@ -564,7 +565,7 @@ const AdminLiveSessions = () => {
                       {(session.status === "active" || session.status === "live") && (
                         <button
                           onClick={() => handleEndSession(session._id)}
-                          className="flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+                          className="flex items-center px-4 py-2 bg-error-dark hover:bg-error-dark text-white rounded-lg transition-colors"
                         >
                           <Square className="h-4 w-4 mr-2" />
                           End Session
@@ -575,7 +576,7 @@ const AdminLiveSessions = () => {
                       {(statusInfo.status === "upcoming" || statusInfo.status === "scheduled") && (
                         <button
                           onClick={() => handleCancelSession(session._id, session.title)}
-                          className="flex items-center px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors"
+                          className="flex items-center px-4 py-2 bg-warning-dark hover:bg-warning-dark text-white rounded-lg transition-colors"
                         >
                           <Ban className="h-4 w-4 mr-2" />
                           Cancel
@@ -586,7 +587,7 @@ const AdminLiveSessions = () => {
                       {(statusInfo.status === "upcoming" || statusInfo.status === "scheduled" || statusInfo.status === "cancelled" || statusInfo.status === "completed" || statusInfo.status === "ended") && (
                         <button
                           onClick={() => handleDeleteSession(session._id, session.title)}
-                          className="flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+                          className="flex items-center px-4 py-2 bg-error-dark hover:bg-error-dark text-white rounded-lg transition-colors"
                         >
                           <Trash2 className="h-4 w-4 mr-2" />
                           {(statusInfo.status === "completed" || statusInfo.status === "ended") ? "Remove" : "Delete"}

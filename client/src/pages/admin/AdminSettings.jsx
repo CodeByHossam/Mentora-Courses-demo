@@ -160,11 +160,11 @@ const AdminSettings = () => {
   // Show loading state
   if (isLoadingSettings) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="min-h-screen bg-brand-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
-              <RefreshCw className="h-8 w-8 animate-spin mx-auto text-blue-600 mb-4" />
+              <RefreshCw className="h-8 w-8 animate-spin mx-auto text-brand-600 mb-4" />
               <p className="text-gray-600">Loading admin settings...</p>
             </div>
           </div>
@@ -176,17 +176,17 @@ const AdminSettings = () => {
   // Show error state
   if (settingsError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="min-h-screen bg-brand-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              <div className="bg-error-soft border border-error text-error-dark px-4 py-3 rounded mb-4">
                 <p className="font-medium">Error loading admin settings</p>
                 <p className="text-sm">{settingsError?.data?.message || settingsError?.message || "Unknown error"}</p>
               </div>
               <button
                 onClick={() => refetchSettings()}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors"
               >
                 <RefreshCw className="h-4 w-4 mr-2 inline" />
                 Retry
@@ -199,7 +199,7 @@ const AdminSettings = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-brand-50 p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
         <header className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Settings</h1>
@@ -216,7 +216,7 @@ const AdminSettings = () => {
               onClick={() => setActiveTab(tab.id)}
               className={`px-6 py-3 mb-2 text-sm font-medium transition-colors ${
                 activeTab === tab.id
-                  ? "text-blue-600 border-b-2 border-blue-600 bg-blue-50"
+                  ? "text-brand-600 border-b-2 border-brand-600 bg-brand-50"
                   : "text-gray-500 hover:text-gray-700"
               }`}
             >
@@ -237,7 +237,7 @@ const AdminSettings = () => {
                     type="text"
                     value={settings.systemSettings.siteName}
                     onChange={(e) => handleSettingChange("systemSettings", "siteName", e.target.value)}
-                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none"
                   />
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
@@ -246,7 +246,7 @@ const AdminSettings = () => {
                     type="text"
                     value={settings.systemSettings.siteDescription}
                     onChange={(e) => handleSettingChange("systemSettings", "siteDescription", e.target.value)}
-                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none"
                   />
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
@@ -255,7 +255,7 @@ const AdminSettings = () => {
                     type="email"
                     value={settings.systemSettings.supportEmail}
                     onChange={(e) => handleSettingChange("systemSettings", "supportEmail", e.target.value)}
-                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none"
                   />
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
@@ -263,7 +263,7 @@ const AdminSettings = () => {
                   <select
                     value={settings.systemSettings.allowRegistration ? "true" : "false"}
                     onChange={(e) => handleSettingChange("systemSettings", "allowRegistration", e.target.value === "true")}
-                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none"
                   >
                     <option value="true">Enabled</option>
                     <option value="false">Disabled</option>
@@ -274,7 +274,7 @@ const AdminSettings = () => {
                   <select
                     value={settings.systemSettings.maintenanceMode ? "true" : "false"}
                     onChange={(e) => handleSettingChange("systemSettings", "maintenanceMode", e.target.value === "true")}
-                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none"
                   >
                     <option value="true">Enabled</option>
                     <option value="false">Disabled</option>
@@ -284,7 +284,7 @@ const AdminSettings = () => {
               <button
                 onClick={handleSaveSettings}
                 disabled={isUpdatingSettings}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                className="px-6 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
               >
                 {isUpdatingSettings ? "Saving..." : "Save General Settings"}
               </button>
@@ -303,7 +303,7 @@ const AdminSettings = () => {
                     step="0.1"
                     value={settings.paymentSettings.globalDeductionPercentage}
                     onChange={(e) => handleSettingChange("paymentSettings", "globalDeductionPercentage", parseFloat(e.target.value))}
-                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none"
                   />
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
@@ -314,7 +314,7 @@ const AdminSettings = () => {
                     step="0.01"
                     value={settings.paymentSettings.instructorAnnualFee}
                     onChange={(e) => handleSettingChange("paymentSettings", "instructorAnnualFee", parseFloat(e.target.value))}
-                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none"
                   />
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
@@ -325,7 +325,7 @@ const AdminSettings = () => {
                     step="0.01"
                     value={settings.paymentSettings.studentAdminFee}
                     onChange={(e) => handleSettingChange("paymentSettings", "studentAdminFee", parseFloat(e.target.value))}
-                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none"
                   />
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
@@ -336,7 +336,7 @@ const AdminSettings = () => {
                     step="0.01"
                     value={settings.paymentSettings.minimumPaymentAmount}
                     onChange={(e) => handleSettingChange("paymentSettings", "minimumPaymentAmount", parseFloat(e.target.value))}
-                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none"
                   />
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
@@ -344,7 +344,7 @@ const AdminSettings = () => {
                   <select
                     value={settings.paymentSettings.currency}
                     onChange={(e) => handleSettingChange("paymentSettings", "currency", e.target.value)}
-                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none"
                   >
                     <option value="USD">USD - US Dollar</option>
                     <option value="EUR">EUR - Euro</option>
@@ -356,7 +356,7 @@ const AdminSettings = () => {
                   <select
                     value={settings.paymentSettings.requireAdminApprovalForDirectTransfer ? "true" : "false"}
                     onChange={(e) => handleSettingChange("paymentSettings", "requireAdminApprovalForDirectTransfer", e.target.value === "true")}
-                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none"
                   >
                     <option value="true">Required</option>
                     <option value="false">Not Required</option>
@@ -367,14 +367,14 @@ const AdminSettings = () => {
                 <button
                   onClick={handleSaveSettings}
                   disabled={isUpdatingPayment}
-                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                  className="px-6 py-2 bg-success-dark text-white rounded-lg hover:bg-success-dark disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
                 >
                   {isUpdatingPayment ? "Saving..." : "Save Payment Settings"}
                 </button>
                 <button
                   onClick={handleResetPaymentSettings}
                   disabled={isResetting}
-                  className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                  className="px-6 py-2 bg-error-dark text-white rounded-lg hover:bg-error-dark disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
                 >
                   {isResetting ? "Resetting..." : "Reset to Defaults"}
                 </button>
@@ -418,7 +418,7 @@ const AdminSettings = () => {
               <button
                 onClick={handleSaveSettings}
                 disabled={isUpdatingSettings}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                className="px-6 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
               >
                 {isUpdatingSettings ? "Saving..." : "Save Security Settings"}
               </button>
@@ -439,7 +439,7 @@ const AdminSettings = () => {
                       type="checkbox"
                       checked={settings.notificationSettings.emailNotificationsEnabled}
                       onChange={(e) => handleSettingChange("notificationSettings", "emailNotificationsEnabled", e.target.checked)}
-                      className="w-5 h-5 text-blue-600 rounded border-gray-300"
+                      className="w-5 h-5 text-brand-600 rounded border-gray-300"
                     />
                   </label>
                   <label className="flex items-center justify-between p-4 bg-white rounded border cursor-pointer">
@@ -451,7 +451,7 @@ const AdminSettings = () => {
                       type="checkbox"
                       checked={settings.notificationSettings.paymentNotificationsEnabled}
                       onChange={(e) => handleSettingChange("notificationSettings", "paymentNotificationsEnabled", e.target.checked)}
-                      className="w-5 h-5 text-blue-600 rounded border-gray-300"
+                      className="w-5 h-5 text-brand-600 rounded border-gray-300"
                     />
                   </label>
                   <label className="flex items-center justify-between p-4 bg-white rounded border cursor-pointer">
@@ -463,7 +463,7 @@ const AdminSettings = () => {
                       type="checkbox"
                       checked={settings.notificationSettings.enrollmentNotificationsEnabled}
                       onChange={(e) => handleSettingChange("notificationSettings", "enrollmentNotificationsEnabled", e.target.checked)}
-                      className="w-5 h-5 text-blue-600 rounded border-gray-300"
+                      className="w-5 h-5 text-brand-600 rounded border-gray-300"
                     />
                   </label>
                   <label className="flex items-center justify-between p-4 bg-white rounded border cursor-pointer">
@@ -475,7 +475,7 @@ const AdminSettings = () => {
                       type="checkbox"
                       checked={settings.notificationSettings.smsNotifications}
                       onChange={(e) => handleSettingChange("notificationSettings", "smsNotifications", e.target.checked)}
-                      className="w-5 h-5 text-blue-600 rounded border-gray-300"
+                      className="w-5 h-5 text-brand-600 rounded border-gray-300"
                     />
                   </label>
                 </div>
@@ -483,7 +483,7 @@ const AdminSettings = () => {
               <button
                 onClick={handleSaveSettings}
                 disabled={isUpdatingSettings}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                className="px-6 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
               >
                 {isUpdatingSettings ? "Saving..." : "Save Notification Settings"}
               </button>
@@ -516,7 +516,7 @@ const AdminSettings = () => {
               <button
                 onClick={handleSaveSettings}
                 disabled={isUpdatingSettings}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                className="px-6 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
               >
                 {isUpdatingSettings ? "Saving..." : "Save System Settings"}
               </button>

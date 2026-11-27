@@ -28,7 +28,7 @@ const CourseCard = memo(({ course }) => {
         <Star
           key={i}
           className={`w-4 h-4 ${
-            i <= rating ? "text-yellow-400" : "text-gray-300"
+            i <= rating ? "text-warning" : "text-gray-300"
           }`}
           fill={i <= rating ? "currentColor" : "none"}
         />
@@ -71,18 +71,18 @@ const CourseCard = memo(({ course }) => {
           <img
             src={course.imageUrl}
             alt={course.title || 'Course'}
-            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            className="w-full h-full object-cover duration-300 "
             onError={(e) => {
               e.target.style.display = 'none';
-              e.target.parentElement.innerHTML = '<div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100"><BookOpen class="w-16 h-16 text-gray-400" /></div>';
+              e.target.parentElement.innerHTML = '<div class="w-full h-full flex items-center justify-center bg-brand-100"><BookOpen class="w-16 h-16 text-gray-400" /></div>';
             }}
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100">
+          <div className="w-full h-full flex items-center justify-center bg-brand-100">
             <BookOpen className="w-16 h-16 text-gray-400" />
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 image-scrim"></div>
 
         <div className="absolute top-3 right-3 flex gap-2">
           <span className="pill pill-primary shadow-sm">
@@ -97,10 +97,10 @@ const CourseCard = memo(({ course }) => {
           </div>
           <button
             onClick={handleLike}
-            className="flex items-center gap-1 text-white hover:text-red-300 transition-colors"
+            className="flex items-center gap-1 text-white hover:text-error transition-colors"
           >
             <Heart
-              className={`w-4 h-4 ${isLiked ? "fill-red-500 text-red-500" : ""}`}
+              className={`w-4 h-4 ${isLiked ? "fill-red-500 text-error" : ""}`}
             />
             <span className="text-sm">{likesCount}</span>
           </button>
@@ -110,7 +110,7 @@ const CourseCard = memo(({ course }) => {
       {/* ==== Content ==== */}
       <div className="p-4 flex flex-col flex-1">
         <div className="flex items-center gap-2 mb-3">
-          <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center">
+          <div className="w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center">
             <span className="text-sm font-medium text-primary">
               {course.instructor?.name?.charAt(0) || "I"}
             </span>

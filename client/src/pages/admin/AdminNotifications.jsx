@@ -37,17 +37,17 @@ const AdminNotifications = () => {
   const getNotificationProps = (type) => {
     switch (type) {
       case 'user':
-        return { icon: User, color: 'text-blue-600', bgColor: 'bg-blue-50' };
+        return { icon: User, color: 'text-brand-600', bgColor: 'bg-brand-50' };
       case 'course':
       case 'course_enrollment':
       case 'course_update':
-        return { icon: BookOpen, color: 'text-green-600', bgColor: 'bg-green-50' };
+        return { icon: BookOpen, color: 'text-success-dark', bgColor: 'bg-success-soft' };
       case 'payment':
-        return { icon: CreditCard, color: 'text-red-600', bgColor: 'bg-red-50' };
+        return { icon: CreditCard, color: 'text-error-dark', bgColor: 'bg-error-soft' };
       case 'message':
-        return { icon: MessageSquare, color: 'text-purple-600', bgColor: 'bg-purple-50' };
+        return { icon: MessageSquare, color: 'text-brand-600', bgColor: 'bg-brand-50' };
       case 'live_session':
-        return { icon: Calendar, color: 'text-green-600', bgColor: 'bg-green-50' };
+        return { icon: Calendar, color: 'text-success-dark', bgColor: 'bg-success-soft' };
       case 'system':
       default:
         return { icon: Settings, color: 'text-gray-600', bgColor: 'bg-gray-50' };

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useGetCoursesQuery } from "../store/services/courseApi";
 import CourseCard from "./CourseCard";
-import ProgressLoader from "./ProgressLoader";
+import { ProgressLoader } from './common/index.js';
 
 const CourseList = () => {
   const [filters, setFilters] = useState({
@@ -15,7 +15,7 @@ const CourseList = () => {
 
   if (isLoading)
     return <ProgressLoader isVisible={true} message="Loading courses..." />;
-  if (error) return <div className="text-red-500">Error: {error.message}</div>;
+  if (error) return <div className="text-error">Error: {error.message}</div>;
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -24,12 +24,12 @@ const CourseList = () => {
         <input
           type="text"
           placeholder="Search courses..."
-          className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           value={filters.search}
           onChange={(e) => setFilters({ ...filters, search: e.target.value })}
         />
         <select
-          className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           value={filters.category}
           onChange={(e) => setFilters({ ...filters, category: e.target.value })}
         >
@@ -42,7 +42,7 @@ const CourseList = () => {
           <option value="Cybersecurity">Cybersecurity</option>
         </select>
         <select
-          className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           value={filters.level}
           onChange={(e) => setFilters({ ...filters, level: e.target.value })}
         >
@@ -52,7 +52,7 @@ const CourseList = () => {
           <option value="Advanced">Advanced</option>
         </select>
         <select
-          className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           value={filters.sort}
           onChange={(e) => setFilters({ ...filters, sort: e.target.value })}
         >

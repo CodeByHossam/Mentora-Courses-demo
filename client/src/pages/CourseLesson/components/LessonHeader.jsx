@@ -35,8 +35,8 @@ const LessonHeader = ({
           </div>
 
           {/* Course and Lesson Info */}
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+          <div className="bg-brand-50 rounded-xl p-4">
+            <h1 className="text-2xl font-bold text-brand ">
               📚 {course?.title || "Untitled Course"}
             </h1>
             <h3 className="text-lg text-gray-700 mt-1 flex items-center">

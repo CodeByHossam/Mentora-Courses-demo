@@ -25,7 +25,7 @@ import {
   Book,
   Clock
 } from 'lucide-react';
-import Button from './Button';
+import { Button } from './common/index.js';
 
 const PaymentDetailsModal = ({ 
   isOpen, 
@@ -51,13 +51,13 @@ const PaymentDetailsModal = ({
 
   const getStatusBadge = (status) => {
     const statusConfig = {
-      pending: { color: 'bg-yellow-100 text-yellow-800', icon: Clock },
-      pending_verification: { color: 'bg-blue-100 text-blue-800', icon: Clock },
-      pending_admin_approval: { color: 'bg-orange-100 text-orange-800', icon: Clock },
-      completed: { color: 'bg-green-100 text-green-800', icon: CheckCircle },
-      paid: { color: 'bg-green-100 text-green-800', icon: CheckCircle },
-      rejected: { color: 'bg-red-100 text-red-800', icon: XCircle },
-      failed: { color: 'bg-red-100 text-red-800', icon: XCircle }
+      pending: { color: 'bg-warning-soft text-warning-dark', icon: Clock },
+      pending_verification: { color: 'bg-brand-100 text-brand-800', icon: Clock },
+      pending_admin_approval: { color: 'bg-warning-soft text-warning-dark', icon: Clock },
+      completed: { color: 'bg-success-soft text-success-dark', icon: CheckCircle },
+      paid: { color: 'bg-success-soft text-success-dark', icon: CheckCircle },
+      rejected: { color: 'bg-error-soft text-error-dark', icon: XCircle },
+      failed: { color: 'bg-error-soft text-error-dark', icon: XCircle }
     };
 
     const config = statusConfig[status] || statusConfig.pending;
@@ -73,10 +73,10 @@ const PaymentDetailsModal = ({
 
   const getMethodBadge = (method) => {
     const methodConfig = {
-      stripe: { color: 'bg-purple-100 text-purple-800', label: 'Stripe' },
-      paypal: { color: 'bg-blue-100 text-blue-800', label: 'PayPal' },
-      direct_transfer: { color: 'bg-green-100 text-green-800', label: 'Bank Transfer' },
-      direct: { color: 'bg-green-100 text-green-800', label: 'Bank Transfer' }
+      stripe: { color: 'bg-brand-100 text-brand-800', label: 'Stripe' },
+      paypal: { color: 'bg-brand-100 text-brand-800', label: 'PayPal' },
+      direct_transfer: { color: 'bg-success-soft text-success-dark', label: 'Bank Transfer' },
+      direct: { color: 'bg-success-soft text-success-dark', label: 'Bank Transfer' }
     };
 
     const config = methodConfig[method] || { color: 'bg-gray-100 text-gray-800', label: method };
@@ -122,7 +122,7 @@ const PaymentDetailsModal = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
-                <DollarSign className="w-5 h-5 text-green-600" />
+                <DollarSign className="w-5 h-5 text-success-dark" />
                 <div>
                   <p className="text-sm text-gray-600">Amount</p>
                   <p className="text-2xl font-bold text-gray-900">${(payment.finalAmount || payment.amount || 0).toFixed(2)}</p>
@@ -130,7 +130,7 @@ const PaymentDetailsModal = ({
               </div>
 
               <div className="flex items-center space-x-3">
-                <Calendar className="w-5 h-5 text-blue-600" />
+                <Calendar className="w-5 h-5 text-brand-600" />
                 <div>
                   <p className="text-sm text-gray-600">Created</p>
                   <p className="font-medium">{formatDate(payment.createdAt)}</p>
@@ -262,7 +262,7 @@ const PaymentDetailsModal = ({
                     value={adminNotes}
                     onChange={(e) => setAdminNotes(e.target.value)}
                     rows={3}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500"
                     placeholder="Add any notes about this payment approval/rejection..."
                   />
                 </div>
@@ -272,7 +272,7 @@ const PaymentDetailsModal = ({
                     variant="outline"
                     onClick={() => handleAction('reject')}
                     loading={loading}
-                    className="text-red-600 border-red-300 hover:bg-red-50"
+                    className="text-error-dark border-error hover:bg-error-soft"
                   >
                     <XCircle className="w-4 h-4 mr-2" />
                     Reject Payment
@@ -299,7 +299,7 @@ const PaymentDetailsModal = ({
                   {payment.adminApproval.approvedBy && (
                     <>
                       <p className="text-sm">
-                        <span className="font-medium text-green-600">Approved</span> on{' '}
+                        <span className="font-medium text-success-dark">Approved</span> on{' '}
                         {formatDate(payment.adminApproval.approvedAt)}
                       </p>
                       {payment.adminApproval.adminNotes && (
@@ -313,7 +313,7 @@ const PaymentDetailsModal = ({
                   {payment.adminApproval.rejectedBy && (
                     <>
                       <p className="text-sm">
-                        <span className="font-medium text-red-600">Rejected</span> on{' '}
+                        <span className="font-medium text-error-dark">Rejected</span> on{' '}
                         {formatDate(payment.adminApproval.rejectedAt)}
                       </p>
                       {payment.adminApproval.adminNotes && (

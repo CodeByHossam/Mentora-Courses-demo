@@ -6,10 +6,10 @@ import { Mail, Award, BookOpen, Users, Calendar, Star, CheckCircle, ExternalLink
 
 const InfoRow = ({ label, value, mono = false }) => (
   <div className="flex flex-col gap-1">
-    <span className="text-sm text-text-secondary">{label}</span>
+    <span className="text-sm text-ink-soft">{label}</span>
     <span
       className={
-        mono ? "font-mono text-text-primary break-all" : "text-text-primary"
+        mono ? "font-mono text-ink break-all" : "text-ink"
       }
     >
       {value || "N/A"}
@@ -19,7 +19,7 @@ const InfoRow = ({ label, value, mono = false }) => (
 
 const Section = ({ title, children }) => (
   <section className="card space-y-4">
-    <h2 className="text-xl font-semibold text-text-primary border-b border-border-light pb-2">
+    <h2 className="text-xl font-semibold text-ink border-b border-line pb-2">
       {title}
     </h2>
     {children}
@@ -45,11 +45,11 @@ const InstructorPage = () => {
     return (
       <div className="min-h-[60vh] flex items-center justify-center text-center">
         <div className="card">
-          <p className="text-red-600 font-medium mb-2">
+          <p className="text-error-dark font-medium mb-2">
             Failed to load instructor profile.
           </p>
           {!!error?.data?.message && (
-            <p className="text-sm text-text-secondary">{error.data.message}</p>
+            <p className="text-sm text-ink-soft">{error.data.message}</p>
           )}
           <div className="mt-4">
             <Link to="/instructors" className="btn btn-secondary">
@@ -65,7 +65,7 @@ const InstructorPage = () => {
     return (
       <div className="min-h-[60vh] flex items-center justify-center text-center">
         <div className="card">
-          <p className="text-text-secondary">This user is not an instructor.</p>
+          <p className="text-ink-soft">This user is not an instructor.</p>
           <div className="mt-4">
             <Link to="/instructors" className="btn btn-secondary">
               Back to Instructors

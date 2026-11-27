@@ -19,8 +19,8 @@ export default function Footer() {
       <div className="container py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
         {/* Company Info */}
         <div className="space-y-4">
-          <h3 className="font-heading text-lg lg:text-xl text-accent">About Mentora</h3>
-          <p className="text-sm text-accent-dark">
+          <h3 className="font-heading text-lg lg:text-xl text-brand-100">About Mentora</h3>
+          <p className="text-sm text-brand-200">
             Empowering learners worldwide with quality education and practical
             skills for success.
           </p>
@@ -29,9 +29,9 @@ export default function Footer() {
               <a
                 key={i}
                 href="#"
-                className="p-2 rounded-full bg-soDark hover:bg-primary transition-colors"
+                className="p-2 rounded-full bg-brand-900 hover:bg-primary transition-colors"
               >
-                <Icon className="w-5 h-5 text-accent hover:text-white transition-colors" />
+                <Icon className="w-5 h-5 text-brand-100 hover:text-white transition-colors" />
               </a>
             ))}
           </div>
@@ -39,7 +39,7 @@ export default function Footer() {
 
         {/* Quick Links */}
         <div className="space-y-4">
-          <h3 className="font-heading text-lg lg:text-xl text-accent">Quick Links</h3>
+          <h3 className="font-heading text-lg lg:text-xl text-brand-100">Quick Links</h3>
           <ul className="space-y-2">
             {[
               { label: "Courses", to: "/courses" },
@@ -50,9 +50,9 @@ export default function Footer() {
               <li key={i}>
                 <Link
                   to={link.to}
-                  className="flex items-center gap-2 text-sm text-accent-dark hover:text-accent transition-colors"
+                  className="flex items-center gap-2 text-sm text-brand-200 hover:text-brand-100 transition-colors"
                 >
-                  <ChevronRight className="w-4 h-4 text-accent-dark group-hover:text-accent transition-colors" />
+                  <ChevronRight className="w-4 h-4 text-brand-200 group-hover:text-brand-100 transition-colors" />
                   {link.label}
                 </Link>
               </li>
@@ -62,18 +62,18 @@ export default function Footer() {
 
         {/* Contact Info */}
         <div className="space-y-4">
-          <h3 className="font-heading text-lg lg:text-xl text-accent">Contact Info</h3>
-          <ul className="space-y-2 text-sm text-accent-dark">
+          <h3 className="font-heading text-lg lg:text-xl text-brand-100">Contact Info</h3>
+          <ul className="space-y-2 text-sm text-brand-200">
             <li className="flex items-start gap-2">
-              <Mail className="w-5 h-5 text-accent mt-0.5" />
+              <Mail className="w-5 h-5 text-brand-100 mt-0.5" />
               info@Mentora.com
             </li>
             <li className="flex items-start gap-2">
-              <Phone className="w-5 h-5 text-accent mt-0.5" />
+              <Phone className="w-5 h-5 text-brand-100 mt-0.5" />
               +1 (555) 123-4567
             </li>
             <li className="flex items-start gap-2">
-              <MapPin className="w-5 h-5 text-accent mt-0.5" />
+              <MapPin className="w-5 h-5 text-brand-100 mt-0.5" />
               123 Education St, Learning City, ED 12345
             </li>
           </ul>
@@ -81,15 +81,15 @@ export default function Footer() {
 
         {/* Newsletter */}
         <div className="space-y-4">
-          <h3 className="font-heading text-lg lg:text-xl text-accent">Newsletter</h3>
-          <p className="text-sm text-accent-dark">
+          <h3 className="font-heading text-lg lg:text-xl text-brand-100">Newsletter</h3>
+          <p className="text-sm text-brand-200">
             Subscribe to our newsletter for updates and exclusive offers.
           </p>
           <form className="flex flex-col sm:flex-row gap-3">
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-3 py-2 rounded-lg bg-soDark text-accent-dark placeholder:text-accent-dark focus:outline-none focus:ring-2 focus:ring-primary transition"
+              className="flex-1 px-3 py-2 rounded-lg bg-brand-900 text-brand-200 placeholder:text-brand-200 focus:outline-none focus:ring-2 focus:ring-brand transition"
             />
             <button
               type="submit"

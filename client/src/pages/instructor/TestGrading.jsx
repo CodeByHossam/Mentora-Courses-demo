@@ -106,11 +106,11 @@ const TestGrading = () => {
   };
 
   const getGradeColor = (percentage) => {
-    if (percentage >= 90) return "text-green-600 bg-green-100";
-    if (percentage >= 80) return "text-blue-600 bg-blue-100";
-    if (percentage >= 70) return "text-yellow-600 bg-yellow-100";
-    if (percentage >= 60) return "text-orange-600 bg-orange-100";
-    return "text-red-600 bg-red-100";
+    if (percentage >= 90) return "text-success-dark bg-success-soft";
+    if (percentage >= 80) return "text-brand-600 bg-brand-100";
+    if (percentage >= 70) return "text-warning-dark bg-warning-soft";
+    if (percentage >= 60) return "text-warning-dark bg-warning-soft";
+    return "text-error-dark bg-error-soft";
   };
 
   const getStudentTestGrade = (studentId) => {

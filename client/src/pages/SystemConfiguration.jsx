@@ -15,7 +15,7 @@ import {
   CheckCircle
 } from "lucide-react";
 import { selectCurrentUser } from "../store/slices/authSlice";
-import ProgressLoader from "../components/ProgressLoader";
+import { ProgressLoader } from '../components/common/index.js';
 
 const SystemConfiguration = () => {
   const user = useSelector(selectCurrentUser);
@@ -126,7 +126,7 @@ const SystemConfiguration = () => {
             type="text"
             value={config.general.siteName}
             onChange={(e) => handleInputChange("general", "siteName", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
         <div>
@@ -137,7 +137,7 @@ const SystemConfiguration = () => {
             type="number"
             value={config.general.maxFileUploadSize}
             onChange={(e) => handleInputChange("general", "maxFileUploadSize", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
       </div>
@@ -150,7 +150,7 @@ const SystemConfiguration = () => {
           value={config.general.siteDescription}
           onChange={(e) => handleInputChange("general", "siteDescription", e.target.value)}
           rows={3}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
         />
       </div>
 
@@ -202,7 +202,7 @@ const SystemConfiguration = () => {
             value={config.email.smtpHost}
             onChange={(e) => handleInputChange("email", "smtpHost", e.target.value)}
             placeholder="smtp.gmail.com"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
         <div>
@@ -213,7 +213,7 @@ const SystemConfiguration = () => {
             type="number"
             value={config.email.smtpPort}
             onChange={(e) => handleInputChange("email", "smtpPort", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
       </div>
@@ -227,7 +227,7 @@ const SystemConfiguration = () => {
             type="text"
             value={config.email.smtpUser}
             onChange={(e) => handleInputChange("email", "smtpUser", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
         <div>
@@ -238,7 +238,7 @@ const SystemConfiguration = () => {
             type="password"
             value={config.email.smtpPassword}
             onChange={(e) => handleInputChange("email", "smtpPassword", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
       </div>
@@ -252,7 +252,7 @@ const SystemConfiguration = () => {
             type="email"
             value={config.email.fromEmail}
             onChange={(e) => handleInputChange("email", "fromEmail", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
         <div>
@@ -263,7 +263,7 @@ const SystemConfiguration = () => {
             type="text"
             value={config.email.fromName}
             onChange={(e) => handleInputChange("email", "fromName", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
       </div>
@@ -297,7 +297,7 @@ const SystemConfiguration = () => {
             type="number"
             value={config.security.sessionTimeout}
             onChange={(e) => handleInputChange("security", "sessionTimeout", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
         <div>
@@ -308,7 +308,7 @@ const SystemConfiguration = () => {
             type="number"
             value={config.security.passwordMinLength}
             onChange={(e) => handleInputChange("security", "passwordMinLength", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
         <div>
@@ -319,7 +319,7 @@ const SystemConfiguration = () => {
             type="number"
             value={config.security.maxLoginAttempts}
             onChange={(e) => handleInputChange("security", "maxLoginAttempts", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
       </div>
@@ -332,7 +332,7 @@ const SystemConfiguration = () => {
           type="number"
           value={config.security.lockoutDuration}
           onChange={(e) => handleInputChange("security", "lockoutDuration", e.target.value)}
-          className="w-full md:w-1/3 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full md:w-1/3 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
         />
       </div>
 
@@ -383,7 +383,7 @@ const SystemConfiguration = () => {
             type="number"
             value={config.api.rateLimit}
             onChange={(e) => handleInputChange("api", "rateLimit", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
         <div>
@@ -394,7 +394,7 @@ const SystemConfiguration = () => {
             type="number"
             value={config.api.apiTimeout}
             onChange={(e) => handleInputChange("api", "apiTimeout", e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
           />
         </div>
       </div>
@@ -408,7 +408,7 @@ const SystemConfiguration = () => {
           onChange={(e) => handleInputChange("api", "corsOrigins", e.target.value)}
           rows={3}
           placeholder="http://localhost:3000,https://yourdomain.com"
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500"
         />
         <p className="text-sm text-gray-500 mt-1">Comma-separated list of allowed origins</p>
       </div>
@@ -467,12 +467,12 @@ const SystemConfiguration = () => {
   return (
     <div className="max-w-7xl mx-auto py-4 md:py-8 px-4 sm:px-6 lg:px-8">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg p-4 md:p-6 text-white mb-6 md:mb-8">
+      <div className="bg-brand rounded-lg p-4 md:p-6 text-white mb-6 md:mb-8">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 flex items-center">
           <Settings className="mr-3 h-8 w-8" />
           System Configuration
         </h1>
-        <p className="text-blue-100 text-sm md:text-base lg:text-lg">
+        <p className="text-brand-100 text-sm md:text-base lg:text-lg">
           Configure system settings and preferences
         </p>
       </div>
@@ -489,7 +489,7 @@ const SystemConfiguration = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center px-4 md:px-6 py-3 md:py-4 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
                     activeTab === tab.id
-                      ? "border-blue-500 text-blue-600 bg-blue-50"
+                      ? "border-brand-500 text-brand-600 bg-brand-50"
                       : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
                   }`}
                 >
@@ -516,7 +516,7 @@ const SystemConfiguration = () => {
             <button
               onClick={loadConfiguration}
               disabled={isLoading}
-              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 disabled:opacity-50"
             >
               <RefreshCw className={`mr-2 h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
               Reload
@@ -524,7 +524,7 @@ const SystemConfiguration = () => {
             <button
               onClick={handleSave}
               disabled={isSaving}
-              className="inline-flex items-center px-6 py-2 border border-transparent rounded-lg text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+              className="inline-flex items-center px-6 py-2 border border-transparent rounded-lg text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 disabled:opacity-50"
             >
               {isSaving ? (
                 <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
@@ -539,14 +539,14 @@ const SystemConfiguration = () => {
 
       {/* Status Messages */}
       {config.general.maintenanceMode && (
-        <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+        <div className="mt-6 bg-warning-soft border border-warning-soft rounded-lg p-4">
           <div className="flex items-center">
-            <AlertTriangle className="h-5 w-5 text-yellow-400 mr-2" />
+            <AlertTriangle className="h-5 w-5 text-warning mr-2" />
             <div>
-              <h3 className="text-sm font-medium text-yellow-800">
+              <h3 className="text-sm font-medium text-warning-dark">
                 Maintenance Mode Active
               </h3>
-              <p className="text-sm text-yellow-700 mt-1">
+              <p className="text-sm text-warning-dark mt-1">
                 The system is currently in maintenance mode. Users cannot access the application.
               </p>
             </div>

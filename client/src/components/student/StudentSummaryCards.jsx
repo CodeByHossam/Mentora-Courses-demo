@@ -65,11 +65,11 @@ const StudentSummaryCards = ({ isLoadingCourses, enrolledCourses, upcomingSessio
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500 hover:shadow-xl transition-shadow">
+        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-success hover:shadow-xl transition-shadow">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <Award className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-success-soft rounded-lg flex items-center justify-center">
+                <Award className="w-6 h-6 text-success-dark" />
               </div>
             </div>
             <div className="ml-4">

@@ -1,30 +1,44 @@
-// components/ConfirmationModal.jsx
-import React from "react";
+import React from 'react';
+import Button from './Button';
+import Modal from './Modal';
 
-const ConfirmationModal = ({ isOpen, title, message, onConfirm, onCancel }) => {
-  if (!isOpen) return null;
+/**
+ * Confirmation dialog with an action-specific label and tone. Destructive is
+ * the default because every current call site deletes data, but non-destructive
+ * confirmations can opt into the primary tone.
+ */
+const ConfirmationModal = ({
+  isOpen,
+  title = 'Please confirm',
+  message,
+  confirmLabel,
+  cancelLabel = 'Cancel',
+  tone = 'danger',
+  onConfirm,
+  onCancel,
+}) => {
+  const label = confirmLabel || (tone === 'danger' ? 'Delete' : 'Confirm');
 
   return (
-    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-xl shadow-xl w-[90%] max-w-md absolute top-0 left-0 right-0 mt-[10%] ml-[50%] -translate-x-1/2">
-        <h2 className="text-xl font-semibold mb-4">{title}</h2>
-        <p className="mb-6">{message}</p>
-        <div className="flex justify-end gap-4">
-          <button
-            onClick={onCancel}
-            className="px-4 py-2 bg-gray-300 text-black rounded hover:bg-gray-400"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={onConfirm}
-            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-          >
-            Yes, Delete
-          </button>
-        </div>
+    <Modal
+      isOpen={isOpen}
+      onClose={onCancel}
+      title={title}
+      description={message}
+      ariaLabel={title}
+    >
+      <div className="mt-6 flex justify-end gap-3">
+        <Button variant="secondary" onClick={onCancel}>
+          {cancelLabel}
+        </Button>
+        <Button
+          variant={tone === 'danger' ? 'danger' : 'primary'}
+          onClick={onConfirm}
+        >
+          {label}
+        </Button>
       </div>
-    </div>
+    </Modal>
   );
 };
 

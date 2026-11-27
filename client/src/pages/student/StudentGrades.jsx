@@ -70,11 +70,11 @@ const StudentGrades = () => {
 
   // Helper functions
   const getGradeColor = (grade) => {
-    if (grade >= 90) return "text-green-600 bg-green-100";
-    if (grade >= 80) return "text-blue-600 bg-blue-100";
-    if (grade >= 70) return "text-yellow-600 bg-yellow-100";
-    if (grade >= 60) return "text-orange-600 bg-orange-100";
-    return "text-red-600 bg-red-100";
+    if (grade >= 90) return "text-success-dark bg-success-soft";
+    if (grade >= 80) return "text-brand-600 bg-brand-100";
+    if (grade >= 70) return "text-warning-dark bg-warning-soft";
+    if (grade >= 60) return "text-warning-dark bg-warning-soft";
+    return "text-error-dark bg-error-soft";
   };
 
   const getLetterGrade = (percentage) => {
@@ -136,13 +136,13 @@ const StudentGrades = () => {
     return (
       <div className="min-h-screen bg-primary p-6">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
-            <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-red-800 mb-2">Error Loading Grades</h3>
-            <p className="text-red-600 mb-4">{error?.data?.message || "Failed to load grades"}</p>
+          <div className="bg-error-soft border border-error-soft rounded-xl p-6 text-center">
+            <AlertCircle className="w-12 h-12 text-error mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-error-dark mb-2">Error Loading Grades</h3>
+            <p className="text-error-dark mb-4">{error?.data?.message || "Failed to load grades"}</p>
             <button
               onClick={() => window.location.reload()}
-              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+              className="bg-error-dark text-white px-4 py-2 rounded-lg hover:bg-error-dark transition-colors"
             >
               Try Again
             </button>

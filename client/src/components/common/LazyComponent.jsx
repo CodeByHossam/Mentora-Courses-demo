@@ -7,7 +7,7 @@ import LoadingSpinner from './LoadingSpinner';
 const LazyComponent = memo(({
   component,
   fallback = <LoadingSpinner size="lg" text="Loading..." />,
-  errorFallback = <div className="text-center text-red-500">Failed to load component</div>,
+  errorFallback = <div className="text-center text-error">Failed to load component</div>,
   ...props
 }) => {
   const LazyLoadedComponent = lazy(component);

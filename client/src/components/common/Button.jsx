@@ -2,7 +2,8 @@ import React, { memo } from 'react';
 import { Loader2 } from 'lucide-react';
 
 /**
- * Reusable Button component with consistent styling and behavior
+ * The single button primitive for Mentora. One accent, solid states, no
+ * transform-on-hover, and a focus ring that is defined by the theme.
  */
 const Button = memo(({
   children,
@@ -18,54 +19,53 @@ const Button = memo(({
   onClick,
   ...props
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-semibold transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 active:scale-95 disabled:transform-none';
+  const baseClasses = [
+    'inline-flex items-center justify-center gap-2 font-semibold',
+    'transition-colors duration-150 ease-out',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+    'disabled:cursor-not-allowed disabled:opacity-50',
+  ].join(' ');
 
   const variantClasses = {
-    primary: 'btn-primary shadow-lg hover:shadow-xl',
-    secondary: 'btn-secondary shadow-lg hover:shadow-xl',
-    outline: 'bg-white border-2 hover:shadow-lg' + ' ' + 'text-primary border-primary hover:bg-accent',
-    ghost: 'bg-transparent text-secondary hover:bg-accent hover:text-primary',
-    danger: 'bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 focus:ring-red-300 shadow-lg hover:shadow-xl',
-    success: 'bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700 focus:ring-green-300 shadow-lg hover:shadow-xl',
-    warning: 'bg-gradient-to-r from-yellow-500 to-orange-500 text-white hover:from-yellow-600 hover:to-orange-600 focus:ring-yellow-300 shadow-lg hover:shadow-xl'
+    primary: 'bg-brand text-white shadow-sm hover:bg-brand-dark focus-visible:ring-brand',
+    secondary: 'bg-brand-soft text-brand-700 hover:bg-brand-200 focus-visible:ring-brand',
+    outline: 'border border-brand-200 bg-white text-brand-700 hover:bg-brand-50 focus-visible:ring-brand',
+    ghost: 'bg-transparent text-ink-soft hover:bg-brand-50 hover:text-brand-700 focus-visible:ring-brand',
+    danger: 'bg-error text-white hover:bg-error-dark focus-visible:ring-error',
+    success: 'bg-success text-white hover:bg-success-dark focus-visible:ring-success',
+    warning: 'bg-warning text-white hover:bg-warning-dark focus-visible:ring-warning',
   };
 
   const sizeClasses = {
     sm: 'px-3 py-2 text-sm rounded-lg',
     md: 'px-4 py-2.5 text-sm rounded-lg',
-    lg: 'px-6 py-3 text-base rounded-xl'
+    lg: 'px-6 py-3 text-base rounded-xl',
   };
-
-  const widthClass = fullWidth ? 'w-full' : '';
 
   const buttonClasses = [
     baseClasses,
-    variantClasses[variant],
-    sizeClasses[size],
-    widthClass,
-    className
+    variantClasses[variant] || variantClasses.primary,
+    sizeClasses[size] || sizeClasses.md,
+    fullWidth ? 'w-full' : '',
+    className,
   ].filter(Boolean).join(' ');
-
-  const isDisabled = disabled || loading;
 
   return (
     <button
       type={type}
       className={buttonClasses}
-      disabled={isDisabled}
+      disabled={disabled || loading}
+      aria-busy={loading || undefined}
       onClick={onClick}
       {...props}
     >
       {loading && (
-        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+        <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
       )}
-      {!loading && leftIcon && (
-        <span className="mr-2">{leftIcon}</span>
-      )}
+      {!loading && leftIcon && <span aria-hidden="true">{leftIcon}</span>}
       <span>{children}</span>
-      {!loading && rightIcon && (
-        <span className="ml-2">{rightIcon}</span>
-      )}
+      {!loading && rightIcon && <span aria-hidden="true">{rightIcon}</span>}
+      {loading && <span className="sr-only">Loading</span>}
     </button>
   );
 });

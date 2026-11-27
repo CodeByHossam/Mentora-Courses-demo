@@ -1,4 +1,5 @@
 import React from "react";
+import { getToneClasses } from "../../utils/toneClasses";
 
 const AdminDashboardQuickActions = ({ userStats }) => {
   const quickActions = [
@@ -53,7 +54,7 @@ const AdminDashboardQuickActions = ({ userStats }) => {
     <section className="mb-8">
       <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
         <svg
-          className="w-6 h-6 mr-3 text-purple-600"
+          className="w-6 h-6 mr-3 text-brand"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -72,14 +73,14 @@ const AdminDashboardQuickActions = ({ userStats }) => {
           <a
             key={label}
             href={to}
-            className={`group relative rounded-xl border-2 border-gray-200 bg-white p-6 hover:border-${color}-300 hover:shadow-lg transition-all duration-200`}
+            className={`group relative rounded-xl border-2 border-gray-200 bg-white p-6 ${getToneClasses(color).hoverBorder} hover:shadow-lg transition-all duration-200`}
           >
             <div className="flex items-center justify-between mb-4">
               <div
-                className={`w-10 h-10 bg-${color}-100 rounded-lg flex items-center justify-center group-hover:bg-${color}-200 transition-colors`}
+                className={`w-10 h-10 ${getToneClasses(color).soft} rounded-lg flex items-center justify-center ${getToneClasses(color).softHover} transition-colors`}
               >
                 <svg
-                  className={`h-6 w-6 text-${color}-600`}
+                  className={`h-6 w-6 ${getToneClasses(color).icon}`}
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
@@ -89,7 +90,7 @@ const AdminDashboardQuickActions = ({ userStats }) => {
                 </svg>
               </div>
               <span
-                className={`text-sm font-semibold text-${color}-600 bg-${color}-50 px-2 py-1 rounded-full`}
+                className={`text-sm font-semibold ${getToneClasses(color).label} px-2 py-1 rounded-full`}
               >
                 {count}
               </span>
@@ -99,7 +100,7 @@ const AdminDashboardQuickActions = ({ userStats }) => {
             <div className="mt-4 flex items-center text-sm font-medium text-gray-500 group-hover:text-gray-700">
               <span>Access now</span>
               <svg
-                className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform"
+                className="ml-2 w-4 h-4 "
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

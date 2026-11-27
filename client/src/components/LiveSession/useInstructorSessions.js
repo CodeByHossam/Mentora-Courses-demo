@@ -83,7 +83,7 @@ export const useInstructorSessions = ({ courseId }) => {
 
   const getStatusBadge = (session) => {
     const status = session.currentStatus || session.status || 'scheduled';
-    const badges = { scheduled: 'bg-blue-100 text-blue-800 border-blue-200', upcoming: 'bg-blue-100 text-blue-800 border-blue-200', live: 'bg-green-100 text-green-800 border-green-200 animate-pulse', completed: 'bg-gray-100 text-gray-800 border-gray-200', cancelled: 'bg-red-100 text-red-800 border-red-200', ended: 'bg-purple-100 text-purple-800 border-purple-200' };
+    const badges = { scheduled: 'bg-brand-100 text-brand-800 border-brand-200', upcoming: 'bg-brand-100 text-brand-800 border-brand-200', live: 'bg-success-soft text-success-dark border-success-soft animate-pulse', completed: 'bg-gray-100 text-gray-800 border-gray-200', cancelled: 'bg-error-soft text-error-dark border-error-soft', ended: 'bg-brand-100 text-brand-800 border-brand-200' };
     const icons = { scheduled: '📅', upcoming: '⏰', live: '🔴', completed: '✅', cancelled: '❌', ended: '🏁' };
     return { status, badgeClass: badges[status] || badges.scheduled, icon: icons[status] || icons.scheduled };
   };

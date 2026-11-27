@@ -162,13 +162,13 @@ const ScheduleSessionForm = ({ courseId, onSuccess, onCancel }) => {
             value={formData.title}
             onChange={handleInputChange}
             placeholder="Enter session title"
-            className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
-              errors.title ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:border-gray-300'
+            className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors ${
+              errors.title ? 'border-error bg-error-soft' : 'border-gray-200 hover:border-gray-300'
             }`}
             maxLength={100}
           />
           {errors.title && (
-            <p className="mt-1 text-sm text-red-600 flex items-center">
+            <p className="mt-1 text-sm text-error-dark flex items-center">
               <span className="mr-1">⚠️</span>
               {errors.title}
             </p>
@@ -187,14 +187,14 @@ const ScheduleSessionForm = ({ courseId, onSuccess, onCancel }) => {
             onChange={handleInputChange}
             placeholder="Describe what will be covered in this session"
             rows={4}
-            className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors resize-none ${
-              errors.description ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:border-gray-300'
+            className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors resize-none ${
+              errors.description ? 'border-error bg-error-soft' : 'border-gray-200 hover:border-gray-300'
             }`}
             maxLength={1000}
           />
           <div className="flex justify-between items-center mt-1">
             {errors.description ? (
-              <p className="text-sm text-red-600 flex items-center">
+              <p className="text-sm text-error-dark flex items-center">
                 <span className="mr-1">⚠️</span>
                 {errors.description}
               </p>
@@ -220,12 +220,12 @@ const ScheduleSessionForm = ({ courseId, onSuccess, onCancel }) => {
               value={formData.scheduledDate}
               onChange={handleInputChange}
               min={getMinDateTime()}
-              className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
-                errors.scheduledDate ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:border-gray-300'
+              className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors ${
+                errors.scheduledDate ? 'border-error bg-error-soft' : 'border-gray-200 hover:border-gray-300'
               }`}
             />
             {errors.scheduledDate && (
-              <p className="mt-1 text-sm text-red-600 flex items-center">
+              <p className="mt-1 text-sm text-error-dark flex items-center">
                 <span className="mr-1">⚠️</span>
                 {errors.scheduledDate}
               </p>
@@ -241,8 +241,8 @@ const ScheduleSessionForm = ({ courseId, onSuccess, onCancel }) => {
               name="duration"
               value={formData.duration}
               onChange={handleInputChange}
-              className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
-                errors.duration ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:border-gray-300'
+              className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors ${
+                errors.duration ? 'border-error bg-error-soft' : 'border-gray-200 hover:border-gray-300'
               }`}
             >
               {durationOptions.map(option => (
@@ -252,7 +252,7 @@ const ScheduleSessionForm = ({ courseId, onSuccess, onCancel }) => {
               ))}
             </select>
             {errors.duration && (
-              <p className="mt-1 text-sm text-red-600 flex items-center">
+              <p className="mt-1 text-sm text-error-dark flex items-center">
                 <span className="mr-1">⚠️</span>
                 {errors.duration}
               </p>
@@ -271,7 +271,7 @@ const ScheduleSessionForm = ({ courseId, onSuccess, onCancel }) => {
               name="sessionType"
               value={formData.sessionType}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 hover:border-gray-300 transition-colors"
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 hover:border-gray-300 transition-colors"
             >
               {sessionTypes.map(type => (
                 <option key={type.value} value={type.value}>
@@ -293,7 +293,7 @@ const ScheduleSessionForm = ({ courseId, onSuccess, onCancel }) => {
               onChange={handleInputChange}
               min={1}
               max={500}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 hover:border-gray-300 transition-colors"
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 hover:border-gray-300 transition-colors"
             />
           </div>
         </div>
@@ -310,7 +310,7 @@ const ScheduleSessionForm = ({ courseId, onSuccess, onCancel }) => {
             onChange={handleInputChange}
             placeholder="Private notes for your reference"
             rows={3}
-            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 hover:border-gray-300 transition-colors resize-none"
+            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 hover:border-gray-300 transition-colors resize-none"
             maxLength={2000}
           />
           <div className="mt-1 text-right">
@@ -325,7 +325,7 @@ const ScheduleSessionForm = ({ courseId, onSuccess, onCancel }) => {
           <button
             type="submit"
             disabled={isLoading}
-            className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+            className="flex-1 bg-brand-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
           >
             {isLoading ? (
               <>

@@ -10,7 +10,7 @@ const LessonSidebar = ({
 }) => {
   return (
     <aside
-      className={`lg:w-80 bg-white rounded-2xl shadow-xl border border-gray-100 p-6 pt-36 transition-transform ${
+      className={`lg:w-80 bg-white rounded-2xl shadow-xl border border-gray-100 p-6 pt-36 ${
         isSidebarOpen ? "translate-x-0" : "-translate-x-full"
       } lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-30 overflow-y-auto`}
       aria-label="Course lessons sidebar"
@@ -28,7 +28,7 @@ const LessonSidebar = ({
 
       <div className="flex items-center mb-6 mt-10">
         <div className="text-2xl mr-3">📚</div>
-        <h2 className="text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+        <h2 className="text-xl font-bold text-ink ">
           Course Lessons
         </h2>
       </div>
@@ -41,21 +41,21 @@ const LessonSidebar = ({
               onClick={() => handleSelectLesson(lesson)}
               className={`w-full text-left flex items-center justify-between p-4 rounded-xl transition-all duration-200 cursor-pointer ${
                 currentLesson?._id === lesson._id
-                  ? "bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 shadow-md"
+                  ? "bg-brand-50 border-2 border-brand-200 shadow-md"
                   : "hover:bg-gray-50 hover:shadow-md border border-gray-200"
               }`}
             >
               <div className="flex items-center flex-1">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 ${
                   currentLesson?._id === lesson._id
-                    ? "bg-blue-500 text-white"
+                    ? "bg-brand-500 text-white"
                     : "bg-gray-200 text-gray-600"
                 }`}>
                   {index + 1}
                 </div>
                 <div className="flex-1">
                   <span className={`font-medium ${
-                    currentLesson?._id === lesson._id ? "text-blue-900" : "text-gray-900"
+                    currentLesson?._id === lesson._id ? "text-brand-900" : "text-gray-900"
                   }`}>
                     {lesson?.title || "Untitled Lesson"}
                   </span>
@@ -67,9 +67,9 @@ const LessonSidebar = ({
                 </div>
               </div>
               <svg
-                className={`w-5 h-5 transition-transform ${
+                className={`w-5 h-5 ${
                   currentLesson?._id === lesson._id
-                    ? "text-blue-500 transform rotate-90"
+                    ? "text-brand-500 rotate-90"
                     : "text-gray-400"
                 }`}
                 fill="none"

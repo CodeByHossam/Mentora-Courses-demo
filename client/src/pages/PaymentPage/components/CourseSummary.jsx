@@ -7,7 +7,7 @@ const CourseSummary = ({ course }) => {
   return (
     <div className="bg-white rounded-2xl shadow-xl p-6 mb-8">
       <div className="flex items-center space-x-4">
-        <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-green-500 to-blue-600 flex items-center justify-center">
+        <div className="w-20 h-20 rounded-xl bg-brand flex items-center justify-center">
           {course.imageUrl ? (
             <img
               src={course.imageUrl}
@@ -28,17 +28,17 @@ const CourseSummary = ({ course }) => {
           <p className="text-gray-600 mt-1">by {course.instructor?.name}</p>
           <div className="flex items-center space-x-4 mt-2">
             {course.isFree ? (
-              <span className="text-2xl font-bold text-green-600">FREE</span>
+              <span className="text-2xl font-bold text-success-dark">FREE</span>
             ) : (
               <>
                 {course.discountPercentage > 0 && (
                   <span className="text-lg text-gray-500 line-through">${course.price}</span>
                 )}
-                <span className="text-2xl font-bold text-indigo-600">
+                <span className="text-2xl font-bold text-brand-600">
                   ${course.finalPrice}
                 </span>
                 {course.discountPercentage > 0 && (
-                  <span className="bg-red-100 text-red-800 px-2 py-1 rounded-full text-sm font-medium">
+                  <span className="bg-error-soft text-error-dark px-2 py-1 rounded-full text-sm font-medium">
                     {course.discountPercentage}% OFF
                   </span>
                 )}

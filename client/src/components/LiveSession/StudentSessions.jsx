@@ -74,11 +74,11 @@ const StudentSessions = () => {
   const getStatusBadge = (session) => {
     const status = session.currentStatus || session.status;
     const badges = {
-      upcoming: 'bg-blue-100 text-blue-800 border-blue-200',
-      live: 'bg-green-100 text-green-800 border-green-200 animate-pulse',
+      upcoming: 'bg-brand-100 text-brand-800 border-brand-200',
+      live: 'bg-success-soft text-success-dark border-success-soft animate-pulse',
       completed: 'bg-gray-100 text-gray-800 border-gray-200',
-      cancelled: 'bg-red-100 text-red-800 border-red-200',
-      ended: 'bg-purple-100 text-purple-800 border-purple-200'
+      cancelled: 'bg-error-soft text-error-dark border-error-soft',
+      ended: 'bg-brand-100 text-brand-800 border-brand-200'
     };
 
     const icons = {
@@ -163,14 +163,14 @@ const StudentSessions = () => {
     }, [scheduledDate, onTimeUp]);
 
     return (
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-xl font-mono text-lg font-bold text-center">
+      <div className="bg-brand text-white px-4 py-2 rounded-xl font-mono text-lg font-bold text-center">
         ⏰ {timeLeft}
       </div>
     );
   };
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen p-6">
+    <div className="bg-brand-50 min-h-screen p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
@@ -196,7 +196,7 @@ const StudentSessions = () => {
                 onClick={() => setFilter(filterOption.key)}
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-200 ${
                   filter === filterOption.key
-                    ? 'bg-blue-600 text-white shadow-lg'
+                    ? 'bg-brand-600 text-white shadow-lg'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -209,17 +209,17 @@ const StudentSessions = () => {
         {/* Sessions List */}
         {isLoading ? (
           <div className="bg-white rounded-2xl shadow-xl p-12 text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto mb-4"></div>
             <p className="text-gray-600">Loading sessions...</p>
           </div>
         ) : error ? (
           <div className="bg-white rounded-2xl shadow-xl p-12 text-center">
-            <div className="text-red-500 text-6xl mb-4">⚠️</div>
+            <div className="text-error text-6xl mb-4">⚠️</div>
             <h3 className="text-xl font-semibold text-gray-800 mb-2">Error Loading Sessions</h3>
             <p className="text-gray-600 mb-4">{error?.data?.message || 'Something went wrong'}</p>
             <button
               onClick={refetch}
-              className="bg-blue-600 text-white px-6 py-2 rounded-xl hover:bg-blue-700 transition-colors"
+              className="bg-brand-600 text-white px-6 py-2 rounded-xl hover:bg-brand-700 transition-colors"
             >
               Try Again
             </button>
@@ -245,7 +245,7 @@ const StudentSessions = () => {
                 <div key={session._id} className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-200">
                   {/* Live Session Alert */}
                   {status === 'live' && (
-                    <div className="bg-gradient-to-r from-red-500 to-pink-600 text-white p-4 text-center font-semibold animate-pulse">
+                    <div className="bg-brand text-white p-4 text-center font-semibold animate-pulse">
                       🔴 LIVE NOW - Join the session!
                     </div>
                   )}
@@ -316,7 +316,7 @@ const StudentSessions = () => {
                           <button
                             onClick={() => handleJoinSession(session._id)}
                             disabled={isJoining}
-                            className="bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-green-700 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-200 disabled:opacity-50 flex items-center justify-center"
+                            className="bg-success text-white font-semibold py-3 px-6 rounded-xl hover:bg-success focus:outline-none focus:ring-2 focus:ring-success transition-all duration-200 disabled:opacity-50 flex items-center justify-center"
                           >
                             {isJoining ? (
                               <>
@@ -336,7 +336,7 @@ const StudentSessions = () => {
                           <button
                             onClick={() => handleLeaveSession(session._id)}
                             disabled={isLeaving}
-                            className="bg-gradient-to-r from-red-600 to-pink-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-red-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200 disabled:opacity-50 flex items-center justify-center"
+                            className="bg-brand text-white font-semibold py-3 px-6 rounded-xl hover:bg-error hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-error transition-all duration-200 disabled:opacity-50 flex items-center justify-center"
                           >
                             {isLeaving ? (
                               <>
@@ -355,7 +355,7 @@ const StudentSessions = () => {
                         {session.zoomJoinUrl && canJoinSession(session) && (
                           <button
                             onClick={() => window.open(session.zoomJoinUrl, '_blank')}
-                            className="bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors flex items-center justify-center"
+                            className="bg-brand-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors flex items-center justify-center"
                           >
                             <span className="mr-2">🔗</span>
                             Open Zoom
@@ -365,7 +365,7 @@ const StudentSessions = () => {
                         {session.recordingUrl && (status === 'completed' || status === 'ended') && (
                           <button
                             onClick={() => window.open(session.recordingUrl, '_blank')}
-                            className="bg-purple-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors flex items-center justify-center"
+                            className="bg-brand-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors flex items-center justify-center"
                           >
                             <span className="mr-2">🎬</span>
                             Watch Recording

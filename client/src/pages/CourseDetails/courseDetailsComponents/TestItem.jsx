@@ -99,7 +99,7 @@ const TestItem = ({
               href={test.signedUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors mr-2"
+              className="inline-flex items-center text-brand-600 hover:text-brand-800 transition-colors mr-2"
               download
             >
               <Download size={16} className="mr-1" />
@@ -114,7 +114,7 @@ const TestItem = ({
                   href={test.answerKeySignedUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-purple-600 hover:text-purple-800 transition-colors mr-2"
+                  className="inline-flex items-center text-brand-600 hover:text-brand-800 transition-colors mr-2"
                   download
                   title="Download Answer Key"
                 >
@@ -128,13 +128,13 @@ const TestItem = ({
                     href={studentSubmission.answerFileUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-green-700 hover:text-green-900 transition-colors mr-2"
+                    className="inline-flex items-center text-success-dark hover:text-success-dark transition-colors mr-2"
                     download
                   >
                     <Download size={16} className="mr-1" />
                   </a>
                   <button
-                    className="text-red-600 hover:text-red-800 text-xs px-2 py-1 rounded border border-red-200 bg-red-50 mr-2"
+                    className="text-error-dark hover:text-error-dark text-xs px-2 py-1 rounded border border-error-soft bg-error-soft mr-2"
                     disabled={isDeletingTestAnswer}
                     onClick={() => handleDeleteTestAnswer(test._id, studentSubmission._id)}
                     title="Delete your answer"
@@ -158,14 +158,14 @@ const TestItem = ({
             <>
               <button
                 onClick={handleGradeTest}
-                className="text-green-600 hover:text-green-800 text-xs px-2 py-1 rounded border border-green-200 bg-green-50 mr-2"
+                className="text-success-dark hover:text-success-dark text-xs px-2 py-1 rounded border border-success-soft bg-success-soft mr-2"
                 title="Grade this test"
               >
                 <GraduationCap size={12} />
               </button>
               <button
                 onClick={() => setShowEditModal(true)}
-                className="text-blue-600 hover:text-blue-800 text-xs px-2 py-1 rounded border border-blue-200 bg-blue-50 mr-2"
+                className="text-brand-600 hover:text-brand-800 text-xs px-2 py-1 rounded border border-brand-200 bg-brand-50 mr-2"
                 title="Edit test"
               >
                 <Edit size={12} />
@@ -173,7 +173,7 @@ const TestItem = ({
               <button
                 onClick={handleDelete}
                 disabled={isDeleting}
-                className="text-red-600 hover:text-red-800 text-xs px-2 py-1 rounded border border-red-200 bg-red-50"
+                className="text-error-dark hover:text-error-dark text-xs px-2 py-1 rounded border border-error-soft bg-error-soft"
                 title="Delete test"
               >
                 <Trash2 size={12} />
@@ -238,7 +238,7 @@ const TestItem = ({
               <button
                 type="submit"
                 disabled={isEditing}
-                className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+                className="w-full bg-brand-600 text-white px-4 py-2 rounded hover:bg-brand-700 transition-colors"
               >
                 {isEditing ? "Updating..." : "Update Test"}
               </button>

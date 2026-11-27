@@ -91,20 +91,20 @@ const EditCourse = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50">
+    <div className="min-h-screen bg-brand-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header Section */}
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
           <div className="text-center">
             <div className="text-6xl mb-4">✏️</div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold text-ink ">
               Edit Course
             </h1>
             <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
               Update your course information to keep it current and engaging for students
             </p>
             {course && (
-              <div className="mt-4 inline-flex items-center px-4 py-2 bg-amber-100 text-amber-800 rounded-full text-sm font-medium">
+              <div className="mt-4 inline-flex items-center px-4 py-2 bg-warning-soft text-warning-dark rounded-full text-sm font-medium">
                 📚 Editing: {course.title}
               </div>
             )}
@@ -113,12 +113,12 @@ const EditCourse = () => {
 
         {/* Form Section */}
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div className="bg-gradient-to-r from-amber-500 to-orange-500 px-8 py-6">
+          <div className="bg-warning px-8 py-6">
             <h2 className="text-xl font-bold text-white flex items-center">
               <span className="mr-2">📝</span>
               Course Details
             </h2>
-            <p className="text-amber-100 text-sm mt-1">
+            <p className="text-warning-soft text-sm mt-1">
               Update the information below to modify your course
             </p>
           </div>
@@ -136,7 +136,7 @@ const EditCourse = () => {
                 value={formData.title}
                 onChange={handleChange}
                 placeholder="Enter course title..."
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-warning focus:border-transparent transition-all duration-200"
               />
             </div>
 
@@ -152,7 +152,7 @@ const EditCourse = () => {
                 value={formData.description}
                 onChange={handleChange}
                 placeholder="Describe what students will learn..."
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 resize-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-warning focus:border-transparent transition-all duration-200 resize-none"
               />
             </div>
 
@@ -163,7 +163,7 @@ const EditCourse = () => {
                   💰 Price (USD)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
                   <input
                     type="number"
                     name="price"
@@ -173,13 +173,13 @@ const EditCourse = () => {
                     value={formData.price}
                     onChange={handleChange}
                     placeholder="0.00"
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-warning focus:border-transparent transition-all duration-200"
                   />
                 </div>
               </div>
               <div className="flex items-end">
-                <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg p-4 w-full">
-                  <div className="flex items-center text-amber-700">
+                <div className="bg-warning rounded-lg p-4 w-full">
+                  <div className="flex items-center text-warning-dark">
                     <span className="text-2xl mr-2">💡</span>
                     <div>
                       <div className="text-sm font-medium">Pricing Tip</div>
@@ -201,7 +201,7 @@ const EditCourse = () => {
                   required
                   value={formData.category}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-warning focus:border-transparent transition-all duration-200"
                 >
                   <option value="" disabled>
                     Select a category
@@ -223,7 +223,7 @@ const EditCourse = () => {
                   required
                   value={formData.level}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-warning focus:border-transparent transition-all duration-200"
                 >
                   <option value="Beginner">🌱 Beginner</option>
                   <option value="Intermediate">🚀 Intermediate</option>
@@ -234,27 +234,27 @@ const EditCourse = () => {
 
             {/* Course Stats */}
             {course && (
-              <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-6">
+              <div className="bg-warning rounded-xl p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
                   📊 Course Statistics
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="bg-white rounded-lg p-4 text-center">
-                    <div className="text-2xl text-blue-600 mb-2">👥</div>
+                    <div className="text-2xl text-brand-600 mb-2">👥</div>
                     <div className="text-sm text-gray-600">Enrolled Students</div>
                     <div className="font-semibold text-gray-900">
                       {course.enrolledStudents?.length || 0}
                     </div>
                   </div>
                   <div className="bg-white rounded-lg p-4 text-center">
-                    <div className="text-2xl text-green-600 mb-2">📚</div>
+                    <div className="text-2xl text-success-dark mb-2">📚</div>
                     <div className="text-sm text-gray-600">Lessons</div>
                     <div className="font-semibold text-gray-900">
                       {course.lessons?.length || 0}
                     </div>
                   </div>
                   <div className="bg-white rounded-lg p-4 text-center">
-                    <div className="text-2xl text-purple-600 mb-2">📅</div>
+                    <div className="text-2xl text-brand-600 mb-2">📅</div>
                     <div className="text-sm text-gray-600">Created</div>
                     <div className="font-semibold text-gray-900">
                       {new Date(course.createdAt).toLocaleDateString()}
@@ -276,7 +276,7 @@ const EditCourse = () => {
               <button
                 type="submit"
                 disabled={isUpdating}
-                className="flex-1 px-6 py-3 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg hover:from-amber-700 hover:to-orange-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium transform hover:scale-105 disabled:transform-none"
+                className="flex-1 px-6 py-3 warning-dark text-white rounded-lg hover:bg-warning transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium "
               >
                 {isUpdating ? (
                   <div className="flex items-center justify-center">

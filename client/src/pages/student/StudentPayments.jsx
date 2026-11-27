@@ -41,11 +41,11 @@ const StudentPayments = () => {
 
   const getStatusBadge = (status) => {
     const badges = {
-      paid: { color: "bg-green-100 text-green-800 border-green-200", icon: CheckCircle, text: "Paid" },
-      completed: { color: "bg-green-100 text-green-800 border-green-200", icon: CheckCircle, text: "Completed" },
-      pending: { color: "bg-yellow-100 text-yellow-800 border-yellow-200", icon: Clock, text: "Pending" },
-      failed: { color: "bg-red-100 text-red-800 border-red-200", icon: AlertCircle, text: "Failed" },
-      processing: { color: "bg-blue-100 text-blue-800 border-blue-200", icon: Clock, text: "Processing" }
+      paid: { color: "bg-success-soft text-success-dark border-success-soft", icon: CheckCircle, text: "Paid" },
+      completed: { color: "bg-success-soft text-success-dark border-success-soft", icon: CheckCircle, text: "Completed" },
+      pending: { color: "bg-warning-soft text-warning-dark border-warning-soft", icon: Clock, text: "Pending" },
+      failed: { color: "bg-error-soft text-error-dark border-error-soft", icon: AlertCircle, text: "Failed" },
+      processing: { color: "bg-brand-100 text-brand-800 border-brand-200", icon: Clock, text: "Processing" }
     };
 
     const badge = badges[status] || badges.pending;
@@ -112,11 +112,11 @@ const StudentPayments = () => {
   // Loading state
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-center min-h-[400px]">
             <div className="text-center">
-              <Loader2 className="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
+              <Loader2 className="w-12 h-12 text-brand-600 animate-spin mx-auto mb-4" />
               <p className="text-gray-600">Loading your payment history...</p>
             </div>
           </div>
@@ -128,10 +128,10 @@ const StudentPayments = () => {
   // Error state
   if (isError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-6xl mx-auto">
           <div className="bg-white rounded-xl p-12 text-center shadow-lg">
-            <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+            <AlertCircle className="w-16 h-16 text-error mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
               Error Loading Payments
             </h3>
@@ -140,7 +140,7 @@ const StudentPayments = () => {
             </p>
             <button
               onClick={handleRefresh}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center"
+              className="bg-brand-600 text-white px-6 py-2 rounded-lg hover:bg-brand-700 transition-colors inline-flex items-center"
             >
               <RefreshCw className="w-4 h-4 mr-2" />
               Try Again

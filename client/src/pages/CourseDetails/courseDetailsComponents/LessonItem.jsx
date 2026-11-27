@@ -64,24 +64,24 @@ const LessonItem = ({
                   <div className="flex items-center space-x-2 flex-1 min-w-0">
                     {/* File type icon */}
                     {attachment?.fileType?.toLowerCase() === "pdf" ? (
-                      <FileText className="h-4 w-4 text-red-500 flex-shrink-0" />
+                      <FileText className="h-4 w-4 text-error flex-shrink-0" />
                     ) : attachment?.fileType?.toLowerCase() === "doc" ||
                       attachment?.fileType?.toLowerCase() === "docx" ? (
-                      <FileText className="h-4 w-4 text-blue-500 flex-shrink-0" />
+                      <FileText className="h-4 w-4 text-brand-500 flex-shrink-0" />
                     ) : attachment?.fileType?.toLowerCase() === "jpg" ||
                       attachment?.fileType?.toLowerCase() === "jpeg" ||
                       attachment?.fileType?.toLowerCase() === "png" ||
                       attachment?.fileType?.toLowerCase() === "gif" ? (
-                      <Image className="h-4 w-4 text-green-500 flex-shrink-0" />
+                      <Image className="h-4 w-4 text-success flex-shrink-0" />
                     ) : attachment?.fileType?.toLowerCase() === "mp4" ||
                       attachment?.fileType?.toLowerCase() === "mov" ||
                       attachment?.fileType?.toLowerCase() === "avi" ? (
-                      <Video className="h-4 w-4 text-purple-500 flex-shrink-0" />
+                      <Video className="h-4 w-4 text-brand-500 flex-shrink-0" />
                     ) : attachment?.fileType?.toLowerCase() === "mp3" ||
                       attachment?.fileType?.toLowerCase() === "wav" ? (
-                      <Music className="h-4 w-4 text-orange-500 flex-shrink-0" />
+                      <Music className="h-4 w-4 text-warning flex-shrink-0" />
                     ) : attachment?.fileType?.toLowerCase() === "zip" ? (
-                      <Archive className="h-4 w-4 text-yellow-500 flex-shrink-0" />
+                      <Archive className="h-4 w-4 text-warning flex-shrink-0" />
                     ) : (
                       <File className="h-4 w-4 text-gray-400 flex-shrink-0" />
                     )}
@@ -101,7 +101,7 @@ const LessonItem = ({
                         )}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-600 hover:text-blue-800 transition-colors"
+                        className="text-brand-600 hover:text-brand-800 transition-colors"
                         title={`Download ${attachment.title}`}
                       >
                         <Download size={14} />
@@ -119,7 +119,7 @@ const LessonItem = ({
                     currentUser?.role === "admin") && (
                     <button
                       onClick={() => handleDeleteAttachment(attachment._id)}
-                      className="text-red-600 hover:text-red-800 text-xs px-1 py-0.5 rounded hover:bg-red-50 transition-colors"
+                      className="text-error-dark hover:text-error-dark text-xs px-1 py-0.5 rounded hover:bg-error-soft transition-colors"
                       title="Delete attachment"
                     >
                       <X size={12} />
@@ -143,14 +143,14 @@ const LessonItem = ({
                   state: { courseId },
                 })
               }
-              className="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition-colors"
+              className="bg-brand-600 text-white p-2 rounded hover:bg-brand-700 transition-colors"
               title="Edit lesson"
             >
               <Edit size={14} />
             </button>
             <button
               onClick={() => handleDelete(lesson._id)}
-              className="bg-red-600 text-white p-2 rounded hover:bg-red-700 transition-colors"
+              className="bg-error-dark text-white p-2 rounded hover:bg-error-dark transition-colors"
               title="Delete lesson"
             >
               <Trash2 size={14} />

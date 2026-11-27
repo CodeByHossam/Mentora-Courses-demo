@@ -23,6 +23,20 @@ const category = (id, name) => ({
   order: Number(id.replace(/\D/g, "")) || 1,
 });
 
+const instructorAvatars = {
+  "u-instructor-sarah": "/images/photo-1494790108377-be9c29b29330.jpg",
+  "u-instructor-mark": "/images/photo-1507003211169-0a1dd7228f2d.jpg",
+};
+
+const courseImageFor = (id) => ({
+  "course-1": "/images/photo-1633356122544-f134324a6cee.jpg",
+  "course-2": "/images/photo-1498050108023-c5249f4df085.jpg",
+  "course-3": "/images/photo-1551288049-bebda4e38f71.jpg",
+  "course-4": "/images/photo-1555949963-ff9fe0c870eb.jpg",
+  "course-5": "/images/photo-1561070791-2526d30994b5.jpg",
+  "course-6": "/images/photo-1556761175-5973dc0f32e7.jpg",
+}[id] || "/images/photo-1522202176988-66273c2fd55f.jpg");
+
 const course = ({
   id,
   title,
@@ -50,7 +64,7 @@ const course = ({
     _id: instructorId,
     id: instructorId,
     name: instructorName,
-    avatar: "/avatar.png",
+    avatar: instructorAvatars[instructorId] || "/images/photo-1472099645785-5658abf4ff4e.jpg",
   },
   price,
   originalPrice: Math.round(price * 1.25),
@@ -70,8 +84,8 @@ const course = ({
     liked: false,
   },
   enrolledStudents: [],
-  imageUrl: "",
-  thumbnail: "",
+  imageUrl: courseImageFor(id),
+  thumbnail: courseImageFor(id),
   whatYouWillLearn: [
     `Build a strong foundation in ${title.toLowerCase()}`,
     "Work through practical, portfolio-ready examples",
@@ -128,7 +142,7 @@ export function createSeedData() {
     email: "admin@mentora.demo",
     role: "admin",
     password: "demo1234",
-    avatar: "/avatar.png",
+    avatar: "/images/photo-1472099645785-5658abf4ff4e.jpg",
     isActive: true,
     isVerified: true,
     phone: "+1 555 0100",
@@ -144,7 +158,7 @@ export function createSeedData() {
       email: "sarah@mentora.demo",
       role: "instructor",
       password: "demo1234",
-      avatar: "/avatar.png",
+      avatar: "/images/photo-1494790108377-be9c29b29330.jpg",
       isActive: true,
       isVerified: true,
       phone: "+1 555 0101",
@@ -159,7 +173,7 @@ export function createSeedData() {
       email: "mark@mentora.demo",
       role: "instructor",
       password: "demo1234",
-      avatar: "/avatar.png",
+      avatar: "/images/photo-1507003211169-0a1dd7228f2d.jpg",
       isActive: true,
       isVerified: true,
       phone: "+1 555 0102",
@@ -177,7 +191,7 @@ export function createSeedData() {
       email: "lina@mentora.demo",
       role: "student",
       password: "demo1234",
-      avatar: "/avatar.png",
+      avatar: "/images/photo-1438761681033-6461ffad8d80.jpg",
       isActive: true,
       isVerified: true,
       phone: "+1 555 0201",
@@ -191,7 +205,7 @@ export function createSeedData() {
       email: "omar@mentora.demo",
       role: "student",
       password: "demo1234",
-      avatar: "/avatar.png",
+      avatar: "/images/photo-1500648767791-00dcc994a43e.jpg",
       isActive: true,
       isVerified: true,
       phone: "+1 555 0202",
@@ -205,7 +219,7 @@ export function createSeedData() {
       email: "nora@mentora.demo",
       role: "student",
       password: "demo1234",
-      avatar: "/avatar.png",
+      avatar: "/images/photo-1573496359142-b8d87734a5a2.jpg",
       isActive: true,
       isVerified: true,
       phone: "+1 555 0203",
@@ -673,7 +687,8 @@ export function createSeedData() {
       _id: "cert-1",
       studentId: "u-student-lina",
       courseId: "course-1",
-      course: { _id: "course-1", title: "Modern React from Scratch" },
+      course: { _id: "course-1", title: "Modern React from Scratch", instructor: userSummary(instructors[0]) },
+      instructorId: "u-instructor-sarah",
       student: userSummary(students[0]),
       issuedAt: "{{isoDays:-3}}",
       certificateUrl: "#demo-certificate",
@@ -682,7 +697,8 @@ export function createSeedData() {
       _id: "cert-2",
       studentId: "u-student-omar",
       courseId: "course-3",
-      course: { _id: "course-3", title: "Python for Data Analysis" },
+      course: { _id: "course-3", title: "Python for Data Analysis", instructor: userSummary(instructors[1]) },
+      instructorId: "u-instructor-mark",
       student: userSummary(students[1]),
       issuedAt: "{{isoDays:-5}}",
       certificateUrl: "#demo-certificate",
@@ -765,6 +781,9 @@ export function createSeedData() {
     totalEarnings: item.role === "instructor" ? 1280 - index * 180 : 0,
     pendingAmount: item.role === "instructor" ? 85 : 0,
     currency: "USD",
+    isActive: true,
+    isOverLimit: false,
+    outstandingPayments: 0,
   }));
 
   const billingTransactions = [

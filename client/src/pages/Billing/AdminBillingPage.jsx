@@ -35,6 +35,7 @@ import {
 import { useGetUsersQuery, useGetAdminReportsQuery } from "../../store/services/userApi";
 import { useGetCoursesQuery } from "../../store/services/courseApi";
 import { AdminFinancialSummaryCard } from "../../components/admin";
+import { ProgressLoader } from "../../components/common";
 
 const AdminBillingPage = () => {
   const { user } = useSelector((state) => state.auth);
@@ -449,14 +450,14 @@ const AdminBillingPage = () => {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <AlertTriangle className="w-12 h-12 text-red-500 mx-auto mb-4" />
+          <AlertTriangle className="w-12 h-12 text-error mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Failed to load billing data</h2>
           <p className="text-gray-600 mb-4">
             {(billingError?.message || transactionsError?.message) || "An error occurred while loading billing information."}
           </p>
           <button
             onClick={() => { refetchBilling(); window.location.reload(); }}
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            className="px-4 py-2 bg-brand-600 text-white rounded hover:bg-brand-700"
           >
             Retry
           </button>
@@ -467,9 +468,9 @@ const AdminBillingPage = () => {
 
   if (!user || user.role !== 'admin') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 flex items-center justify-center">
+      <div className="min-h-screen bg-brand-50 flex items-center justify-center">
         <div className="text-center">
-          <XCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <XCircle className="w-16 h-16 text-error mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
             Access Denied
           </h2>

@@ -124,11 +124,11 @@ const StudentNotifications = () => {
 
   const getNotificationColor = (color) => {
     const colors = {
-      blue: "bg-blue-100 text-blue-600 border-blue-200",
-      green: "bg-green-100 text-green-600 border-green-200",
-      yellow: "bg-yellow-100 text-yellow-600 border-yellow-200",
-      purple: "bg-purple-100 text-purple-600 border-purple-200",
-      red: "bg-red-100 text-red-600 border-red-200"
+      blue: "bg-brand-100 text-brand-600 border-brand-200",
+      green: "bg-success-soft text-success-dark border-success-soft",
+      yellow: "bg-warning-soft text-warning-dark border-warning-soft",
+      purple: "bg-brand-100 text-brand-600 border-brand-200",
+      red: "bg-error-soft text-error-dark border-error-soft"
     };
     return colors[color] || colors.blue;
   };
@@ -216,15 +216,15 @@ const StudentNotifications = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
-            <Bell className="w-12 h-12 text-red-500 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-red-800 mb-2">Error Loading Notifications</h3>
-            <p className="text-red-600 mb-4">{error?.data?.message || "Failed to load notifications"}</p>
+          <div className="bg-error-soft border border-error-soft rounded-xl p-6 text-center">
+            <Bell className="w-12 h-12 text-error mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-error-dark mb-2">Error Loading Notifications</h3>
+            <p className="text-error-dark mb-4">{error?.data?.message || "Failed to load notifications"}</p>
             <button
               onClick={refetch}
-              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+              className="bg-error-dark text-white px-4 py-2 rounded-lg hover:bg-error-dark transition-colors"
             >
               Try Again
             </button>

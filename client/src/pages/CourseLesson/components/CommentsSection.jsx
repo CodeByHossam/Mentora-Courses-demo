@@ -15,7 +15,7 @@ const CommentsSection = ({
     <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 border border-gray-100">
       <div className="flex items-center mb-6">
         <div className="text-3xl mr-3">💬</div>
-        <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+        <h2 className="text-2xl font-bold text-ink ">
           Discussion
         </h2>
       </div>
@@ -24,11 +24,11 @@ const CommentsSection = ({
           interactions.comments.map((comment) => (
             <div
               key={comment._id}
-              className="border-l-4 border-blue-500 pl-6 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-r-xl"
+              className="border-l-4 border-brand-500 pl-6 py-4 bg-brand-50 rounded-r-xl"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full mr-3 ring-2 ring-blue-200 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full mr-3 ring-2 ring-brand-200 bg-brand-600 flex items-center justify-center">
                     {comment.user?.avatar ? (
                       <img
                         src={comment.user.avatar}
@@ -59,7 +59,7 @@ const CommentsSection = ({
                     onClick={() =>
                       handleCommentDelete(comment._id)
                     }
-                    className="text-red-500 hover:text-red-700 text-sm px-3 py-1 rounded-lg hover:bg-red-50 transition-all"
+                    className="text-error hover:text-error-dark text-sm px-3 py-1 rounded-lg hover:bg-error-soft transition-all"
                     disabled={isDeletingComment}
                   >
                     🗑️ Delete
@@ -81,7 +81,7 @@ const CommentsSection = ({
       {/* Add Comment Form */}
       <form onSubmit={handleCommentSubmit} className="mt-8">
         <div className="flex items-start space-x-4">
-          <div className="w-10 h-10 rounded-full ring-2 ring-gray-200 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-full ring-2 ring-gray-200 bg-brand-600 flex items-center justify-center">
             {user?.avatar ? (
               <img
                 src={user.avatar}
@@ -102,11 +102,11 @@ const CommentsSection = ({
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               placeholder="Share your thoughts about this lesson..."
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none transition-all"
               rows="4"
             />
             <div className="flex justify-between items-center mt-3">
-              <span className={`text-sm ${commentText.length > 450 ? 'text-red-500' : 'text-gray-500'}`}>
+              <span className={`text-sm ${commentText.length > 450 ? 'text-error' : 'text-gray-500'}`}>
                 {commentText.length}/500 characters
               </span>
               <button
@@ -116,7 +116,7 @@ const CommentsSection = ({
                   commentText.length > 500 ||
                   isAddingComment
                 }
-                className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 disabled:from-gray-400 disabled:to-gray-400 disabled:cursor-not-allowed transition-all duration-200 font-medium transform hover:scale-105 disabled:transform-none"
+                className="px-6 py-3 bg-brand-600 text-white rounded-xl hover:bg-brand-700 disabled:from-gray-400 disabled:to-gray-400 disabled:cursor-not-allowed transition-all duration-200 font-medium "
               >
                 {isAddingComment ? (
                   <div className="flex items-center">

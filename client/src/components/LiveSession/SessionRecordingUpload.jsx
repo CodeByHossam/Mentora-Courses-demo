@@ -78,7 +78,7 @@ const SessionRecordingUpload = ({ session, onSuccess, onCancel }) => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-purple-50 to-indigo-50 min-h-screen p-6">
+    <div className="bg-brand-50 min-h-screen p-6">
       <div className="max-w-2xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl p-8">
           {/* Header */}
@@ -107,12 +107,12 @@ const SessionRecordingUpload = ({ session, onSuccess, onCancel }) => {
                 value={formData.recordingUrl}
                 onChange={handleInputChange}
                 placeholder="https://zoom.us/rec/share/... or https://drive.google.com/..."
-                className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors ${
-                  errors.recordingUrl ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:border-gray-300'
+                className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors ${
+                  errors.recordingUrl ? 'border-error bg-error-soft' : 'border-gray-200 hover:border-gray-300'
                 }`}
               />
               {errors.recordingUrl && (
-                <p className="mt-1 text-sm text-red-600 flex items-center">
+                <p className="mt-1 text-sm text-error-dark flex items-center">
                   <span className="mr-1">⚠️</span>
                   {errors.recordingUrl}
                 </p>
@@ -134,7 +134,7 @@ const SessionRecordingUpload = ({ session, onSuccess, onCancel }) => {
                 value={formData.recordingPassword}
                 onChange={handleInputChange}
                 placeholder="Enter password if recording is protected"
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 hover:border-gray-300 transition-colors"
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 hover:border-gray-300 transition-colors"
                 maxLength={20}
               />
               <p className="mt-1 text-sm text-gray-500">
@@ -151,7 +151,7 @@ const SessionRecordingUpload = ({ session, onSuccess, onCancel }) => {
                   name="isRecordingPublic"
                   checked={formData.isRecordingPublic}
                   onChange={handleInputChange}
-                  className="mt-1 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                  className="mt-1 h-4 w-4 text-brand-600 focus:ring-brand-500 border-gray-300 rounded"
                 />
                 <div className="ml-3">
                   <label htmlFor="isRecordingPublic" className="font-medium text-gray-700">
@@ -168,9 +168,9 @@ const SessionRecordingUpload = ({ session, onSuccess, onCancel }) => {
             </div>
 
             {/* Recording Guidelines */}
-            <div className="bg-blue-50 rounded-xl p-4">
-              <h4 className="font-semibold text-blue-800 mb-2">📋 Recording Guidelines</h4>
-              <ul className="text-sm text-blue-700 space-y-1">
+            <div className="bg-brand-50 rounded-xl p-4">
+              <h4 className="font-semibold text-brand-800 mb-2">📋 Recording Guidelines</h4>
+              <ul className="text-sm text-brand-700 space-y-1">
                 <li>• Ensure the recording is accessible to students</li>
                 <li>• Include any necessary passwords or access instructions</li>
                 <li>• Consider the recording quality and audio clarity</li>
@@ -183,7 +183,7 @@ const SessionRecordingUpload = ({ session, onSuccess, onCancel }) => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold py-3 px-6 rounded-xl hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                className="flex-1 bg-brand-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
               >
                 {isLoading ? (
                   <>

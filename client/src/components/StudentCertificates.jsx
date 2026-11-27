@@ -6,8 +6,7 @@ import {
   useGetStudentCertificatesQuery,
   useDownloadCertificateMutation
 } from '../store/services/certificateApi';
-import Card from './Card';
-import Button from './Button';
+import { Card, Button } from './common/index.js';
 
 const StudentCertificates = () => {
   const { user, token } = useAuth();
@@ -55,20 +54,20 @@ const StudentCertificates = () => {
     switch (certificate.status) {
       case 'issued':
         return (
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-100 text-brand-800">
             <Award className="w-3 h-3 mr-1" />
             Issued
           </span>
         );
       case 'sent':
         return (
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success-soft text-success-dark">
             ✅ Sent
           </span>
         );
       case 'viewed':
         return (
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-100 text-brand-800">
             👁️ Viewed
           </span>
         );
@@ -89,7 +88,7 @@ const StudentCertificates = () => {
     return (
       <Card className="p-6">
         <div className="flex items-center justify-center">
-          <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-brand-600" />
           <span className="ml-3 text-gray-600">Loading certificates...</span>
         </div>
       </Card>
@@ -152,7 +151,7 @@ const StudentCertificates = () => {
                         className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
                       />
                     ) : (
-                      <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <div className="w-16 h-16 bg-brand-600 rounded-lg flex items-center justify-center flex-shrink-0">
                         <span className="text-white text-xl font-bold">
                           {certificate.course.title.charAt(0)}
                         </span>
@@ -239,7 +238,7 @@ const StudentCertificates = () => {
 
       {/* Achievement summary */}
       {certificates.length > 0 && (
-        <Card className="p-6 bg-gradient-to-r from-blue-50 to-purple-50">
+        <Card className="p-6 bg-brand-50">
           <div className="text-center">
             <div className="text-4xl mb-2">🎉</div>
             <h4 className="text-lg font-semibold text-gray-900 mb-1">

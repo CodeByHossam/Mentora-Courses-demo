@@ -27,14 +27,14 @@ const Wishlist = () => {
   if (isLoading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+        <Loader2 className="w-8 h-8 animate-spin text-brand-600" />
       </div>
     );
   }
 
   if (isError) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center text-red-600">
+      <div className="min-h-[60vh] flex items-center justify-center text-error-dark">
         {error?.data?.message || "Failed to load wishlist"}
       </div>
     );
@@ -43,7 +43,7 @@ const Wishlist = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="flex items-center gap-3 mb-6">
-        <Heart className="w-7 h-7 text-pink-600" />
+        <Heart className="w-7 h-7 text-brand-600" />
         <h1 className="text-3xl font-bold text-gray-900">My Wishlist</h1>
       </div>
 
@@ -58,7 +58,7 @@ const Wishlist = () => {
           </p>
           <button
             onClick={() => navigate("/courses")}
-            className="px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+            className="px-5 py-2.5 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition"
           >
             Browse Courses
           </button>
@@ -89,7 +89,7 @@ const Wishlist = () => {
                 </div>
                 <div className="p-4 flex-1 flex flex-col">
                   <h3
-                    className="font-semibold text-gray-900 mb-2 cursor-pointer hover:text-blue-600"
+                    className="font-semibold text-gray-900 mb-2 cursor-pointer hover:text-brand-600"
                     onClick={() => courseId && navigate(`/courses/${courseId}`)}
                   >
                     {course?.title || "Untitled Course"}
@@ -98,13 +98,13 @@ const Wishlist = () => {
                     {course?.description || ""}
                   </p>
                   <div className="mt-auto flex items-center justify-between">
-                    <span className="font-bold text-blue-600">
+                    <span className="font-bold text-brand-600">
                       {course?.price ? `$${course.price}` : "Free"}
                     </span>
                     <button
                       onClick={() => courseId && handleRemove(courseId)}
                       disabled={removing}
-                      className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition"
+                      className="p-2 text-error-dark hover:bg-error-soft rounded-lg transition"
                       title="Remove from wishlist"
                     >
                       <Trash2 className="w-5 h-5" />

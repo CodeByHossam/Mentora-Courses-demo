@@ -59,18 +59,18 @@ const InstructorCourses = () => {
         <div className="card rounded-xl p-8 mb-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
             <div>
-              <h1 className="text-3xl font-bold mb-4" style={{background: 'linear-gradient(to right, var(--primary), var(--info))', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent'}}>
-                <span className="text-3xl font-bold" style={{background: 'linear-gradient(to right, var(--primary), var(--info))', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent'}}>📚</span> Your Courses
+              <h1 className="text-3xl font-bold mb-4 text-ink">
+                <span className="text-3xl font-bold">📚</span> Your Courses
               </h1>
               <p className="mt-2 text-gray-600">
                 Manage and create courses for your students
               </p>
                 <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-indigo-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-brand-500 rounded-full"></div>
                   <span className="text-sm text-gray-600">Total Courses: {courses?.length || 0}</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-cyan-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-brand-500 rounded-full"></div>
                   <span className="text-sm text-gray-600">Filtered: {filteredCourses?.length || 0}</span>
                 </div>
               </div>
@@ -78,7 +78,7 @@ const InstructorCourses = () => {
             <div className="mt-6 sm:mt-0">
               <button
                 onClick={() => navigate("/instructor/courses/new")}
-                className="inline-flex items-center px-6 py-3 border border-transparent rounded-xl shadow-lg text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-700 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transform transition-all duration-200 hover:scale-105"
+                className="inline-flex items-center px-6 py-3 border border-transparent rounded-xl shadow-lg text-sm font-medium text-white bg-brand hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-all duration-200 "
               >
                 <svg className="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -113,10 +113,10 @@ const InstructorCourses = () => {
           {filteredCourses?.map((course) => (
             <div
               key={course._id}
-              className="card rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="card rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 "
             >
               <div className="relative">
-                <div className="h-48 flex items-center justify-center" style={{background: 'linear-gradient(to bottom right, var(--primary), var(--info))'}}>
+                <div className="h-48 flex items-center justify-center bg-brand-soft">
                   {course.imageUrl ? (
                     <img
                       src={course.imageUrl}
@@ -138,12 +138,12 @@ const InstructorCourses = () => {
                     onChange={(e) => handleStatusChange(course._id, e.target.value)}
                     className={`px-3 py-1 rounded-full text-xs font-medium border-0 focus:ring-2 focus:ring-white focus:ring-opacity-50 ${
                       course.status === 'published'
-                        ? 'bg-green-100 text-green-800'
+                        ? 'bg-success-soft text-success-dark'
                         : course.status === 'draft'
-                        ? 'bg-yellow-100 text-yellow-800'
+                        ? 'bg-warning-soft text-warning-dark'
                         : course.status === 'archived'
                         ? 'bg-gray-100 text-gray-800'
-                        : 'bg-yellow-100 text-yellow-800'
+                        : 'bg-warning-soft text-warning-dark'
                     }`}
                   >
                     <option value="draft">📝 Draft</option>
@@ -187,7 +187,7 @@ const InstructorCourses = () => {
                   </button>
                   <button
                     onClick={() => navigate(`/instructor/courses/edit/${course._id}`)}
-                    className="w-full px-4 py-2 text-sm font-medium text-cyan-600 bg-cyan-50 rounded-lg hover:bg-cyan-100 transition-all duration-200"
+                    className="w-full px-4 py-2 text-sm font-medium text-brand-600 bg-brand-50 rounded-lg hover:bg-brand-100 transition-all duration-200"
                   >
                     ✏️ Edit Course
                   </button>
@@ -210,7 +210,7 @@ const InstructorCourses = () => {
               </p>
               <button
                 onClick={() => setStatusFilter("all")}
-                className="inline-flex items-center px-6 py-3 border border-transparent rounded-xl shadow-lg text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-700 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transform transition-all duration-200 hover:scale-105"
+                className="inline-flex items-center px-6 py-3 border border-transparent rounded-xl shadow-lg text-sm font-medium text-white bg-brand hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-all duration-200 "
               >
                 Show All Courses
               </button>
@@ -230,7 +230,7 @@ const InstructorCourses = () => {
               </p>
               <button
                 onClick={() => navigate("/instructor/courses/new")}
-                className="inline-flex items-center px-8 py-4 border border-transparent rounded-xl shadow-lg text-base font-medium text-white bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-700 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transform transition-all duration-200 hover:scale-105"
+                className="inline-flex items-center px-8 py-4 border border-transparent rounded-xl shadow-lg text-base font-medium text-white bg-brand hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-all duration-200 "
               >
                 <svg className="-ml-1 mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />

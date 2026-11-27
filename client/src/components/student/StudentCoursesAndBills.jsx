@@ -13,7 +13,7 @@ const StudentCoursesAndBills = ({ enrolledCourses, user }) => {
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold flex items-center">
             <svg
-              className="w-5 h-5 mr-2 text-blue-500"
+              className="w-5 h-5 mr-2 text-brand-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -29,7 +29,7 @@ const StudentCoursesAndBills = ({ enrolledCourses, user }) => {
           </h2>
           <button
             onClick={() => navigate("/courses")}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition duration-200 flex items-center"
+            className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition duration-200 flex items-center"
           >
             <svg
               className="w-4 h-4 mr-2"
@@ -59,7 +59,7 @@ const StudentCoursesAndBills = ({ enrolledCourses, user }) => {
       <div className="bg-white rounded-lg shadow-md p-6 mb-6">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
           <svg
-            className="w-5 h-5 mr-2 text-green-500"
+            className="w-5 h-5 mr-2 text-success"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

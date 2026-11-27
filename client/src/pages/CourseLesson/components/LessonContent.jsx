@@ -6,7 +6,7 @@ const LessonContent = ({ currentLesson }) => {
   return (
     <div className="flex-1">
       {/* Secure Video Player */}
-      <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl shadow-2xl overflow-hidden aspect-video mb-6 border border-gray-200">
+      <div className="bg-brand rounded-2xl shadow-2xl overflow-hidden aspect-video mb-6 border border-gray-200">
         {currentLesson?._id ? (
           <VideoPlayer
             lessonId={currentLesson._id}
@@ -28,13 +28,13 @@ const LessonContent = ({ currentLesson }) => {
       <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 border border-gray-100">
         <div className="flex items-center mb-6">
           <div className="text-3xl mr-3">📖</div>
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold text-ink ">
             {currentLesson?.title || "Lesson Content"}
           </h2>
         </div>
         <div className="prose max-w-none">
           {currentLesson?.content ? (
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
+            <div className="bg-brand-50 rounded-xl p-6">
               <p className="text-gray-700 leading-relaxed text-lg">
                 {currentLesson.content}
               </p>

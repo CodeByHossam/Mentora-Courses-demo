@@ -293,7 +293,7 @@ const VideoPlayer = memo(({ lessonId, autoplay = false, className = '' }) => {
   if (error) {
     return (
       <div className={`bg-gray-100 rounded-lg flex flex-col items-center justify-center h-64 p-6 ${className}`}>
-        <div className="text-red-500 mb-4">Failed to load video</div>
+        <div className="text-error mb-4">Failed to load video</div>
         <p className="text-gray-600 text-center mb-4">{error}</p>
         <Button onClick={() => window.location.reload()} leftIcon={<RotateCcw className="w-4 h-4" />}>
           Retry
@@ -335,7 +335,7 @@ const VideoPlayer = memo(({ lessonId, autoplay = false, className = '' }) => {
 
       {/* Security Warning */}
       {securityWarning && (
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg z-50">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-error-dark text-white px-4 py-2 rounded-lg shadow-lg z-50">
           <div className="flex items-center space-x-2">
             <AlertTriangle className="w-4 h-4" />
             <span className="text-sm font-medium">Content Protected - Download Disabled</span>
@@ -345,7 +345,7 @@ const VideoPlayer = memo(({ lessonId, autoplay = false, className = '' }) => {
 
       {/* Video Controls Overlay */}
       <div
-        className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 ${
+        className={`absolute inset-0 image-scrim transition-opacity duration-300 ${
           showControls ? 'opacity-100' : 'opacity-0'
         }`}
       >

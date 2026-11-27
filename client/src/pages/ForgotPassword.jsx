@@ -17,7 +17,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 py-8 sm:py-12 px-4 sm:px-6 lg:px-8 overflow-x-hidden flex items-center justify-center">
+    <div className="min-h-screen bg-brand-50 py-8 sm:py-12 px-4 sm:px-6 lg:px-8 overflow-x-hidden flex items-center justify-center">
       <div className="w-full max-w-md">
         <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100">
           <h2 className="text-xl sm:text-2xl font-semibold text-center mb-4 sm:mb-6 text-gray-900">
@@ -43,7 +43,7 @@ const ForgotPassword = () => {
         </div>
         <button
           type="submit"
-          className="w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-green-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+          className="w-full px-4 py-3 bg-brand text-white font-semibold rounded-xl hover:bg-brand-700 hover:bg-success focus:outline-none focus:ring-2 focus:ring-brand-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
           disabled={isLoading}
         >
           {isLoading ? "Sending..." : "Send Reset Link"}

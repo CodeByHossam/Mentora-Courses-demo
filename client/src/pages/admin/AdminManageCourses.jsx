@@ -78,7 +78,7 @@ const AdminManageCourses = () => {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-red-600 mb-4">Error</h2>
+          <h2 className="text-2xl font-bold text-error-dark mb-4">Error</h2>
           <p className="text-gray-600">
             {error.data?.message || "Failed to load courses"}
           </p>
@@ -119,7 +119,7 @@ const AdminManageCourses = () => {
             <div className="mt-6 sm:mt-0">
               <button
                 onClick={() => navigate("/admin/courses/create")}
-                className="btn-success inline-flex items-center px-6 py-3 rounded-xl shadow-lg text-sm font-medium transform transition-all duration-200 hover:scale-105"
+                className="btn-success inline-flex items-center px-6 py-3 rounded-xl shadow-lg text-sm font-medium transition-all duration-200 "
               >
                 <svg
                   className="-ml-1 mr-2 h-5 w-5"
@@ -183,7 +183,7 @@ const AdminManageCourses = () => {
         <div className="card rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-accent">
+              <thead className="bg-brand-50">
                 <tr>
                   <th className="px-6 py-4 text-left text-xs font-semibold text-secondary uppercase tracking-wider">
                     Course

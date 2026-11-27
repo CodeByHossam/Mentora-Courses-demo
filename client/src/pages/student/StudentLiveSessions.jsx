@@ -274,14 +274,14 @@ const StudentLiveSessions = () => {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center">
-          <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
+          <AlertCircle className="h-12 w-12 text-error mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">Error Loading Sessions</h3>
           <p className="text-gray-600 mb-4">
             {error?.data?.message || "Failed to load live sessions"}
           </p>
           <button
             onClick={() => refetch()}
-            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
+            className="bg-error-dark hover:bg-error-dark text-white px-4 py-2 rounded-lg transition-colors"
           >
             Retry
           </button>

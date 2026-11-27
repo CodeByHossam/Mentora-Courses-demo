@@ -117,7 +117,7 @@ const CourseEnrollment = () => {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-semibold text-red-600 mb-4">
+          <h2 className="text-2xl font-semibold text-error-dark mb-4">
             Error loading course
           </h2>
           <p className="text-gray-700">

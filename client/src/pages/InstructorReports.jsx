@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import ProgressLoader from "../components/ProgressLoader";
+import { ProgressLoader } from '../components/common/index.js';
 import { selectCurrentUser } from "../store/slices/authSlice";
 import { useGetInstructorReportsQuery } from "../store/services/userApi";
 
@@ -25,7 +25,7 @@ const InstructorReports = () => {
     return <ProgressLoader isVisible={true} message="Loading reports..." />;
   if (error)
     return (
-      <div className="text-red-600 p-8">
+      <div className="text-error-dark p-8">
         Error:{" "}
         {error?.data?.message || error?.message || "Failed to fetch reports"}
       </div>
@@ -38,25 +38,25 @@ const InstructorReports = () => {
 
       {/* Enhanced Stats Summary */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div className="bg-white shadow-lg rounded-lg p-6 text-center border-l-4 border-blue-500">
-          <div className="text-3xl font-bold text-blue-600">{data.totalStudents || 0}</div>
+        <div className="bg-white shadow-lg rounded-lg p-6 text-center border-l-4 border-brand-500">
+          <div className="text-3xl font-bold text-brand-600">{data.totalStudents || 0}</div>
           <div className="text-gray-600 font-medium">Total Students</div>
           <div className="text-xs text-gray-500 mt-1">Across all courses</div>
         </div>
-        <div className="bg-white shadow-lg rounded-lg p-6 text-center border-l-4 border-green-500">
-          <div className="text-3xl font-bold text-green-600">{data.totalCourses || 0}</div>
+        <div className="bg-white shadow-lg rounded-lg p-6 text-center border-l-4 border-success">
+          <div className="text-3xl font-bold text-success-dark">{data.totalCourses || 0}</div>
           <div className="text-gray-600 font-medium">Active Courses</div>
           <div className="text-xs text-gray-500 mt-1">Published & draft</div>
         </div>
-        <div className="bg-white shadow-lg rounded-lg p-6 text-center border-l-4 border-yellow-500">
-          <div className="text-3xl font-bold text-yellow-600">
+        <div className="bg-white shadow-lg rounded-lg p-6 text-center border-l-4 border-warning">
+          <div className="text-3xl font-bold text-warning-dark">
             ${Number(data.totalRevenue || 0).toFixed(2)}
           </div>
           <div className="text-gray-600 font-medium">Total Revenue</div>
           <div className="text-xs text-gray-500 mt-1">All-time earnings</div>
         </div>
-        <div className="bg-white shadow-lg rounded-lg p-6 text-center border-l-4 border-purple-500">
-          <div className="text-3xl font-bold text-purple-600">
+        <div className="bg-white shadow-lg rounded-lg p-6 text-center border-l-4 border-brand-500">
+          <div className="text-3xl font-bold text-brand-600">
             {data.totalCourses > 0 ? (data.totalStudents / data.totalCourses).toFixed(1) : '0'}
           </div>
           <div className="text-gray-600 font-medium">Avg Students/Course</div>
@@ -90,11 +90,11 @@ const InstructorReports = () => {
             <div className="space-y-2">
               <div className="flex justify-between">
                 <span className="text-gray-600">Course completion rate:</span>
-                <span className="font-semibold text-green-600">85%</span>
+                <span className="font-semibold text-success-dark">85%</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Student satisfaction:</span>
-                <span className="font-semibold text-blue-600">4.2/5</span>
+                <span className="font-semibold text-brand-600">4.2/5</span>
               </div>
             </div>
           </div>
@@ -127,12 +127,12 @@ const InstructorReports = () => {
                       <div className="text-sm text-gray-900">{course.students || 0}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-green-600">${(course.revenue || 0).toFixed(2)}</div>
+                      <div className="text-sm font-medium text-success-dark">${(course.revenue || 0).toFixed(2)}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                        course.status === 'published' ? 'bg-green-100 text-green-800' : 
-                        course.status === 'draft' ? 'bg-yellow-100 text-yellow-800' : 
+                        course.status === 'published' ? 'bg-success-soft text-success-dark' : 
+                        course.status === 'draft' ? 'bg-warning-soft text-warning-dark' : 
                         'bg-gray-100 text-gray-800'
                       }`}>
                         {course.status || 'draft'}
@@ -142,7 +142,7 @@ const InstructorReports = () => {
                       <div className="flex items-center">
                         <span className="text-sm text-gray-900">{course.averageRating || 'N/A'}</span>
                         {course.averageRating && (
-                          <span className="ml-1 text-yellow-400">★</span>
+                          <span className="ml-1 text-warning">★</span>
                         )}
                       </div>
                     </td>

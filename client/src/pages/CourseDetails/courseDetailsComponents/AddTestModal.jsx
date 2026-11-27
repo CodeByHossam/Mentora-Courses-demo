@@ -103,7 +103,7 @@ const AddTestModal = ({
         <h2 className="text-xl font-semibold mb-4">Add New Test</h2>
 
         {testFormError && (
-          <div className="mb-2 text-red-600 text-sm">{testFormError}</div>
+          <div className="mb-2 text-error-dark text-sm">{testFormError}</div>
         )}
 
         <form onSubmit={handleAddTest} className="space-y-4">
@@ -210,7 +210,7 @@ const AddTestModal = ({
           <button
             type="submit"
             disabled={isAddingTest}
-            className="w-full bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors"
+            className="w-full bg-success-dark text-white px-4 py-2 rounded hover:bg-success-dark transition-colors"
           >
             {isAddingTest ? "Adding..." : "Add Test"}
           </button>

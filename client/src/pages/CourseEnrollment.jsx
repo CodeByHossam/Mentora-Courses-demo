@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { selectCurrentUser } from "../store/slices/authSlice";
 import { useGetCourseQuery } from "../store/services/courseApi";
 import { useCreateEnrollmentRequestMutation } from "../store/services/enrollmentRequestApi";
-import ProgressLoader from "../components/ProgressLoader";
+import { ProgressLoader } from '../components/common/index.js';
 import { ArrowLeft, BookOpen, Users, Clock, Star, CheckCircle, AlertCircle, Send, Sparkles } from "lucide-react";
 
 const CourseEnrollment = () => {
@@ -119,7 +119,7 @@ const CourseEnrollment = () => {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-semibold text-red-600 mb-4">
+          <h2 className="text-2xl font-semibold text-error-dark mb-4">
             Error loading course
           </h2>
           <p className="text-gray-700">
@@ -155,20 +155,20 @@ const CourseEnrollment = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="min-h-screen bg-brand-50">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-r from-blue-400 to-green-400 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
-        <div className="absolute bottom-20 left-10 w-72 h-72 bg-gradient-to-r from-green-400 to-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse delay-1000"></div>
+        <div className="absolute top-20 right-10 w-72 h-72 bg-brand-200 rounded-full mix-blend-multiply filter blur-xl opacity-10 "></div>
+        <div className="absolute bottom-20 left-10 w-72 h-72 bg-brand-200 rounded-full mix-blend-multiply filter blur-xl opacity-10 "></div>
       </div>
       
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Enhanced Header Section */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-green-500 rounded-full mb-6 shadow-xl">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-brand rounded-full mb-6 shadow-xl">
             <Sparkles className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-600 via-green-600 to-blue-800 bg-clip-text text-transparent mb-4">
+          <h1 className="text-4xl sm:text-5xl font-bold text-ink mb-4">
             Join Your Learning Journey
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -178,7 +178,7 @@ const CourseEnrollment = () => {
 
         <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-white/20">
           {/* Enhanced Course Preview */}
-          <div className="relative bg-gradient-to-r from-blue-600 via-green-600 to-blue-700 px-8 py-8">
+          <div className="relative bg-brand px-8 py-8">
             <div className="absolute inset-0 bg-black/10"></div>
             <div className="relative flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
               <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-2xl ring-4 ring-white/30 shadow-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
@@ -196,15 +196,15 @@ const CourseEnrollment = () => {
                 <div className={`${course.imageUrl ? 'hidden' : 'flex'} items-center justify-center w-full h-full`}>
                   <BookOpen className="w-8 h-8 md:w-10 md:h-10 text-white" />
                 </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
-                  <Star className="w-4 h-4 text-yellow-800" />
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-warning rounded-full flex items-center justify-center shadow-lg">
+                  <Star className="w-4 h-4 text-warning-dark" />
                 </div>
               </div>
               <div className="flex-1 text-center md:text-left">
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
                   {course.title}
                 </h2>
-                <div className="flex items-center justify-center md:justify-start gap-2 text-blue-100 mb-2">
+                <div className="flex items-center justify-center md:justify-start gap-2 text-brand-100 mb-2">
                   <Users className="w-4 h-4" />
                   <span>by {course.instructor?.name || 'Expert Instructor'}</span>
                 </div>
@@ -229,14 +229,14 @@ const CourseEnrollment = () => {
           <div className="p-8 md:p-12">
             <div className="mb-10">
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <BookOpen className="w-6 h-6 text-blue-600" />
+                <div className="p-2 bg-brand-100 rounded-lg">
+                  <BookOpen className="w-6 h-6 text-brand-600" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900">
                   Course Overview
                 </h3>
               </div>
-              <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl p-8 border border-blue-100">
+              <div className="bg-brand-50 rounded-2xl p-8 border border-brand-100">
                 <p className="text-gray-700 leading-relaxed text-lg">
                   {course.description || 'Discover an expertly crafted learning experience designed to help you master new skills and advance your career.'}
                 </p>
@@ -245,29 +245,29 @@ const CourseEnrollment = () => {
 
             {/* Enhanced Course Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="group bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 border border-blue-200">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl mb-4 group-hover:scale-110 transition-transform">
+              <div className="group bg-brand-100 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-brand-200">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-brand-600 rounded-2xl mb-4 ">
                   <Users className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-sm font-medium text-blue-600 mb-1">Active Students</div>
+                <div className="text-sm font-medium text-brand-600 mb-1">Active Students</div>
                 <div className="text-3xl font-bold text-gray-900">
                   {course.enrolledStudents?.length || 0}
                 </div>
               </div>
-              <div className="group bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 border border-green-200">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl mb-4 group-hover:scale-110 transition-transform">
+              <div className="group success-soft rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-success-soft">
+                <div className="inline-flex items-center justify-center w-16 h-16 success-dark rounded-2xl mb-4 ">
                   <BookOpen className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-sm font-medium text-green-600 mb-1">Total Lessons</div>
+                <div className="text-sm font-medium text-success-dark mb-1">Total Lessons</div>
                 <div className="text-3xl font-bold text-gray-900">
                   {course.lessons?.length || 0}
                 </div>
               </div>
-              <div className="group bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 border border-purple-200">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl mb-4 group-hover:scale-110 transition-transform">
+              <div className="group bg-brand-100 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-brand-200">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-brand-600 rounded-2xl mb-4 ">
                   <Clock className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-sm font-medium text-purple-600 mb-1">Learning Time</div>
+                <div className="text-sm font-medium text-brand-600 mb-1">Learning Time</div>
                 <div className="text-3xl font-bold text-gray-900">
                   Self-paced
                 </div>
@@ -276,9 +276,9 @@ const CourseEnrollment = () => {
 
             {/* Enhanced Enrollment Form */}
             <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="bg-gradient-to-r from-blue-50 via-white to-green-50 rounded-2xl p-8 border border-blue-200">
+              <div className="bg-brand-50 rounded-2xl p-8 border border-brand-200">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg">
+                  <div className="p-2 bg-brand rounded-lg">
                     <Send className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900">
@@ -297,7 +297,7 @@ const CourseEnrollment = () => {
                     rows={6}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-300 resize-none text-lg bg-white/80 backdrop-blur-sm"
+                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-brand-100 focus:border-brand-500 transition-all duration-300 resize-none text-lg bg-white/80 backdrop-blur-sm"
                     placeholder="I'm excited to join this course because...\n\nMy learning goals include...\n\nI hope to apply these skills to..."
                     required
                     maxLength={500}
@@ -309,9 +309,9 @@ const CourseEnrollment = () => {
               </div>
 
               {/* Payment Method Selection */}
-              <div className="bg-gradient-to-r from-green-50 via-white to-blue-50 rounded-2xl p-8 border border-green-200">
+              <div className="bg-brand-50 rounded-2xl p-8 border border-success-soft">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg">
+                  <div className="p-2 bg-brand rounded-lg">
                     <CheckCircle className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900">
@@ -328,7 +328,7 @@ const CourseEnrollment = () => {
                         value="none"
                         checked={paymentMethod === "none"}
                         onChange={(e) => setPaymentMethod(e.target.value)}
-                        className="w-5 h-5 text-blue-600"
+                        className="w-5 h-5 text-brand-600"
                       />
                       <span className="text-lg font-medium text-gray-700">
                         Request enrollment only (no payment)
@@ -344,7 +344,7 @@ const CourseEnrollment = () => {
                         value="direct_transfer"
                         checked={paymentMethod === "direct_transfer"}
                         onChange={(e) => setPaymentMethod(e.target.value)}
-                        className="w-5 h-5 text-blue-600"
+                        className="w-5 h-5 text-brand-600"
                       />
                       <span className="text-lg font-medium text-gray-700">
                         I have already made a bank transfer
@@ -355,8 +355,8 @@ const CourseEnrollment = () => {
 
                 {/* Bank Transfer Details Form */}
                 {paymentMethod === "direct_transfer" && (
-                  <div className="mt-8 p-6 bg-blue-50 rounded-xl border border-blue-200">
-                    <h4 className="text-xl font-bold text-blue-800 mb-4">
+                  <div className="mt-8 p-6 bg-brand-50 rounded-xl border border-brand-200">
+                    <h4 className="text-xl font-bold text-brand-800 mb-4">
                       Bank Transfer Details
                     </h4>
                     
@@ -374,7 +374,7 @@ const CourseEnrollment = () => {
                             ...prev,
                             transferredAmount: e.target.value
                           }))}
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-300"
+                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-brand-100 focus:border-brand-500 transition-all duration-300"
                           placeholder="0.00"
                           required
                         />
@@ -391,7 +391,7 @@ const CourseEnrollment = () => {
                             ...prev,
                             bankName: e.target.value
                           }))}
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-300"
+                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-brand-100 focus:border-brand-500 transition-all duration-300"
                           placeholder="Enter bank name"
                           required
                         />
@@ -408,7 +408,7 @@ const CourseEnrollment = () => {
                             ...prev,
                             referenceNumber: e.target.value
                           }))}
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-300"
+                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-brand-100 focus:border-brand-500 transition-all duration-300"
                           placeholder="Transaction reference"
                           required
                         />
@@ -425,7 +425,7 @@ const CourseEnrollment = () => {
                             ...prev,
                             transferDate: e.target.value
                           }))}
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-300"
+                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-brand-100 focus:border-brand-500 transition-all duration-300"
                           required
                         />
                       </div>
@@ -441,11 +441,11 @@ const CourseEnrollment = () => {
                           type="file"
                           accept="image/*,.pdf"
                           onChange={handleFileChange}
-                          className="w-full px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                          className="w-full px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-brand-100 focus:border-brand-500 transition-all duration-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                           required
                         />
                         {bankTransferProof && (
-                          <div className="mt-2 text-sm text-green-600">
+                          <div className="mt-2 text-sm text-success-dark">
                             ✓ File selected: {bankTransferProof.name}
                           </div>
                         )}
@@ -466,14 +466,14 @@ const CourseEnrollment = () => {
                   className="group flex-1 px-8 py-4 text-gray-700 bg-white border-2 border-gray-200 rounded-2xl hover:border-gray-300 hover:shadow-lg transition-all duration-300 font-semibold text-lg"
                 >
                   <div className="flex items-center justify-center gap-2">
-                    <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+                    <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 " />
                     Back to Course
                   </div>
                 </button>
                 <button
                   type="submit"
                   disabled={isLoading || message.trim() === ""}
-                  className="group flex-1 px-8 py-4 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-2xl hover:from-blue-700 hover:to-green-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 disabled:transform-none"
+                  className="group flex-1 px-8 py-4 bg-brand text-white rounded-2xl hover:bg-brand-700 hover:bg-success transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-semibold text-lg shadow-xl hover:shadow-2xl "
                 >
                   {isLoading ? (
                     <div className="flex items-center justify-center gap-3">
@@ -482,9 +482,9 @@ const CourseEnrollment = () => {
                     </div>
                   ) : (
                     <div className="flex items-center justify-center gap-3">
-                      <Sparkles className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                      <Sparkles className="w-5 h-5 " />
                       <span>Submit Enrollment Request</span>
-                      <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      <Send className="w-5 h-5 " />
                     </div>
                   )}
                 </button>
@@ -493,31 +493,31 @@ const CourseEnrollment = () => {
 
             {/* Enhanced Help Section */}
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-6 border border-blue-200">
+              <div className="bg-brand-50 rounded-2xl p-6 border border-brand-200">
                 <div className="flex items-start gap-4">
-                  <div className="p-2 bg-blue-500 rounded-lg">
+                  <div className="p-2 bg-brand-500 rounded-lg">
                     <AlertCircle className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-bold text-blue-800 mb-2">
+                    <h4 className="text-lg font-bold text-brand-800 mb-2">
                       What happens next?
                     </h4>
-                    <p className="text-blue-700 leading-relaxed">
+                    <p className="text-brand-700 leading-relaxed">
                       Your enrollment request will be carefully reviewed by the instructor. You'll receive a notification once approved!
                     </p>
                   </div>
                 </div>
               </div>
-              <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-6 border border-green-200">
+              <div className="bg-success rounded-2xl p-6 border border-success-soft">
                 <div className="flex items-start gap-4">
-                  <div className="p-2 bg-green-500 rounded-lg">
+                  <div className="p-2 bg-success rounded-lg">
                     <CheckCircle className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-bold text-green-800 mb-2">
+                    <h4 className="text-lg font-bold text-success-dark mb-2">
                       Why choose this course?
                     </h4>
-                    <p className="text-green-700 leading-relaxed">
+                    <p className="text-success-dark leading-relaxed">
                       Expert instruction, practical projects, and a supportive learning community await you.
                     </p>
                   </div>

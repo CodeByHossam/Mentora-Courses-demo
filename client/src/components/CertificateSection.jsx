@@ -8,8 +8,7 @@ import {
   useDeleteCertificateMutation,
   useDownloadCertificateMutation
 } from '../store/services/certificateApi';
-import Card from './Card';
-import Button from './Button';
+import { Card, Button } from './common/index.js';
 
 const CertificateSection = ({ courseId }) => {
   const { user } = useAuth();
@@ -119,7 +118,7 @@ const CertificateSection = ({ courseId }) => {
     return (
       <Card className="p-6">
         <div className="flex items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand-600"></div>
           <span className="ml-3 text-gray-600">Loading certificates...</span>
         </div>
       </Card>
@@ -200,7 +199,7 @@ const CertificateSection = ({ courseId }) => {
                               alt={student.name}
                             />
                           ) : (
-                            <div className="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center">
+                            <div className="h-10 w-10 rounded-full bg-brand-500 flex items-center justify-center">
                               <span className="text-white font-medium text-sm">
                                 {student.name.charAt(0).toUpperCase()}
                               </span>
@@ -220,7 +219,7 @@ const CertificateSection = ({ courseId }) => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       {student.hasCertificate ? (
                         <div className="flex items-center">
-                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success-soft text-success-dark">
                             ✅ Issued
                           </span>
                           {student.certificate && (
@@ -321,7 +320,7 @@ const CertificateSection = ({ courseId }) => {
                 className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
               />
               {selectedFile && (
-                <p className="mt-2 text-sm text-green-600">
+                <p className="mt-2 text-sm text-success-dark">
                   ✅ Selected: {selectedFile.name}
                 </p>
               )}

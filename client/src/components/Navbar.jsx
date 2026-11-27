@@ -43,7 +43,7 @@ import {
 } from "lucide-react";
 
 // Import NotificationBell component
-import NotificationBell from "./NotificationBell";
+import { NotificationBell } from './common/index.js';
 
 /**
  * Main Navbar Component
@@ -107,7 +107,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 z-50 h-16 md:h-20 flex items-center justify-between px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full bg-white shadow-lg">
+    <nav className="relative z-10 mx-auto flex h-full w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
       {/* Logo */}
       <Link
         to="/"
@@ -117,7 +117,12 @@ function Navbar() {
         onMouseLeave={(e) => e.target.style.color = 'var(--primary)'}
       >
         <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 lg:w-7 lg:h-7" />
-        <span className="font-decorative font-bold truncate">Mentora</span>
+        <span className="flex flex-col items-start leading-none">
+          <span className="font-heading font-bold truncate">Mentora</span>
+          <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-600">
+            Demo
+          </span>
+        </span>
       </Link>
 
       {/* Navigation Links */}
@@ -218,7 +223,7 @@ function Navbar() {
                   onClick={() =>
                     setIsProfileDropdownOpen(!isProfileDropdownOpen)
                   }
-                  className="flex items-center space-x-1 lg:space-x-2 text-secondary hover:text-primary  transition-all duration-300 p-1 rounded-md"
+                  className="flex items-center space-x-1 lg:space-x-2 text-secondary hover:text-primary transition-all duration-300 p-1 rounded-md"
                 >
                   <User className="w-5 h-5 " />
                   <span className="hidden md:block text-sm lg:text-base truncate max-w-24 lg:max-w-none">

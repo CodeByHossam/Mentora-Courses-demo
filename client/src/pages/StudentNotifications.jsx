@@ -124,11 +124,11 @@ const StudentNotifications = () => {
 
   const getNotificationColor = (color) => {
     const colors = {
-      blue: "bg-blue-100 text-blue-600 border-blue-200",
-      green: "bg-green-100 text-green-600 border-green-200",
-      yellow: "bg-yellow-100 text-yellow-600 border-yellow-200",
-      purple: "bg-purple-100 text-purple-600 border-purple-200",
-      red: "bg-red-100 text-red-600 border-red-200"
+      blue: "bg-brand-100 text-brand-600 border-brand-200",
+      green: "bg-success-soft text-success-dark border-success-soft",
+      yellow: "bg-warning-soft text-warning-dark border-warning-soft",
+      purple: "bg-brand-100 text-brand-600 border-brand-200",
+      red: "bg-error-soft text-error-dark border-error-soft"
     };
     return colors[color] || colors.blue;
   };
@@ -216,15 +216,15 @@ const StudentNotifications = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
-            <Bell className="w-12 h-12 text-red-500 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-red-800 mb-2">Error Loading Notifications</h3>
-            <p className="text-red-600 mb-4">{error?.data?.message || "Failed to load notifications"}</p>
+          <div className="bg-error-soft border border-error-soft rounded-xl p-6 text-center">
+            <Bell className="w-12 h-12 text-error mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-error-dark mb-2">Error Loading Notifications</h3>
+            <p className="text-error-dark mb-4">{error?.data?.message || "Failed to load notifications"}</p>
             <button
               onClick={refetch}
-              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+              className="bg-error-dark text-white px-4 py-2 rounded-lg hover:bg-error-dark transition-colors"
             >
               Try Again
             </button>
@@ -235,7 +235,7 @@ const StudentNotifications = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-4 md:p-6 lg:p-8">
+    <div className="min-h-screen bg-brand-50 p-4 md:p-6 lg:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -265,17 +265,17 @@ const StudentNotifications = () => {
                   <p className="text-sm text-gray-600">Total</p>
                   <p className="text-2xl font-bold text-gray-900">{notifications.length}</p>
                 </div>
-                <Bell className="h-8 w-8 text-blue-600" />
+                <Bell className="h-8 w-8 text-brand-600" />
               </div>
             </div>
             <div className="bg-white rounded-xl p-4 shadow-sm border">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">Unread</p>
-                  <p className="text-2xl font-bold text-orange-600">{unreadCount}</p>
+                  <p className="text-2xl font-bold text-warning-dark">{unreadCount}</p>
                 </div>
-                <div className="h-8 w-8 bg-orange-100 rounded-full flex items-center justify-center">
-                  <span className="text-orange-600 font-bold">{unreadCount}</span>
+                <div className="h-8 w-8 bg-warning-soft rounded-full flex items-center justify-center">
+                  <span className="text-warning-dark font-bold">{unreadCount}</span>
                 </div>
               </div>
             </div>
@@ -283,22 +283,22 @@ const StudentNotifications = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">Course Updates</p>
-                  <p className="text-2xl font-bold text-blue-600">
+                  <p className="text-2xl font-bold text-brand-600">
                     {notifications.filter(n => n.type === 'course_enrollment' || n.type === 'course_update').length}
                   </p>
                 </div>
-                <BookOpen className="h-8 w-8 text-blue-600" />
+                <BookOpen className="h-8 w-8 text-brand-600" />
               </div>
             </div>
             <div className="bg-white rounded-xl p-4 shadow-sm border">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">Messages</p>
-                  <p className="text-2xl font-bold text-purple-600">
+                  <p className="text-2xl font-bold text-brand-600">
                     {notifications.filter(n => n.type === 'message').length}
                   </p>
                 </div>
-                <MessageSquare className="h-8 w-8 text-purple-600" />
+                <MessageSquare className="h-8 w-8 text-brand-600" />
               </div>
             </div>
           </div>
@@ -324,7 +324,7 @@ const StudentNotifications = () => {
                         type="checkbox"
                         checked={settings[key]}
                         onChange={(e) => setSettings(prev => ({ ...prev, [key]: e.target.checked }))}
-                        className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                        className="rounded border-gray-300 text-brand-600 focus:ring-brand-500"
                       />
                       <Icon className="w-4 h-4 text-gray-500" />
                       <span className="text-sm text-gray-700">{label}</span>
@@ -340,7 +340,7 @@ const StudentNotifications = () => {
                       type="checkbox"
                       checked={settings.email}
                       onChange={(e) => setSettings(prev => ({ ...prev, email: e.target.checked }))}
-                      className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="rounded border-gray-300 text-brand-600 focus:ring-brand-500"
                     />
                     <span className="text-sm text-gray-700">Email Notifications</span>
                   </label>
@@ -349,7 +349,7 @@ const StudentNotifications = () => {
                       type="checkbox"
                       checked={settings.push}
                       onChange={(e) => setSettings(prev => ({ ...prev, push: e.target.checked }))}
-                      className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      className="rounded border-gray-300 text-brand-600 focus:ring-brand-500"
                     />
                     <span className="text-sm text-gray-700">Push Notifications</span>
                   </label>
@@ -378,7 +378,7 @@ const StudentNotifications = () => {
                   onClick={() => setFilterType(filter.value)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     filterType === filter.value
-                      ? 'bg-blue-600 text-white shadow-md'
+                      ? 'bg-brand-600 text-white shadow-md'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -389,11 +389,11 @@ const StudentNotifications = () => {
 
             {/* Search */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
               <input
                 type="text"
                 placeholder="Search notifications..."
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -401,19 +401,19 @@ const StudentNotifications = () => {
           {/* Bulk Actions */}
           <div className="mt-4 flex items-center justify-between">
             {selectedNotifications.length > 0 && (
-              <div className="flex items-center gap-2 p-3 bg-blue-50 rounded-lg">
-                <span className="text-sm text-blue-700 font-medium">
+              <div className="flex items-center gap-2 p-3 bg-brand-50 rounded-lg">
+                <span className="text-sm text-brand-700 font-medium">
                   {selectedNotifications.length} selected
                 </span>
                 <button
                   onClick={handleMarkSelectedAsRead}
-                  className="px-3 py-1 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors"
+                  className="px-3 py-1 bg-brand-600 text-white text-sm rounded-md hover:bg-brand-700 transition-colors"
                 >
                   Mark as Read
                 </button>
                 <button
                   onClick={handleDeleteSelected}
-                  className="px-3 py-1 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 transition-colors"
+                  className="px-3 py-1 bg-error-dark text-white text-sm rounded-md hover:bg-error-dark transition-colors"
                 >
                   Delete Selected
                 </button>
@@ -423,7 +423,7 @@ const StudentNotifications = () => {
             {notifications.length > 0 && (
               <button
                 onClick={clearAllNotifications}
-                className="px-4 py-2 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700 transition-colors flex items-center space-x-2"
+                className="px-4 py-2 bg-error-dark text-white text-sm rounded-lg hover:bg-error-dark transition-colors flex items-center space-x-2"
               >
                 <X className="w-4 h-4" />
                 <span>Clear All</span>
@@ -462,7 +462,7 @@ const StudentNotifications = () => {
             {notifications.length > 0 && (
               <button
                 onClick={() => setFilterType("all")}
-                className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition-colors"
+                className="bg-brand-600 text-white px-6 py-2 rounded-lg hover:bg-brand-700 transition-colors"
               >
                 Show All Notifications
               </button>
@@ -485,7 +485,7 @@ const StudentNotifications = () => {
                       type="checkbox"
                       checked={selectedNotifications.includes(notification._id)}
                       onChange={() => handleSelectNotification(notification._id)}
-                      className="mt-1 h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+                      className="mt-1 h-4 w-4 text-brand-600 rounded border-gray-300 focus:ring-brand-500"
                     />
 
                     {/* Icon */}
@@ -502,7 +502,7 @@ const StudentNotifications = () => {
                           }`}>
                             {notification.title}
                             {!notification.isRead && (
-                              <span className="ml-2 inline-block w-2 h-2 bg-blue-600 rounded-full"></span>
+                              <span className="ml-2 inline-block w-2 h-2 bg-brand-600 rounded-full"></span>
                             )}
                           </h3>
                           <p className="text-gray-600 mt-1">{notification.message}</p>
@@ -512,7 +512,7 @@ const StudentNotifications = () => {
                           {(notification.type === 'message' || notification.type === 'course_enrollment') && (
                             <button
                               onClick={() => handleReply(notification)}
-                              className="mt-3 inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-md hover:bg-blue-200 transition-colors"
+                              className="mt-3 inline-flex items-center px-3 py-1 bg-brand-100 text-brand-700 text-sm rounded-md hover:bg-brand-200 transition-colors"
                             >
                               <MessageSquare className="h-3 w-3 mr-1" />
                               Reply
@@ -525,7 +525,7 @@ const StudentNotifications = () => {
                           {!notification.isRead ? (
                             <button
                               onClick={() => handleMarkAsRead(notification._id)}
-                              className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                              className="p-2 text-gray-400 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors"
                               title="Mark as read"
                             >
                               <Check className="h-4 w-4" />
@@ -533,7 +533,7 @@ const StudentNotifications = () => {
                           ) : (
                             <button
                               onClick={() => handleMarkAsUnread(notification._id)}
-                              className="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+                              className="p-2 text-gray-400 hover:text-warning-dark hover:bg-warning-soft rounded-lg transition-colors"
                               title="Mark as unread"
                             >
                               <Bell className="h-4 w-4" />
@@ -560,7 +560,7 @@ const StudentNotifications = () => {
                 value={replyMessage}
                 onChange={(e) => setReplyMessage(e.target.value)}
                 placeholder="Type your reply..."
-                className="w-full h-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                className="w-full h-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none"
               />
               <div className="flex justify-end space-x-3 mt-4">
                 <button
@@ -575,7 +575,7 @@ const StudentNotifications = () => {
                 <button
                   onClick={handleSendReply}
                   disabled={!replyMessage.trim()}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center space-x-2"
+                  className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center space-x-2"
                 >
                   <Send className="h-4 w-4" />
                   <span>Send Reply</span>

@@ -9,15 +9,15 @@ const StudentUpcomingSessions = ({ upcomingSessions, upcomingSessionsCount }) =>
     <>
       {/* Upcoming Live Sessions */}
       {upcomingSessionsCount > 0 && (
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl shadow-lg p-6 mb-6 border border-blue-100">
+        <div className="bg-brand-50 rounded-xl shadow-lg p-6 mb-6 border border-brand-100">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold flex items-center text-gray-900">
-              <Video className="w-5 h-5 mr-2 text-blue-600" />
+              <Video className="w-5 h-5 mr-2 text-brand-600" />
               Upcoming Live Sessions
             </h2>
             <button
               onClick={() => navigate("/student/live-sessions")}
-              className="text-blue-600 hover:text-blue-800 text-sm font-medium hover:underline"
+              className="text-brand-600 hover:text-brand-800 text-sm font-medium hover:underline"
             >
               View All
             </button>
@@ -58,12 +58,12 @@ const StudentUpcomingSessions = ({ upcomingSessions, upcomingSessionsCount }) =>
                     </div>
                     {isStartingSoon && (
                       <div className="flex items-center">
-                        <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full mr-2">
+                        <span className="bg-success-soft text-success-dark text-xs font-medium px-2 py-1 rounded-full mr-2">
                           Starting Soon
                         </span>
                         <button
                           onClick={() => navigate("/student/live-sessions")}
-                          className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm font-medium"
+                          className="bg-success-dark hover:bg-success-dark text-white px-3 py-1 rounded text-sm font-medium"
                         >
                           Join
                         </button>

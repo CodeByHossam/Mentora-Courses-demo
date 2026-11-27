@@ -153,7 +153,7 @@ const AttachmentList = ({
     <div className="w-full overflow-x-auto">
       {/* Upload Section */}
       {canUpload && (
-        <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+        <div className="mb-6 p-4 bg-brand-50 rounded-lg border border-brand-200">
           <h4 className="text-lg font-semibold text-gray-900 mb-3">Upload New Attachment</h4>
           <div className="flex items-center space-x-4">
             <div className="flex-1">
@@ -167,8 +167,8 @@ const AttachmentList = ({
             </div>
             {isLoading && (
               <div className="flex items-center space-x-2">
-                <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                <span className="text-sm text-blue-600">{uploadProgress}%</span>
+                <div className="w-4 h-4 border-2 border-brand-600 border-t-transparent rounded-full animate-spin"></div>
+                <span className="text-sm text-brand-600">{uploadProgress}%</span>
               </div>
             )}
           </div>
@@ -181,7 +181,7 @@ const AttachmentList = ({
       {attachments?.length > 0 ? (
         <div className="overflow-x-auto rounded-xl border border-gray-200">
           <table className="w-full min-w-[1000px] bg-white">
-            <thead className="bg-gradient-to-r from-gray-50 to-blue-50">
+            <thead className="bg-brand-50">
               <tr>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 border-b border-gray-200">
                   File
@@ -213,7 +213,7 @@ const AttachmentList = ({
               {attachments.map((attachment) => (
                 <tr
                   key={attachment._id}
-                  className="hover:bg-blue-50 transition-colors duration-200"
+                  className="hover:bg-brand-50 transition-colors duration-200"
                 >
                   <td className="px-6 py-4 text-2xl">
                     {getFileIcon(attachment.fileType)}
@@ -238,7 +238,7 @@ const AttachmentList = ({
                     {formatFileSize(attachment.fileSize)}
                   </td>
                   <td className="px-6 py-4">
-                    <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium uppercase">
+                    <span className="px-2 py-1 bg-brand-100 text-brand-800 rounded-full text-xs font-medium uppercase">
                       {attachment.fileType}
                     </span>
                   </td>
@@ -255,7 +255,7 @@ const AttachmentList = ({
                         download
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-100 rounded-lg transition-colors"
+                        className="p-2 text-brand-600 hover:text-brand-800 hover:bg-brand-100 rounded-lg transition-colors"
                         title="Download"
                       >
                         <Download size={16} />
@@ -263,7 +263,7 @@ const AttachmentList = ({
                       {canEdit(attachment) && (
                         <button
                           onClick={() => startEdit(attachment)}
-                          className="p-2 text-green-600 hover:text-green-800 hover:bg-green-100 rounded-lg transition-colors"
+                          className="p-2 text-success-dark hover:text-success-dark hover:bg-success-soft rounded-lg transition-colors"
                           title="Edit"
                         >
                           <Edit size={16} />
@@ -273,7 +273,7 @@ const AttachmentList = ({
                         <button
                           onClick={() => handleDelete(attachment)}
                           disabled={isDeleting}
-                          className="p-2 text-red-600 hover:text-red-800 hover:bg-red-100 rounded-lg transition-colors disabled:opacity-50"
+                          className="p-2 text-error-dark hover:text-error-dark hover:bg-error-soft rounded-lg transition-colors disabled:opacity-50"
                           title="Delete"
                         >
                           <Trash2 size={16} />
@@ -374,7 +374,7 @@ const AttachmentList = ({
                 <button
                   type="submit"
                   disabled={isEditing}
-                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                  className="px-4 py-2 bg-brand-600 text-white rounded hover:bg-brand-700 transition-colors"
                 >
                   {isEditing ? "Updating..." : "Update Attachment"}
                 </button>

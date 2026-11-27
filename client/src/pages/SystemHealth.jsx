@@ -20,7 +20,7 @@ import {
   Globe
 } from "lucide-react";
 import { selectCurrentUser } from "../store/slices/authSlice";
-import ProgressLoader from "../components/ProgressLoader";
+import { ProgressLoader } from '../components/common/index.js';
 
 const SystemHealth = () => {
   const user = useSelector(selectCurrentUser);
@@ -118,11 +118,11 @@ const SystemHealth = () => {
   const getStatusColor = (status) => {
     switch (status) {
       case "healthy":
-        return "text-green-600 bg-green-100";
+        return "text-success-dark bg-success-soft";
       case "warning":
-        return "text-yellow-600 bg-yellow-100";
+        return "text-warning-dark bg-warning-soft";
       case "critical":
-        return "text-red-600 bg-red-100";
+        return "text-error-dark bg-error-soft";
       default:
         return "text-gray-600 bg-gray-100";
     }
@@ -152,20 +152,20 @@ const SystemHealth = () => {
   return (
     <div className="max-w-7xl mx-auto py-4 md:py-8 px-4 sm:px-6 lg:px-8">
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-lg p-4 md:p-6 text-white mb-6 md:mb-8">
+      <div className="bg-brand rounded-lg p-4 md:p-6 text-white mb-6 md:mb-8">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
           <div>
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 flex items-center">
               <Activity className="mr-3 h-8 w-8" />
               System Health Monitor
             </h1>
-            <p className="text-green-100 text-sm md:text-base lg:text-lg">
+            <p className="text-success-soft text-sm md:text-base lg:text-lg">
               Real-time system performance and health metrics
             </p>
           </div>
           <div className="mt-4 sm:mt-0 flex items-center space-x-4">
             <div className="text-right">
-              <div className="text-sm text-green-100">Last Updated</div>
+              <div className="text-sm text-success-soft">Last Updated</div>
               <div className="text-white font-medium">
                 {lastUpdated.toLocaleTimeString()}
               </div>
@@ -193,21 +193,21 @@ const SystemHealth = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="flex items-center space-x-3">
-            <Clock className="h-5 w-5 text-blue-500" />
+            <Clock className="h-5 w-5 text-brand-500" />
             <div>
               <div className="text-sm text-gray-500">Uptime</div>
               <div className="font-medium">{formatUptime(healthData.overall.uptime)}</div>
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            <Server className="h-5 w-5 text-green-500" />
+            <Server className="h-5 w-5 text-success" />
             <div>
               <div className="text-sm text-gray-500">Last Restart</div>
               <div className="font-medium">{healthData.overall.lastRestart || "Unknown"}</div>
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            <TrendingUp className="h-5 w-5 text-purple-500" />
+            <TrendingUp className="h-5 w-5 text-brand-500" />
             <div>
               <div className="text-sm text-gray-500">Performance</div>
               <div className="font-medium">Optimal</div>
@@ -222,7 +222,7 @@ const SystemHealth = () => {
         <div className="bg-white rounded-xl shadow-lg p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center">
-              <Server className="mr-2 h-5 w-5 text-blue-500" />
+              <Server className="mr-2 h-5 w-5 text-brand-500" />
               Server Performance
             </h3>
             <div className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(healthData.server.status)}`}>
@@ -242,7 +242,7 @@ const SystemHealth = () => {
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div 
-                  className={`h-2 rounded-full ${healthData.server.cpu > 80 ? 'bg-red-500' : healthData.server.cpu > 60 ? 'bg-yellow-500' : 'bg-green-500'}`}
+                  className={`h-2 rounded-full ${healthData.server.cpu > 80 ? 'bg-error' : healthData.server.cpu > 60 ? 'bg-warning' : 'bg-success'}`}
                   style={{ width: `${healthData.server.cpu}%` }}
                 ></div>
               </div>
@@ -258,7 +258,7 @@ const SystemHealth = () => {
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div 
-                  className={`h-2 rounded-full ${healthData.server.memory > 85 ? 'bg-red-500' : healthData.server.memory > 70 ? 'bg-yellow-500' : 'bg-blue-500'}`}
+                  className={`h-2 rounded-full ${healthData.server.memory > 85 ? 'bg-error' : healthData.server.memory > 70 ? 'bg-warning' : 'bg-brand-500'}`}
                   style={{ width: `${healthData.server.memory}%` }}
                 ></div>
               </div>
@@ -274,7 +274,7 @@ const SystemHealth = () => {
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div 
-                  className={`h-2 rounded-full ${healthData.server.disk > 90 ? 'bg-red-500' : healthData.server.disk > 75 ? 'bg-yellow-500' : 'bg-green-500'}`}
+                  className={`h-2 rounded-full ${healthData.server.disk > 90 ? 'bg-error' : healthData.server.disk > 75 ? 'bg-warning' : 'bg-success'}`}
                   style={{ width: `${healthData.server.disk}%` }}
                 ></div>
               </div>
@@ -298,7 +298,7 @@ const SystemHealth = () => {
         <div className="bg-white rounded-xl shadow-lg p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center">
-              <Database className="mr-2 h-5 w-5 text-green-500" />
+              <Database className="mr-2 h-5 w-5 text-success" />
               Database Health
             </h3>
             <div className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(healthData.database.status)}`}>
@@ -332,7 +332,7 @@ const SystemHealth = () => {
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div 
-                  className={`h-2 rounded-full ${healthData.database.storage > 90 ? 'bg-red-500' : healthData.database.storage > 75 ? 'bg-yellow-500' : 'bg-green-500'}`}
+                  className={`h-2 rounded-full ${healthData.database.storage > 90 ? 'bg-error' : healthData.database.storage > 75 ? 'bg-warning' : 'bg-success'}`}
                   style={{ width: `${healthData.database.storage}%` }}
                 ></div>
               </div>
@@ -342,7 +342,7 @@ const SystemHealth = () => {
               <div className="flex justify-between items-center">
                 <div>
                   <div className="text-sm text-gray-500">Backup Status</div>
-                  <div className="font-medium capitalize text-green-600">{healthData.database.backupStatus}</div>
+                  <div className="font-medium capitalize text-success-dark">{healthData.database.backupStatus}</div>
                 </div>
                 <div className="text-right">
                   <div className="text-sm text-gray-500">Last Backup</div>
@@ -360,7 +360,7 @@ const SystemHealth = () => {
         <div className="bg-white rounded-xl shadow-lg p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center">
-              <Wifi className="mr-2 h-5 w-5 text-purple-500" />
+              <Wifi className="mr-2 h-5 w-5 text-brand-500" />
               Network & Services
             </h3>
             <div className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(healthData.network.status)}`}>
@@ -388,8 +388,8 @@ const SystemHealth = () => {
                   <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <div className="flex items-center">
                       <div className={`w-2 h-2 rounded-full mr-2 ${
-                        service.status === 'healthy' ? 'bg-green-500' : 
-                        service.status === 'warning' ? 'bg-yellow-500' : 'bg-red-500'
+                        service.status === 'healthy' ? 'bg-success' : 
+                        service.status === 'warning' ? 'bg-warning' : 'bg-error'
                       }`}></div>
                       <span className="text-sm font-medium">{service.name}</span>
                     </div>
@@ -405,7 +405,7 @@ const SystemHealth = () => {
         <div className="bg-white rounded-xl shadow-lg p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center">
-              <Globe className="mr-2 h-5 w-5 text-indigo-500" />
+              <Globe className="mr-2 h-5 w-5 text-brand-500" />
               Application Performance
             </h3>
             <div className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(healthData.application.status)}`}>

@@ -37,17 +37,17 @@ const AdminNotifications = () => {
   const getNotificationProps = (type) => {
     switch (type) {
       case 'user':
-        return { icon: User, color: 'text-blue-600', bgColor: 'bg-blue-50' };
+        return { icon: User, color: 'text-brand-600', bgColor: 'bg-brand-50' };
       case 'course':
       case 'course_enrollment':
       case 'course_update':
-        return { icon: BookOpen, color: 'text-green-600', bgColor: 'bg-green-50' };
+        return { icon: BookOpen, color: 'text-success-dark', bgColor: 'bg-success-soft' };
       case 'payment':
-        return { icon: CreditCard, color: 'text-red-600', bgColor: 'bg-red-50' };
+        return { icon: CreditCard, color: 'text-error-dark', bgColor: 'bg-error-soft' };
       case 'message':
-        return { icon: MessageSquare, color: 'text-purple-600', bgColor: 'bg-purple-50' };
+        return { icon: MessageSquare, color: 'text-brand-600', bgColor: 'bg-brand-50' };
       case 'live_session':
-        return { icon: Calendar, color: 'text-green-600', bgColor: 'bg-green-50' };
+        return { icon: Calendar, color: 'text-success-dark', bgColor: 'bg-success-soft' };
       case 'system':
       default:
         return { icon: Settings, color: 'text-gray-600', bgColor: 'bg-gray-50' };
@@ -173,7 +173,7 @@ const AdminNotifications = () => {
   const unreadCount = notifications.filter(n => !n.isRead).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 p-4 md:p-6 lg:p-8">
+    <div className="min-h-screen bg-brand-50 p-4 md:p-6 lg:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -203,17 +203,17 @@ const AdminNotifications = () => {
                   <p className="text-sm text-gray-600">Total</p>
                   <p className="text-2xl font-bold text-gray-900">{notifications.length}</p>
                 </div>
-                <Bell className="h-8 w-8 text-blue-600" />
+                <Bell className="h-8 w-8 text-brand-600" />
               </div>
             </div>
             <div className="bg-white rounded-xl p-4 shadow-sm border">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">Unread</p>
-                  <p className="text-2xl font-bold text-orange-600">{unreadCount}</p>
+                  <p className="text-2xl font-bold text-warning-dark">{unreadCount}</p>
                 </div>
-                <div className="h-8 w-8 bg-orange-100 rounded-full flex items-center justify-center">
-                  <span className="text-orange-600 font-bold">{unreadCount}</span>
+                <div className="h-8 w-8 bg-warning-soft rounded-full flex items-center justify-center">
+                  <span className="text-warning-dark font-bold">{unreadCount}</span>
                 </div>
               </div>
             </div>
@@ -221,22 +221,22 @@ const AdminNotifications = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">User Issues</p>
-                  <p className="text-2xl font-bold text-blue-600">
+                  <p className="text-2xl font-bold text-brand-600">
                     {notifications.filter(n => n.type === 'user').length}
                   </p>
                 </div>
-                <User className="h-8 w-8 text-blue-600" />
+                <User className="h-8 w-8 text-brand-600" />
               </div>
             </div>
             <div className="bg-white rounded-xl p-4 shadow-sm border">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">System Alerts</p>
-                  <p className="text-2xl font-bold text-red-600">
+                  <p className="text-2xl font-bold text-error-dark">
                     {notifications.filter(n => n.type === 'system').length}
                   </p>
                 </div>
-                <Settings className="h-8 w-8 text-red-600" />
+                <Settings className="h-8 w-8 text-error-dark" />
               </div>
             </div>
           </div>
@@ -253,7 +253,7 @@ const AdminNotifications = () => {
                   onClick={() => setSelectedFilter(filter.value)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     selectedFilter === filter.value
-                      ? 'bg-blue-600 text-white shadow-md'
+                      ? 'bg-brand-600 text-white shadow-md'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -264,13 +264,13 @@ const AdminNotifications = () => {
 
             {/* Search */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
               <input
                 type="text"
                 placeholder="Search notifications..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -278,19 +278,19 @@ const AdminNotifications = () => {
           {/* Bulk Actions */}
           <div className="mt-4 flex items-center justify-between">
             {selectedNotifications.length > 0 && (
-              <div className="flex items-center gap-2 p-3 bg-blue-50 rounded-lg">
-                <span className="text-sm text-blue-700 font-medium">
+              <div className="flex items-center gap-2 p-3 bg-brand-50 rounded-lg">
+                <span className="text-sm text-brand-700 font-medium">
                   {selectedNotifications.length} selected
                 </span>
                 <button
                   onClick={handleMarkSelectedAsRead}
-                  className="px-3 py-1 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors"
+                  className="px-3 py-1 bg-brand-600 text-white text-sm rounded-md hover:bg-brand-700 transition-colors"
                 >
                   Mark as Read
                 </button>
                 <button
                   onClick={handleDeleteSelected}
-                  className="px-3 py-1 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 transition-colors"
+                  className="px-3 py-1 bg-error-dark text-white text-sm rounded-md hover:bg-error-dark transition-colors"
                 >
                   Delete Selected
                 </button>
@@ -300,7 +300,7 @@ const AdminNotifications = () => {
             {notifications.length > 0 && (
               <button
                 onClick={handleClearAll}
-                className="px-4 py-2 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700 transition-colors flex items-center space-x-2"
+                className="px-4 py-2 bg-error-dark text-white text-sm rounded-lg hover:bg-error-dark transition-colors flex items-center space-x-2"
               >
                 <X className="w-4 h-4" />
                 <span>Clear All</span>
@@ -313,17 +313,17 @@ const AdminNotifications = () => {
         <div className="space-y-4">
           {isLoading ? (
             <div className="bg-white rounded-xl shadow-sm border p-12 text-center">
-              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
+              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-brand-600 mx-auto mb-4"></div>
               <p className="text-gray-500">Loading notifications...</p>
             </div>
           ) : error ? (
             <div className="bg-white rounded-xl shadow-sm border p-12 text-center">
-              <X className="h-16 w-16 text-red-300 mx-auto mb-4" />
+              <X className="h-16 w-16 text-error mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">Error loading notifications</h3>
               <p className="text-gray-500 mb-4">Failed to fetch notifications from server</p>
               <button
                 onClick={() => refetch()}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors"
               >
                 Try Again
               </button>
@@ -354,7 +354,7 @@ const AdminNotifications = () => {
                       type="checkbox"
                       checked={selectedNotifications.includes(notification._id)}
                       onChange={() => handleSelectNotification(notification._id)}
-                      className="mt-1 h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+                      className="mt-1 h-4 w-4 text-brand-600 rounded border-gray-300 focus:ring-brand-500"
                     />
 
                     {/* Icon */}
@@ -371,7 +371,7 @@ const AdminNotifications = () => {
                           }`}>
                             {notification.title}
                             {!notification.isRead && (
-                              <span className="ml-2 inline-block w-2 h-2 bg-blue-600 rounded-full"></span>
+                              <span className="ml-2 inline-block w-2 h-2 bg-brand-600 rounded-full"></span>
                             )}
                           </h3>
                           <p className="text-gray-600 mt-1">{notification.message}</p>
@@ -381,7 +381,7 @@ const AdminNotifications = () => {
                           {canReply && (
                             <button
                               onClick={() => handleReply(notification)}
-                              className="mt-3 inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-md hover:bg-blue-200 transition-colors"
+                              className="mt-3 inline-flex items-center px-3 py-1 bg-brand-100 text-brand-700 text-sm rounded-md hover:bg-brand-200 transition-colors"
                             >
                               <MessageSquare className="h-3 w-3 mr-1" />
                               Reply
@@ -394,7 +394,7 @@ const AdminNotifications = () => {
                           {!notification.isRead ? (
                             <button
                               onClick={() => handleMarkAsRead(notification._id)}
-                              className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                              className="p-2 text-gray-400 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors"
                               title="Mark as read"
                             >
                               <Check className="h-4 w-4" />
@@ -402,7 +402,7 @@ const AdminNotifications = () => {
                           ) : (
                             <button
                               onClick={() => handleMarkAsUnread(notification._id)}
-                              className="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+                              className="p-2 text-gray-400 hover:text-warning-dark hover:bg-warning-soft rounded-lg transition-colors"
                               title="Mark as unread"
                             >
                               <Bell className="h-4 w-4" />
@@ -429,7 +429,7 @@ const AdminNotifications = () => {
                 value={replyMessage}
                 onChange={(e) => setReplyMessage(e.target.value)}
                 placeholder="Type your reply..."
-                className="w-full h-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                className="w-full h-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent resize-none"
               />
               <div className="flex justify-end space-x-3 mt-4">
                 <button
@@ -444,7 +444,7 @@ const AdminNotifications = () => {
                 <button
                   onClick={handleSendReply}
                   disabled={!replyMessage.trim()}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center space-x-2"
+                  className="px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center space-x-2"
                 >
                   <Send className="h-4 w-4" />
                   <span>Send Reply</span>

@@ -171,15 +171,15 @@ const Profile = () => {
     );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 py-6 sm:py-8 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
+    <div className="min-h-screen bg-brand-50 py-6 sm:py-8 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
       <div className="w-full max-w-4xl mx-auto">
         {/* Profile Header Card */}
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
-          <div className="relative h-48 bg-gradient-to-r from-green-500 via-blue-600 to-purple-600">
+          <div className="relative h-48 bg-brand">
             <div className="absolute inset-0 bg-black bg-opacity-20"></div>
             <div className="absolute -bottom-16 left-8">
               <div className="relative">
-                <div className="h-32 w-32 rounded-full border-4 border-white bg-gradient-to-br from-blue-500 to-indigo-600 overflow-hidden shadow-lg flex items-center justify-center">
+                <div className="h-32 w-32 rounded-full border-4 border-white bg-brand-600 overflow-hidden shadow-lg flex items-center justify-center">
                   {formData.avatar ? (
                     <img
                       src={formData.avatar}
@@ -200,7 +200,7 @@ const Profile = () => {
                   </div>
                 </div>
                 {isEditing && (
-                  <div className="absolute -bottom-2 -right-2 bg-blue-600 rounded-full p-2 shadow-lg">
+                  <div className="absolute -bottom-2 -right-2 bg-brand-600 rounded-full p-2 shadow-lg">
                     <svg
                       className="w-4 h-4 text-white"
                       fill="none"
@@ -230,7 +230,7 @@ const Profile = () => {
                   {profileData?.email}
                 </p>
                 <div className="flex items-center space-x-2">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 capitalize">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-success-soft text-success-dark capitalize">
                     {profileData?.role}
                   </span>
                   <span className="text-gray-500">•</span>
@@ -245,7 +245,7 @@ const Profile = () => {
                 className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
                   isEditing
                     ? "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    : "bg-gradient-to-r from-green-600 to-blue-600 text-white hover:from-green-700 hover:to-blue-700 hover:shadow-lg"
+                    : "bg-brand text-white hover:bg-success hover:bg-brand-700 hover:shadow-lg"
                 }`}
               >
                 {isEditing ? "Cancel" : "Edit Profile"}
@@ -272,7 +272,7 @@ const Profile = () => {
                         id="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-success transition-colors"
                         placeholder="Enter your full name"
                       />
                     </div>
@@ -311,7 +311,7 @@ const Profile = () => {
                       rows={4}
                       value={formData.bio}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-success transition-colors resize-none"
                       placeholder="Tell us about yourself..."
                     />
                   </div>
@@ -324,7 +324,7 @@ const Profile = () => {
                       Profile Picture
                     </label>
                     <div className="flex items-center space-x-4">
-                      <div className="h-16 w-16 rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-indigo-600 border-2 border-gray-300 flex items-center justify-center">
+                      <div className="h-16 w-16 rounded-full overflow-hidden bg-brand-600 border-2 border-gray-300 flex items-center justify-center">
                         {formData.avatar ? (
                           <img
                             src={formData.avatar}
@@ -372,7 +372,7 @@ const Profile = () => {
                       className={`px-6 py-3 rounded-lg font-medium text-white transition-all duration-200 ${
                         isUpdating
                           ? "bg-gray-400 cursor-not-allowed"
-                          : "bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 hover:shadow-lg"
+                          : "bg-brand hover:bg-brand-dark hover:shadow-lg"
                       }`}
                     >
                       {isUpdating ? "Saving..." : "Save Changes"}
@@ -397,7 +397,7 @@ const Profile = () => {
 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
   {/* Profile Completion */}
   <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex items-center gap-4">
-    <div className="p-3 rounded-full bg-blue-100 text-blue-600">
+    <div className="p-3 rounded-full bg-brand-100 text-brand-600">
       <BadgeCheck className="w-6 h-6" />
     </div>
     <div>
@@ -408,7 +408,7 @@ const Profile = () => {
 
   {/* Account Status */}
   <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex items-center gap-4">
-    <div className="p-3 rounded-full bg-green-100 text-green-600">
+    <div className="p-3 rounded-full bg-success-soft text-success-dark">
       <UserCheck className="w-6 h-6" />
     </div>
     <div>
@@ -419,7 +419,7 @@ const Profile = () => {
 
   {/* Role */}
   <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex items-center gap-4">
-    <div className="p-3 rounded-full bg-purple-100 text-purple-600">
+    <div className="p-3 rounded-full bg-brand-100 text-brand-600">
       <ShieldCheck className="w-6 h-6" />
     </div>
     <div>
@@ -436,7 +436,7 @@ const Profile = () => {
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-lg font-semibold text-gray-900 flex items-center">
                         <svg
-                          className="w-5 h-5 mr-2 text-green-600"
+                          className="w-5 h-5 mr-2 text-success-dark"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -451,7 +451,7 @@ const Profile = () => {
                         Payment Information
                       </h3>
                       <button
-                        className="text-green-600 hover:text-green-700 text-sm font-medium"
+                        className="text-success-dark hover:text-success-dark text-sm font-medium"
                         onClick={() => setIsEditingPayment(!isEditingPayment)}
                       >
                         {isEditingPayment ? "Cancel" : "Manage"}
@@ -472,7 +472,7 @@ const Profile = () => {
                               name="bankName"
                               value={paymentData.bankName}
                               onChange={handlePaymentChange}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-success"
                               placeholder="Enter bank name"
                             />
                           </div>
@@ -485,7 +485,7 @@ const Profile = () => {
                               name="accountHolder"
                               value={paymentData.accountHolder}
                               onChange={handlePaymentChange}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-success"
                               placeholder="Full name on account"
                             />
                           </div>
@@ -498,7 +498,7 @@ const Profile = () => {
                               name="accountNumber"
                               value={paymentData.accountNumber}
                               onChange={handlePaymentChange}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-success"
                               placeholder="Account number"
                             />
                           </div>
@@ -511,7 +511,7 @@ const Profile = () => {
                               name="swift"
                               value={paymentData.swift}
                               onChange={handlePaymentChange}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-success"
                               placeholder="SWIFT/BIC code"
                             />
                           </div>
@@ -524,7 +524,7 @@ const Profile = () => {
                               name="iban"
                               value={paymentData.iban}
                               onChange={handlePaymentChange}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-success"
                               placeholder="International Bank Account Number"
                             />
                           </div>
@@ -536,7 +536,7 @@ const Profile = () => {
                               name="preferredMethod"
                               value={paymentData.preferredMethod}
                               onChange={handlePaymentChange}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-success"
                             >
                               <option value="bank_transfer">
                                 Bank Transfer
@@ -557,7 +557,7 @@ const Profile = () => {
                           </button>
                           <button
                             type="submit"
-                            className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
+                            className="px-4 py-2 bg-success-dark text-white rounded-md hover:bg-success-dark"
                           >
                             Save Payment Info
                           </button>

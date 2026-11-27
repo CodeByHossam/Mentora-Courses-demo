@@ -50,14 +50,14 @@ const StudentSchedule = () => {
     switch (status) {
       case "scheduled":
       case "ready_to_start":
-        return "bg-blue-100 text-blue-800 border-blue-200";
+        return "bg-brand-100 text-brand-800 border-brand-200";
       case "live":
-        return "bg-green-100 text-green-800 border-green-200";
+        return "bg-success-soft text-success-dark border-success-soft";
       case "completed":
       case "ended":
         return "bg-gray-100 text-gray-800 border-gray-200";
       case "cancelled":
-        return "bg-red-100 text-red-800 border-red-200";
+        return "bg-error-soft text-error-dark border-error-soft";
       default:
         return "bg-gray-100 text-gray-800 border-gray-200";
     }
@@ -118,13 +118,13 @@ const StudentSchedule = () => {
     return (
       <div className="min-h-screen bg-primary p-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
-            <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-red-800 mb-2">Error Loading Schedule</h3>
-            <p className="text-red-600 mb-4">{error?.data?.message || "Failed to load schedule"}</p>
+          <div className="bg-error-soft border border-error-soft rounded-xl p-6 text-center">
+            <AlertCircle className="w-12 h-12 text-error mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-error-dark mb-2">Error Loading Schedule</h3>
+            <p className="text-error-dark mb-4">{error?.data?.message || "Failed to load schedule"}</p>
             <button
               onClick={refetch}
-              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+              className="bg-error-dark text-white px-4 py-2 rounded-lg hover:bg-error-dark transition-colors"
             >
               Try Again
             </button>

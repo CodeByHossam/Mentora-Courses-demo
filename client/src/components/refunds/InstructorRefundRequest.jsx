@@ -4,20 +4,20 @@ import useInstructorRefundRequest from "./useInstructorRefundRequest";
 
 const getStatusIcon = (status) => {
   switch (status) {
-    case 'pending': return <Clock className="h-5 w-5 text-yellow-500" />;
-    case 'approved': return <CheckCircle className="h-5 w-5 text-green-500" />;
-    case 'rejected': return <XCircle className="h-5 w-5 text-red-500" />;
-    case 'processing': return <RotateCw className="h-5 w-5 text-blue-500 animate-spin" />;
+    case 'pending': return <Clock className="h-5 w-5 text-warning" />;
+    case 'approved': return <CheckCircle className="h-5 w-5 text-success" />;
+    case 'rejected': return <XCircle className="h-5 w-5 text-error" />;
+    case 'processing': return <RotateCw className="h-5 w-5 text-brand-500 animate-spin" />;
     default: return <Clock className="h-5 w-5 text-gray-500" />;
   }
 };
 
 const getStatusColor = (status) => {
   switch (status) {
-    case 'pending': return 'bg-yellow-100 text-yellow-800';
-    case 'approved': return 'bg-green-100 text-green-800';
-    case 'rejected': return 'bg-red-100 text-red-800';
-    case 'processing': return 'bg-blue-100 text-blue-800';
+    case 'pending': return 'bg-warning-soft text-warning-dark';
+    case 'approved': return 'bg-success-soft text-success-dark';
+    case 'rejected': return 'bg-error-soft text-error-dark';
+    case 'processing': return 'bg-brand-100 text-brand-800';
     default: return 'bg-gray-100 text-gray-800';
   }
 };
@@ -56,18 +56,18 @@ const InstructorRefundRequest = () => {
             </div>
             <div className="text-center">
               <p className="text-sm font-medium text-gray-600">Outstanding Admin Fees</p>
-              <p className="text-2xl font-bold text-red-600">{formatCurrency(owedAdminFees)}</p>
+              <p className="text-2xl font-bold text-error-dark">{formatCurrency(owedAdminFees)}</p>
             </div>
             <div className="text-center">
               <p className="text-sm font-medium text-gray-600">Max Refundable</p>
-              <p className="text-2xl font-bold text-green-600">{formatCurrency(maxRefundable)}</p>
+              <p className="text-2xl font-bold text-success-dark">{formatCurrency(maxRefundable)}</p>
             </div>
           </div>
           {maxRefundable <= 0 && (
-            <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <div className="mt-4 p-4 bg-warning-soft border border-warning-soft rounded-lg">
               <div className="flex items-center">
-                <AlertTriangle className="h-5 w-5 text-yellow-600 mr-2" />
-                <p className="text-sm text-yellow-700">No refundable amount available. You can only request refunds for overpaid admin fees.</p>
+                <AlertTriangle className="h-5 w-5 text-warning-dark mr-2" />
+                <p className="text-sm text-warning-dark">No refundable amount available. You can only request refunds for overpaid admin fees.</p>
               </div>
             </div>
           )}
@@ -77,32 +77,32 @@ const InstructorRefundRequest = () => {
       {refundStats && (
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center"><Clock className="h-8 w-8 text-yellow-500" /><div className="ml-3"><p className="text-sm font-medium text-gray-600">Pending</p><p className="text-2xl font-bold text-gray-900">{refundStats.pending || 0}</p></div></div>
+            <div className="flex items-center"><Clock className="h-8 w-8 text-warning" /><div className="ml-3"><p className="text-sm font-medium text-gray-600">Pending</p><p className="text-2xl font-bold text-gray-900">{refundStats.pending || 0}</p></div></div>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center"><CheckCircle className="h-8 w-8 text-green-500" /><div className="ml-3"><p className="text-sm font-medium text-gray-600">Approved</p><p className="text-2xl font-bold text-gray-900">{refundStats.approved || 0}</p></div></div>
+            <div className="flex items-center"><CheckCircle className="h-8 w-8 text-success" /><div className="ml-3"><p className="text-sm font-medium text-gray-600">Approved</p><p className="text-2xl font-bold text-gray-900">{refundStats.approved || 0}</p></div></div>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center"><XCircle className="h-8 w-8 text-red-500" /><div className="ml-3"><p className="text-sm font-medium text-gray-600">Rejected</p><p className="text-2xl font-bold text-gray-900">{refundStats.rejected || 0}</p></div></div>
+            <div className="flex items-center"><XCircle className="h-8 w-8 text-error" /><div className="ml-3"><p className="text-sm font-medium text-gray-600">Rejected</p><p className="text-2xl font-bold text-gray-900">{refundStats.rejected || 0}</p></div></div>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center"><DollarSign className="h-8 w-8 text-blue-500" /><div className="ml-3"><p className="text-sm font-medium text-gray-600">Total Refunded</p><p className="text-2xl font-bold text-gray-900">{formatCurrency(refundStats.totalRefunded || 0)}</p></div></div>
+            <div className="flex items-center"><DollarSign className="h-8 w-8 text-brand-500" /><div className="ml-3"><p className="text-sm font-medium text-gray-600">Total Refunded</p><p className="text-2xl font-bold text-gray-900">{formatCurrency(refundStats.totalRefunded || 0)}</p></div></div>
           </div>
         </div>
       )}
 
       <div className="mb-6">
         {!hasPendingRefund && maxRefundable > 0 && (
-          <button onClick={() => setShowForm(!showForm)} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center">
+          <button onClick={() => setShowForm(!showForm)} className="bg-brand-600 hover:bg-brand-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center">
             <FileText className="h-5 w-5 mr-2" />
             {showForm ? 'Cancel Request' : 'Request Admin Fee Refund'}
           </button>
         )}
         {hasPendingRefund && (
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-warning-soft border border-warning-soft rounded-lg p-4">
             <div className="flex items-center">
-              <AlertTriangle className="h-5 w-5 text-yellow-600 mr-2" />
-              <p className="text-sm text-yellow-700">You have a pending refund request. Please wait for it to be processed before submitting a new one.</p>
+              <AlertTriangle className="h-5 w-5 text-warning-dark mr-2" />
+              <p className="text-sm text-warning-dark">You have a pending refund request. Please wait for it to be processed before submitting a new one.</p>
             </div>
           </div>
         )}
@@ -114,19 +114,19 @@ const InstructorRefundRequest = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Refund Type</label>
-              <select name="refundType" value={formData.refundType} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+              <select name="refundType" value={formData.refundType} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500">
                 <option value="financial_issue">Financial Issue / Overpayment</option>
                 <option value="admin_fee_overpayment">Admin Fee Overpayment</option>
               </select>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Refund Amount</label>
-              <input type="number" name="requestedAmount" value={formData.requestedAmount} onChange={handleInputChange} step="0.01" min="0" max={maxRefundable} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required />
+              <input type="number" name="requestedAmount" value={formData.requestedAmount} onChange={handleInputChange} step="0.01" min="0" max={maxRefundable} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500" required />
               <p className="text-sm text-gray-500 mt-1">Maximum refundable amount: {formatCurrency(maxRefundable)}</p>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Reason</label>
-              <select name="reason" value={formData.reason} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+              <select name="reason" value={formData.reason} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500" required>
                 <option value="">Select a reason</option>
                 <option value="overpayment">Overpayment of admin fees</option>
                 <option value="billing_error">Billing error</option>
@@ -136,10 +136,10 @@ const InstructorRefundRequest = () => {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Additional Details</label>
-              <textarea name="description" value={formData.description} onChange={handleInputChange} rows={4} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Please provide additional details about your refund request..." />
+              <textarea name="description" value={formData.description} onChange={handleInputChange} rows={4} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500" placeholder="Please provide additional details about your refund request..." />
             </div>
             <div className="flex space-x-4">
-              <button type="submit" disabled={isCreating} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center disabled:opacity-50">
+              <button type="submit" disabled={isCreating} className="bg-brand-600 hover:bg-brand-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center disabled:opacity-50">
                 {isCreating ? (<><RotateCw className="h-5 w-5 mr-2 animate-spin" /> Submitting...</>) : (<><FileText className="h-5 w-5 mr-2" /> Submit Request</>)}
               </button>
               <button type="button" onClick={() => setShowForm(false)} className="px-6 py-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors">Cancel</button>
@@ -179,7 +179,7 @@ const InstructorRefundRequest = () => {
                   </div>
                   {refund.description && (<div className="mt-3"><span className="font-medium text-gray-700">Description:</span><p className="text-gray-600 mt-1">{refund.description}</p></div>)}
                   {refund.adminNotes && (<div className="mt-3 p-3 bg-gray-50 rounded-lg"><span className="font-medium text-gray-700">Admin Notes:</span><p className="text-gray-600 mt-1">{refund.adminNotes}</p></div>)}
-                  {refund.giftCard && (<div className="mt-3 p-3 bg-green-50 rounded-lg border border-green-200"><span className="font-medium text-green-700">Gift Card Created:</span><p className="text-green-600 mt-1">{refund.giftCard.cardNumber} - {formatCurrency(refund.giftCard.amount)}</p></div>)}
+                  {refund.giftCard && (<div className="mt-3 p-3 bg-success-soft rounded-lg border border-success-soft"><span className="font-medium text-success-dark">Gift Card Created:</span><p className="text-success-dark mt-1">{refund.giftCard.cardNumber} - {formatCurrency(refund.giftCard.amount)}</p></div>)}
                 </div>
               ))}
             </div>

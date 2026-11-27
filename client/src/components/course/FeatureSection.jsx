@@ -12,64 +12,64 @@ const FeatureSection = memo(() => {
       icon: BookOpen,
       title: 'Expert-Curated Content',
       description: 'Learn from industry professionals with real-world experience and proven track records.',
-      image: '/demo-placeholder.svg',
+      image: '/images/photo-1522202176988-66273c2fd55f.jpg',
       color: 'blue'
     },
     {
       icon: Users,
       title: 'Interactive Learning',
       description: 'Engage with peers, join study groups, and participate in live Q&A sessions.',
-      image: '/demo-placeholder.svg',
+      image: '/images/photo-1556761175-b413da4baf72.jpg',
       color: 'green'
     },
     {
       icon: Award,
       title: 'Industry Certificates',
       description: 'Earn recognized certificates that boost your career and validate your skills.',
-      image: '/demo-placeholder.svg',
+      image: '/images/photo-1434030216411-0b793f4b4173.jpg',
       color: 'purple'
     },
     {
       icon: Clock,
       title: 'Flexible Schedule',
       description: 'Learn at your own pace with lifetime access to all course materials.',
-      image: '/demo-placeholder.svg',
+      image: '/images/photo-1506905925346-21bda4d32df4.jpg',
       color: 'orange'
     },
     {
       icon: Shield,
       title: 'Secure Platform',
       description: 'Your data and progress are protected with enterprise-grade security.',
-      image: '/demo-placeholder.svg',
+      image: '/images/photo-1563013544-824ae1b704d3.jpg',
       color: 'red'
     },
     {
       icon: Zap,
       title: 'Fast-Track Learning',
       description: 'Accelerated learning paths designed to get you job-ready quickly.',
-      image: '/demo-placeholder.svg',
+      image: '/images/photo-1553028826-f4804a6dba3b.jpg',
       color: 'yellow'
     }
   ];
 
   const colorClasses = {
-    blue: 'from-blue-500 to-blue-600',
-    green: 'from-green-500 to-green-600',
-    purple: 'from-purple-500 to-purple-600',
-    orange: 'from-orange-500 to-orange-600',
-    red: 'from-red-500 to-red-600',
-    yellow: 'from-yellow-500 to-yellow-600'
+    blue: 'bg-brand-500',
+    green: 'bg-success',
+    purple: 'bg-brand-600',
+    orange: 'bg-warning',
+    red: 'bg-error',
+    yellow: 'bg-warning'
   };
 
   return (
-    <section className="section-padding bg-white">
-      <div className="container-app">
+    <section className="py-16 bg-white">
+      <div className="container">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="heading-primary mb-4">
+          <h2 className="text-3xl font-bold mb-4">
             Why Choose Mentora?
           </h2>
-          <p className="text-body max-w-3xl mx-auto">
+          <p className="text-base text-ink-soft max-w-3xl mx-auto">
             Our platform combines cutting-edge technology with proven educational methods
             to deliver an unparalleled learning experience that fits your lifestyle.
           </p>
@@ -88,11 +88,11 @@ const FeatureSection = memo(() => {
                 <LazyImage
                   src={feature.image}
                   alt={feature.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                <div className="absolute inset-0 image-scrim" />
                 <div className="absolute bottom-4 left-4">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${colorClasses[feature.color]} rounded-xl flex items-center justify-center shadow-lg`}>
+                  <div className={`w-12 h-12 ${colorClasses[feature.color]} rounded-xl flex items-center justify-center shadow-lg`}>
                     <feature.icon className="w-6 h-6 text-white" />
                   </div>
                 </div>
@@ -100,10 +100,10 @@ const FeatureSection = memo(() => {
 
               {/* Feature Content */}
               <div className="space-y-3">
-                <h3 className="text-xl font-semibold text-text-primary group-hover:text-primary-600 transition-colors">
+                <h3 className="text-xl font-semibold text-ink group-hover:text-primary-600 transition-colors">
                   {feature.title}
                 </h3>
-                <p className="text-text-secondary leading-relaxed">
+                <p className="text-ink-soft leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -117,8 +117,8 @@ const FeatureSection = memo(() => {
             <Award className="w-4 h-4 mr-2" />
             Join 50,000+ successful learners
           </div>
-          <p className="text-text-secondary">
-            Ready to transform your career? Start learning today with our expert-led courses.
+          <p className="text-ink-soft">
+            Ready to your career? Start learning today with our expert-led courses.
           </p>
         </div>
       </div>

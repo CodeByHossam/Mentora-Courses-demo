@@ -326,9 +326,17 @@ export const enrichGrade = (grade) => {
   }
 }
 
+const ACTIVE_BILLING_STATUS = Object.freeze({
+  isActive: true,
+  isOverLimit: false,
+  outstandingPayments: 0,
+})
+
 export const billingFor = (userId) => {
   const stored = all('billingAccounts').find((item) => item.userId === userId)
-  if (stored) return clone(stored)
+  if (stored) {
+    return { ...clone(stored), ...ACTIVE_BILLING_STATUS }
+  }
   return {
     _id: `billing-${userId}`,
     userId,
@@ -341,6 +349,7 @@ export const billingFor = (userId) => {
     totalInstructorPayouts: 0,
     totalStudentRefunds: 0,
     currency: 'USD',
+    ...ACTIVE_BILLING_STATUS,
   }
 }
 

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BookOpen } from "lucide-react";
 import { useGetEnrolledCoursesQuery } from "../store/services/enrollmentRequestApi";
-import ProgressLoader from "../components/ProgressLoader";
+import { ProgressLoader } from '../components/common/index.js';
 
 const MyCourses = () => {
   const { user } = useSelector((state) => state.auth);
@@ -41,7 +41,7 @@ const MyCourses = () => {
         {/* Header Section */}
         <div className="card rounded-2xl p-8 mb-8">
           <div className="text-center">
-            <h1 className="text-3xl font-bold" style={{background: 'linear-gradient(to right, var(--secondary), var(--accent))', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent'}}>
+            <h1 className="text-3xl font-bold text-ink">
               📚 My Learning Journey
             </h1>
             <p className="mt-2 text-secondary">
@@ -61,10 +61,10 @@ const MyCourses = () => {
               return (
                 <div
                   key={course._id}
-                  className="card rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  className="card rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 "
                 >
                   <div className="relative">
-                    <div className="h-48 flex items-center justify-center" style={{background: 'linear-gradient(to bottom right, var(--secondary), var(--accent))'}}>
+                    <div className="h-48 flex items-center justify-center bg-brand-soft">
                       {course.imageUrl ? (
                         <img
                           src={course.imageUrl}
@@ -113,7 +113,7 @@ const MyCourses = () => {
                     <div className="flex flex-col space-y-2">
                       <button
                         onClick={() => navigate(`/courses/${course._id}/learn`)}
-                        className="btn-secondary w-full px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 transform hover:scale-105"
+                        className="btn-secondary w-full px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 "
                       >
                         🚀 Continue Learning
                       </button>
@@ -141,7 +141,7 @@ const MyCourses = () => {
               </p>
               <button
                 onClick={() => navigate("/courses")}
-                className="inline-flex items-center px-8 py-4 border border-transparent rounded-xl shadow-lg text-base font-medium text-white bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 transform transition-all duration-200 hover:scale-105"
+                className="inline-flex items-center px-8 py-4 border border-transparent rounded-xl shadow-lg text-base font-medium text-white bg-brand hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-all duration-200 "
               >
                 <svg className="-ml-1 mr-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />

@@ -33,7 +33,7 @@ const PaymentModal = ({ isOpen, onClose, onPayment, isLoading, paymentData, titl
 
         <div className="flex flex-wrap gap-2 mb-4">
           {suggestedAmounts.map((amt) => (
-            <button key={amt} onClick={() => setInputAmount(amt)} className={`px-4 py-2 rounded ${inputAmount === amt ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'}`}>
+            <button key={amt} onClick={() => setInputAmount(amt)} className={`px-4 py-2 rounded ${inputAmount === amt ? 'bg-brand-600 text-white' : 'bg-gray-100 text-gray-700'}`}>
               ${amt}
             </button>
           ))}
@@ -56,12 +56,12 @@ const PaymentModal = ({ isOpen, onClose, onPayment, isLoading, paymentData, titl
         <button
           onClick={handleSubmit}
           disabled={isLoading}
-          className="w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+          className="w-full py-2 bg-success-dark text-white rounded hover:bg-success-dark disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
           {isLoading ? 'Processing...' : `Submit $${inputAmount} Payment`}
         </button>
 
-        {error && <p className="text-red-600 mt-2">{error}</p>}
+        {error && <p className="text-error-dark mt-2">{error}</p>}
       </div>
     </Modal>
   );

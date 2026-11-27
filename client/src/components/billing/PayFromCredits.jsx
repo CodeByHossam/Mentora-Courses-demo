@@ -68,8 +68,8 @@ const PayFromCredits = ({
   return (
     <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6 max-h-[90vh] overflow-y-auto">
       <div className="text-center mb-6">
-        <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <CreditCard className="w-8 h-8 text-blue-600" />
+        <div className="w-16 h-16 bg-brand-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <CreditCard className="w-8 h-8 text-brand-600" />
         </div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Pay from Credits</h2>
         <p className="text-gray-600">Use your available credits to pay outstanding balance</p>
@@ -79,22 +79,22 @@ const PayFromCredits = ({
       <div className="bg-gray-50 rounded-lg p-4 mb-6">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-gray-600">Available Credits:</span>
-          <span className="font-semibold text-green-600">${availableCredits.toFixed(2)}</span>
+          <span className="font-semibold text-success-dark">${availableCredits.toFixed(2)}</span>
         </div>
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-gray-600">Outstanding Balance:</span>
-          <span className="font-semibold text-red-600">${outstandingBalance.toFixed(2)}</span>
+          <span className="font-semibold text-error-dark">${outstandingBalance.toFixed(2)}</span>
         </div>
         <hr className="my-2" />
         <div className="flex justify-between items-center">
           <span className="text-sm font-medium text-gray-700">Max Payable:</span>
-          <span className="font-bold text-blue-600">${maxPayableAmount.toFixed(2)}</span>
+          <span className="font-bold text-brand-600">${maxPayableAmount.toFixed(2)}</span>
         </div>
       </div>
 
       {maxPayableAmount <= 0 ? (
         <div className="text-center py-8">
-          <AlertTriangle className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
+          <AlertTriangle className="w-12 h-12 text-warning mx-auto mb-4" />
           <p className="text-gray-600 mb-2">
             {availableCredits <= 0
               ? "You don't have enough credits to make a payment"
@@ -116,7 +116,7 @@ const PayFromCredits = ({
               Payment Amount
             </label>
             <div className="relative">
-              <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type="number"
                 value={paymentAmount}
@@ -124,7 +124,7 @@ const PayFromCredits = ({
                 max={maxPayableAmount}
                 min={0}
                 step="0.01"
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                 placeholder="0.00"
               />
             </div>
@@ -143,7 +143,7 @@ const PayFromCredits = ({
                     onClick={() => setPaymentAmount(amount)}
                     className={`px-3 py-2 rounded-lg border text-sm font-medium transition-colors ${
                       paymentAmount === amount
-                        ? 'bg-blue-100 border-blue-300 text-blue-700'
+                        ? 'bg-brand-100 border-brand-300 text-brand-700'
                         : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
                     }`}
                   >
@@ -155,10 +155,10 @@ const PayFromCredits = ({
           )}
 
           {/* Payment Info */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+          <div className="bg-brand-50 border border-brand-200 rounded-lg p-4 mb-6">
             <div className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" />
-              <div className="text-sm text-blue-700">
+              <CheckCircle className="w-5 h-5 text-brand-600 mt-0.5 mr-3 flex-shrink-0" />
+              <div className="text-sm text-brand-700">
                 <p className="font-medium mb-1">Payment Process:</p>
                 <p>Your payment will be submitted for admin approval. Once approved, the amount will be deducted from your credits and your outstanding balance will be reduced.</p>
               </div>
@@ -177,7 +177,7 @@ const PayFromCredits = ({
             <button
               onClick={handlePayFromCredits}
               disabled={loading || paymentAmount <= 0 || paymentAmount > maxPayableAmount || maxPayableAmount <= 0}
-              className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+              className="flex-1 px-4 py-3 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
               title={maxPayableAmount <= 0 ? 'No credits or outstanding balance available' : ''}
             >
               {loading ? 'Processing...' : `Pay $${(paymentAmount || 0).toFixed(2)}`}

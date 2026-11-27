@@ -137,9 +137,9 @@ const FileUpload = ({
   const dropzoneClasses = `
     border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors
     ${dragOver
-      ? 'border-blue-400 bg-blue-50'
+      ? 'border-brand-400 bg-brand-50'
       : hasErrors
-        ? 'border-red-300 bg-red-50'
+        ? 'border-error bg-error-soft'
         : 'border-gray-300 hover:border-gray-400'
     }
     ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
@@ -151,7 +151,7 @@ const FileUpload = ({
       {label && (
         <label className="block text-sm font-medium text-gray-700 mb-2">
           {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
+          {required && <span className="text-error ml-1">*</span>}
         </label>
       )}
 
@@ -180,7 +180,7 @@ const FileUpload = ({
           </svg>
 
           <div className="text-sm text-gray-600">
-            <span className="font-medium text-blue-600 hover:text-blue-500">
+            <span className="font-medium text-brand-600 hover:text-brand-500">
               Click to upload
             </span>
             {' '}or drag and drop
@@ -220,7 +220,7 @@ const FileUpload = ({
                   e.stopPropagation();
                   removeFile(index);
                 }}
-                className="text-red-500 hover:text-red-700 p-1"
+                className="text-error hover:text-error-dark p-1"
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -235,7 +235,7 @@ const FileUpload = ({
       {hasErrors && (
         <div className="mt-2">
           {errors.map((error, index) => (
-            <p key={index} className="text-sm text-red-600">
+            <p key={index} className="text-sm text-error-dark">
               {error}
             </p>
           ))}

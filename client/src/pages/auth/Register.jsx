@@ -100,7 +100,7 @@ const Register = memo(() => {
       <div className="w-full max-w-md">
         {/* Logo/Brand Section */}
         <div className="text-center mb-6 sm:mb-8">
-          <div className="mx-auto h-12 w-12 sm:h-16 sm:w-16 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg" style={{background: 'linear-gradient(to right, var(--success), var(--info))'}}>
+          <div className="mx-auto h-12 w-12 sm:h-16 sm:w-16 rounded-full bg-brand flex items-center justify-center mb-3 sm:mb-4 shadow-lg">
             <span className="text-white text-lg sm:text-2xl font-bold">LT</span>
           </div>
           <h1 className="text-xl sm:text-2xl font-bold text-primary mb-2">Join Mentora!</h1>
@@ -171,7 +171,7 @@ const Register = memo(() => {
                     type="checkbox"
                     checked={formData.termsAccepted}
                     onChange={(e) => updateField('termsAccepted', e.target.checked)}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                    className="w-4 h-4 text-brand-600 bg-gray-100 border-gray-300 rounded focus:ring-brand-500 focus:ring-2"
                   />
                 </div>
                 <div className="text-sm">
@@ -181,14 +181,14 @@ const Register = memo(() => {
                       to="/terms-and-conditions"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 underline font-medium"
+                      className="text-brand-600 hover:text-brand-800 underline font-medium"
                     >
                       Terms and Conditions
                     </Link>
                     {' '}and acknowledge that I have read and understood the platform policies.
                   </label>
                   {errors.termsAccepted && (
-                    <p className="mt-1 text-sm text-red-600">{errors.termsAccepted}</p>
+                    <p className="mt-1 text-sm text-error-dark">{errors.termsAccepted}</p>
                   )}
                 </div>
               </div>

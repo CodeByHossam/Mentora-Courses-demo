@@ -77,7 +77,7 @@ const AdminInstructorPayouts = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <RefreshCw className="w-8 h-8 animate-spin text-emerald-600" />
+        <RefreshCw className="w-8 h-8 animate-spin text-success-dark" />
       </div>
     );
   }
@@ -97,7 +97,7 @@ const AdminInstructorPayouts = () => {
 
         {/* Instructors List */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div className="px-6 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 border-b">
+          <div className="px-6 py-4 success-dark border-b">
             <h2 className="text-xl font-semibold text-white flex items-center">
               <DollarSign className="w-6 h-6 mr-2" />
               Instructors with Pending Commissions
@@ -134,8 +134,8 @@ const AdminInstructorPayouts = () => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="flex-shrink-0 h-10 w-10">
-                          <div className="h-10 w-10 rounded-full bg-emerald-100 flex items-center justify-center">
-                            <span className="text-emerald-600 font-semibold">
+                          <div className="h-10 w-10 rounded-full bg-success-soft flex items-center justify-center">
+                            <span className="text-success-dark font-semibold">
                               {instructor.name?.charAt(0).toUpperCase()}
                             </span>
                           </div>
@@ -154,7 +154,7 @@ const AdminInstructorPayouts = () => {
                       ${instructor.billingAccount?.totalCommissionEarned?.toLocaleString() || '0'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                      <span className="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-warning-soft text-warning-dark">
                         ${instructor.billingAccount?.pendingCommissions?.toLocaleString() || '0'}
                       </span>
                     </td>
@@ -164,7 +164,7 @@ const AdminInstructorPayouts = () => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
                       <button
                         onClick={() => openPaymentModal(instructor)}
-                        className="inline-flex items-center px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+                        className="inline-flex items-center px-4 py-2 bg-success-dark text-white rounded-lg hover:bg-success-dark transition-colors"
                       >
                         <Send className="w-4 h-4 mr-2" />
                         Pay Now
@@ -175,7 +175,7 @@ const AdminInstructorPayouts = () => {
                 {instructors.filter(instructor => instructor.billingAccount?.pendingCommissions > 0).length === 0 && (
                   <tr>
                     <td colSpan="6" className="px-6 py-8 text-center text-gray-500">
-                      <CheckCircle className="w-12 h-12 mx-auto mb-3 text-green-500" />
+                      <CheckCircle className="w-12 h-12 mx-auto mb-3 text-success" />
                       <p className="text-lg font-medium">No pending payouts</p>
                       <p className="text-sm">All instructors have been paid!</p>
                     </td>
@@ -191,7 +191,7 @@ const AdminInstructorPayouts = () => {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               {/* Modal Header */}
-              <div className="px-6 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 border-b flex items-center justify-between">
+              <div className="px-6 py-4 success-dark border-b flex items-center justify-between">
                 <h3 className="text-xl font-semibold text-white flex items-center">
                   <DollarSign className="w-6 h-6 mr-2" />
                   Process Payout - {selectedInstructor.name}
@@ -219,19 +219,19 @@ const AdminInstructorPayouts = () => {
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">Pending Commissions</p>
-                      <p className="font-semibold text-orange-600">
+                      <p className="font-semibold text-warning-dark">
                         ${selectedInstructor.billingAccount?.pendingCommissions?.toLocaleString() || '0'}
                       </p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">Annual Fees</p>
-                      <p className="font-semibold text-red-600">
+                      <p className="font-semibold text-error-dark">
                         -${selectedInstructor.billingAccount?.annualFees?.toLocaleString() || '0'}
                       </p>
                     </div>
                     <div className="col-span-2 pt-2 border-t border-gray-300">
                       <p className="text-sm text-gray-600">Maximum Payable Amount</p>
-                      <p className="font-bold text-emerald-600 text-lg">
+                      <p className="font-bold text-success-dark text-lg">
                         ${Math.max(0, (selectedInstructor.billingAccount?.pendingCommissions || 0) - (selectedInstructor.billingAccount?.annualFees || 0)).toLocaleString()}
                       </p>
                       <p className="text-xs text-gray-500 mt-1">
@@ -251,7 +251,7 @@ const AdminInstructorPayouts = () => {
                     step="0.01"
                     value={payoutAmount}
                     onChange={(e) => setPayoutAmount(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-transparent"
                     required
                     max={Math.max(0, (selectedInstructor.billingAccount?.pendingCommissions || 0) - (selectedInstructor.billingAccount?.annualFees || 0))}
                   />
@@ -270,7 +270,7 @@ const AdminInstructorPayouts = () => {
                     value={transactionReference}
                     onChange={(e) => setTransactionReference(e.target.value)}
                     placeholder="e.g., TXN123456789"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-transparent"
                     required
                   />
                 </div>
@@ -280,11 +280,11 @@ const AdminInstructorPayouts = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Payment Receipt * (Image or PDF)
                   </label>
-                  <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-emerald-500 transition-colors">
+                  <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-success transition-colors">
                     <div className="space-y-1 text-center">
                       <Upload className="mx-auto h-12 w-12 text-gray-400" />
                       <div className="flex text-sm text-gray-600">
-                        <label className="relative cursor-pointer bg-white rounded-md font-medium text-emerald-600 hover:text-emerald-500">
+                        <label className="relative cursor-pointer bg-white rounded-md font-medium text-success-dark hover:text-success">
                           <span>Upload a file</span>
                           <input
                             type="file"
@@ -298,7 +298,7 @@ const AdminInstructorPayouts = () => {
                       </div>
                       <p className="text-xs text-gray-500">PNG, JPG, PDF up to 10MB</p>
                       {receiptFile && (
-                        <p className="text-sm text-emerald-600 font-medium mt-2">
+                        <p className="text-sm text-success-dark font-medium mt-2">
                           ✓ {receiptFile.name}
                         </p>
                       )}
@@ -316,7 +316,7 @@ const AdminInstructorPayouts = () => {
                     onChange={(e) => setNotes(e.target.value)}
                     rows="3"
                     placeholder="Add any additional notes about this payout..."
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-transparent"
                   />
                 </div>
 
@@ -325,7 +325,7 @@ const AdminInstructorPayouts = () => {
                   <button
                     type="submit"
                     disabled={isProcessing}
-                    className="flex-1 bg-emerald-600 text-white py-3 px-4 rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="flex-1 bg-success-dark text-white py-3 px-4 rounded-lg hover:bg-success-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isProcessing ? (
                       <>

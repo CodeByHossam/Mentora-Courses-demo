@@ -193,7 +193,7 @@ const AdminPaymentSettings = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
+          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-brand-600" />
           <p>Loading payment settings...</p>
         </div>
       </div>

@@ -4,7 +4,7 @@ export const aboutData = {
     description:
       "Mentora is dedicated to making quality education accessible to everyone. We believe in empowering individuals through knowledge and practical skills that can transform their careers and lives.",
     image:
-      "/demo-placeholder.svg",
+      "/images/photo-1522202176988-66273c2fd55f.jpg",
   },
   stats: [
     { number: "50K+", label: "Active Students" },
@@ -17,21 +17,21 @@ export const aboutData = {
       name: "Sarah Johnson",
       role: "Founder & CEO",
       image:
-        "/demo-placeholder.svg",
+        "/images/photo-1494790108377-be9c29b29330.jpg",
       bio: "Former tech executive with 15+ years of experience in education technology.",
     },
     {
       name: "Michael Chen",
       role: "Head of Education",
       image:
-        "/demo-placeholder.svg",
+        "/images/photo-1507003211169-0a1dd7228f2d.jpg",
       bio: "Education specialist with a passion for innovative learning methods.",
     },
     {
       name: "Emily Davis",
       role: "Content Director",
       image:
-        "/demo-placeholder.svg",
+        "/images/photo-1573496359142-b8d87734a5a2.jpg",
       bio: "Former curriculum developer with expertise in online learning platforms.",
     },
   ],
@@ -40,21 +40,21 @@ export const aboutData = {
       name: "John Smith",
       role: "Web Developer",
       image:
-        "/demo-placeholder.svg",
+        "/images/photo-1472099645785-5658abf4ff4e.jpg",
       text: "Mentora transformed my career. The courses are well-structured and the instructors are incredibly knowledgeable.",
     },
     {
       name: "Maria Garcia",
       role: "UX Designer",
       image:
-        "/demo-placeholder.svg",
+        "/images/photo-1438761681033-6461ffad8d80.jpg",
       text: "The quality of education here is outstanding. I've learned more in 6 months than I did in 2 years of traditional education.",
     },
     {
       name: "David Wilson",
       role: "Data Scientist",
       image:
-        "/demo-placeholder.svg",
+        "/images/photo-1500648767791-00dcc994a43e.jpg",
       text: "The practical approach to learning and the supportive community make Mentora the best platform for career changers.",
     },
   ],
@@ -67,7 +67,7 @@ export const profileData = {
     role: "Student",
     joinDate: "January 2024",
     image:
-      "/demo-placeholder.svg",
+      "/images/photo-1472099645785-5658abf4ff4e.jpg",
     bio: "Passionate about learning new technologies and building innovative solutions.",
   },
   stats: {
@@ -83,7 +83,7 @@ export const profileData = {
       progress: 75,
       lastAccessed: "2 days ago",
       image:
-        "/demo-placeholder.svg",
+        "/images/photo-1498050108023-c5249f4df085.jpg",
     },
     {
       id: 2,
@@ -91,7 +91,7 @@ export const profileData = {
       progress: 30,
       lastAccessed: "1 week ago",
       image:
-        "/demo-placeholder.svg",
+        "/images/photo-1551288049-bebda4e38f71.jpg",
     },
   ],
   certificates: [
@@ -100,14 +100,14 @@ export const profileData = {
       title: "Web Development Fundamentals",
       issueDate: "March 2024",
       image:
-        "/demo-placeholder.svg",
+        "/images/photo-1561070791-2526d30994b5.jpg",
     },
     {
       id: 2,
       title: "JavaScript Advanced Concepts",
       issueDate: "February 2024",
       image:
-        "/demo-placeholder.svg",
+        "/images/photo-1555066931-4365d14bab8c.jpg",
     },
   ],
   achievements: [

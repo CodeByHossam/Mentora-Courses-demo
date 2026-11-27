@@ -8,7 +8,7 @@ import {
   useEditInstructorNoteMutation,
   useDeleteInstructorNoteMutation,
 } from "../store/services/instructorRequestApi";
-import ProgressLoader from "../components/ProgressLoader";
+import { ProgressLoader } from '../components/common/index.js';
 import { handleApiError, handleApiSuccess } from "../utils/apiErrorHandler";
 import { useConfirm } from "../hooks/useConfirm";
 
@@ -164,7 +164,7 @@ const InstructorRequests = () => {
                       r.status !== "pending" || updating || isProcessing
                     }
                     onClick={() => handleDecision(r._id, "approved")}
-                    className="px-3 py-1 bg-green-600 text-white rounded disabled:bg-gray-300"
+                    className="px-3 py-1 bg-success-dark text-white rounded disabled:bg-gray-300"
                   >
                     Approve
                   </button>
@@ -173,14 +173,14 @@ const InstructorRequests = () => {
                       r.status !== "pending" || updating || isProcessing
                     }
                     onClick={() => handleDecision(r._id, "rejected")}
-                    className="px-3 py-1 bg-yellow-600 text-white rounded disabled:bg-gray-300"
+                    className="px-3 py-1 bg-warning-dark text-white rounded disabled:bg-gray-300"
                   >
                     Reject
                   </button>
                   <button
                     onClick={() => handleDelete(r._id)}
                     disabled={isProcessing}
-                    className="px-3 py-1 bg-red-600 text-white rounded"
+                    className="px-3 py-1 bg-error-dark text-white rounded"
                   >
                     <Trash2 size={20} />
                   </button>
@@ -192,7 +192,7 @@ const InstructorRequests = () => {
                         selectedRequestId === r._id ? null : r._id
                       )
                     }
-                    className="text-blue-600 hover:underline"
+                    className="text-brand-600 hover:underline"
                   >
                     {selectedRequestId === r._id ? "▲" : "▼"}
                   </button>
@@ -219,7 +219,7 @@ const InstructorRequests = () => {
                         href={r.universityCertificate}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-indigo-600 hover:underline"
+                        className="text-brand-600 hover:underline"
                       >
                         View
                       </a>
@@ -234,7 +234,7 @@ const InstructorRequests = () => {
                                 href={cert}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="text-indigo-600 hover:underline"
+                                className="text-brand-600 hover:underline"
                               >
                                 View Certificate {idx + 1}
                               </a>
@@ -259,7 +259,7 @@ const InstructorRequests = () => {
                             return (
                               <div
                                 key={index}
-                                className="bg-white p-3 rounded border-l-4 border-blue-500"
+                                className="bg-white p-3 rounded border-l-4 border-brand-500"
                               >
                                 {isEditing ? (
                                   <div>
@@ -279,7 +279,7 @@ const InstructorRequests = () => {
                                         onClick={() =>
                                           handleEditNote(r._id, note._id)
                                         }
-                                        className="px-2 py-1 bg-green-600 text-white rounded text-xs flex items-center gap-1"
+                                        className="px-2 py-1 bg-success-dark text-white rounded text-xs flex items-center gap-1"
                                       >
                                         <Save size={12} /> Save
                                       </button>
@@ -327,7 +327,7 @@ const InstructorRequests = () => {
                                               [noteKey]: note.note,
                                             }))
                                           }
-                                          className="px-2 py-1 bg-blue-600 text-white rounded text-xs flex items-center gap-1"
+                                          className="px-2 py-1 bg-brand-600 text-white rounded text-xs flex items-center gap-1"
                                         >
                                           <Edit2 size={12} /> Edit
                                         </button>
@@ -335,7 +335,7 @@ const InstructorRequests = () => {
                                           onClick={() =>
                                             handleDeleteNote(r._id, note._id)
                                           }
-                                          className="px-2 py-1 bg-red-600 text-white rounded text-xs flex items-center gap-1"
+                                          className="px-2 py-1 bg-error-dark text-white rounded text-xs flex items-center gap-1"
                                         >
                                           <Trash2 size={12} /> Delete
                                         </button>
@@ -360,7 +360,7 @@ const InstructorRequests = () => {
                     </label>
                     <textarea
                       rows={3}
-                      className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-brand-500 focus:border-brand-500 sm:text-sm"
                       value={adminNotes[r._id] || ""}
                       onChange={(e) =>
                         setAdminNotes((prev) => ({
@@ -372,7 +372,7 @@ const InstructorRequests = () => {
                     <button
                       onClick={() => handleAddNote(r._id)}
                       disabled={addingNote || isProcessing}
-                      className="mt-2 px-3 py-1 bg-blue-600 text-white rounded disabled:bg-gray-300"
+                      className="mt-2 px-3 py-1 bg-brand-600 text-white rounded disabled:bg-gray-300"
                     >
                       Save Note
                     </button>

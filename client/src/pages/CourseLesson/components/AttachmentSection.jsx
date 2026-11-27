@@ -17,16 +17,16 @@ const AttachmentSection = ({
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center">
           <div className="text-3xl mr-3">📚</div>
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+          <h2 className="text-2xl font-bold text-ink ">
             Course Materials
           </h2>
         </div>
         {user?.role === "instructor" && (
           <label
-            className={`cursor-pointer px-6 py-3 rounded-xl font-medium transition-all duration-200 transform ${
+            className={`cursor-pointer px-6 py-3 rounded-xl font-medium transition-all duration-200 ${
               isUploadingAttachment
                 ? "bg-gray-400 text-gray-600 cursor-not-allowed"
-                : "bg-gradient-to-r from-green-600 to-emerald-600 text-white hover:from-green-700 hover:to-emerald-700 hover:scale-105 shadow-lg"
+                : "bg-success text-white hover:bg-success shadow-lg"
             }`}
           >
             {isUploadingAttachment ? (
@@ -52,7 +52,7 @@ const AttachmentSection = ({
       </div>
       {/* Error Display */}
       {error && (
-        <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl flex items-center">
+        <div className="mb-6 p-4 bg-error-soft border border-error-soft text-error-dark rounded-xl flex items-center">
           <div className="text-xl mr-3">⚠️</div>
           <div>
             <p className="font-medium">Upload Error</p>
@@ -62,18 +62,18 @@ const AttachmentSection = ({
       )}
       {/* Upload Progress Bar */}
       {isUploadingAttachment && uploadProgress > 0 && (
-        <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+        <div className="mb-6 p-4 bg-brand-50 border border-brand-200 rounded-xl">
           <div className="flex items-center mb-2">
             <div className="text-xl mr-3">📤</div>
-            <p className="font-medium text-blue-800">Uploading Material</p>
+            <p className="font-medium text-brand-800">Uploading Material</p>
           </div>
-          <div className="w-full bg-blue-200 rounded-full h-3">
+          <div className="w-full bg-brand-200 rounded-full h-3">
             <div
-              className="bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full transition-all duration-300"
+              className="bg-brand h-3 rounded-full transition-all duration-300"
               style={{ width: `${uploadProgress}%` }}
             ></div>
           </div>
-          <p className="text-sm text-blue-600 mt-2 font-medium">
+          <p className="text-sm text-brand-600 mt-2 font-medium">
             {uploadProgress}% complete
           </p>
         </div>
@@ -93,13 +93,13 @@ const AttachmentSection = ({
             .map((attachment) => (
               <div
                 key={attachment._id}
-                className="flex items-center justify-between p-6 border border-gray-200 rounded-xl hover:border-gray-300 transition-all duration-200 hover:shadow-md bg-gradient-to-r from-gray-50 to-white"
+                className="flex items-center justify-between p-6 border border-gray-200 rounded-xl hover:border-gray-300 transition-all duration-200 hover:shadow-md bg-canvas"
               >
                 <div className="flex items-center">
                   {/* File type icon */}
                   {attachment?.fileType?.toLowerCase() === "pdf" ? (
                     <svg
-                      className="h-6 w-6 text-red-500 mr-3"
+                      className="h-6 w-6 text-error mr-3"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -112,7 +112,7 @@ const AttachmentSection = ({
                   ) : attachment?.fileType?.toLowerCase() === "doc" ||
                     attachment?.fileType?.toLowerCase() === "docx" ? (
                     <svg
-                      className="h-6 w-6 text-blue-500 mr-3"
+                      className="h-6 w-6 text-brand-500 mr-3"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -125,7 +125,7 @@ const AttachmentSection = ({
                   ) : attachment?.fileType?.toLowerCase() === "ppt" ||
                     attachment?.fileType?.toLowerCase() === "pptx" ? (
                     <svg
-                      className="h-6 w-6 text-orange-500 mr-3"
+                      className="h-6 w-6 text-warning mr-3"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -137,7 +137,7 @@ const AttachmentSection = ({
                     </svg>
                   ) : attachment?.fileType?.toLowerCase() === "zip" ? (
                     <svg
-                      className="h-6 w-6 text-purple-500 mr-3"
+                      className="h-6 w-6 text-brand-500 mr-3"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -152,7 +152,7 @@ const AttachmentSection = ({
                     attachment?.fileType?.toLowerCase() === "png" ||
                     attachment?.fileType?.toLowerCase() === "gif" ? (
                     <svg
-                      className="h-6 w-6 text-green-500 mr-3"
+                      className="h-6 w-6 text-success mr-3"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -165,12 +165,12 @@ const AttachmentSection = ({
                   ) : attachment?.fileType?.toLowerCase() === "mp4" ||
                     attachment?.fileType?.toLowerCase() === "mov" ||
                     attachment?.fileType?.toLowerCase() === "avi" ? (
-                    <div className="h-6 w-6 text-purple-500 mr-3 flex items-center justify-center">
+                    <div className="h-6 w-6 text-brand-500 mr-3 flex items-center justify-center">
                       🎥
                     </div>
                   ) : attachment?.fileType?.toLowerCase() === "mp3" ||
                     attachment?.fileType?.toLowerCase() === "wav" ? (
-                    <div className="h-6 w-6 text-orange-500 mr-3 flex items-center justify-center">
+                    <div className="h-6 w-6 text-warning mr-3 flex items-center justify-center">
                       🎵
                     </div>
                   ) : (
@@ -223,7 +223,7 @@ const AttachmentSection = ({
                       )}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 transition-colors"
+                      className="text-brand-600 hover:text-brand-800 transition-colors"
                       title={`Download ${attachment?.title || "file"}`}
                     >
                       <Download size={16} />
@@ -238,7 +238,7 @@ const AttachmentSection = ({
                           attachmentId: attachment._id,
                         })
                       }
-                      className="text-red-600 hover:text-red-800"
+                      className="text-error-dark hover:text-error-dark"
                       aria-label="Remove attachment"
                     >
                       ✕

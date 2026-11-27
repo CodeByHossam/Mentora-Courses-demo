@@ -24,7 +24,7 @@ import {
   useDeleteGradeMutation,
 } from "../store/services/gradeApi";
 import { useGetInstructorCoursesQuery } from "../store/services/courseApi";
-import LoadingSpinner from "../components/LoadingSpinner";
+import { LoadingSpinner } from '../components/common/index.js';
 
 const InstructorGrading = () => {
   const { user } = useSelector((state) => state.auth);
@@ -99,11 +99,11 @@ const InstructorGrading = () => {
   };
 
   const getGradeColor = (percentage) => {
-    if (percentage >= 90) return "text-green-600 bg-green-100";
-    if (percentage >= 80) return "text-blue-600 bg-blue-100";
-    if (percentage >= 70) return "text-yellow-600 bg-yellow-100";
-    if (percentage >= 60) return "text-orange-600 bg-orange-100";
-    return "text-red-600 bg-red-100";
+    if (percentage >= 90) return "text-success-dark bg-success-soft";
+    if (percentage >= 80) return "text-brand-600 bg-brand-100";
+    if (percentage >= 70) return "text-warning-dark bg-warning-soft";
+    if (percentage >= 60) return "text-warning-dark bg-warning-soft";
+    return "text-error-dark bg-error-soft";
   };
 
   const calculateWeightedAverage = (testGrades) => {
@@ -180,7 +180,7 @@ const InstructorGrading = () => {
   if (coursesLoading) return <LoadingSpinner />;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
+    <div className="min-h-screen bg-brand-50 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -195,7 +195,7 @@ const InstructorGrading = () => {
         {/* Course Selection */}
         <div className="bg-white rounded-xl p-6 shadow-lg mb-8">
           <div className="flex items-center gap-4">
-            <BookOpen className="w-6 h-6 text-blue-600" />
+            <BookOpen className="w-6 h-6 text-brand-600" />
             <div className="flex-1">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Select Course to Grade
@@ -203,7 +203,7 @@ const InstructorGrading = () => {
               <select
                 value={selectedCourse}
                 onChange={(e) => setSelectedCourse(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="">Choose a course...</option>
                 {courses.map((course) => (
@@ -233,11 +233,11 @@ const InstructorGrading = () => {
                       Avg: {stat.averagePercentage?.toFixed(1)}%
                     </p>
                   </div>
-                  <div className="p-3 bg-blue-100 rounded-full">
+                  <div className="p-3 bg-brand-100 rounded-full">
                     {stat._id === "final_grade" ? (
-                      <Award className="w-6 h-6 text-blue-600" />
+                      <Award className="w-6 h-6 text-brand-600" />
                     ) : (
-                      <Target className="w-6 h-6 text-blue-600" />
+                      <Target className="w-6 h-6 text-brand-600" />
                     )}
                   </div>
                 </div>
@@ -285,8 +285,8 @@ const InstructorGrading = () => {
                       {/* Student Header */}
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                            <span className="text-blue-600 font-semibold">
+                          <div className="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center">
+                            <span className="text-brand-600 font-semibold">
                               {studentGrade.student.name.charAt(0)}
                             </span>
                           </div>
@@ -386,7 +386,7 @@ const InstructorGrading = () => {
                             setSelectedStudent(studentGrade);
                             setShowTestGradeModal(true);
                           }}
-                          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                          className="flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors"
                         >
                           <Plus className="w-4 h-4" />
                           Add Test Grade
@@ -404,7 +404,7 @@ const InstructorGrading = () => {
                             });
                             setShowFinalGradeModal(true);
                           }}
-                          className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                          className="flex items-center gap-2 px-4 py-2 bg-success-dark text-white rounded-lg hover:bg-success-dark transition-colors"
                         >
                           <Award className="w-4 h-4" />
                           {finalGrade ? "Update" : "Assign"} Final Grade
@@ -456,7 +456,7 @@ const InstructorGrading = () => {
                         testName: e.target.value,
                       })
                     }
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     placeholder="e.g., Midterm Exam, Quiz 1"
                     required
                   />
@@ -476,7 +476,7 @@ const InstructorGrading = () => {
                           totalPoints: e.target.value,
                         })
                       }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                       placeholder="100"
                       min="0"
                       step="0.1"
@@ -496,7 +496,7 @@ const InstructorGrading = () => {
                           earnedPoints: e.target.value,
                         })
                       }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                       placeholder="85"
                       min="0"
                       step="0.1"
@@ -518,7 +518,7 @@ const InstructorGrading = () => {
                         weight: e.target.value,
                       })
                     }
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     placeholder="1"
                     min="0"
                     max="100"
@@ -539,7 +539,7 @@ const InstructorGrading = () => {
                         comments: e.target.value,
                       })
                     }
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     placeholder="Brief comment about performance"
                   />
                 </div>
@@ -556,7 +556,7 @@ const InstructorGrading = () => {
                         feedback: e.target.value,
                       })
                     }
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     rows="3"
                     placeholder="Detailed feedback for the student..."
                   />
@@ -564,8 +564,8 @@ const InstructorGrading = () => {
 
                 {/* Calculated Percentage Display */}
                 {testGradeForm.totalPoints && testGradeForm.earnedPoints && (
-                  <div className="p-3 bg-blue-50 rounded-lg">
-                    <p className="text-sm text-blue-800">
+                  <div className="p-3 bg-brand-50 rounded-lg">
+                    <p className="text-sm text-brand-800">
                       <strong>Calculated Grade:</strong>{" "}
                       {(
                         (parseFloat(testGradeForm.earnedPoints) /
@@ -587,7 +587,7 @@ const InstructorGrading = () => {
                   <button
                     type="submit"
                     disabled={creatingTestGrade}
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors disabled:opacity-50"
                   >
                     <Save className="w-4 h-4" />
                     {creatingTestGrade ? "Saving..." : "Save Test Grade"}
@@ -635,7 +635,7 @@ const InstructorGrading = () => {
                         percentage: e.target.value,
                       })
                     }
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-transparent"
                     placeholder="85.5"
                     min="0"
                     max="100"
@@ -657,7 +657,7 @@ const InstructorGrading = () => {
                         comments: e.target.value,
                       })
                     }
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-transparent"
                     placeholder="Overall performance summary"
                   />
                 </div>
@@ -674,7 +674,7 @@ const InstructorGrading = () => {
                         feedback: e.target.value,
                       })
                     }
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-transparent"
                     rows="4"
                     placeholder="Comprehensive feedback about the student's performance in the course..."
                   />
@@ -682,16 +682,16 @@ const InstructorGrading = () => {
 
                 {/* Grade Preview */}
                 {finalGradeForm.percentage && (
-                  <div className="p-4 bg-green-50 rounded-lg">
+                  <div className="p-4 bg-success-soft rounded-lg">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm text-green-800">
+                        <p className="text-sm text-success-dark">
                           <strong>Letter Grade:</strong>{" "}
                           {getLetterGrade(
                             parseFloat(finalGradeForm.percentage)
                           )}
                         </p>
-                        <p className="text-sm text-green-800">
+                        <p className="text-sm text-success-dark">
                           <strong>GPA Points:</strong>{" "}
                           {(
                             {
@@ -734,7 +734,7 @@ const InstructorGrading = () => {
                   <button
                     type="submit"
                     disabled={creatingFinalGrade}
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50"
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-success-dark text-white rounded-lg hover:bg-success-dark transition-colors disabled:opacity-50"
                   >
                     <Award className="w-4 h-4" />
                     {creatingFinalGrade ? "Saving..." : "Save Final Grade"}

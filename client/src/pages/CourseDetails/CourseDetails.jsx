@@ -119,7 +119,7 @@ const CourseDetails = () => {
         i <= Math.round(avg) ? (
           <Star
             key={i}
-            className="w-6 h-6 text-yellow-400"
+            className="w-6 h-6 text-warning"
             fill="currentColor"
           />
         ) : (
@@ -323,7 +323,7 @@ const CourseDetails = () => {
             {currentUser?.role === "instructor" && (
               <button
                 onClick={() => navigate("/instructor/courses")}
-                className="px-6 py-2 cursor-pointer bg-blue-600 text-white rounded-lg hover:bg-blue-700 hover:shadow-lg transition duration-400 ease-in-out"
+                className="px-6 py-2 cursor-pointer bg-brand-600 text-white rounded-lg hover:bg-brand-700 hover:shadow-lg transition duration-400 ease-in-out"
               >
                 Go to My Courses
               </button>
@@ -357,7 +357,7 @@ const CourseDetails = () => {
             </p>
             <button
               onClick={handleEnroll}
-              className="px-6 py-2 cursor-pointer bg-accent-dark text-white rounded-lg hover:bg-green-700 hover:shadow-lg transition duration-400 ease-in-out"
+              className="px-6 py-2 cursor-pointer bg-brand-200 text-white rounded-lg hover:bg-success-dark hover:shadow-lg transition duration-400 ease-in-out"
             >
               Enroll Now
             </button>
@@ -373,7 +373,7 @@ const CourseDetails = () => {
             </p>
             <button
               onClick={() => navigate("/login")}
-              className="px-6 py-2 cursor-pointer bg-blue-600 text-white rounded-lg hover:bg-blue-700 hover:shadow-lg transition duration-400 ease-in-out"
+              className="px-6 py-2 cursor-pointer bg-brand-600 text-white rounded-lg hover:bg-brand-700 hover:shadow-lg transition duration-400 ease-in-out"
             >
               Login
             </button>

@@ -14,7 +14,7 @@ const AddTestModal = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative transform transition-all">
+      <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative transition-all">
         <button
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
           onClick={() => setShowAddTestModal(false)}
@@ -28,7 +28,7 @@ const AddTestModal = ({
           <p className="text-gray-600 text-sm">Create a test for your students</p>
         </div>
         {testFormError && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm">
+          <div className="mb-4 p-3 bg-error-soft border border-error-soft text-error-dark rounded-lg text-sm">
             {testFormError}
           </div>
         )}
@@ -40,7 +40,7 @@ const AddTestModal = ({
               name="title"
               value={testForm.title}
               onChange={handleTestFormChange}
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
               placeholder="Enter test title..."
               required
             />
@@ -51,7 +51,7 @@ const AddTestModal = ({
               name="description"
               value={testForm.description}
               onChange={handleTestFormChange}
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all resize-none"
               rows={3}
               placeholder="Describe the test..."
             />
@@ -63,7 +63,7 @@ const AddTestModal = ({
               name="dueDate"
               value={testForm.dueDate}
               onChange={handleTestFormChange}
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
             />
           </div>
 
@@ -73,7 +73,7 @@ const AddTestModal = ({
               name="testType"
               value={testForm.testType}
               onChange={handleTestFormChange}
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
               required
             >
               <option value="progress">📝 Progress Test</option>
@@ -91,7 +91,7 @@ const AddTestModal = ({
               name="totalPoints"
               value={testForm.totalPoints}
               onChange={handleTestFormChange}
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
               placeholder="Enter maximum score (e.g., 100)"
               min="1"
               max="1000"
@@ -108,14 +108,14 @@ const AddTestModal = ({
               name="testFile"
               accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.gif,.zip,.ppt,.pptx,.mp4,.mov,.avi,.mp3,.wav"
               onChange={handleTestFormChange}
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
               required
             />
           </div>
           <button
             type="submit"
             disabled={isAddingTest}
-            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium transform hover:scale-105 disabled:transform-none"
+            className="w-full bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium "
           >
             {isAddingTest ? (
               <div className="flex items-center justify-center">

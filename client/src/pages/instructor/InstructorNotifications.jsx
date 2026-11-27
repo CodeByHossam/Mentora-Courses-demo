@@ -39,15 +39,15 @@ const InstructorNotifications = () => {
       case 'course':
       case 'course_enrollment':
       case 'course_update':
-        return { icon: BookOpen, color: 'text-blue-600', bgColor: 'bg-blue-50' };
+        return { icon: BookOpen, color: 'text-brand-600', bgColor: 'bg-brand-50' };
       case 'live_session':
-        return { icon: Calendar, color: 'text-green-600', bgColor: 'bg-green-50' };
+        return { icon: Calendar, color: 'text-success-dark', bgColor: 'bg-success-soft' };
       case 'payment':
-        return { icon: CreditCard, color: 'text-emerald-600', bgColor: 'bg-emerald-50' };
+        return { icon: CreditCard, color: 'text-success-dark', bgColor: 'bg-success-soft' };
       case 'message':
-        return { icon: MessageSquare, color: 'text-purple-600', bgColor: 'bg-purple-50' };
+        return { icon: MessageSquare, color: 'text-brand-600', bgColor: 'bg-brand-50' };
       case 'assignment_graded':
-        return { icon: User, color: 'text-orange-600', bgColor: 'bg-orange-50' };
+        return { icon: User, color: 'text-warning-dark', bgColor: 'bg-warning-soft' };
       case 'system':
       default:
         return { icon: Settings, color: 'text-gray-600', bgColor: 'bg-gray-50' };

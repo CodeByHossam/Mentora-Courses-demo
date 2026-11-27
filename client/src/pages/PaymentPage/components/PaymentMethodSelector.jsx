@@ -56,8 +56,8 @@ const PaymentMethodSelector = ({
                 method.disabled
                   ? "cursor-pointer opacity-60 border-gray-200 bg-gray-50 hover:border-gray-300"
                   : paymentMethod === method.id
-                  ? "border-indigo-500 bg-indigo-50"
-                  : "border-gray-200 bg-white hover:border-indigo-300 hover:shadow-md"
+                  ? "border-brand-500 bg-brand-50"
+                  : "border-gray-200 bg-white hover:border-brand-300 hover:shadow-md"
               }`}
               style={{ minHeight: "120px" }}
             >
@@ -66,7 +66,7 @@ const PaymentMethodSelector = ({
                 <h3 className="font-semibold text-gray-900">{method.name}</h3>
                 <p className="text-sm text-gray-600">{method.description}</p>
                 {method.disabled && (
-                  <p className="text-xs text-red-500 mt-1">Not available</p>
+                  <p className="text-xs text-error mt-1">Not available</p>
                 )}
               </div>
             </button>
@@ -85,7 +85,7 @@ const PaymentMethodSelector = ({
               setPaymentMethod("direct_transfer");
               setShowDirectLink(false);
             }}
-            className="text-indigo-600 hover:text-indigo-800 font-medium underline"
+            className="text-brand-600 hover:text-brand-800 font-medium underline"
           >
             Go to Direct Payment
           </button>

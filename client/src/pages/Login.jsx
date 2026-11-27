@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useLoginMutation } from "../store/services/authApi";
 import { setCredentials } from "../store/slices/authSlice";
 import { handleApiError, handleApiSuccess } from "../utils/apiErrorHandler";
-import ProgressLoader from "../components/ProgressLoader";
+import { ProgressLoader } from '../components/common/index.js';
 import usePersist from "../hooks/usePersist";
 
 const Login = () => {
@@ -57,7 +57,7 @@ const Login = () => {
       <div className="w-full max-w-md">
         {/* Logo/Brand Section */}
         <div className="text-center mb-6 sm:mb-8">
-          <div className="mx-auto h-12 w-12 sm:h-16 sm:w-16 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg" style={{background: 'linear-gradient(to right, var(--success), var(--info))'}}>
+          <div className="mx-auto h-12 w-12 sm:h-16 sm:w-16 rounded-full bg-brand flex items-center justify-center mb-3 sm:mb-4 shadow-lg">
             <span className="text-white text-lg sm:text-2xl font-bold">LT</span>
           </div>
           <h1 className="text-xl sm:text-2xl font-bold text-primary mb-2">Welcome Back!</h1>
@@ -96,7 +96,7 @@ const Login = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="you@example.com"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors text-gray-900 placeholder-gray-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-success transition-colors text-gray-900 placeholder-gray-500"
               />
             </div>
 
@@ -122,7 +122,7 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors text-gray-900 placeholder-gray-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-success transition-colors text-gray-900 placeholder-gray-500"
               />
             </div>
 
@@ -133,7 +133,7 @@ const Login = () => {
                 type="checkbox"
                 checked={trustDevice}
                 onChange={() => setTrustDevice(!trustDevice)}
-                className="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500 focus:ring-2 mt-1"
+                className="h-4 w-4 text-success-dark border-gray-300 rounded focus:ring-success focus:ring-2 mt-1"
               />
               <div className="flex-1">
                 <label
@@ -155,7 +155,7 @@ const Login = () => {
               className={`w-full py-3 px-4 rounded-lg font-medium text-white transition-all duration-200 ${
                 isLoading 
                   ? "bg-gray-400 cursor-not-allowed" 
-                  : "bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 hover:shadow-lg transform hover:-translate-y-0.5"
+                  : "bg-brand hover:bg-brand-dark hover:shadow-lg "
               }`}
             >
               {isLoading ? (
@@ -172,7 +172,7 @@ const Login = () => {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Need help? {" "}
-              <Link to="/contact" className="text-green-600 hover:text-green-700 font-medium hover:underline transition-colors">
+              <Link to="/contact" className="text-success-dark hover:text-success-dark font-medium hover:underline transition-colors">
                 Contact Support
               </Link>
             </p>

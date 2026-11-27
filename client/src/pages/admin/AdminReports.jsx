@@ -22,7 +22,7 @@ const AdminReports = () => {
     return <ProgressLoader isVisible={true} message="Loading reports..." />;
   if (error)
     return (
-      <div className="text-red-600 p-8">
+      <div className="text-error-dark p-8">
         Error:{" "}
         {error?.data?.message || error?.message || "Failed to fetch reports"}
       </div>

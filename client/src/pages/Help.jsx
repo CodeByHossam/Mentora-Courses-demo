@@ -37,8 +37,8 @@ const Help = () => {
         title: "Welcome to Mentora",
         subtitle: "Your Gateway to Quality Online Education",
         description: "Discover a world of learning opportunities with our comprehensive online learning platform. Connect with expert instructors, access quality courses, and track your progress.",
-        gradient: "from-blue-600 via-purple-600 to-indigo-600",
-        bgGradient: "from-blue-50 via-indigo-50 to-purple-50"
+        gradient: "bg-brand-600",
+        bgGradient: "bg-brand-50"
       };
     }
 
@@ -48,32 +48,32 @@ const Help = () => {
           title: `Welcome ${user.name}!`,
           subtitle: "Your Learning Journey Starts Here",
           description: "Access your courses, track your progress, communicate with instructors, and achieve your educational goals with our comprehensive student dashboard.",
-          gradient: "from-blue-600 via-sky-600 to-cyan-600",
-          bgGradient: "from-blue-50 via-sky-50 to-cyan-50"
+          gradient: "bg-brand-600 bg-brand-600 bg-brand-600",
+          bgGradient: "bg-brand-50 bg-brand-50 bg-brand-50"
         };
       case 'instructor':
         return {
           title: `Hello ${user.name}!`,
           subtitle: "Empower Students Through Teaching",
           description: "Manage your courses, engage with students, track their progress, and create impactful learning experiences with our instructor tools.",
-          gradient: "from-emerald-600 via-green-600 to-teal-600",
-          bgGradient: "from-emerald-50 via-green-50 to-teal-50"
+          gradient: "bg-success",
+          bgGradient: "bg-success-soft"
         };
       case 'admin':
         return {
           title: `Admin Dashboard - ${user.name}`,
           subtitle: "Platform Management & Control",
           description: "Oversee the entire platform, manage users, monitor system performance, and ensure the best learning experience for everyone.",
-          gradient: "from-purple-600 via-violet-600 to-indigo-600",
-          bgGradient: "from-purple-50 via-violet-50 to-indigo-50"
+          gradient: "bg-brand-600 bg-brand-600 bg-brand-600",
+          bgGradient: "bg-brand-50 bg-brand-50 bg-brand-50"
         };
       default:
         return {
           title: "Welcome to Mentora",
           subtitle: "Your Gateway to Quality Online Education",
           description: "Discover a world of learning opportunities with our comprehensive online learning platform.",
-          gradient: "from-blue-600 via-purple-600 to-indigo-600",
-          bgGradient: "from-blue-50 via-indigo-50 to-purple-50"
+          gradient: "bg-brand-600 bg-brand-600 bg-brand-600",
+          bgGradient: "bg-brand-50 bg-brand-50 bg-brand-50"
         };
     }
   };
@@ -359,18 +359,18 @@ const Help = () => {
   const quickActions = getQuickActions();
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${heroContent.bgGradient}`}>
+    <div className={`min-h-screen ${heroContent.bgGradient}`}>
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
+        <div className="absolute inset-0 image-scrim-soft"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
           <div className="text-center">
             <div className="flex justify-center mb-8">
-              <div className={`p-4 rounded-full bg-gradient-to-r ${heroContent.gradient} shadow-lg`}>
+              <div className={`p-4 rounded-full ${heroContent.gradient} shadow-lg`}>
                 <HelpCircle className="w-12 h-12 text-white" />
               </div>
             </div>
-            <h1 className={`text-4xl lg:text-6xl font-bold bg-gradient-to-r ${heroContent.gradient} bg-clip-text text-transparent mb-6`}>
+            <h1 className="text-4xl lg:text-6xl font-bold text-ink mb-6">
               {heroContent.title}
             </h1>
             <p className="text-xl lg:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
@@ -414,8 +414,8 @@ const Help = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="group">
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                  <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${heroContent.gradient} text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+                  <div className={`inline-flex p-3 rounded-xl ${heroContent.gradient} text-white mb-6 duration-300`}>
                     {feature.icon}
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
@@ -439,13 +439,13 @@ const Help = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {quickActions.map((action, index) => (
                 <div key={index} className="group">
-                  <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 text-center">
+                  <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 text-center">
                     <div className="mb-6">
-                      <Play className={`w-12 h-12 mx-auto text-transparent bg-gradient-to-r ${heroContent.gradient} bg-clip-text`} />
+                      <Play className={`w-12 h-12 mx-auto ${heroContent.gradient} text-white`} />
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">{action.title}</h3>
                     <p className="text-gray-600 mb-6">{action.description}</p>
-                    <button className={`inline-flex items-center px-6 py-3 rounded-xl bg-gradient-to-r ${heroContent.gradient} text-white font-medium hover:shadow-lg transition-all duration-300 group-hover:scale-105`}>
+                    <button className={`inline-flex items-center px-6 py-3 rounded-xl ${heroContent.gradient} text-white font-medium hover:shadow-lg transition-all duration-300 `}>
                       {action.action}
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </button>
@@ -502,7 +502,7 @@ const Help = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center group">
-              <div className={`inline-flex p-4 rounded-full bg-gradient-to-r ${heroContent.gradient} text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`inline-flex p-4 rounded-full ${heroContent.gradient} text-white mb-6 duration-300`}>
                 <Zap className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Fast & Efficient</h3>
@@ -510,7 +510,7 @@ const Help = () => {
             </div>
 
             <div className="text-center group">
-              <div className={`inline-flex p-4 rounded-full bg-gradient-to-r ${heroContent.gradient} text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`inline-flex p-4 rounded-full ${heroContent.gradient} text-white mb-6 duration-300`}>
                 <Heart className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">User-Friendly</h3>
@@ -518,7 +518,7 @@ const Help = () => {
             </div>
 
             <div className="text-center group">
-              <div className={`inline-flex p-4 rounded-full bg-gradient-to-r ${heroContent.gradient} text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`inline-flex p-4 rounded-full ${heroContent.gradient} text-white mb-6 duration-300`}>
                 <Star className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">High Quality</h3>
@@ -526,7 +526,7 @@ const Help = () => {
             </div>
 
             <div className="text-center group">
-              <div className={`inline-flex p-4 rounded-full bg-gradient-to-r ${heroContent.gradient} text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`inline-flex p-4 rounded-full ${heroContent.gradient} text-white mb-6 duration-300`}>
                 <CheckCircle className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Proven Results</h3>
@@ -537,7 +537,7 @@ const Help = () => {
       </div>
 
       {/* CTA Section */}
-      <div className={`py-16 lg:py-24 bg-gradient-to-r ${heroContent.gradient}`}>
+      <div className={`py-16 lg:py-24 ${heroContent.gradient}`}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
             {user ? 'Need More Help?' : 'Ready to Get Started?'}

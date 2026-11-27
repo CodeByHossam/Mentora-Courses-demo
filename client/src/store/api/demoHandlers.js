@@ -151,7 +151,7 @@ const register = ({ body }) => {
     email,
     password: stringValue(body.password, 'demo1234'),
     role: 'student',
-    avatar: '/avatar.png',
+    avatar: '/images/photo-1472099645785-5658abf4ff4e.jpg',
     phone: stringValue(body.phone),
     bio: stringValue(body.bio),
     isActive: true,
@@ -222,7 +222,7 @@ const createUser = ({ body }) => {
     email,
     password: stringValue(body.password, 'demo1234'),
     role: ['admin', 'instructor', 'student'].includes(body.role) ? body.role : 'student',
-    avatar: '/avatar.png',
+    avatar: '/images/photo-1472099645785-5658abf4ff4e.jpg',
     bio: stringValue(body.bio),
     phone: stringValue(body.phone),
     isActive: body.isActive !== false,
@@ -418,8 +418,8 @@ const createCourse = ({ body }) => {
     averageRating: 0,
     ratingInfo: { averageRating: 0, ratingsCount: 0, likesCount: 0, liked: false },
     enrolledStudents: [],
-    imageUrl: body.imageUrl || '',
-    thumbnail: body.imageUrl || '',
+    imageUrl: body.imageUrl || '/images/photo-1522202176988-66273c2fd55f.jpg',
+    thumbnail: body.imageUrl || '/images/photo-1522202176988-66273c2fd55f.jpg',
     whatYouWillLearn: Array.isArray(topics) ? topics : [],
     requirements: [],
     createdAt: new Date().toISOString(),
@@ -1225,13 +1225,25 @@ const studentCertificates = () => {
   return {
     certificates: all('certificates')
       .filter((item) => item.studentId === user._id)
-      .map((item) => ({
-        ...clone(item),
-        status: 'issued',
-        issuedDate: item.issuedAt,
-        instructor: summary(byId('users', item.course?.instructorId)),
-        downloadCount: item.downloadCount || 0,
-      })),
+      .map((item) => {
+        const course = byId('courses', item.courseId)
+        const instructorId =
+          item.course?.instructorId ||
+          item.instructorId ||
+          course?.instructorId ||
+          course?.instructor?._id
+        return {
+          ...clone(item),
+          status: 'issued',
+          issuedDate: item.issuedAt || item.issuedDate,
+          instructor:
+            summary(byId('users', instructorId)) ||
+            item.course?.instructor ||
+            course?.instructor ||
+            null,
+          downloadCount: item.downloadCount || 0,
+        }
+      }),
   }
 }
 

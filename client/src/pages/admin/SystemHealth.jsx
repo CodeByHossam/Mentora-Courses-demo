@@ -118,11 +118,11 @@ const SystemHealth = () => {
   const getStatusColor = (status) => {
     switch (status) {
       case "healthy":
-        return "text-green-600 bg-green-100";
+        return "text-success-dark bg-success-soft";
       case "warning":
-        return "text-yellow-600 bg-yellow-100";
+        return "text-warning-dark bg-warning-soft";
       case "critical":
-        return "text-red-600 bg-red-100";
+        return "text-error-dark bg-error-soft";
       default:
         return "text-gray-600 bg-gray-100";
     }

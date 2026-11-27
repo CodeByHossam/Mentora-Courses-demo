@@ -42,9 +42,9 @@ const StudentAssignments = () => {
 
   const getStatusBadge = (status) => {
     const badges = {
-      pending: { color: "bg-yellow-100 text-yellow-800", icon: Clock, text: "Pending" },
-      submitted: { color: "bg-blue-100 text-blue-800", icon: CheckCircle, text: "Submitted" },
-      graded: { color: "bg-green-100 text-green-800", icon: Star, text: "Graded" }
+      pending: { color: "bg-warning-soft text-warning-dark", icon: Clock, text: "Pending" },
+      submitted: { color: "bg-brand-100 text-brand-800", icon: CheckCircle, text: "Submitted" },
+      graded: { color: "bg-success-soft text-success-dark", icon: Star, text: "Graded" }
     };
 
     const badge = badges[status] || badges.pending;
@@ -107,7 +107,7 @@ const StudentAssignments = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-7xl mx-auto">
           <div className="animate-pulse">
             <div className="h-8 bg-gray-300 rounded w-1/4 mb-6"></div>
@@ -128,15 +128,15 @@ const StudentAssignments = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
-            <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-red-800 mb-2">Error Loading Assignments</h3>
-            <p className="text-red-600 mb-4">{error?.data?.message || "Failed to load assignments"}</p>
+          <div className="bg-error-soft border border-error-soft rounded-xl p-6 text-center">
+            <AlertCircle className="w-12 h-12 text-error mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-error-dark mb-2">Error Loading Assignments</h3>
+            <p className="text-error-dark mb-4">{error?.data?.message || "Failed to load assignments"}</p>
             <button
               onClick={() => window.location.reload()}
-              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+              className="bg-error-dark text-white px-4 py-2 rounded-lg hover:bg-error-dark transition-colors"
             >
               Try Again
             </button>

@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import { format } from "date-fns";
 import { useGetAllStudentGradesQuery } from "../store/services/gradeApi";
-import LoadingSpinner from "../components/LoadingSpinner";
+import { LoadingSpinner } from '../components/common/index.js';
 import { toast } from "react-toastify";
 
 const StudentGrades = () => {
@@ -70,11 +70,11 @@ const StudentGrades = () => {
 
   // Helper functions
   const getGradeColor = (grade) => {
-    if (grade >= 90) return "text-green-600 bg-green-100";
-    if (grade >= 80) return "text-blue-600 bg-blue-100";
-    if (grade >= 70) return "text-yellow-600 bg-yellow-100";
-    if (grade >= 60) return "text-orange-600 bg-orange-100";
-    return "text-red-600 bg-red-100";
+    if (grade >= 90) return "text-success-dark bg-success-soft";
+    if (grade >= 80) return "text-brand-600 bg-brand-100";
+    if (grade >= 70) return "text-warning-dark bg-warning-soft";
+    if (grade >= 60) return "text-warning-dark bg-warning-soft";
+    return "text-error-dark bg-error-soft";
   };
 
   const getLetterGrade = (percentage) => {
@@ -136,13 +136,13 @@ const StudentGrades = () => {
     return (
       <div className="min-h-screen bg-primary p-6">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
-            <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-red-800 mb-2">Error Loading Grades</h3>
-            <p className="text-red-600 mb-4">{error?.data?.message || "Failed to load grades"}</p>
+          <div className="bg-error-soft border border-error-soft rounded-xl p-6 text-center">
+            <AlertCircle className="w-12 h-12 text-error mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-error-dark mb-2">Error Loading Grades</h3>
+            <p className="text-error-dark mb-4">{error?.data?.message || "Failed to load grades"}</p>
             <button
               onClick={() => window.location.reload()}
-              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+              className="bg-error-dark text-white px-4 py-2 rounded-lg hover:bg-error-dark transition-colors"
             >
               Try Again
             </button>
@@ -168,57 +168,57 @@ const StudentGrades = () => {
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           {/* Overall GPA */}
-          <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-green-500">
+          <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-success">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Overall GPA</p>
-                <p className="text-2xl font-bold text-green-600">{overallGPA.toFixed(2)}</p>
+                <p className="text-2xl font-bold text-success-dark">{overallGPA.toFixed(2)}</p>
               </div>
-              <div className="p-3 bg-green-100 rounded-full">
-                <GraduationCap className="w-6 h-6 text-green-600" />
+              <div className="p-3 bg-success-soft rounded-full">
+                <GraduationCap className="w-6 h-6 text-success-dark" />
               </div>
             </div>
           </div>
 
           {/* Total Courses */}
-          <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-blue-500">
+          <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-brand-500">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Total Courses</p>
-                <p className="text-2xl font-bold text-blue-600">{totalCourses}</p>
+                <p className="text-2xl font-bold text-brand-600">{totalCourses}</p>
               </div>
-              <div className="p-3 bg-blue-100 rounded-full">
-                <BookOpen className="w-6 h-6 text-blue-600" />
+              <div className="p-3 bg-brand-100 rounded-full">
+                <BookOpen className="w-6 h-6 text-brand-600" />
               </div>
             </div>
           </div>
 
           {/* Courses with Final Grades */}
-          <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-purple-500">
+          <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-brand-500">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Final Grades</p>
-                <p className="text-2xl font-bold text-purple-600">
+                <p className="text-2xl font-bold text-brand-600">
                   {courseGrades.filter(cg => cg.finalGrade).length}
                 </p>
               </div>
-              <div className="p-3 bg-purple-100 rounded-full">
-                <Award className="w-6 h-6 text-purple-600" />
+              <div className="p-3 bg-brand-100 rounded-full">
+                <Award className="w-6 h-6 text-brand-600" />
               </div>
             </div>
           </div>
 
           {/* Total Tests */}
-          <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-orange-500">
+          <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-warning">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Total Tests</p>
-                <p className="text-2xl font-bold text-orange-600">
+                <p className="text-2xl font-bold text-warning-dark">
                   {courseGrades.reduce((sum, cg) => sum + (cg.testGrades?.length || 0), 0)}
                 </p>
               </div>
-              <div className="p-3 bg-orange-100 rounded-full">
-                <Target className="w-6 h-6 text-orange-600" />
+              <div className="p-3 bg-warning-soft rounded-full">
+                <Target className="w-6 h-6 text-warning-dark" />
               </div>
             </div>
           </div>
@@ -234,7 +234,7 @@ const StudentGrades = () => {
               <select
                 value={filterCourse}
                 onChange={(e) => setFilterCourse(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="all">All Courses</option>
                 {courses.map((course) => (
@@ -251,7 +251,7 @@ const StudentGrades = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="newest">Newest First</option>
                 <option value="oldest">Oldest First</option>
@@ -278,8 +278,8 @@ const StudentGrades = () => {
                 {/* Course Header */}
                 <div className="flex items-start justify-between mb-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-blue-100 rounded-xl">
-                      <BookOpen className="w-6 h-6 text-blue-600" />
+                    <div className="p-3 bg-brand-100 rounded-xl">
+                      <BookOpen className="w-6 h-6 text-brand-600" />
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900">
@@ -346,7 +346,7 @@ const StudentGrades = () => {
                             </p>
                           </div>
                           {testGrade.feedback && (
-                            <div className="mt-3 p-2 bg-blue-50 rounded text-sm text-blue-800">
+                            <div className="mt-3 p-2 bg-brand-50 rounded text-sm text-brand-800">
                               <strong>Feedback:</strong> {testGrade.feedback}
                             </div>
                           )}
@@ -379,9 +379,9 @@ const StudentGrades = () => {
 
                 {/* Comments/Feedback */}
                 {courseGrade.finalGrade?.feedback && (
-                  <div className="mt-4 p-4 bg-blue-50 rounded-lg">
-                    <h5 className="font-medium text-blue-900 mb-2">Instructor Feedback:</h5>
-                    <p className="text-blue-800">{courseGrade.finalGrade.feedback}</p>
+                  <div className="mt-4 p-4 bg-brand-50 rounded-lg">
+                    <h5 className="font-medium text-brand-900 mb-2">Instructor Feedback:</h5>
+                    <p className="text-brand-800">{courseGrade.finalGrade.feedback}</p>
                   </div>
                 )}
 

@@ -9,7 +9,7 @@ import {
   useGetBillingAccountQuery,
   useGetBillingTransactionsQuery,
 } from "../store/services/billingApi";
-import ProgressLoader from "../components/ProgressLoader";
+import { ProgressLoader } from '../components/common/index.js';
 import { selectCurrentUser } from "../store/slices/authSlice";
 import { useNavigate } from "react-router-dom";
 import MyCourses from "./MyCourses";
@@ -57,7 +57,7 @@ const StudentDashboard = () => {
     return (
       <div className="min-h-screen bg-primary w-full max-w-maxAppWidth flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full text-center">
-          <h2 className="text-2xl font-bold text-red-600 mb-4">
+          <h2 className="text-2xl font-bold text-error-dark mb-4">
             Account Inactive
           </h2>
           <p className="text-gray-600 mb-4">
@@ -158,11 +158,11 @@ const StudentDashboard = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500 hover:shadow-xl transition-shadow">
+        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-success hover:shadow-xl transition-shadow">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <Award className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-success-soft rounded-lg flex items-center justify-center">
+                <Award className="w-6 h-6 text-success-dark" />
               </div>
             </div>
             <div className="ml-4">
@@ -180,7 +180,7 @@ const StudentDashboard = () => {
       <div className="mb-10">
         <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
           <svg
-            className="w-6 h-6 mr-3 text-sky-600"
+            className="w-6 h-6 mr-3 text-brand-600"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -208,11 +208,11 @@ const StudentDashboard = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Total Spent */}
-            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500">
+            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-brand-500">
               <div className="flex items-center justify-between mb-4">
-                <div className="p-3 bg-purple-100 rounded-lg">
+                <div className="p-3 bg-brand-100 rounded-lg">
                   <svg
-                    className="w-6 h-6 text-purple-600"
+                    className="w-6 h-6 text-brand-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -225,25 +225,25 @@ const StudentDashboard = () => {
                     />
                   </svg>
                 </div>
-                <span className="text-xs font-semibold text-purple-600 bg-purple-50 px-2 py-1 rounded-full">
+                <span className="text-xs font-semibold text-brand-600 bg-brand-50 px-2 py-1 rounded-full">
                   SPENT
                 </span>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Total Spent
               </h3>
-              <p className="text-2xl font-bold text-purple-600">
+              <p className="text-2xl font-bold text-brand-600">
                 ${studentAccount?.totalCoursePurchases?.toLocaleString() || "0"}
               </p>
               <p className="text-sm text-gray-500 mt-1">On course purchases</p>
             </div>
 
             {/* Annual Fee */}
-            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-orange-500">
+            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-warning">
               <div className="flex items-center justify-between mb-4">
-                <div className="p-3 bg-orange-100 rounded-lg">
+                <div className="p-3 bg-warning-soft rounded-lg">
                   <svg
-                    className="w-6 h-6 text-orange-600"
+                    className="w-6 h-6 text-warning-dark"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -256,14 +256,14 @@ const StudentDashboard = () => {
                     />
                   </svg>
                 </div>
-                <span className="text-xs font-semibold text-orange-600 bg-orange-50 px-2 py-1 rounded-full">
+                <span className="text-xs font-semibold text-warning-dark bg-warning-soft px-2 py-1 rounded-full">
                   {(studentAccount?.annualFees || 0) > 0 ? "DUE" : "PAID"}
                 </span>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Annual Fee
               </h3>
-              <p className="text-2xl font-bold text-orange-600">
+              <p className="text-2xl font-bold text-warning-dark">
                 ${studentAccount?.annualFees?.toLocaleString() || "0"}
               </p>
               <p className="text-sm text-gray-500 mt-1">
@@ -272,11 +272,11 @@ const StudentDashboard = () => {
             </div>
 
             {/* Gift Cards */}
-            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
+            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-success">
               <div className="flex items-center justify-between mb-4">
-                <div className="p-3 bg-green-100 rounded-lg">
+                <div className="p-3 bg-success-soft rounded-lg">
                   <svg
-                    className="w-6 h-6 text-green-600"
+                    className="w-6 h-6 text-success-dark"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -289,14 +289,14 @@ const StudentDashboard = () => {
                     />
                   </svg>
                 </div>
-                <span className="text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded-full">
+                <span className="text-xs font-semibold text-success-dark bg-success-soft px-2 py-1 rounded-full">
                   CARDS
                 </span>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Gift Cards
               </h3>
-              <p className="text-2xl font-bold text-green-600">
+              <p className="text-2xl font-bold text-success-dark">
                 {studentAccount?.giftCards?.filter(c => !c.isUsed).length || 0}
               </p>
               <p className="text-sm text-gray-500 mt-1">Available to use</p>
@@ -333,15 +333,15 @@ const StudentDashboard = () => {
                     <div
                       className={`p-2 rounded-lg mr-3 ${
                         transaction.type === "credit"
-                          ? "bg-emerald-100"
-                          : "bg-red-100"
+                          ? "bg-success-soft"
+                          : "bg-error-soft"
                       }`}
                     >
                       <svg
                         className={`w-4 h-4 ${
                           transaction.type === "credit"
-                            ? "text-emerald-600"
-                            : "text-red-600"
+                            ? "text-success-dark"
+                            : "text-error-dark"
                         }`}
                         fill="none"
                         stroke="currentColor"
@@ -372,8 +372,8 @@ const StudentDashboard = () => {
                     <p
                       className={`font-semibold ${
                         transaction.type === "credit"
-                          ? "text-emerald-600"
-                          : "text-red-600"
+                          ? "text-success-dark"
+                          : "text-error-dark"
                       }`}
                     >
                       {transaction.type === "credit" ? "+" : "-"}$
@@ -389,7 +389,7 @@ const StudentDashboard = () => {
             <div className="mt-4 text-center">
               <a
                 href="/billing"
-                className="text-sky-600 hover:text-sky-800 font-medium"
+                className="text-brand-600 hover:text-brand-800 font-medium"
               >
                 View All Payment History →
               </a>
@@ -398,7 +398,7 @@ const StudentDashboard = () => {
         )}
 
         {/* Quick Payment Actions */}
-        <div className="mt-6 bg-gradient-to-r from-sky-50 to-purple-50 rounded-xl p-6">
+        <div className="mt-6 bg-brand-50 rounded-xl p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">
             Quick Actions
           </h3>
@@ -406,7 +406,7 @@ const StudentDashboard = () => {
             {/* Add Credits removed - simplified system */}
             <button
               onClick={() => navigate("/student/payments")}
-              className="flex items-center justify-center px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+              className="flex items-center justify-center px-4 py-3 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors"
             >
               <svg
                 className="w-5 h-5 mr-2"
@@ -425,7 +425,7 @@ const StudentDashboard = () => {
             </button>
             <button
               onClick={() => navigate("/courses")}
-              className="flex items-center justify-center px-4 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+              className="flex items-center justify-center px-4 py-3 bg-success-dark text-white rounded-lg hover:bg-success-dark transition-colors"
             >
               <svg
                 className="w-5 h-5 mr-2"
@@ -444,7 +444,7 @@ const StudentDashboard = () => {
             </button>
             <button
               onClick={() => navigate("/student/refunds")}
-              className="flex items-center justify-center px-4 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+              className="flex items-center justify-center px-4 py-3 bg-warning-dark text-white rounded-lg hover:bg-warning-dark transition-colors"
             >
               <svg
                 className="w-5 h-5 mr-2"
@@ -469,7 +469,7 @@ const StudentDashboard = () => {
       <div className="bg-white rounded-lg shadow-md p-6 mb-6">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
           <svg
-            className="w-5 h-5 mr-2 text-blue-500"
+            className="w-5 h-5 mr-2 text-brand-500"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -484,8 +484,8 @@ const StudentDashboard = () => {
           Recent Activity
         </h2>
         <div className="space-y-3">
-          <div className="flex items-center p-3 bg-blue-50 rounded-lg">
-            <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+          <div className="flex items-center p-3 bg-brand-50 rounded-lg">
+            <div className="w-2 h-2 bg-brand-500 rounded-full mr-3"></div>
             <div className="flex-1">
               <p className="text-sm text-gray-800">
                 Completed "Introduction to React" lesson
@@ -493,8 +493,8 @@ const StudentDashboard = () => {
               <p className="text-xs text-gray-500">2 hours ago</p>
             </div>
           </div>
-          <div className="flex items-center p-3 bg-green-50 rounded-lg">
-            <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+          <div className="flex items-center p-3 bg-success-soft rounded-lg">
+            <div className="w-2 h-2 bg-success rounded-full mr-3"></div>
             <div className="flex-1">
               <p className="text-sm text-gray-800">
                 Earned certificate for "JavaScript Fundamentals"
@@ -502,8 +502,8 @@ const StudentDashboard = () => {
               <p className="text-xs text-gray-500">1 day ago</p>
             </div>
           </div>
-          <div className="flex items-center p-3 bg-purple-50 rounded-lg">
-            <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
+          <div className="flex items-center p-3 bg-brand-50 rounded-lg">
+            <div className="w-2 h-2 bg-brand-500 rounded-full mr-3"></div>
             <div className="flex-1">
               <p className="text-sm text-gray-800">
                 Started new course "Advanced CSS"
@@ -516,15 +516,15 @@ const StudentDashboard = () => {
 
       {/* Upcoming Live Sessions */}
       {upcomingSessionsCount > 0 && (
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl shadow-lg p-6 mb-6 border border-blue-100">
+        <div className="bg-brand-50 rounded-xl shadow-lg p-6 mb-6 border border-brand-100">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold flex items-center text-gray-900">
-              <Video className="w-5 h-5 mr-2 text-blue-600" />
+              <Video className="w-5 h-5 mr-2 text-brand-600" />
               Upcoming Live Sessions
             </h2>
             <button
               onClick={() => navigate("/student/live-sessions")}
-              className="text-blue-600 hover:text-blue-800 text-sm font-medium hover:underline"
+              className="text-brand-600 hover:text-brand-800 text-sm font-medium hover:underline"
             >
               View All
             </button>
@@ -565,12 +565,12 @@ const StudentDashboard = () => {
                     </div>
                     {isStartingSoon && (
                       <div className="flex items-center">
-                        <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full mr-2">
+                        <span className="bg-success-soft text-success-dark text-xs font-medium px-2 py-1 rounded-full mr-2">
                           Starting Soon
                         </span>
                         <button
                           onClick={() => navigate("/student/live-sessions")}
-                          className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm font-medium"
+                          className="bg-success-dark hover:bg-success-dark text-white px-3 py-1 rounded text-sm font-medium"
                         >
                           Join
                         </button>
@@ -587,34 +587,34 @@ const StudentDashboard = () => {
       {/* Quick Actions */}
       <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
-          <TrendingUp className="w-5 h-5 mr-2 text-green-500" />
+          <TrendingUp className="w-5 h-5 mr-2 text-success" />
           Quick Actions
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <button
             onClick={() => navigate("/courses")}
-            className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center"
+            className="bg-brand hover:bg-brand-dark text-white font-semibold py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center"
           >
             <BookOpen className="w-5 h-5 mr-2" />
             Browse Courses
           </button>
           <button
             onClick={() => navigate("/student/courses")}
-            className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center"
+            className="bg-success hover:bg-success-dark text-white font-semibold py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center"
           >
             <Play className="w-5 h-5 mr-2" />
             Continue Learning
           </button>
           <button
             onClick={() => navigate("/student/live-sessions")}
-            className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center"
+            className="bg-brand hover:bg-brand-dark text-white font-semibold py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center"
           >
             <Video className="w-5 h-5 mr-2" />
             Live Sessions
           </button>
           <button
             onClick={() => navigate("/student/certificates")}
-            className="bg-gradient-to-r from-yellow-600 to-yellow-700 hover:from-yellow-700 hover:to-yellow-800 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center"
+            className="bg-warning hover:bg-warning-dark text-white font-semibold py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center"
           >
             <Award className="w-5 h-5 mr-2" />
             Certificates
@@ -627,7 +627,7 @@ const StudentDashboard = () => {
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold flex items-center">
             <svg
-              className="w-5 h-5 mr-2 text-blue-500"
+              className="w-5 h-5 mr-2 text-brand-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -643,7 +643,7 @@ const StudentDashboard = () => {
           </h2>
           <button
             onClick={() => navigate("/courses")}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition duration-200 flex items-center"
+            className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition duration-200 flex items-center"
           >
             <svg
               className="w-4 h-4 mr-2"
@@ -673,7 +673,7 @@ const StudentDashboard = () => {
       <div className="bg-white rounded-lg shadow-md p-6 mb-6">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
           <svg
-            className="w-5 h-5 mr-2 text-green-500"
+            className="w-5 h-5 mr-2 text-success"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -694,7 +694,7 @@ const StudentDashboard = () => {
       <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
           <svg
-            className="w-5 h-5 mr-2 text-yellow-500"
+            className="w-5 h-5 mr-2 text-warning"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -731,10 +731,10 @@ const StudentDashboard = () => {
                         <span
                           className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
                             request.status === "approved"
-                              ? "bg-green-100 text-green-800"
+                              ? "bg-success-soft text-success-dark"
                               : request.status === "pending"
-                              ? "bg-yellow-100 text-yellow-800"
-                              : "bg-red-100 text-red-800"
+                              ? "bg-warning-soft text-warning-dark"
+                              : "bg-error-soft text-error-dark"
                           }`}
                         >
                           {request.status}
@@ -752,7 +752,7 @@ const StudentDashboard = () => {
                         onClick={() =>
                           navigate(`/courses/${request.course._id}`)
                         }
-                        className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm font-medium transition duration-200"
+                        className="bg-success-dark hover:bg-success-dark text-white px-3 py-1 rounded text-sm font-medium transition duration-200"
                       >
                         Start Learning
                       </button>
@@ -785,7 +785,7 @@ const StudentDashboard = () => {
             </p>
             <button
               onClick={() => navigate("/courses")}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition duration-200"
+              className="bg-brand-600 hover:bg-brand-700 text-white px-6 py-2 rounded-lg font-medium transition duration-200"
             >
               Browse Courses
             </button>

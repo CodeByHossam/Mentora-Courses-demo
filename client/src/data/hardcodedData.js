@@ -5,7 +5,7 @@ export const categories = [
     description: "Learn modern web development technologies and frameworks",
     icon: "code",
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1498050108023-c5249f4df085.jpg",
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ export const categories = [
     description: "Master data analysis, machine learning, and AI",
     icon: "chart-bar",
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1551288049-bebda4e38f71.jpg",
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ export const categories = [
     description: "Build native and cross-platform mobile applications",
     icon: "mobile-alt",
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1512941937669-90a1b58e7e9c.jpg",
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ export const categories = [
     description: "Learn UI/UX design principles and tools",
     icon: "palette",
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1561070791-2526d30994b5.jpg",
   },
 ];
 
@@ -93,7 +93,7 @@ export const courses = [
     duration: "40 hours",
     topics: ["React", "Redux", "React Router", "JavaScript"],
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1633356122544-f134324a6cee.jpg",
     instructor: "John Doe",
     students: 0,
     rating: 4.8,
@@ -108,7 +108,7 @@ export const courses = [
     duration: "35 hours",
     topics: ["Python", "Pandas", "NumPy", "Machine Learning"],
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1514070706115-47c142769603.jpg",
     instructor: "Mike Doe",
     students: 0,
     rating: 4.7,
@@ -124,7 +124,7 @@ export const courses = [
     duration: "45 hours",
     topics: ["Flutter", "Dart", "Mobile Development", "UI/UX"],
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1551650975-87deedd944c3.jpg",
     instructor: "Sarah Wilson",
     students: 0,
     rating: 4.6,
@@ -140,7 +140,7 @@ export const courses = [
     duration: "30 hours",
     topics: ["UI Design", "UX Research", "Figma", "Prototyping"],
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1561070791-2526d30994b5.jpg",
     instructor: "David Brown",
     students: 0,
     rating: 4.5,
@@ -155,7 +155,7 @@ export const courses = [
     duration: "55 hours",
     topics: ["Next.js", "Node.js", "MongoDB", "API Integration"],
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1667372393119-3d4c48d07fc9.jpg",
     instructor: "James Carter",
     students: 0,
     rating: 4.9,
@@ -171,7 +171,7 @@ export const courses = [
     duration: "25 hours",
     topics: ["Power BI", "Data Visualization", "DAX", "Reporting"],
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1556761175-5973dc0f32e7.jpg",
     instructor: "Sophia Green",
     students: 0,
     rating: 4.6,
@@ -186,7 +186,7 @@ export const courses = [
     duration: "40 hours",
     topics: ["Kotlin", "Android Studio", "Jetpack Compose", "Firebase"],
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1649835152887-c62f625bdfc7.jpg",
     instructor: "Liam White",
     students: 0,
     rating: 4.7,
@@ -201,7 +201,7 @@ export const courses = [
     duration: "70 hours",
     topics: ["Deep Learning", "TensorFlow", "PyTorch", "AI Models"],
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1555949963-ff9fe0c870eb.jpg",
     instructor: "Emma Johnson",
     students: 0,
     rating: 4.9,
@@ -216,7 +216,7 @@ export const courses = [
     duration: "20 hours",
     topics: ["HTML", "CSS", "Accessibility", "Flexbox"],
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1498050108023-c5249f4df085.jpg",
     instructor: "Noah King",
     students: 0,
     rating: 4.5,
@@ -231,7 +231,7 @@ export const courses = [
     duration: "28 hours",
     topics: ["Figma", "Design Systems", "Components", "UI Kits"],
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1561070791-2526d30994b5.jpg",
     instructor: "Lucas Brown",
     students: 0,
     rating: 4.6,
@@ -246,7 +246,7 @@ export const courses = [
     duration: "48 hours",
     topics: ["Swift", "SwiftUI", "iOS Frameworks", "Core Data"],
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1512941937669-90a1b58e7e9c.jpg",
     instructor: "Olivia Davis",
     students: 0,
     rating: 4.8,
@@ -261,7 +261,7 @@ export const courses = [
     duration: "32 hours",
     topics: ["Performance", "SEO", "Lighthouse", "Caching"],
     imageUrl:
-      "/demo-placeholder.svg",
+      "/images/photo-1498050108023-c5249f4df085.jpg",
     instructor: "Ethan Moore",
     students: 0,
     rating: 4.7,

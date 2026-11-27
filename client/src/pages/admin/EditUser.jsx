@@ -81,10 +81,10 @@ const EditUser = () => {
   if (isError) return <p>Error loading user data</p>;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 py-6 sm:py-8 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
+    <div className="min-h-screen bg-brand-50 py-6 sm:py-8 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
       <div className="w-full max-w-2xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8">
-          <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-ink mb-6">
             ✏️ Edit User
           </h2>
 
@@ -182,7 +182,7 @@ const EditUser = () => {
 
       <button
         type="submit"
-        className="w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-green-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+        className="w-full px-4 py-3 bg-brand text-white font-semibold rounded-xl hover:bg-brand-700 hover:bg-success focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all duration-200"
       >
         Save Changes
       </button>

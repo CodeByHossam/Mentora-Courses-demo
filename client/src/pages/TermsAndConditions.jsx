@@ -107,28 +107,28 @@ const TermsAndConditions = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="min-h-screen bg-brand-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
           <div className="flex items-center gap-4 mb-4">
             <button
               onClick={() => navigate(-1)}
-              className="flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors"
+              className="flex items-center gap-2 text-brand-600 hover:text-brand-800 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
               <span>Back</span>
             </button>
           </div>
           <div className="flex items-center gap-3 mb-4">
-            <FileText className="w-8 h-8 text-blue-600" />
+            <FileText className="w-8 h-8 text-brand-600" />
             <h1 className="text-3xl font-bold text-gray-900">Terms & Conditions</h1>
           </div>
           <p className="text-gray-600 text-lg">
             Please read these terms and conditions carefully before using our platform.
           </p>
-          <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-            <p className="text-blue-800 text-sm">
+          <div className="mt-4 p-4 bg-brand-50 rounded-lg border border-brand-200">
+            <p className="text-brand-800 text-sm">
               <strong>Last Updated:</strong> {new Date().toLocaleDateString()}
             </p>
           </div>
@@ -139,7 +139,7 @@ const TermsAndConditions = () => {
           {sections.map((section) => (
             <div key={section.id} className="bg-white rounded-xl shadow-lg p-6">
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-blue-100 rounded-lg text-blue-600">
+                <div className="p-2 bg-brand-100 rounded-lg text-brand-600">
                   {section.icon}
                 </div>
                 <h2 className="text-xl font-semibold text-gray-900">
@@ -169,7 +169,7 @@ const TermsAndConditions = () => {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button
                 onClick={() => navigate('/register')}
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                className="bg-brand-600 text-white px-6 py-2 rounded-lg hover:bg-brand-700 transition-colors"
               >
                 Accept & Register
               </button>

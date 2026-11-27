@@ -39,7 +39,7 @@ const Contact = () => {
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
           <div className="flex flex-col lg:flex-row">
             {/* Left: Contact Info */}
-            <div className="lg:w-2/5 w-full bg-gradient-to-br from-green-50 to-blue-50 p-8 lg:p-12">
+            <div className="lg:w-2/5 w-full bg-brand-50 p-8 lg:p-12">
               <div className="space-y-8">
                 <div>
                   <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
@@ -52,8 +52,8 @@ const Contact = () => {
                 </div>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300">
-                    <div className="bg-green-100 p-3 rounded-xl">
-                      <Phone className="w-6 h-6 text-green-600" />
+                    <div className="bg-success-soft p-3 rounded-xl">
+                      <Phone className="w-6 h-6 text-success-dark" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-1">
@@ -66,8 +66,8 @@ const Contact = () => {
                     </div>
                   </div>
                   <div className="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300">
-                    <div className="bg-blue-100 p-3 rounded-xl">
-                      <Mail className="w-6 h-6 text-blue-600" />
+                    <div className="bg-brand-100 p-3 rounded-xl">
+                      <Mail className="w-6 h-6 text-brand-600" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-1">
@@ -82,8 +82,8 @@ const Contact = () => {
                     </div>
                   </div>
                   <div className="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300">
-                    <div className="bg-purple-100 p-3 rounded-xl">
-                      <MapPin className="w-6 h-6 text-purple-600" />
+                    <div className="bg-brand-100 p-3 rounded-xl">
+                      <MapPin className="w-6 h-6 text-brand-600" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-1">
@@ -106,7 +106,7 @@ const Contact = () => {
                     Follow us on social media
                   </p>
                   <div className="flex space-x-4">
-                    <div className="bg-blue-600 p-2 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">
+                    <div className="bg-brand-600 p-2 rounded-lg hover:bg-brand-700 transition-colors cursor-pointer">
                       <svg
                         className="w-5 h-5 text-white"
                         fill="currentColor"
@@ -115,7 +115,7 @@ const Contact = () => {
                         <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
                       </svg>
                     </div>
-                    <div className="bg-blue-800 p-2 rounded-lg hover:bg-blue-900 transition-colors cursor-pointer">
+                    <div className="bg-brand-800 p-2 rounded-lg hover:bg-brand-900 transition-colors cursor-pointer">
                       <svg
                         className="w-5 h-5 text-white"
                         fill="currentColor"
@@ -148,7 +148,7 @@ const Contact = () => {
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
                         <div className="flex items-center gap-2">
-                          <User size={16} className="text-green-600" />
+                          <User size={16} className="text-success-dark" />
                           Full Name
                         </div>
                       </label>
@@ -160,7 +160,7 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                         disabled={isLoading}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-success transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         placeholder="Your full name"
                       />
                     </div>
@@ -170,7 +170,7 @@ const Contact = () => {
                         className="block text-sm font-medium text-gray-700 mb-2"
                       >
                         <div className="flex items-center gap-2">
-                          <Mail size={16} className="text-green-600" />
+                          <Mail size={16} className="text-success-dark" />
                           Email Address
                         </div>
                       </label>
@@ -182,7 +182,7 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                         disabled={isLoading}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-success transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         placeholder="your.email@example.com"
                       />
                     </div>
@@ -193,7 +193,7 @@ const Contact = () => {
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
                       <div className="flex items-center gap-2">
-                        <MessageSquare size={16} className="text-green-600" />
+                        <MessageSquare size={16} className="text-success-dark" />
                         Subject
                       </div>
                     </label>
@@ -205,7 +205,7 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       disabled={isLoading}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-success transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder="What is this regarding?"
                     />
                   </div>
@@ -215,7 +215,7 @@ const Contact = () => {
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
                       <div className="flex items-center gap-2">
-                        <MessageSquare size={16} className="text-green-600" />
+                        <MessageSquare size={16} className="text-success-dark" />
                         Message
                       </div>
                     </label>
@@ -227,7 +227,7 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       disabled={isLoading}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-success focus:border-success transition-colors resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder="Tell us how we can help you..."
                     />
                   </div>
@@ -238,7 +238,7 @@ const Contact = () => {
                       className={`flex items-center gap-2 px-8 py-3 rounded-lg font-medium text-white transition-all duration-200 ${
                         isLoading
                           ? "bg-gray-400 cursor-not-allowed"
-                          : "bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 hover:shadow-lg transform hover:-translate-y-0.5"
+                          : "bg-brand hover:bg-brand-dark hover:shadow-lg "
                       }`}
                     >
                       <Send size={18} />

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Users, Mail, Calendar, BookOpen, User } from "lucide-react";
 import { useGetCourseStudentsQuery } from "../store/services/courseApi";
-import ProgressLoader from "../components/ProgressLoader";
+import { ProgressLoader } from '../components/common/index.js';
 import { handleApiError } from "../utils/apiErrorHandler";
 
 const CourseStudents = () => {
@@ -34,13 +34,13 @@ const CourseStudents = () => {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-red-600 mb-4">Error</h2>
+          <h2 className="text-2xl font-bold text-error-dark mb-4">Error</h2>
           <p className="text-gray-600">
             {error.data?.message || "Failed to load course students"}
           </p>
           <button
             onClick={() => navigate("/admin/manage-courses")}
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="mt-4 px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700"
           >
             Back to Courses
           </button>
@@ -50,7 +50,7 @@ const CourseStudents = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="min-h-screen bg-brand-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header Section */}
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
@@ -65,11 +65,11 @@ const CourseStudents = () => {
           </div>
 
           <div className="flex items-center gap-4 mb-6">
-            <div className="p-3 bg-blue-100 rounded-xl">
-              <BookOpen className="w-8 h-8 text-blue-600" />
+            <div className="p-3 bg-brand-100 rounded-xl">
+              <BookOpen className="w-8 h-8 text-brand-600" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold text-ink ">
                 {courseData?.course?.title || "Course Students"}
               </h1>
               <p className="text-gray-600 mt-1">
@@ -83,7 +83,7 @@ const CourseStudents = () => {
             <div className="bg-gray-50 rounded-xl p-6 mb-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="flex items-center gap-3">
-                  <Users className="w-5 h-5 text-blue-600" />
+                  <Users className="w-5 h-5 text-brand-600" />
                   <div>
                     <p className="text-sm text-gray-600">Total Students</p>
                     <p className="font-semibold text-gray-900">
@@ -92,14 +92,14 @@ const CourseStudents = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <BookOpen className="w-5 h-5 text-green-600" />
+                  <BookOpen className="w-5 h-5 text-success-dark" />
                   <div>
                     <p className="text-sm text-gray-600">Course Status</p>
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                       courseData.course.status === 'published' 
-                        ? 'bg-green-100 text-green-800'
+                        ? 'bg-success-soft text-success-dark'
                         : courseData.course.status === 'draft'
-                        ? 'bg-yellow-100 text-yellow-800'
+                        ? 'bg-warning-soft text-warning-dark'
                         : 'bg-gray-100 text-gray-800'
                     }`}>
                       {courseData.course.status}
@@ -107,7 +107,7 @@ const CourseStudents = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Calendar className="w-5 h-5 text-purple-600" />
+                  <Calendar className="w-5 h-5 text-brand-600" />
                   <div>
                     <p className="text-sm text-gray-600">Created</p>
                     <p className="font-semibold text-gray-900">
@@ -122,13 +122,13 @@ const CourseStudents = () => {
           {/* Search Bar */}
           <div className="mb-6">
             <div className="relative">
-              <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Users className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search students by name or email..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all duration-200"
               />
             </div>
           </div>
@@ -184,7 +184,7 @@ const CourseStudents = () => {
                       >
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
-                            <div className="h-10 w-10 flex-shrink-0 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 ring-2 ring-gray-200 flex items-center justify-center">
+                            <div className="h-10 w-10 flex-shrink-0 rounded-full bg-brand-600 ring-2 ring-gray-200 flex items-center justify-center">
                               {student.avatar ? (
                                 <img
                                   className="h-10 w-10 rounded-full object-cover"
@@ -226,8 +226,8 @@ const CourseStudents = () => {
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                             student.isActive
-                              ? "bg-green-100 text-green-800"
-                              : "bg-red-100 text-red-800"
+                              ? "bg-success-soft text-success-dark"
+                              : "bg-error-soft text-error-dark"
                           }`}>
                             {student.isActive ? "Active" : "Inactive"}
                           </span>
@@ -236,13 +236,13 @@ const CourseStudents = () => {
                           <div className="flex items-center space-x-3">
                             <button
                               onClick={() => navigate(`/admin/users/${student._id}`)}
-                              className="text-blue-600 hover:text-blue-900 hover:underline transition-colors duration-200"
+                              className="text-brand-600 hover:text-brand-900 hover:underline transition-colors duration-200"
                             >
                               View Profile
                             </button>
                             <button
                               onClick={() => window.open(`mailto:${student.email}`, '_blank')}
-                              className="text-green-600 hover:text-green-900 hover:underline transition-colors duration-200"
+                              className="text-success-dark hover:text-success-dark hover:underline transition-colors duration-200"
                             >
                               Send Email
                             </button>
@@ -264,20 +264,20 @@ const CourseStudents = () => {
               Quick Stats
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center p-4 bg-blue-50 rounded-lg">
-                <div className="text-2xl font-bold text-blue-600">
+              <div className="text-center p-4 bg-brand-50 rounded-lg">
+                <div className="text-2xl font-bold text-brand-600">
                   {courseData.students.length}
                 </div>
                 <div className="text-sm text-gray-600">Total Students</div>
               </div>
-              <div className="text-center p-4 bg-green-50 rounded-lg">
-                <div className="text-2xl font-bold text-green-600">
+              <div className="text-center p-4 bg-success-soft rounded-lg">
+                <div className="text-2xl font-bold text-success-dark">
                   {courseData.students.filter(s => s.isActive).length}
                 </div>
                 <div className="text-sm text-gray-600">Active Students</div>
               </div>
-              <div className="text-center p-4 bg-purple-50 rounded-lg">
-                <div className="text-2xl font-bold text-purple-600">
+              <div className="text-center p-4 bg-brand-50 rounded-lg">
+                <div className="text-2xl font-bold text-brand-600">
                   {Math.round(
                     (courseData.students.filter(s => s.isActive).length /
                       courseData.students.length) *

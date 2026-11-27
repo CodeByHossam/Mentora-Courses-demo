@@ -65,13 +65,13 @@ const InstructorDashboard = () => {
     ? `$${monthlyRevenue.toLocaleString()}`
     : "$0";
   const revenueGrowth = monthlyRevenue > 0 ? "+12%" : "0%";
-  const revenueGrowthColor = monthlyRevenue > 0 ? "text-green-500" : "text-gray-500";
+  const revenueGrowthColor = monthlyRevenue > 0 ? "text-success" : "text-gray-500";
   // Show inactive account message
   if (user && !user.isActive) {
     return (
-      <div className="min-h-screen bg-red-500 flex items-center justify-center">
+      <div className="min-h-screen bg-error flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full text-center">
-          <h2 className="text-2xl font-bold text-red-600 mb-4">
+          <h2 className="text-2xl font-bold text-error-dark mb-4">
             Account Inactive
           </h2>
           <p className="text-gray-600 mb-4">

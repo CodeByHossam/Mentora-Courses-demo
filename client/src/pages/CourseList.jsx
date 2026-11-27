@@ -4,10 +4,7 @@ import { useGetCoursesQuery } from "../store/services/courseApi";
 import { useGetCategoriesQuery } from "../store/services/categoryApi";
 import { selectCurrentUser } from "../store/slices/authSlice";
 import CourseCard from "../components/CourseCard";
-import LoadingSpinner from "../components/LoadingSpinner";
-import Button from "../components/Button";
-import FormInput from "../components/FormInput";
-import Card from "../components/Card";
+import { LoadingSpinner, Button, FormInput, Card } from '../components/common/index.js';
 import {
   Search,
   Filter,
@@ -240,15 +237,15 @@ const CourseList = memo(({ limit }) => {
 
   if (isLoading)
     return (
-      <div className="container-app section-padding">
+      <div className="container py-16">
         <LoadingSpinner size="lg" text="Loading courses..." />
       </div>
     );
 
   if (error && !fallbackCourses.length)
     return (
-      <Card className="container-app section-padding">
-        <div className="text-center text-red-600" role="alert">
+      <Card className="container py-16">
+        <div className="text-center text-error-dark" role="alert">
           <h3 className="text-lg font-semibold mb-2">Error Loading Courses</h3>
           <p>
             Please try again later or contact support if the problem persists.
@@ -266,16 +263,7 @@ const CourseList = memo(({ limit }) => {
             <div className="text-4xl sm:text-5xl lg:text-6xl mb-3 sm:mb-4">
               🎓
             </div>
-            <h1
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold"
-              style={{
-                background:
-                  "linear-gradient(to right, var(--secondary), var(--primary))",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-ink">
               {limit ? "🌟 Featured Courses" : "📚 Course Catalog"}
             </h1>
             <p className="mt-2 text-secondary max-w-2xl mx-auto">
@@ -310,7 +298,7 @@ const CourseList = memo(({ limit }) => {
                     🔍 Search Courses
                   </label>
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted w-5 h-5" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted w-5 h-5" />
                     <input
                       name="search"
                       type="text"
@@ -339,7 +327,7 @@ const CourseList = memo(({ limit }) => {
                     onClick={() => setViewMode("grid")}
                     className={`p-2 rounded-lg transition-all duration-200 ${
                       viewMode === "grid"
-                        ? "bg-purple-100 text-purple-600"
+                        ? "bg-brand-100 text-brand-600"
                         : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
                     }`}
                   >
@@ -349,7 +337,7 @@ const CourseList = memo(({ limit }) => {
                     onClick={() => setViewMode("list")}
                     className={`p-2 rounded-lg transition-all duration-200 ${
                       viewMode === "list"
-                        ? "bg-purple-100 text-purple-600"
+                        ? "bg-brand-100 text-brand-600"
                         : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
                     }`}
                   >
@@ -368,7 +356,7 @@ const CourseList = memo(({ limit }) => {
                     name="category"
                     value={filters.category}
                     onChange={handleFilterChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all duration-200"
                   >
                     <option value="">All Categories</option>
                     {categories.map((category) => (
@@ -386,7 +374,7 @@ const CourseList = memo(({ limit }) => {
                     name="level"
                     value={filters.level}
                     onChange={handleFilterChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all duration-200"
                   >
                     <option value="">All Levels</option>
                     <option value="Beginner">🌱 Beginner</option>
@@ -402,7 +390,7 @@ const CourseList = memo(({ limit }) => {
                     name="sort"
                     value={filters.sort}
                     onChange={handleFilterChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all duration-200"
                   >
                     <option value="newest">🆕 Newest First</option>
                     <option value="oldest">📅 Oldest First</option>
@@ -432,7 +420,7 @@ const CourseList = memo(({ limit }) => {
               {!limit && (
                 <button
                   onClick={resetFilters}
-                  className="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 font-medium"
+                  className="px-6 py-3 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-all duration-200 font-medium"
                 >
                   Clear Filters
                 </button>
@@ -498,14 +486,14 @@ const CourseList = memo(({ limit }) => {
 
                 <div className="flex items-center space-x-1 sm:space-x-2">
                   <span className="text-xs sm:text-sm text-gray-600">Page</span>
-                  <span className="px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm font-semibold text-purple-600 bg-purple-100 rounded-lg">
+                  <span className="px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm font-semibold text-brand-600 bg-brand-100 rounded-lg">
                     {currentPage}
                   </span>
                   <span className="text-xs sm:text-sm text-gray-600">
                     of {Math.max(1, totalPages)}
                   </span>
                   {isLoading && (
-                    <span className="text-xs text-blue-600 ml-2">
+                    <span className="text-xs text-brand-600 ml-2">
                       Loading...
                     </span>
                   )}

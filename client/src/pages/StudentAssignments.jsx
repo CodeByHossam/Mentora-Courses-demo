@@ -42,9 +42,9 @@ const StudentAssignments = () => {
 
   const getStatusBadge = (status) => {
     const badges = {
-      pending: { color: "bg-yellow-100 text-yellow-800", icon: Clock, text: "Pending" },
-      submitted: { color: "bg-blue-100 text-blue-800", icon: CheckCircle, text: "Submitted" },
-      graded: { color: "bg-green-100 text-green-800", icon: Star, text: "Graded" }
+      pending: { color: "bg-warning-soft text-warning-dark", icon: Clock, text: "Pending" },
+      submitted: { color: "bg-brand-100 text-brand-800", icon: CheckCircle, text: "Submitted" },
+      graded: { color: "bg-success-soft text-success-dark", icon: Star, text: "Graded" }
     };
     
     const badge = badges[status] || badges.pending;
@@ -107,7 +107,7 @@ const StudentAssignments = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-7xl mx-auto">
           <div className="animate-pulse">
             <div className="h-8 bg-gray-300 rounded w-1/4 mb-6"></div>
@@ -128,15 +128,15 @@ const StudentAssignments = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
-            <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-red-800 mb-2">Error Loading Assignments</h3>
-            <p className="text-red-600 mb-4">{error?.data?.message || "Failed to load assignments"}</p>
+          <div className="bg-error-soft border border-error-soft rounded-xl p-6 text-center">
+            <AlertCircle className="w-12 h-12 text-error mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-error-dark mb-2">Error Loading Assignments</h3>
+            <p className="text-error-dark mb-4">{error?.data?.message || "Failed to load assignments"}</p>
             <button
               onClick={() => window.location.reload()}
-              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+              className="bg-error-dark text-white px-4 py-2 rounded-lg hover:bg-error-dark transition-colors"
             >
               Try Again
             </button>
@@ -182,7 +182,7 @@ const StudentAssignments = () => {
                 className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
                   filterStatus === key
                     ? "text-white shadow-sm"
-                    : "text-secondary hover:bg-accent"
+                    : "text-secondary hover:bg-brand-50"
                 }`}
                 style={filterStatus === key ? {backgroundColor: 'var(--info)'} : {}}
               >
@@ -207,7 +207,7 @@ const StudentAssignments = () => {
             </p>
             <button
               onClick={() => setFilterStatus("all")}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              className="bg-brand-600 text-white px-6 py-2 rounded-lg hover:bg-brand-700 transition-colors"
             >
               View All Assignments
             </button>
@@ -250,14 +250,14 @@ const StudentAssignments = () => {
                   {/* Due Date */}
                   {test.dueDate && (
                     <div className={`flex items-center text-sm mb-4 ${
-                      isOverdue(test.dueDate) ? "text-red-600" : "text-gray-600"
+                      isOverdue(test.dueDate) ? "text-error-dark" : "text-gray-600"
                     }`}>
                       <Calendar className="w-4 h-4 mr-2" />
                       <span>
                         Due: {format(new Date(test.dueDate), "MMM dd, yyyy 'at' h:mm a")}
                       </span>
                       {isOverdue(test.dueDate) && (
-                        <AlertCircle className="w-4 h-4 ml-2 text-red-500" />
+                        <AlertCircle className="w-4 h-4 ml-2 text-error" />
                       )}
                     </div>
                   )}
@@ -271,7 +271,7 @@ const StudentAssignments = () => {
                       {test.submission.grade !== undefined && (
                         <div className="flex items-center justify-between">
                           <span className="text-sm font-medium text-gray-700">Grade:</span>
-                          <span className="text-lg font-bold text-green-600">
+                          <span className="text-lg font-bold text-success-dark">
                             {test.submission.grade}/100
                           </span>
                         </div>
@@ -292,7 +292,7 @@ const StudentAssignments = () => {
                     {/* Download Test Button */}
                     <button
                       onClick={() => handleDownloadTest(test._id, test.title)}
-                      className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center text-sm font-medium"
+                      className="flex-1 bg-brand-600 text-white px-4 py-2 rounded-lg hover:bg-brand-700 transition-colors flex items-center justify-center text-sm font-medium"
                     >
                       <Download className="w-4 h-4 mr-2" />
                       Download Test
@@ -302,7 +302,7 @@ const StudentAssignments = () => {
                     {test.submissionStatus === "pending" && !isOverdue(test.dueDate) && (
                       <button
                         onClick={() => openSubmissionModal(test)}
-                        className="flex-1 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center text-sm font-medium"
+                        className="flex-1 bg-success-dark text-white px-4 py-2 rounded-lg hover:bg-success-dark transition-colors flex items-center justify-center text-sm font-medium"
                       >
                         <Upload className="w-4 h-4 mr-2" />
                         Submit Answer
@@ -349,11 +349,11 @@ const StudentAssignments = () => {
                 </label>
                 <div
                   onClick={() => fileInputRef.current?.click()}
-                  className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 transition-colors"
+                  className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-brand-400 transition-colors"
                 >
                   {selectedFile ? (
                     <div>
-                      <FileText className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                      <FileText className="w-8 h-8 text-brand-500 mx-auto mb-2" />
                       <p className="text-sm font-medium text-gray-900">{selectedFile.name}</p>
                       <p className="text-xs text-gray-500">
                         {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
@@ -385,7 +385,7 @@ const StudentAssignments = () => {
                   value={submissionNotes}
                   onChange={(e) => setSubmissionNotes(e.target.value)}
                   rows={3}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                   placeholder="Any additional comments about your submission..."
                   maxLength={1000}
                 />
@@ -405,7 +405,7 @@ const StudentAssignments = () => {
                 <button
                   onClick={handleSubmitAnswer}
                   disabled={!selectedFile || isSubmitting}
-                  className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                  className="flex-1 bg-brand-600 text-white px-4 py-2 rounded-lg hover:bg-brand-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                 >
                   {isSubmitting ? (
                     <>

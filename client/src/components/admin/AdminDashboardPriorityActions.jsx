@@ -56,7 +56,7 @@ const AdminDashboardPriorityActions = ({
         </div>
 
         {/* Instructor Requests Card */}
-        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500 flex flex-col justify-between">
+        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-brand-500 flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold text-gray-800 flex items-center">
               <svg className="w-5 h-5 mr-2" style={{color: 'var(--info)'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,7 +65,7 @@ const AdminDashboardPriorityActions = ({
               Instructor Requests
             </h2>
             {pendingInstructor > 0 && (
-              <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+              <span className="bg-brand-100 text-brand-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
                 {pendingInstructor} pending
               </span>
             )}
@@ -96,38 +96,38 @@ const AdminDashboardPriorityActions = ({
         </div>
 
         {/* System Health Card */}
-        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500 flex flex-col justify-between">
+        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-success flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold text-gray-800 flex items-center">
-              <svg className="w-5 h-5 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 mr-2 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               System Health
             </h2>
-            <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+            <span className="bg-success-soft text-success-dark text-xs font-medium px-2.5 py-0.5 rounded-full">
               Healthy
             </span>
           </div>
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <span className="text-sm text-gray-600">Server Status</span>
-              <span className="text-sm font-medium text-green-600">Online</span>
+              <span className="text-sm font-medium text-success-dark">Online</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-sm text-gray-600">Database</span>
-              <span className="text-sm font-medium text-green-600">Connected</span>
+              <span className="text-sm font-medium text-success-dark">Connected</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-sm text-gray-600">Active Users</span>
-              <span className="text-sm font-medium text-blue-600">{userStats?.totalUsers || 0}</span>
+              <span className="text-sm font-medium text-brand-600">{userStats?.totalUsers || 0}</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-sm text-gray-600">Uptime</span>
-              <span className="text-sm font-medium text-green-600">99.9%</span>
+              <span className="text-sm font-medium text-success-dark">99.9%</span>
             </div>
           </div>
           <button
-            className="w-full mt-4 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition duration-200"
+            className="w-full mt-4 bg-success-dark hover:bg-success-dark text-white py-2 px-4 rounded-lg transition duration-200"
             onClick={() => navigate("/admin/system-logs")}
           >
             View System Logs

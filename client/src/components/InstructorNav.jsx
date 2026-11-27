@@ -103,9 +103,9 @@ const InstructorNav = ({
       {isSidebarOpen && (
         <div
           className={`
-          fixed top-0 left-0 pt-16 md:pt-0 lg:pt-24 flex flex-col h-screen bg-white  border-r z-40
+          fixed top-0 left-0 pt-16 md:pt-0 lg:pt-24 flex flex-col h-screen bg-white border-r z-40
            ease-in-out
-          transition-[width,transform,opacity]
+          transition-[width,,opacity]
           ${
             isSidebarOpen
               ? "translate-x-0 opacity-100"
@@ -140,7 +140,7 @@ const InstructorNav = ({
             <div className="flex items-center space-x-3">
               {user?.avatar ? (
                 <img
-                  src={user?.avatar || "/demo-placeholder.svg"}
+                  src={user?.avatar || "/images/photo-1522202176988-66273c2fd55f.jpg"}
                   alt="Avatar"
                   onError={(e) => (e.currentTarget.hidden = true)}
                   className="w-10 h-10 rounded-full"
@@ -175,7 +175,7 @@ const InstructorNav = ({
                     ${
                       active
                         ? "bg-darkColor text-white"
-                        : "text-secondary hover:bg-accent"
+                        : "text-secondary hover:bg-brand-50"
                     }
                   `}
                   >
@@ -197,8 +197,8 @@ const InstructorNav = ({
                     className={`w-full flex items-center rounded-lg px-3 py-2 text-sm transition
                     ${
                       active
-                        ? "bg-soDark text-white"
-                        : "text-secondary hover:bg-accent"
+                        ? "bg-brand-900 text-white"
+                        : "text-secondary hover:bg-brand-50"
                     }
                   `}
                   >
@@ -214,7 +214,7 @@ const InstructorNav = ({
           <div className="p-4 border-t">
             <button
               onClick={handleLogout}
-              className="flex items-center w-full px-3 py-2 text-sm text-red-600 rounded-lg hover:bg-red-50"
+              className="flex items-center w-full px-3 py-2 text-sm text-error-dark rounded-lg hover:bg-error-soft"
             >
               <LogOut size={20} />
               {!isCollapsed && <span className="ml-3">Logout</span>}

@@ -181,11 +181,11 @@ const InstructorPayments = () => {
   const getStatusIcon = (status) => {
     switch (status) {
       case 'approved':
-        return <CheckCircle className="w-4 h-4 text-green-600" />;
+        return <CheckCircle className="w-4 h-4 text-success-dark" />;
       case 'rejected':
-        return <XCircle className="w-4 h-4 text-red-600" />;
+        return <XCircle className="w-4 h-4 text-error-dark" />;
       case 'pending':
-        return <Clock className="w-4 h-4 text-yellow-600" />;
+        return <Clock className="w-4 h-4 text-warning-dark" />;
       default:
         return <AlertCircle className="w-4 h-4 text-gray-600" />;
     }
@@ -195,11 +195,11 @@ const InstructorPayments = () => {
     const baseClasses = "px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1";
     switch (status) {
       case 'approved':
-        return `${baseClasses} bg-green-100 text-green-800`;
+        return `${baseClasses} bg-success-soft text-success-dark`;
       case 'rejected':
-        return `${baseClasses} bg-red-100 text-red-800`;
+        return `${baseClasses} bg-error-soft text-error-dark`;
       case 'pending':
-        return `${baseClasses} bg-yellow-100 text-yellow-800`;
+        return `${baseClasses} bg-warning-soft text-warning-dark`;
       default:
         return `${baseClasses} bg-gray-100 text-gray-800`;
     }
@@ -209,11 +209,11 @@ const InstructorPayments = () => {
     const baseClasses = "px-2 py-1 rounded text-xs font-medium";
     switch (method) {
       case 'stripe':
-        return `${baseClasses} bg-blue-100 text-blue-800`;
+        return `${baseClasses} bg-brand-100 text-brand-800`;
       case 'paypal':
-        return `${baseClasses} bg-yellow-100 text-yellow-800`;
+        return `${baseClasses} bg-warning-soft text-warning-dark`;
       case 'direct_transfer':
-        return `${baseClasses} bg-green-100 text-green-800`;
+        return `${baseClasses} bg-success-soft text-success-dark`;
       default:
         return `${baseClasses} bg-gray-100 text-gray-800`;
     }
@@ -242,7 +242,7 @@ const InstructorPayments = () => {
     if (role === 'automatic') {
       return (
         <div className="text-sm">
-          <div className="font-medium text-blue-600">🤖 Automatic</div>
+          <div className="font-medium text-brand-600">🤖 Automatic</div>
           <div className="text-gray-500 text-xs">
             {approvedAt ? new Date(approvedAt).toLocaleDateString() : ''}
           </div>
@@ -290,7 +290,7 @@ const InstructorPayments = () => {
     if (receiptLoading) {
       return (
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
-          <div className="animate-spin h-4 w-4 border-2 border-blue-600 border-t-transparent rounded-full"></div>
+          <div className="animate-spin h-4 w-4 border-2 border-brand-600 border-t-transparent rounded-full"></div>
           <span className="text-sm text-gray-600">Loading receipt...</span>
         </div>
       );
@@ -298,7 +298,7 @@ const InstructorPayments = () => {
 
     if (receiptError) {
       return (
-        <span className="inline-flex items-center px-3 py-1 bg-red-100 text-red-800 text-sm rounded">
+        <span className="inline-flex items-center px-3 py-1 bg-error-soft text-error-dark text-sm rounded">
           📄 Receipt unavailable
         </span>
       );
@@ -312,7 +312,7 @@ const InstructorPayments = () => {
             className={`inline-flex items-center px-3 py-2 text-white text-sm rounded-lg transition-colors font-medium ${
               showReceipt 
                 ? 'bg-gray-600 hover:bg-gray-700' 
-                : 'bg-blue-600 hover:bg-blue-700'
+                : 'bg-brand-600 hover:bg-brand-700'
             }`}
           >
             {showReceipt ? (
@@ -325,7 +325,7 @@ const InstructorPayments = () => {
             <>
               <button
                 onClick={handleDownloadReceipt}
-                className="inline-flex items-center px-3 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700 transition-colors font-medium"
+                className="inline-flex items-center px-3 py-2 bg-success-dark text-white text-sm rounded-lg hover:bg-success-dark transition-colors font-medium"
               >
                 💾 Download Receipt
               </button>
@@ -333,7 +333,7 @@ const InstructorPayments = () => {
                 href={receiptData.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-3 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+                className="inline-flex items-center px-3 py-2 bg-brand-600 text-white text-sm rounded-lg hover:bg-brand-700 transition-colors font-medium"
               >
                 🔗 Open in New Tab
               </a>
@@ -366,9 +366,9 @@ const InstructorPayments = () => {
 
   if (isError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-red-50 to-pink-50 flex items-center justify-center">
+      <div className="min-h-screen bg-brand-50 flex items-center justify-center">
         <div className="bg-white p-8 rounded-xl shadow-lg text-center">
-          <XCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <XCircle className="w-16 h-16 text-error mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Failed to Load Data</h2>
           <p className="text-gray-600">Unable to load payment information. Please try again later.</p>
         </div>

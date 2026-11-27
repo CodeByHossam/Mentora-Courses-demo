@@ -4,7 +4,7 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import usePersist from "../hooks/usePersist";
-import ProgressLoader from "./ProgressLoader";
+import { ProgressLoader } from './common/index.js';
 import { useRefreshMutation } from "../store/services/authApi";
 import { selectCurrentToken } from "../store/slices/authSlice";
 

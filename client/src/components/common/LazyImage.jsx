@@ -8,7 +8,7 @@ const LazyImage = memo(({
   src,
   alt,
   className = '',
-  fallbackSrc = '/images/placeholder.jpg',
+  fallbackSrc = '/images/photo-1522202176988-66273c2fd55f.jpg',
   loadingClassName = '',
   errorClassName = '',
   onLoad,
@@ -100,7 +100,7 @@ const LazyImage = memo(({
   if (imageState === 'error') {
     return (
       <div
-        className={`flex items-center justify-center bg-gradient-to-br from-green-500 to-blue-600 ${baseClasses} ${errorClassName}`}
+        className={`flex items-center justify-center bg-brand ${baseClasses} ${errorClassName}`}
         {...props}
       >
         <BookOpen className="w-8 h-8 text-white" />

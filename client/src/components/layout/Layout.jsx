@@ -7,12 +7,12 @@ export default function Layout() {
   return (
     <div className="flex flex-col min-h-screen bg-primary font-body">
       {/* Header */}
-      <header className="fixed h-16 md:h-20 top-0 left-0 w-full bg-white backdrop-blur-md shadow-md z-50 border-b border-gray-100">
+      <header className="fixed top-0 left-0 z-50 h-16 w-full border-b border-line bg-white shadow-sm md:h-20">
           <Navbar />
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow w-full overflow-x-hidden mt-20">
+      <main className="flex-grow w-full overflow-x-hidden mt-20 pt-8">
           <Outlet />
       </main>
 

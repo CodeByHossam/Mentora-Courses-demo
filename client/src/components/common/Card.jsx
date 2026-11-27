@@ -1,46 +1,45 @@
-import React, { memo } from "react";
+import React, { memo } from 'react';
 
 /**
- * Reusable Card component with modern styling
+ * Card container. Cards are content surfaces, not decorative blocks: no blur,
+ * no scale-on-hover. Hover changes border and shadow only.
  */
 const Card = memo(
   ({
     children,
-    className = "",
+    className = '',
     hover = false,
-    padding = "md",
-    shadow = "base",
+    padding = 'md',
+    shadow = 'base',
     border = true,
     ...props
   }) => {
     const paddingClasses = {
-      sm: "p-4",
-      md: "p-6",
-      lg: "p-8",
-      none: "p-0",
+      sm: 'p-4',
+      md: 'p-6',
+      lg: 'p-8',
+      none: 'p-0',
     };
 
     const shadowClasses = {
-      none: "",
-      sm: "shadow-sm",
-      base: "shadow-md",
-      lg: "shadow-lg",
-      xl: "shadow-2xl",
+      none: '',
+      sm: 'shadow-sm',
+      base: 'shadow-md',
+      lg: 'shadow-lg',
+      xl: 'shadow-xl',
     };
 
     const baseClasses = [
-      "card rounded-2xl transition-all duration-300 ease-out",
-      "backdrop-blur-sm", // subtle glassy effect
-      paddingClasses[padding],
-      shadowClasses[shadow],
-      border ? "border" : "border-0",
-      hover
-        ? "hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] cursor-pointer"
-        : "",
+      'card min-w-0 rounded-xl',
+      'transition-[box-shadow,border-color] duration-150 ease-out',
+      paddingClasses[padding] || paddingClasses.md,
+      shadowClasses[shadow] || shadowClasses.base,
+      border ? 'border' : 'border-0',
+      hover ? 'cursor-pointer hover:border-brand-200 hover:shadow-lg' : '',
       className,
     ]
       .filter(Boolean)
-      .join(" ");
+      .join(' ');
 
     return (
       <div className={baseClasses} {...props}>
@@ -50,6 +49,6 @@ const Card = memo(
   }
 );
 
-Card.displayName = "Card";
+Card.displayName = 'Card';
 
 export default Card;

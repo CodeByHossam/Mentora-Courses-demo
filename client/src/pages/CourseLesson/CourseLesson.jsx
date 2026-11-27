@@ -277,7 +277,7 @@ const CourseLesson = () => {
           </h2>
           <button
             onClick={() => navigate("/courses")}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="px-6 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700"
           >
             Back to Courses
           </button>
@@ -295,7 +295,7 @@ const CourseLesson = () => {
           </h2>
           <button
             onClick={() => navigate("/courses")}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="px-6 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700"
           >
             Back to Courses
           </button>
@@ -305,7 +305,7 @@ const CourseLesson = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-50">
+    <div className="min-h-screen bg-canvas">
       {/* Confirmation Modal */}
       <ConfirmationModalWrapper />
 

@@ -178,16 +178,16 @@ const Levels = () => {
 
   // Get difficulty color
   const getDifficultyColor = (difficulty) => {
-    if (difficulty <= 3) return 'text-green-600 bg-green-100';
-    if (difficulty <= 6) return 'text-yellow-600 bg-yellow-100';
-    if (difficulty <= 8) return 'text-orange-600 bg-orange-100';
-    return 'text-red-600 bg-red-100';
+    if (difficulty <= 3) return 'text-success-dark bg-success-soft';
+    if (difficulty <= 6) return 'text-warning-dark bg-warning-soft';
+    if (difficulty <= 8) return 'text-warning-dark bg-warning-soft';
+    return 'text-error-dark bg-error-soft';
   };
 
   // Handle loading state
   if (levelsLoading || dashboardLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-7xl mx-auto">
           <div className="animate-pulse">
             <div className="h-8 bg-gray-300 rounded w-1/4 mb-6"></div>
@@ -210,23 +210,23 @@ const Levels = () => {
     // Check if it's an authentication error
     if (levelsError.status === 401 || levelsError.data?.code === 'NOT_AUTHENTICATED') {
       return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-6">
+        <div className="min-h-screen bg-brand-50 p-6">
           <div className="max-w-7xl mx-auto">
-            <div className="bg-white rounded-xl shadow-lg border border-red-200 p-8 text-center">
+            <div className="bg-white rounded-xl shadow-lg border border-error-soft p-8 text-center">
               <div className="mb-4">
-                <AlertTriangle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+                <AlertTriangle className="w-16 h-16 text-error mx-auto mb-4" />
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">Authentication Required</h2>
                 <p className="text-gray-600 mb-6">
                   You need to be logged in to access the levels management page.
                 </p>
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-                  <p className="text-red-800 text-sm">
+                <div className="bg-error-soft border border-error-soft rounded-lg p-4 mb-6">
+                  <p className="text-error-dark text-sm">
                     <strong>Error:</strong> {levelsError.data?.message || 'Authentication failed'}
                   </p>
                 </div>
                 <button
                   onClick={() => window.location.href = '/login'}
-                  className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                  className="bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 transition-colors"
                 >
                   Go to Login
                 </button>
@@ -239,22 +239,22 @@ const Levels = () => {
 
     // Handle other errors
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-6">
+      <div className="min-h-screen bg-brand-50 p-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-white rounded-xl shadow-lg border border-red-200 p-8 text-center">
-            <AlertTriangle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <div className="bg-white rounded-xl shadow-lg border border-error-soft p-8 text-center">
+            <AlertTriangle className="w-16 h-16 text-error mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Error Loading Levels</h2>
             <p className="text-gray-600 mb-4">
               There was an error loading the levels data. Please try again.
             </p>
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-              <p className="text-red-800 text-sm">
+            <div className="bg-error-soft border border-error-soft rounded-lg p-4 mb-6">
+              <p className="text-error-dark text-sm">
                 <strong>Error:</strong> {levelsError.data?.message || levelsError.message || 'Unknown error'}
               </p>
             </div>
             <button
               onClick={() => refetchLevels()}
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors mr-4"
+              className="bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 transition-colors mr-4"
             >
               Try Again
             </button>
@@ -292,7 +292,7 @@ const Levels = () => {
           {(user?.role === 'admin' || user?.role === 'instructor') && (
             <button
               onClick={() => setShowCreateModal(true)}
-              className="mt-4 md:mt-0 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 flex items-center gap-2 shadow-lg"
+              className="mt-4 md:mt-0 bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 transition-all duration-200 flex items-center gap-2 shadow-lg"
             >
               <Plus className="w-5 h-5" />
               Add New Level
@@ -302,9 +302,9 @@ const Levels = () => {
 
         {/* Debug Info (only in development) */}
         {process.env.NODE_ENV === 'development' && (
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
-            <h3 className="text-sm font-medium text-yellow-800 mb-2">Debug Info:</h3>
-            <div className="text-xs text-yellow-700 space-y-1">
+          <div className="bg-warning-soft border border-warning-soft rounded-lg p-4 mb-6">
+            <h3 className="text-sm font-medium text-warning-dark mb-2">Debug Info:</h3>
+            <div className="text-xs text-warning-dark space-y-1">
              
               <p><strong>Levels Count:</strong> {levelsData?.levels?.length || 0}</p>
               <p><strong>Dashboard Data:</strong> {dashboardData ? 'Loaded' : 'Not loaded'}</p>
@@ -323,8 +323,8 @@ const Levels = () => {
                     {dashboardData.overview.totalLevels}
                   </p>
                 </div>
-                <div className="p-3 bg-blue-100 rounded-xl">
-                  <Layers className="w-6 h-6 text-blue-600" />
+                <div className="p-3 bg-brand-100 rounded-xl">
+                  <Layers className="w-6 h-6 text-brand-600" />
                 </div>
               </div>
             </div>
@@ -333,12 +333,12 @@ const Levels = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Active Levels</p>
-                  <p className="text-3xl font-bold text-green-600">
+                  <p className="text-3xl font-bold text-success-dark">
                     {dashboardData.overview.activeLevels}
                   </p>
                 </div>
-                <div className="p-3 bg-green-100 rounded-xl">
-                  <CheckCircle className="w-6 h-6 text-green-600" />
+                <div className="p-3 bg-success-soft rounded-xl">
+                  <CheckCircle className="w-6 h-6 text-success-dark" />
                 </div>
               </div>
             </div>
@@ -347,12 +347,12 @@ const Levels = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Total Courses</p>
-                  <p className="text-3xl font-bold text-purple-600">
+                  <p className="text-3xl font-bold text-brand-600">
                     {dashboardData.overview.totalCourses}
                   </p>
                 </div>
-                <div className="p-3 bg-purple-100 rounded-xl">
-                  <BookOpen className="w-6 h-6 text-purple-600" />
+                <div className="p-3 bg-brand-100 rounded-xl">
+                  <BookOpen className="w-6 h-6 text-brand-600" />
                 </div>
               </div>
             </div>
@@ -361,12 +361,12 @@ const Levels = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Total Students</p>
-                  <p className="text-3xl font-bold text-orange-600">
+                  <p className="text-3xl font-bold text-warning-dark">
                     {dashboardData.overview.totalStudents}
                   </p>
                 </div>
-                <div className="p-3 bg-orange-100 rounded-xl">
-                  <Users className="w-6 h-6 text-orange-600" />
+                <div className="p-3 bg-warning-soft rounded-xl">
+                  <Users className="w-6 h-6 text-warning-dark" />
                 </div>
               </div>
             </div>
@@ -378,13 +378,13 @@ const Levels = () => {
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search */}
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search levels..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               />
             </div>
 
@@ -392,7 +392,7 @@ const Levels = () => {
             <select
               value={filterActive}
               onChange={(e) => setFilterActive(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
             >
               <option value="all">All Levels</option>
               <option value="true">Active Only</option>
@@ -403,7 +403,7 @@ const Levels = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
             >
               <option value="order">Order</option>
               <option value="name">Name</option>
@@ -415,7 +415,7 @@ const Levels = () => {
             <select
               value={sortOrder}
               onChange={(e) => setSortOrder(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
             >
               <option value="asc">Ascending</option>
               <option value="desc">Descending</option>
@@ -471,19 +471,19 @@ const Levels = () => {
                 {/* Statistics */}
                 <div className="grid grid-cols-3 gap-4 mb-4">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">
+                    <div className="text-2xl font-bold text-brand-600">
                       {level.courseCount || 0}
                     </div>
                     <div className="text-xs text-gray-500">Courses</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">
+                    <div className="text-2xl font-bold text-success-dark">
                       {level.studentCount || 0}
                     </div>
                     <div className="text-xs text-gray-500">Students</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600">
+                    <div className="text-2xl font-bold text-brand-600">
                       {level.instructorCount || 0}
                     </div>
                     <div className="text-xs text-gray-500">Instructors</div>
@@ -501,7 +501,7 @@ const Levels = () => {
                     (user?.role === 'instructor' && level.createdBy?._id === user._id)) && (
                     <button
                       onClick={() => handleEdit(level)}
-                      className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+                      className="flex-1 bg-brand-600 text-white px-4 py-2 rounded-lg hover:bg-brand-700 transition-colors flex items-center justify-center gap-2"
                     >
                       <Edit className="w-4 h-4" />
                       Edit
@@ -514,7 +514,7 @@ const Levels = () => {
                         setSelectedLevel(level);
                         setShowDeleteModal(true);
                       }}
-                      className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors flex items-center justify-center gap-2"
+                      className="bg-error-dark text-white px-4 py-2 rounded-lg hover:bg-error-dark transition-colors flex items-center justify-center gap-2"
                     >
                       <Trash2 className="w-4 h-4" />
                       Delete
@@ -538,7 +538,7 @@ const Levels = () => {
                 Previous
               </button>
               
-              <span className="px-4 py-2 bg-blue-600 text-white rounded-lg">
+              <span className="px-4 py-2 bg-brand-600 text-white rounded-lg">
                 {levelsData.pagination.currentPage} of {levelsData.pagination.totalPages}
               </span>
               
@@ -585,7 +585,7 @@ const Levels = () => {
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -599,7 +599,7 @@ const Levels = () => {
                       value={formData.description}
                       onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                       rows={3}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -616,7 +616,7 @@ const Levels = () => {
                         max="10"
                         value={formData.difficulty}
                         onChange={(e) => setFormData({ ...formData, difficulty: parseInt(e.target.value) })}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                         required
                       />
                     </div>
@@ -629,7 +629,7 @@ const Levels = () => {
                         min="0"
                         value={formData.order}
                         onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) })}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                       />
                     </div>
                   </div>
@@ -661,7 +661,7 @@ const Levels = () => {
                       <select
                         value={formData.icon}
                         onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                       >
                         {iconOptions.map((icon) => (
                           <option key={icon} value={icon}>
@@ -679,7 +679,7 @@ const Levels = () => {
                       id="isActive"
                       checked={formData.isActive}
                       onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
-                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      className="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500"
                     />
                     <label htmlFor="isActive" className="text-sm font-medium text-gray-700">
                       Active Level
@@ -691,7 +691,7 @@ const Levels = () => {
                     <button
                       type="submit"
                       disabled={createLoading || updateLoading}
-                      className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50"
+                      className="flex-1 bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50"
                     >
                       <Save className="w-5 h-5" />
                       {showCreateModal ? 'Create Level' : 'Update Level'}
@@ -721,8 +721,8 @@ const Levels = () => {
             <div className="bg-white rounded-xl max-w-md w-full">
               <div className="p-6">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="p-3 bg-red-100 rounded-full">
-                    <AlertTriangle className="w-6 h-6 text-red-600" />
+                  <div className="p-3 bg-error-soft rounded-full">
+                    <AlertTriangle className="w-6 h-6 text-error-dark" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">
@@ -743,7 +743,7 @@ const Levels = () => {
                   <button
                     onClick={handleDelete}
                     disabled={deleteLoading}
-                    className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50"
+                    className="flex-1 bg-error-dark text-white px-4 py-2 rounded-lg hover:bg-error-dark transition-colors disabled:opacity-50"
                   >
                     {deleteLoading ? 'Deleting...' : 'Delete Level'}
                   </button>

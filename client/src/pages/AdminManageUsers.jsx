@@ -10,7 +10,7 @@ import {
   useUpdateUserActiveStateMutation,
   useUpdateUserVerificationStateMutation,
 } from "../store/services/userApi";
-import ProgressLoader from "../components/ProgressLoader";
+import { ProgressLoader } from '../components/common/index.js';
 import { useConfirm } from "../hooks/useConfirm";
 
 const AdminManageUsers = () => {
@@ -128,7 +128,7 @@ if (error) {
   return (
     <div className="min-h-[60vh] flex items-center justify-center">
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-red-600 mb-4">Error</h2>
+        <h2 className="text-2xl font-bold text-error-dark mb-4">Error</h2>
         <p className="text-gray-600">
           {error.data?.message || "Failed to load users"}
         </p>
@@ -168,7 +168,7 @@ if (error) {
             <div className="mt-4 sm:mt-0">
               <button
                 onClick={() => navigate("/admin/users/create")}
-                className="btn-success w-full sm:w-auto inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 rounded-xl shadow-lg text-sm font-medium transform transition-all duration-200 hover:scale-105"
+                className="btn-success w-full sm:w-auto inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 rounded-xl shadow-lg text-sm font-medium transition-all duration-200 "
               >
                 <svg
                   className="-ml-1 mr-2 h-5 w-5"
@@ -226,7 +226,7 @@ if (error) {
         <div className="card rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-accent">
+              <thead className="bg-brand-50">
                 <tr>
                   <th className="px-6 py-4 text-left text-xs font-semibold text-secondary uppercase tracking-wider">
                     User
@@ -252,10 +252,10 @@ if (error) {
                 {filteredUsers.map((user, index) => {
                   const isLoadingAction = actionLoadingUserId === user._id;
                   return (
-                    <tr key={user._id} className="hover:bg-accent transition-colors duration-200">
+                    <tr key={user._id} className="hover:bg-brand-50 transition-colors duration-200">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <div className="h-12 w-12 flex-shrink-0 rounded-full ring-2 flex items-center justify-center" style={{background: 'linear-gradient(to bottom right, var(--info), var(--primary))', ringColor: 'var(--card-border)'}}>
+                          <div className="h-12 w-12 flex-shrink-0 rounded-full bg-brand-soft ring-2 ring-brand-200 flex items-center justify-center">
                             {user.avatar ? (
                               <img
                                 className="h-12 w-12 rounded-full object-cover"
@@ -310,8 +310,8 @@ if (error) {
                               disabled={isLoadingAction || user.role === "admin"}
                               className={`px-3 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
                                 user.isActive 
-                                  ? "bg-green-100 text-green-800 hover:bg-green-200" 
-                                  : "bg-red-100 text-red-800 hover:bg-red-200"
+                                  ? "bg-success-soft text-success-dark hover:bg-success-soft" 
+                                  : "bg-error-soft text-error-dark hover:bg-error-soft"
                               } ${isLoadingAction || user.role === "admin" ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
                             >
                               {user.isActive ? "✅ Active" : "❌ Inactive"}
@@ -324,8 +324,8 @@ if (error) {
                               disabled={isLoadingAction}
                               className={`px-3 py-1 text-xs font-medium rounded-full transition-all duration-200 ${
                                 user.isVerified 
-                                  ? "bg-blue-100 text-blue-800 hover:bg-blue-200" 
-                                  : "bg-yellow-100 text-yellow-800 hover:bg-yellow-200"
+                                  ? "bg-brand-100 text-brand-800 hover:bg-brand-200" 
+                                  : "bg-warning-soft text-warning-dark hover:bg-warning-soft"
                               } ${isLoadingAction ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
                             >
                               {user.isVerified ? "✅ Verified" : "⏳ Unverified"}
@@ -348,8 +348,8 @@ if (error) {
                               navigate(`/admin/users/${user._id}/edit`)
                             }
                             disabled={isLoadingAction}
-                            className={`px-3 py-2 text-xs font-medium text-green-600 bg-green-50 rounded-lg hover:bg-green-100 transition-all duration-200 ${
-                              isLoadingAction ? "opacity-50 cursor-not-allowed" : "hover:scale-105"
+                            className={`px-3 py-2 text-xs font-medium text-success-dark bg-success-soft rounded-lg hover:bg-success-soft transition-all duration-200 ${
+                              isLoadingAction ? "opacity-50 cursor-not-allowed" : ""
                             }`}
                           >
                             ✏️ Edit
@@ -357,8 +357,8 @@ if (error) {
                           <button
                             onClick={() => handleDeleteUser(user._id)}
                             disabled={isLoadingAction}
-                            className={`p-2 text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-all duration-200 ${
-                              isLoadingAction ? "opacity-50 cursor-not-allowed" : "hover:scale-105"
+                            className={`p-2 text-error-dark bg-error-soft rounded-lg hover:bg-error-soft transition-all duration-200 ${
+                              isLoadingAction ? "opacity-50 cursor-not-allowed" : ""
                             }`}
                           >
                             <Trash2 className="h-4 w-4" />
