@@ -401,7 +401,7 @@ This guide provides a complete implementation of live session functionality for 
 - `client/src/components/LiveSession/StudentSessions.jsx` - Student session viewing
 - `client/src/components/LiveSession/CourseLiveSessions.jsx` - Course-specific sessions
 - `client/src/components/LiveSession/SessionRecordingUpload.jsx` - Recording upload form
-- `client/src/components/LiveSession/ZoomMeeting.jsx` - Zoom Web SDK integration
+- `client/src/components/LiveSession/ZoomMeeting.jsx` - Zoom Web SDK integration (disabled on client; sessions use backend-provided join URLs)
 
 ## 🚀 Installation Steps
 

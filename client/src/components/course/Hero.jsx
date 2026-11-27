@@ -120,7 +120,7 @@ const Hero = memo(() => {
                     src="/images/hero-course.jpg"
                     alt="Featured Course"
                     className="w-full h-32 object-cover rounded-lg"
-                    fallbackSrc="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=200&fit=crop"
+                    fallbackSrc="/demo-placeholder.svg"
                   />
 
                   <div className="flex items-center justify-between">

@@ -126,7 +126,7 @@ const Profile = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/payment-details",
+        "/api/auth/payment-details",
         {
           method: "PUT",
           headers: {

@@ -356,7 +356,7 @@ This document outlines comprehensive user stories, acceptance criteria, and func
 
 | Service | Provider | Status | Purpose |
 |---------|----------|--------|----------|
-| **Payment Processing** | Stripe/PayPal | ✅ Integrated | Course payments |
+| **Payment Processing** | Direct Bank Transfer (client); Stripe/PayPal backend-only | ✅ Integrated | Course payments |
 | **Email Service** | SendGrid | ✅ Integrated | Notifications |
 | **File Storage** | Cloudinary | ✅ Integrated | Media management |
 | **Analytics** | Google Analytics | 📋 Planned | User behavior tracking |

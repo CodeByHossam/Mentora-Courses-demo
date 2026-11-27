@@ -1,6 +1,4 @@
-/* Import fonts */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
+/* Local system font stack — no external font requests in demo mode. */
 @import "tailwindcss";
 
 /* ============================================================================

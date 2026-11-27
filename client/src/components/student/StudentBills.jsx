@@ -52,7 +52,7 @@ const StudentBills = ({ userId }) => {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/api/payments/user/bills', {
+      const response = await fetch('/api/payments/user/bills', {
         headers: {
           'Authorization': `Bearer ${authToken}`,
           'Content-Type': 'application/json'

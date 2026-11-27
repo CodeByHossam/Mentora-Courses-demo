@@ -1,104 +1,26 @@
-import React, { useState } from "react";
-import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { useConfirmStripeBillingPaymentMutation } from "../../../store/services/billingApi";
-import { useAddBillingChargeMutation } from "../../../store/services/billingApi";
-
-const StripePaymentForm = ({ course, paymentData, onInitiate, loading }) => {
-  const stripe = useStripe();
-  const elements = useElements();
-  const navigate = useNavigate();
-  const [processing, setProcessing] = useState(false);
-
-  const [confirmStripePayment] = useConfirmStripeBillingPaymentMutation();
-  const [addBillingCharge] = useAddBillingChargeMutation();
-
-  const handleSubmit = async (event) => {
+// Demo card-payment placeholder. The static demo never loads a card SDK.
+const StripePaymentForm = ({ course, onInitiate, loading }) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-
-    if (!paymentData) {
-      onInitiate();
-      return;
-    }
-
-    if (!stripe || !elements) {
-      return;
-    }
-
-    setProcessing(true);
-
-    try {
-      const { error, paymentIntent } = await stripe.confirmCardPayment(
-        paymentData.clientSecret,
-        {
-          payment_method: {
-            card: elements.getElement(CardElement),
-            billing_details: {
-              name: course.title,
-            },
-          },
-        }
-      );
-
-      if (error) {
-        toast.error(error.message);
-        setProcessing(false);
-      } else {
-        // Confirm payment on backend
-        const result = await confirmStripePayment({
-          paymentIntentId: paymentIntent.id,
-        }).unwrap();
-
-        if (result.success) {
-          toast.success("Payment successful! You are now enrolled.");
-          navigate(`/courses/${course._id}`);
-        } else {
-          toast.error("Payment verification failed");
-        }
-        setProcessing(false);
-      }
-    } catch (error) {
-      console.error("Payment confirmation error:", error);
-      toast.error("Payment verification failed");
-      setProcessing(false);
-    }
+    onInitiate?.();
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="bg-gray-50 p-4 rounded-xl">
-        <h3 className="font-semibold mb-4">💳 Card Details</h3>
-        <div className="border rounded-lg p-3 bg-white">
-          <CardElement
-            options={{
-              style: {
-                base: {
-                  fontSize: "16px",
-                  color: "#424770",
-                  "::placeholder": {
-                    color: "#aab7c4",
-                  },
-                },
-              },
-            }}
-          />
-        </div>
+      <div className="rounded-xl bg-gray-50 p-4">
+        <h3 className="mb-2 font-semibold">Card payment — demo only</h3>
+        <p className="text-sm text-gray-600">
+          Card details are not collected in this frontend-only demo. Submit to
+          simulate a payment request locally.
+        </p>
       </div>
 
       <button
         type="submit"
-        disabled={!stripe || loading || processing}
-        className="w-full bg-indigo-600 text-white py-3 px-6 rounded-xl font-semibold hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        disabled={loading}
+        className="w-full rounded-xl bg-indigo-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {loading || processing ? (
-          <div className="flex items-center justify-center">
-            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-            Processing...
-          </div>
-        ) : (
-          `Pay $${course.finalPrice}`
-        )}
+        {loading ? "Processing..." : `Pay $${course?.finalPrice ?? 0}`}
       </button>
     </form>
   );

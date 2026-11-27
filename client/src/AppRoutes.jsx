@@ -6,14 +6,14 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { Layout } from "./components/layout";
-import { AdminLayout } from "./components/layout";
-import { InstructorLayout } from "./components/layout";
-import { StudentLayout } from "./components/layout";
-import { ProtectedRoute } from "./components/layout";
-import { PersistLogin } from "./components/layout";
-import { ProgressLoader } from "./components/common";
-import { ScrollToTop } from "./components/common";
+import { Layout } from "./components/layout/index.js";
+import { AdminLayout } from "./components/layout/index.js";
+import { InstructorLayout } from "./components/layout/index.js";
+import { StudentLayout } from "./components/layout/index.js";
+import { ProtectedRoute } from "./components/layout/index.js";
+import { PersistLogin } from "./components/layout/index.js";
+import { ProgressLoader } from "./components/common/index.js";
+import { ScrollToTop } from "./components/common/index.js";
 import { Login } from "./pages/auth";
 import { Register } from "./pages/auth";
 import { Help } from "./pages/public";

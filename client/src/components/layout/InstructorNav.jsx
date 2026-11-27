@@ -140,7 +140,7 @@ const InstructorNav = ({
             <div className="flex items-center space-x-3">
               {user?.avatar ? (
                 <img
-                  src={user?.avatar || "https://via.placeholder.com/40"}
+                  src={user?.avatar || "/demo-placeholder.svg"}
                   alt="Avatar"
                   onError={(e) => (e.currentTarget.hidden = true)}
                   className="w-10 h-10 rounded-full"

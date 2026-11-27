@@ -12,42 +12,42 @@ const FeatureSection = memo(() => {
       icon: BookOpen,
       title: 'Expert-Curated Content',
       description: 'Learn from industry professionals with real-world experience and proven track records.',
-      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop',
+      image: '/demo-placeholder.svg',
       color: 'blue'
     },
     {
       icon: Users,
       title: 'Interactive Learning',
       description: 'Engage with peers, join study groups, and participate in live Q&A sessions.',
-      image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=300&fit=crop',
+      image: '/demo-placeholder.svg',
       color: 'green'
     },
     {
       icon: Award,
       title: 'Industry Certificates',
       description: 'Earn recognized certificates that boost your career and validate your skills.',
-      image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop',
+      image: '/demo-placeholder.svg',
       color: 'purple'
     },
     {
       icon: Clock,
       title: 'Flexible Schedule',
       description: 'Learn at your own pace with lifetime access to all course materials.',
-      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
+      image: '/demo-placeholder.svg',
       color: 'orange'
     },
     {
       icon: Shield,
       title: 'Secure Platform',
       description: 'Your data and progress are protected with enterprise-grade security.',
-      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop',
+      image: '/demo-placeholder.svg',
       color: 'red'
     },
     {
       icon: Zap,
       title: 'Fast-Track Learning',
       description: 'Accelerated learning paths designed to get you job-ready quickly.',
-      image: 'https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=400&h=300&fit=crop',
+      image: '/demo-placeholder.svg',
       color: 'yellow'
     }
   ];

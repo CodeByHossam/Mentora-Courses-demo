@@ -46,7 +46,7 @@ class ErrorBoundary extends React.Component {
                 Go Home
               </Link>
             </div>
-            {process.env.NODE_ENV === "development" && this.state.error && (
+            {import.meta.env.DEV && this.state.error && (
               <div className="mt-8 p-4 bg-gray-50 rounded-lg text-left overflow-auto">
                 <h2 className="text-lg font-semibold text-[rgb(33,40,50)] mb-2">
                   Error Details (Development Only):

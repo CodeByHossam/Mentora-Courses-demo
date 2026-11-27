@@ -10,7 +10,7 @@ const CourseList = memo(({ limit }) => {
     categories, isLoading, error,
     currentPage, coursesPerPage,
     filters, viewMode, setViewMode,
-    paginatedCourses, totalPages, totalCourses, meta,
+    allCourses, paginatedCourses, totalPages, totalCourses, meta,
     handleFilterChange, resetFilters, handlePreviousPage, handleNextPage,
   } = useCourseList({ limit });
 

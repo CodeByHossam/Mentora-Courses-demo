@@ -373,7 +373,9 @@ For security-related issues or questions:
 ## 💰 Financial Security Implementation
 
 ### Payment Processing Security
-- **PCI DSS Compliance**: All card payments processed through Stripe
+- **Client-side card/PayPal SDKs disabled**: Stripe/PayPal are intentionally NOT used in the client. They remain implemented on the backend only for future use.
+- **Client payment method**: Direct cash/bank transfer. The student contacts the admin or instructor and provides a receipt (proof of payment) for approval.
+- **PCI DSS Compliance**: Any future card payments would be processed through Stripe on the backend only
 - **External Payment Verification**: All fee payments require bank transfer receipts
 - **No Internal Balance Manipulation**: Removed "pay from balance" functionality
 - **Receipt Verification Workflow**: Admin verification required for all fee payments

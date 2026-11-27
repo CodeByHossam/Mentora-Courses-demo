@@ -99,7 +99,7 @@ const StudentGrades = () => {
   // Handle answer key download for students
   const handleDownloadAnswerKey = async (courseId, testId) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/course-interactions/${courseId}/tests/${testId}/answer-key/download`, {
+      const response = await fetch(`/api/course-interactions/${courseId}/tests/${testId}/answer-key/download`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -109,7 +109,7 @@ const StudentGrades = () => {
       if (response.ok) {
         const data = await response.json();
         if (data.success) {
-          const fullDownloadUrl = `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}${data.data.downloadUrl}`;
+          const fullDownloadUrl = `${data.data.downloadUrl}`;
           window.open(fullDownloadUrl, '_blank');
           toast.success('Answer key downloaded successfully!');
         } else {

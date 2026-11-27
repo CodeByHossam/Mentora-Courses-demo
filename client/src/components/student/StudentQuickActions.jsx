@@ -1,6 +1,9 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Award, BookOpen, Play, TrendingUp, Video } from "lucide-react";
 
 const StudentQuickActions = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       {/* Quick Actions */}

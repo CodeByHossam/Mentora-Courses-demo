@@ -1,7 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const AdminDashboardPriorityActions = (props) => {
+const AdminDashboardPriorityActions = ({
+  pendingEnrollment = 0,
+  totalEnrollment = 0,
+  approvedEnrollment = 0,
+  rejectedEnrollment = 0,
+  pendingInstructor = 0,
+  totalInstructor = 0,
+  approvedInstructor = 0,
+  rejectedInstructor = 0,
+  userStats,
+}) => {
   const navigate = useNavigate();
   return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">

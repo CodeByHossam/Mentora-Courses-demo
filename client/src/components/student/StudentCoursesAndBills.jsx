@@ -1,9 +1,11 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import { MyCourses } from "../../pages/student";
 import StudentCertificates from "./StudentCertificates";
 import StudentBills from "./StudentBills";
 
 const StudentCoursesAndBills = ({ enrolledCourses, user }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       {/* Enrolled Courses Section */}

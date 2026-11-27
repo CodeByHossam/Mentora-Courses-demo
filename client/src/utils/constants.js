@@ -9,7 +9,7 @@ const getApiBaseUrl = () => {
     return envUrl.endsWith('/api') ? envUrl : `${envUrl}/api`;
   }
   // Default fallback
-  return 'http://localhost:5000/api';
+  return '/api';
 };
 export const API_CONFIG = {
   BASE_URL: getApiBaseUrl(),

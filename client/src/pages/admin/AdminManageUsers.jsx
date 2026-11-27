@@ -137,7 +137,68 @@ if (error) {
   );
 }
 
-  return null;
+  return (
+    <div className="min-h-screen bg-gray-50 p-6">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-2xl font-bold mb-4">Manage Users</h1>
+        <div className="mb-4 flex gap-4">
+          <input
+            type="text"
+            placeholder="Search by name or email"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="border rounded px-3 py-2 w-full max-w-md"
+          />
+          <select
+            value={roleFilter}
+            onChange={(e) => setRoleFilter(e.target.value)}
+            className="border rounded px-3 py-2"
+          >
+            <option value="all">All roles</option>
+            <option value="student">Student</option>
+            <option value="instructor">Instructor</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+
+        {filteredUsers.length === 0 ? (
+          <p className="text-gray-600">No users found.</p>
+        ) : (
+          <div className="overflow-x-auto bg-white rounded shadow">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Role</th>
+                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {filteredUsers.map((u) => (
+                  <tr key={u._id || u.id}>
+                    <td className="px-4 py-2">{u.name}</td>
+                    <td className="px-4 py-2">{u.email}</td>
+                    <td className="px-4 py-2">{u.role}</td>
+                    <td className="px-4 py-2">
+                      <button
+                        onClick={() => handleDeleteUser(u._id || u.id)}
+                        disabled={actionLoadingUserId === (u._id || u.id)}
+                        className="text-red-600 hover:text-red-800 text-sm"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+      <ConfirmationModalWrapper />
+    </div>
+  );
 };
 
 export default AdminManageUsers;

@@ -29,7 +29,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await login(formData).unwrap();
-      const { accessToken, user } = response;
+      const { accessToken, user } = response.data || response;
       dispatch(setCredentials({ accessToken, user }));
 
       handleApiSuccess("Login successful!");

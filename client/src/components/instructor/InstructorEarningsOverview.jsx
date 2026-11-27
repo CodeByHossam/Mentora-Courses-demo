@@ -14,7 +14,7 @@ const InstructorEarningsOverview = ({ instructorAccount }) => {
             💰 Your Earnings & Balance
           </h2>
 
-          {accountLoading ? (
+          {!instructorAccount ? (
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="animate-pulse flex space-x-4">
                 <div className="rounded-full bg-gray-300 h-12 w-12"></div>

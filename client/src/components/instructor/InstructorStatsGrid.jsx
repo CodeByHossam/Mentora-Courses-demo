@@ -1,6 +1,10 @@
 import React from "react";
 
 const InstructorStatsGrid = ({ courses, totalStudents, avgRating, formattedRevenue, revenueGrowth, revenueGrowthColor }) => {
+  const ratedCourses = (courses || []).filter(
+    (course) => Number(course.averageRating || course.rating || 0) > 0,
+  );
+
   return (
     <>
         {/* Enhanced Stats Grid */}
@@ -64,7 +68,7 @@ const InstructorStatsGrid = ({ courses, totalStudents, avgRating, formattedReven
                   <div className="text-2xl font-bold text-primary">{avgRating}</div>
                   <div className="text-sm font-medium text-muted">Average Rating</div>
                   <div className="text-xs text-gray-400 mt-1">
-                    {ratedCurses.length} rated course{ratedCurses.length !== 1 ? 's' : ''}
+                    {ratedCourses.length} rated course{ratedCourses.length !== 1 ? 's' : ''}
                   </div>
                 </div>
               </div>

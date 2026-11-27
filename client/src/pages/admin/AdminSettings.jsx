@@ -198,7 +198,334 @@ const AdminSettings = () => {
     );
   }
 
-  return null;
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-4 sm:p-6 lg:p-8">
+      <div className="max-w-7xl mx-auto">
+        <header className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Settings</h1>
+          <p className="text-gray-600">
+            Configure platform settings, payment methods, security, and notifications.
+          </p>
+        </header>
+
+        {/* Tabs Navigation */}
+        <div className="flex gap-1 mb-8 border-b border-gray-200">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-6 py-3 mb-2 text-sm font-medium transition-colors ${
+                activeTab === tab.id
+                  ? "text-blue-600 border-b-2 border-blue-600 bg-blue-50"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              {tab.icon} {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Settings Content */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+          {activeTab === "general" && (
+            <div className="space-y-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">General Settings</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Site Name</label>
+                  <input
+                    type="text"
+                    value={settings.systemSettings.siteName}
+                    onChange={(e) => handleSettingChange("systemSettings", "siteName", e.target.value)}
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  />
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Site Description</label>
+                  <input
+                    type="text"
+                    value={settings.systemSettings.siteDescription}
+                    onChange={(e) => handleSettingChange("systemSettings", "siteDescription", e.target.value)}
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  />
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Support Email</label>
+                  <input
+                    type="email"
+                    value={settings.systemSettings.supportEmail}
+                    onChange={(e) => handleSettingChange("systemSettings", "supportEmail", e.target.value)}
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  />
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Allow Registration</label>
+                  <select
+                    value={settings.systemSettings.allowRegistration ? "true" : "false"}
+                    onChange={(e) => handleSettingChange("systemSettings", "allowRegistration", e.target.value === "true")}
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  >
+                    <option value="true">Enabled</option>
+                    <option value="false">Disabled</option>
+                  </select>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Maintenance Mode</label>
+                  <select
+                    value={settings.systemSettings.maintenanceMode ? "true" : "false"}
+                    onChange={(e) => handleSettingChange("systemSettings", "maintenanceMode", e.target.value === "true")}
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  >
+                    <option value="true">Enabled</option>
+                    <option value="false">Disabled</option>
+                  </select>
+                </div>
+              </div>
+              <button
+                onClick={handleSaveSettings}
+                disabled={isUpdatingSettings}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+              >
+                {isUpdatingSettings ? "Saving..." : "Save General Settings"}
+              </button>
+            </div>
+          )}
+          {activeTab === "payments" && (
+            <div className="space-y-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Payment & Profit Configuration</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Global Deduction Percentage (%)</label>
+                  <input
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="0.1"
+                    value={settings.paymentSettings.globalDeductionPercentage}
+                    onChange={(e) => handleSettingChange("paymentSettings", "globalDeductionPercentage", parseFloat(e.target.value))}
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  />
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Instructor Annual Fee</label>
+                  <input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    value={settings.paymentSettings.instructorAnnualFee}
+                    onChange={(e) => handleSettingChange("paymentSettings", "instructorAnnualFee", parseFloat(e.target.value))}
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  />
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Student Admin Fee</label>
+                  <input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    value={settings.paymentSettings.studentAdminFee}
+                    onChange={(e) => handleSettingChange("paymentSettings", "studentAdminFee", parseFloat(e.target.value))}
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  />
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Minimum Payment Amount</label>
+                  <input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    value={settings.paymentSettings.minimumPaymentAmount}
+                    onChange={(e) => handleSettingChange("paymentSettings", "minimumPaymentAmount", parseFloat(e.target.value))}
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  />
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Currency</label>
+                  <select
+                    value={settings.paymentSettings.currency}
+                    onChange={(e) => handleSettingChange("paymentSettings", "currency", e.target.value)}
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  >
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - British Pound</option>
+                  </select>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Require Admin Approval for Direct Transfers</label>
+                  <select
+                    value={settings.paymentSettings.requireAdminApprovalForDirectTransfer ? "true" : "false"}
+                    onChange={(e) => handleSettingChange("paymentSettings", "requireAdminApprovalForDirectTransfer", e.target.value === "true")}
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  >
+                    <option value="true">Required</option>
+                    <option value="false">Not Required</option>
+                  </select>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <button
+                  onClick={handleSaveSettings}
+                  disabled={isUpdatingPayment}
+                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                >
+                  {isUpdatingPayment ? "Saving..." : "Save Payment Settings"}
+                </button>
+                <button
+                  onClick={handleResetPaymentSettings}
+                  disabled={isResetting}
+                  className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                >
+                  {isResetting ? "Resetting..." : "Reset to Defaults"}
+                </button>
+              </div>
+            </div>
+          )}
+          {activeTab === "security" && (
+            <div className="space-y-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Security Settings</h2>
+              <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                <h3 className="text-lg font-bold text-gray-900 mb-4">Platform Security</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-4 bg-white rounded border">
+                    <div>
+                      <p className="font-medium text-gray-900">Session Timeout</p>
+                      <p className="text-sm text-gray-500">Minutes before automatic logout</p>
+                    </div>
+                    <input
+                      type="number"
+                      min="5"
+                      value={settings.systemSettings.sessionTimeout}
+                      onChange={(e) => handleSettingChange("systemSettings", "sessionTimeout", parseInt(e.target.value))}
+                      className="w-20 border border-gray-300 rounded px-3 py-2 text-center"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between p-4 bg-white rounded border">
+                    <div>
+                      <p className="font-medium text-gray-900">Max File Size</p>
+                      <p className="text-sm text-gray-500">Maximum upload size in MB</p>
+                    </div>
+                    <input
+                      type="number"
+                      min="1"
+                      value={settings.systemSettings.maxFileSize}
+                      onChange={(e) => handleSettingChange("systemSettings", "maxFileSize", parseInt(e.target.value))}
+                      className="w-20 border border-gray-300 rounded px-3 py-2 text-center"
+                    />
+                  </div>
+                </div>
+              </div>
+              <button
+                onClick={handleSaveSettings}
+                disabled={isUpdatingSettings}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+              >
+                {isUpdatingSettings ? "Saving..." : "Save Security Settings"}
+              </button>
+            </div>
+          )}
+          {activeTab === "notifications" && (
+            <div className="space-y-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Notification Settings</h2>
+              <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                <h3 className="text-lg font-bold text-gray-900 mb-4">Email Notifications</h3>
+                <div className="space-y-4">
+                  <label className="flex items-center justify-between p-4 bg-white rounded border cursor-pointer">
+                    <span>
+                      <p className="font-medium text-gray-900">Email Notifications</p>
+                      <p className="text-sm text-gray-500">Enable email notifications for platform events</p>
+                    </span>
+                    <input
+                      type="checkbox"
+                      checked={settings.notificationSettings.emailNotificationsEnabled}
+                      onChange={(e) => handleSettingChange("notificationSettings", "emailNotificationsEnabled", e.target.checked)}
+                      className="w-5 h-5 text-blue-600 rounded border-gray-300"
+                    />
+                  </label>
+                  <label className="flex items-center justify-between p-4 bg-white rounded border cursor-pointer">
+                    <span>
+                      <p className="font-medium text-gray-900">Payment Notifications</p>
+                      <p className="text-sm text-gray-500">Receive notifications for payment events</p>
+                    </span>
+                    <input
+                      type="checkbox"
+                      checked={settings.notificationSettings.paymentNotificationsEnabled}
+                      onChange={(e) => handleSettingChange("notificationSettings", "paymentNotificationsEnabled", e.target.checked)}
+                      className="w-5 h-5 text-blue-600 rounded border-gray-300"
+                    />
+                  </label>
+                  <label className="flex items-center justify-between p-4 bg-white rounded border cursor-pointer">
+                    <span>
+                      <p className="font-medium text-gray-900">Enrollment Notifications</p>
+                      <p className="text-sm text-gray-500">Receive notifications for new enrollments</p>
+                    </span>
+                    <input
+                      type="checkbox"
+                      checked={settings.notificationSettings.enrollmentNotificationsEnabled}
+                      onChange={(e) => handleSettingChange("notificationSettings", "enrollmentNotificationsEnabled", e.target.checked)}
+                      className="w-5 h-5 text-blue-600 rounded border-gray-300"
+                    />
+                  </label>
+                  <label className="flex items-center justify-between p-4 bg-white rounded border cursor-pointer">
+                    <span>
+                      <p className="font-medium text-gray-900">SMS Notifications</p>
+                      <p className="text-sm text-gray-500">Enable SMS notifications (requires provider)</p>
+                    </span>
+                    <input
+                      type="checkbox"
+                      checked={settings.notificationSettings.smsNotifications}
+                      onChange={(e) => handleSettingChange("notificationSettings", "smsNotifications", e.target.checked)}
+                      className="w-5 h-5 text-blue-600 rounded border-gray-300"
+                    />
+                  </label>
+                </div>
+              </div>
+              <button
+                onClick={handleSaveSettings}
+                disabled={isUpdatingSettings}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+              >
+                {isUpdatingSettings ? "Saving..." : "Save Notification Settings"}
+              </button>
+            </div>
+          )}
+          {activeTab === "system" && (
+            <div className="space-y-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">System Settings</h2>
+              <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                <h3 className="text-lg font-bold text-gray-900 mb-4">System Information</h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-500">Platform Version</span>
+                    <span className="font-medium text-gray-900">1.0.0</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-500">Node Environment</span>
+                    <span className="font-medium text-gray-900">Development</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-500">Backup Frequency</span>
+                    <span className="font-medium text-gray-900">{settings.systemSettings.backupFrequency}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-500">Log Level</span>
+                    <span className="font-medium text-gray-900">{settings.systemSettings.logLevel}</span>
+                  </div>
+                </div>
+              </div>
+              <button
+                onClick={handleSaveSettings}
+                disabled={isUpdatingSettings}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+              >
+                {isUpdatingSettings ? "Saving..." : "Save System Settings"}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default AdminSettings;

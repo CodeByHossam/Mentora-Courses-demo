@@ -435,6 +435,36 @@ const AdminBillingPage = () => {
     return matchesSearch && matchesDate;
   });
 
+  // Render loading state
+  if (billingLoading || usersLoading || reportsLoading || coursesLoading || transactionsLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <ProgressLoader isVisible={true} message="Loading billing dashboard..." />
+      </div>
+    );
+  }
+
+  // Render error state
+  if (billingError || transactionsError) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <AlertTriangle className="w-12 h-12 text-red-500 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Failed to load billing data</h2>
+          <p className="text-gray-600 mb-4">
+            {(billingError?.message || transactionsError?.message) || "An error occurred while loading billing information."}
+          </p>
+          <button
+            onClick={() => { refetchBilling(); window.location.reload(); }}
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (!user || user.role !== 'admin') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 flex items-center justify-center">
@@ -451,7 +481,40 @@ const AdminBillingPage = () => {
     );
   }
 
-  return null;
+  return (
+    <div className="min-h-screen bg-gray-50 p-6">
+      <h1 className="text-2xl font-bold text-gray-900 mb-6">Platform Billing</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white p-4 rounded shadow border">
+          <p className="text-sm text-gray-500">Platform Revenue</p>
+          <p className="text-xl font-bold">{formatCurrency(platformRevenue)}</p>
+        </div>
+        <div className="bg-white p-4 rounded shadow border">
+          <p className="text-sm text-gray-500">Available Balance</p>
+          <p className="text-xl font-bold">{formatCurrency(platformBalance)}</p>
+        </div>
+        <div className="bg-white p-4 rounded shadow border">
+          <p className="text-sm text-gray-500">Instructor Payouts</p>
+          <p className="text-xl font-bold">{formatCurrency(totalInstructorPayouts)}</p>
+        </div>
+      </div>
+      <div className="mt-6 bg-white p-4 rounded shadow border">
+        <h2 className="text-lg font-bold mb-4">Recent Transactions</h2>
+        {filteredTransactions.length > 0 ? (
+          <ul className="space-y-2">
+            {filteredTransactions.slice(0, 10).map((t) => (
+              <li key={t._id} className="flex justify-between text-sm">
+                <span>{t.description || 'Transaction'}</span>
+                <span className="font-medium">{formatCurrency(t.amount || 0)}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-gray-500">No transactions found.</p>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default AdminBillingPage;

@@ -77,7 +77,8 @@ const Register = memo(() => {
     }
 
     const userData = await register(form).unwrap();
-    dispatch(setCredentials(userData));
+    const { accessToken, user } = userData.data || userData;
+    dispatch(setCredentials({ accessToken, user }));
     return userData;
   };
 

@@ -7,7 +7,9 @@ import { selectCurrentUser } from "../../store/slices/authSlice";
 export const useCourseList = ({ limit }) => {
   const user = useSelector(selectCurrentUser);
   const { data: categoriesData, error: categoriesError } = useGetCategoriesQuery();
-  const categories = categoriesData?.data ?? [];
+  const categories = Array.isArray(categoriesData)
+    ? categoriesData
+    : categoriesData?.data ?? [];
 
   const [currentPage, setCurrentPage] = useState(1);
   const coursesPerPage = 10;
@@ -34,7 +36,7 @@ export const useCourseList = ({ limit }) => {
   }, [filters.sort, filters.category, filters.level, debouncedSearch, limit, coursesPerPage, currentPage]);
 
   const { data: response, isLoading, error, refetch } = useGetCoursesQuery(memoizedQueryParams, { refetchOnMountOrArgChange: true });
-  const allCourses = response?.data ?? [];
+  const allCourses = useMemo(() => response?.data ?? [], [response]);
   const meta = response?.meta ?? { page: 1, pages: 1, total: 0 };
 
   useEffect(() => {
@@ -89,7 +91,7 @@ export const useCourseList = ({ limit }) => {
     user, categories, isLoading, error, refetch,
     currentPage, setCurrentPage, coursesPerPage,
     filters, setFilters, debouncedSearch, viewMode, setViewMode,
-    paginatedCourses, totalPages, totalCourses, meta,
+    allCourses, paginatedCourses, totalPages, totalCourses, meta,
     handleFilterChange, resetFilters, handlePreviousPage, handleNextPage,
     limit,
   };

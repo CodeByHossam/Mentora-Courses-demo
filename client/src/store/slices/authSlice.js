@@ -1,10 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getSession, setDemoSession } from "../../services/demoStorage";
 
-// Get initial state from localStorage if available
+// Demo sessions are seeded in localStorage. The demo always starts as admin
+// unless another demo user was selected during this browser session.
+const getInitialSession = () => {
+  try {
+    return getSession() || setDemoSession();
+  } catch {
+    return null;
+  }
+};
+
+const initialSession = getInitialSession();
+
 const initialState = {
-  user: null,
-  accessToken: null,
-  isRefreshing: false, // <-- add this flag to track refresh token loading state
+  user: initialSession?.user || null,
+  accessToken: initialSession?.token || null,
+  isRefreshing: false,
 };
 
 const authSlice = createSlice({
@@ -35,6 +47,18 @@ const authSlice = createSlice({
 });
 
 export const { setCredentials, sendLogout, setIsRefreshing } = authSlice.actions;
+
+// Switch the active browser-only identity and mirror it into Redux.
+export const switchDemoUser = (userId) => (dispatch) => {
+  const session = setDemoSession(userId);
+  dispatch(
+    setCredentials({
+      accessToken: session.token,
+      user: session.user,
+    }),
+  );
+  return session;
+};
 
 export default authSlice.reducer;
 

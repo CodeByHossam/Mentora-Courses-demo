@@ -29,7 +29,7 @@ const StudentCertificates = () => {
         return;
       }
       // Create download URL with proper backend server URL
-      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const baseUrl = '/api';
       const downloadUrl = `${baseUrl}/certificates/${certificateId}/download?token=${encodeURIComponent(token)}`;
       // Open the download URL in a new tab/window
       window.open(downloadUrl, '_blank');

@@ -1,6 +1,9 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Calendar, Video } from "lucide-react";
 
 const StudentUpcomingSessions = ({ upcomingSessions, upcomingSessionsCount }) => {
+  const navigate = useNavigate();
+
   if (upcomingSessionsCount === 0) return null;
   return (
     <>

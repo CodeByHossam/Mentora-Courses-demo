@@ -1,38 +1,22 @@
 import React, { useState } from 'react';
 import { Modal } from '../common';
-import { CardElement, Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 import { X } from 'lucide-react';
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
+// NOTE: Client-side Stripe/PayPal SDK usage is intentionally disabled.
+// All card/PayPal processing is handled on the backend for future use only.
+// The client pays via direct cash/bank transfer after contacting the admin or
+// instructor and providing a receipt (proof of payment).
 
 const PaymentModal = ({ isOpen, onClose, onPayment, isLoading, paymentData, title, description, suggestedAmounts, minAmount, maxAmount, amount }) => {
   const [inputAmount, setInputAmount] = useState(amount || minAmount);
-  const [paymentMethod, setPaymentMethod] = useState('stripe');
   const [error, setError] = useState(null);
 
-  const handleSubmit = async (e, stripe, elements) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
 
     try {
-      if (!paymentData) {
-        await onPayment({ amount: parseFloat(inputAmount), method: paymentMethod });
-        return;
-      }
-
-      if (paymentMethod === 'stripe' && stripe && elements) {
-        const cardElement = elements.getElement(CardElement);
-        const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(
-          paymentData.clientSecret,
-          { payment_method: { card: cardElement, billing_details: { name: 'Billing Payment' } } }
-        );
-
-        if (stripeError) throw stripeError;
-
-        await onPayment({ confirmed: true, paymentIntentId: paymentIntent.id });
-      }
-
+      await onPayment({ amount: parseFloat(inputAmount), method: 'direct' });
     } catch (err) {
       setError(err.message || 'Payment failed.');
     }
@@ -64,49 +48,22 @@ const PaymentModal = ({ isOpen, onClose, onPayment, isLoading, paymentData, titl
           className="w-full mb-4 border border-gray-300 rounded px-3 py-2"
         />
 
-        <div className="flex gap-4 mb-4">
-          <button onClick={() => setPaymentMethod('stripe')} className={`flex-1 py-2 rounded ${paymentMethod === 'stripe' ? 'bg-blue-600 text-white' : 'bg-gray-100'}`}>Stripe</button>
-          <button onClick={() => setPaymentMethod('direct')} className={`flex-1 py-2 rounded ${paymentMethod === 'direct' ? 'bg-green-600 text-white' : 'bg-gray-100'}`}>Direct</button>
-        </div>
+        <p className="mb-4 text-sm text-gray-600">
+          Client payments are made via direct cash/bank transfer. Please contact the
+          admin or instructor and provide your receipt (proof of payment) for approval.
+        </p>
 
-        {paymentMethod === 'stripe' && (
-          <Elements stripe={stripePromise}>
-            <StripeForm inputAmount={inputAmount} onSubmit={handleSubmit} isLoading={isLoading} paymentData={paymentData} />
-          </Elements>
-        )}
-
-        {paymentMethod === 'direct' && (
-          <button
-            onClick={() => onPayment({ amount: parseFloat(inputAmount), method: 'direct' })}
-            disabled={isLoading}
-            className="w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
-          >
-            {isLoading ? 'Processing...' : `Pay $${inputAmount} Directly`}
-          </button>
-        )}
+        <button
+          onClick={handleSubmit}
+          disabled={isLoading}
+          className="w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+        >
+          {isLoading ? 'Processing...' : `Submit $${inputAmount} Payment`}
+        </button>
 
         {error && <p className="text-red-600 mt-2">{error}</p>}
       </div>
     </Modal>
-  );
-};
-
-const StripeForm = ({ inputAmount, onSubmit, isLoading, paymentData }) => {
-  const { stripe, elements } = React.useContext(require('@stripe/react-stripe-js').ElementsContext);
-
-  return (
-    <form onSubmit={(e) => onSubmit(e, stripe, elements)}>
-      <div className="mb-4 border p-3 rounded">
-        <CardElement />
-      </div>
-      <button
-        type="submit"
-        disabled={isLoading}
-        className="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
-      >
-        {isLoading ? 'Processing...' : `Pay $${inputAmount}`}
-      </button>
-    </form>
   );
 };
 

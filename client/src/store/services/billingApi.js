@@ -290,6 +290,8 @@ export const billingApi = apiSlice.injectEndpoints({
       query: ({ page = 1, limit = 50 } = {}) =>
         `/billing/transactions?page=${page}&limit=${limit}`,
       providesTags: ['BillingTransaction'],
+    }),
+
     // Financial summary aggregation (Phase 1 simplified reporting)
     getAdminFinancialSummary: builder.query({
       query: ({ from, to } = {}) => {
@@ -311,7 +313,6 @@ export const billingApi = apiSlice.injectEndpoints({
       query: () => '/billing/summary/instructor',
       providesTags: ['BillingAccount'],
       transformResponse: (response) => response.data,
-    }),
     }),
   }),
 });
