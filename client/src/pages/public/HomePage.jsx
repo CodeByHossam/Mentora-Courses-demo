@@ -5,6 +5,7 @@ import Hero from "../../components/Hero";
 import AllAccessCta from "../../components/home/AllAccessCta";
 import CategoryTabs from "../../components/home/CategoryTabs";
 import FeaturedBanner from "../../components/home/FeaturedBanner";
+import GraduateStories from "../../components/home/GraduateStories";
 import HomeCourseGrid from "../../components/home/HomeCourseGrid";
 import LearningFactsStrip from "../../components/home/LearningFactsStrip";
 import WhyMentora from "../../components/home/WhyMentora";
@@ -118,6 +119,8 @@ function HomePage() {
       </section>
 
       <WhyMentora />
+
+      <GraduateStories />
 
       <AllAccessCta />
 

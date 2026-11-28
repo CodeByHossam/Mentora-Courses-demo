@@ -23,18 +23,18 @@ const VALUE_PILLARS = [
   },
 ];
 
-/** Dark showcase adapted from the supplied Mentora landing design. */
+/** Compact dark showcase adapted from the supplied Mentora landing design. */
 export default function WhyMentora() {
   return (
     <section
       id="why-mentora"
-      className="mx-auto max-w-[1440px] scroll-mt-[116px] px-4 py-12 sm:px-8 lg:px-16 lg:py-14"
+      className="mx-auto max-w-[1440px] scroll-mt-[116px] px-4 py-10 sm:px-8 lg:h-[75vh] lg:min-h-[560px] lg:px-16 lg:py-8"
       aria-labelledby="why-mentora-title"
     >
-      <div className="overflow-hidden rounded-3xl border border-white/10 bg-[linear-gradient(120deg,#0F172A_0%,#1E1B4B_100%)] p-6 text-white shadow-soft sm:p-10 lg:p-14">
-        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
-          <div className="space-y-6 lg:col-span-5">
-            <div className="space-y-3">
+      <div className="h-full overflow-hidden rounded-3xl border border-white/10 bg-[linear-gradient(120deg,#0F172A_0%,#1E1B4B_100%)] p-5 text-white shadow-soft sm:p-8">
+        <div className="grid h-full grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8">
+          <div className="flex flex-col gap-4 lg:col-span-5">
+            <div className="shrink-0 space-y-2">
               <p className="type-label-md text-teal-300">Built for Real Mastery</p>
               <h2
                 id="why-mentora-title"
@@ -49,7 +49,7 @@ export default function WhyMentora() {
               </p>
             </div>
 
-            <div className="aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+            <div className="min-h-[200px] flex-1 overflow-hidden rounded-2xl border border-white/10 bg-slate-900 lg:min-h-0">
               <img
                 src={MENTORSHIP_IMAGE}
                 alt="Mentor and learner reviewing architecture diagrams together"
@@ -60,16 +60,16 @@ export default function WhyMentora() {
             </div>
           </div>
 
-          <div className="space-y-4 lg:col-span-7">
+          <div className="flex flex-col justify-center gap-3 lg:col-span-7">
             {VALUE_PILLARS.map((pillar) => (
               <article
                 key={pillar.number}
-                className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6"
+                className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5"
               >
-                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-teal-400/15 text-teal-300">
-                  <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
+                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-teal-400/15 text-teal-300">
+                  <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
                 </span>
-                <div className="space-y-1.5">
+                <div className="space-y-1">
                   <h3 className="type-title-md text-white">
                     {pillar.number}. {pillar.title}
                   </h3>
