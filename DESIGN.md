@@ -200,7 +200,7 @@ An indigo-violet anchor carries the structure; amber and emerald appear only whe
 
 ### Hierarchy
 
-- **Hero display** (Plus Jakarta Sans, weight 800, 4rem / 64px desktop and 2.75rem / 44px mobile, line-height 4.25rem / 2.9375rem, -0.03em at both sizes): the homepage hero title only.
+- **Hero display** (Plus Jakarta Sans, weight 800, fluid 2.25rem / 36px → 4rem / 64px, line-height 1.1, -0.035em tracking): the homepage hero title only; its three lines are fixed as `Practcial course for` / `the future you are` / `building`.
 - **Headline** (weight 700, 2.5rem desktop and 1.75rem mobile, line-height 3rem / 2.25rem, -0.025em / -0.02em): page and section titles; the small step is 1.25rem / 1.75rem at weight 600 with -0.015em.
 - **Title** (weight 600, 1rem, line-height 1.5rem, -0.01em): card titles and blocks that lead a group.
 - **Body** (weight 400, 0.9375rem, line-height 1.5rem): sustained reading; the lead step is 1.125rem / 1.75rem with -0.005em and the compact step is 0.8125rem / 1.25rem.

@@ -22,6 +22,7 @@ import { BillingRouter } from "./pages/Billing";
 import { CourseDetails } from "./pages/CourseDetails";
 import { NotFound } from "./pages/public";
 import { MyCourses } from "./pages/student";
+import { StudentGiftCards } from "./pages/student";
 import { StudentCertificates } from "./components/student";
 import { AdminManageCourses } from "./pages/admin";
 import { CourseStudents } from "./pages/instructor";
@@ -58,6 +59,8 @@ import { InstructorGrading } from "./pages/instructor";
 import { TestGrading } from "./pages/instructor";
 import { StudentRefunds } from "./pages/student";
 import { AdminRefundManagement } from "./pages/admin";
+import { AdminPaymentReports } from "./pages/admin";
+import { AdminSystemLogs } from "./pages/admin";
 import { ForgotPassword } from "./pages/auth";
 
 const HomePage = lazy(() => import("./pages/public").then(m => ({ default: m.HomePage })));
@@ -104,6 +107,7 @@ export const AppRoutes = () => (
       <Route path="help" element={<Help />} />
       <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
       <Route path="/instructor/:id" element={<InstructorPage />} />
+      <Route path="/instructors" element={<InstructorList />} />
       <Route element={<PersistLogin />}>
         <Route path="/courses/:courseId" element={<CourseDetails />} />
         <Route path="/courses/:courseId/learn" element={<CourseLesson />} />
@@ -142,6 +146,8 @@ export const AppRoutes = () => (
               <Route path="notifications" element={<AdminNotifications />} />
               <Route path="reports" element={<AdminReports />} />
               <Route path="payments" element={<AdminPayments />} />
+              <Route path="payment-reports" element={<AdminPaymentReports />} />
+              <Route path="system-logs" element={<AdminSystemLogs />} />
               <Route path="instructor-payouts" element={<AdminInstructorPayouts />} />
               <Route path="refunds" element={<AdminRefundManagement />} />
               <Route path="payment-settings" element={<AdminPaymentSettings />} />
@@ -173,7 +179,6 @@ export const AppRoutes = () => (
               <Route path="/student" element={<Navigate to="/student/dashboard" replace />} />
               <Route path="/student/dashboard" element={<StudentDashboard />} />
               <Route path="/student/courses" element={<MyCourses />} />
-              <Route path="/my-courses" element={<Navigate to="/student/courses" replace />} />
               <Route path="/student/certificates" element={<StudentCertificates />} />
               <Route path="/student/live-sessions" element={<StudentLiveSessions />} />
               <Route path="/student/assignments" element={<StudentAssignments />} />
@@ -184,6 +189,8 @@ export const AppRoutes = () => (
               <Route path="/student/wishlist" element={<Wishlist />} />
               <Route path="/student/refunds" element={<StudentRefunds />} />
               <Route path="/student/payments" element={<StudentPayments />} />
+              <Route path="/student/annual-fee-payment" element={<Navigate to="/student/payments" replace />} />
+              <Route path="/student/gift-cards" element={<StudentGiftCards />} />
             </Route>
           </Route>
         </Route>

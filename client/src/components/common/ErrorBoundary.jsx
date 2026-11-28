@@ -40,7 +40,7 @@ class ErrorBoundary extends React.Component {
                 Refresh Page
               </button>
               <Link
-                to="/home"
+                to="/"
                 className="px-6 py-3 border-2 border-[rgb(48,146,85)] text-[rgb(48,146,85)] rounded-lg hover:bg-[rgb(48,146,85)] hover:text-white transition-colors duration-300"
               >
                 Go Home

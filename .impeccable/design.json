@@ -33,7 +33,7 @@
       "callout-ink": { "role": "neutral", "displayName": "Callout Ink", "canonical": "#0b0f19", "tonalRamp": ["#020617", "#0b0f19", "#0f172a", "#1e293b", "#334155", "#475569", "#94a3b8", "#cbd5e1"] }
     },
     "typographyMeta": {
-      "hero": { "displayName": "Hero Display", "purpose": "Scoped hero title only; Plus Jakarta Sans weight 800, 64px desktop, 44px mobile, -0.03em tracking." },
+      "hero": { "displayName": "Hero Display", "purpose": "Scoped hero title only; Plus Jakarta Sans weight 800, fluid 36–64px, line-height 1.1, -0.035em tracking, fixed three-line copy." },
       "display": { "displayName": "Display", "purpose": "Plus Jakarta Sans structural headings outside the hero." },
       "headline": { "displayName": "Headline", "purpose": "Page and section titles." },
       "title": { "displayName": "Title", "purpose": "Card titles and group leads." },

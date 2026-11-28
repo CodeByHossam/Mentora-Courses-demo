@@ -13,11 +13,11 @@ export default function Layout() {
         Skip to content
       </a>
 
-      <header className="nav-shell fixed inset-x-3 top-[44px] z-50 h-16 sm:inset-x-6 lg:inset-x-16">
+      <header className="nav-shell fixed inset-x-0 top-8 z-50 h-16">
         <Navbar />
       </header>
 
-      <main id="main-content" className="mt-[112px] w-full flex-grow overflow-x-hidden">
+      <main id="main-content" className="mt-24 w-full flex-grow overflow-x-hidden">
         <Outlet />
       </main>
 

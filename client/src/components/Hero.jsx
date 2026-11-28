@@ -33,9 +33,11 @@ export default function Hero({ course }) {
           </div>
 
           <h1 id="hero-title" className="type-display-hero text-slate-900">
-            Practical courses for the{" "}
-            <span className="text-brand-600">future</span>{" "}
-            you are building.
+            <span className="block whitespace-nowrap">Practcial course for</span>
+            <span className="block whitespace-nowrap">
+              the <span className="text-brand-600">future</span> you are
+            </span>
+            <span className="block whitespace-nowrap">building</span>
           </h1>
 
           <p className="type-body-lg max-w-xl text-slate-600">

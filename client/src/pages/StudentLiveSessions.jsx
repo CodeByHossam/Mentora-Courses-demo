@@ -484,7 +484,7 @@ const StudentLiveSessions = () => {
                         <BookOpen className="h-4 w-4 mr-2" />
                         <span className="font-medium">Course:</span>
                         <button
-                          onClick={() => navigate(`/course/${session.course?._id}`)}
+                          onClick={() => navigate(`/courses/${session.course?._id}`)}
                           className="ml-1 text-brand-600 hover:text-brand-800 hover:underline"
                         >
                           {session.course?.title}

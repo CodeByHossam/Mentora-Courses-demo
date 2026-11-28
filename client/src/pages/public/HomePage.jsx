@@ -62,7 +62,7 @@ function HomePage() {
       <FeaturedBanner course={featuredCourse} />
 
       <section
-        className="mx-auto max-w-[1440px] scroll-mt-[132px] px-4 pb-4 pt-8 text-center sm:px-8 lg:px-16"
+        className="mx-auto max-w-[1440px] scroll-mt-[116px] px-4 pb-4 pt-8 text-center sm:px-8 lg:px-16"
         id="latest-courses"
         aria-labelledby="latest-courses-title"
       >
@@ -93,7 +93,7 @@ function HomePage() {
       </section>
 
       <section
-        className="mx-auto max-w-[1440px] scroll-mt-[132px] px-4 py-10 sm:px-8 lg:px-16"
+        className="mx-auto max-w-[1440px] scroll-mt-[116px] px-4 py-10 sm:px-8 lg:px-16"
         id="courses"
         aria-label="Course catalog preview"
       >

@@ -1,8 +1,13 @@
 import React from 'react';
 import { BookOpen } from 'lucide-react';
 
+import { getCoursePrice } from '../../../utils/coursePresentation';
+
 const CourseSummary = ({ course }) => {
   if (!course) return null;
+
+  const price = getCoursePrice(course);
+  const originalPrice = Number(course.originalPrice ?? 0) || 0;
 
   return (
     <div className="bg-white rounded-2xl shadow-xl p-6 mb-8">
@@ -31,15 +36,15 @@ const CourseSummary = ({ course }) => {
               <span className="text-2xl font-bold text-success-dark">FREE</span>
             ) : (
               <>
-                {course.discountPercentage > 0 && (
-                  <span className="text-lg text-gray-500 line-through">${course.price}</span>
+                {originalPrice > price && (
+                  <span className="text-lg text-gray-500 line-through">${originalPrice}</span>
                 )}
                 <span className="text-2xl font-bold text-brand-600">
-                  ${course.finalPrice}
+                  ${price}
                 </span>
-                {course.discountPercentage > 0 && (
+                {originalPrice > price && (
                   <span className="bg-error-soft text-error-dark px-2 py-1 rounded-full text-sm font-medium">
-                    {course.discountPercentage}% OFF
+                    Save ${originalPrice - price}
                   </span>
                 )}
               </>

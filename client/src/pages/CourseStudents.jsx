@@ -235,7 +235,7 @@ const CourseStudents = () => {
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                           <div className="flex items-center space-x-3">
                             <button
-                              onClick={() => navigate(`/admin/users/${student._id}`)}
+                              onClick={() => navigate(`/admin/users/${student._id}/edit`)}
                               className="text-brand-600 hover:text-brand-900 hover:underline transition-colors duration-200"
                             >
                               View Profile

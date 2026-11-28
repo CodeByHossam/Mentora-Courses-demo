@@ -78,7 +78,7 @@ export default function Footer() {
               lessons you can put to work right away.
             </p>
 
-            <div className="mt-6 grid grid-cols-2 gap-3">
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1">
               <Button
                 to="/courses"
                 fullWidth

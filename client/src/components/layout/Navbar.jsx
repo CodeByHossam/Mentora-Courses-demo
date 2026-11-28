@@ -187,7 +187,7 @@ function Navbar() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <nav className="relative z-10 mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-4 sm:px-8 lg:px-8">
+    <nav className="relative z-10 mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-4 sm:px-8 lg:px-16">
       <Link
         to="/"
         onClick={closeMenu}

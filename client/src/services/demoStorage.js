@@ -210,6 +210,7 @@ export function setSession(session) {
 export function clearSession() {
   localStorage.removeItem(STORAGE_KEYS.session)
   localStorage.removeItem('token')
+  localStorage.setItem('persist', JSON.stringify(false))
 }
 
 export function setDemoSession(userId = DEMO_ADMIN_ID) {

@@ -49,7 +49,7 @@ This is a **scoped refinement**, not a new visual world. I did not run the full 
 
 | Area | Evidence |
 |---|---|
-| Shell geometry | Demo bar `top 0 / h 32`, header `top 44 / h 64`, main `top 112`. No overlap at 1440, 1188, 1040, 768, or 390px. |
+| Shell geometry | Demo bar `top 0 / h 32`, full-width header `top 32 / h 64`, main `top 96`. Inner nav keeps its original content gutters. No overlap at 1440, 1188, 1040, 768, or 390px. |
 | Container | Homepage uses `max-w-[1440px]` with `px-4 / sm:px-8 / lg:px-16`, matching `DESIGN.md`. |
 | Fonts | Only `Inter` and `Plus Jakarta Sans` are used; computed sizes match the pinned scale after fonts load. |
 | Grid | Default `All Courses` shows 8 cards in a 4-column desktop grid, 2 columns at tablet, 1 column on mobile. |
@@ -74,7 +74,7 @@ This is a **scoped refinement**, not a new visual world. I did not run the full 
 | A11 | P1 | Motion | Pulse dots and radial glows persist in demo bar, latest badge, FeaturedBanner, and AllAccessCta. | Keep one deliberate dark moment; remove pulses and reduce radial glows. Respect `prefers-reduced-motion`. |
 | A12 | P1 | Mobile demo bar | Full promo text is hidden below `sm`; the requirement says the strip should be above the header at all widths. | Show a compact promo below `sm` with full text in `aria-label`, or increase bar height. Requires approval. |
 | A13 | P2 | Navigation | Mobile full-screen menu has no Escape handling, focus trap, or body scroll lock. Profile menu has no Escape handling. | Add keyboard affordances without changing visuals. |
-| A14 | P2 | Anchoring | `#latest-courses` anchor can land under the fixed header. | Add `scroll-mt-[132px]` to anchored sections. |
+| A14 | P2 | Anchoring | `#latest-courses` anchor can land under the fixed header. | Add `scroll-mt-[116px]` to anchored sections. |
 | A15 | P2 | Hero image | Fixed 1200×900 image with no responsive sources or priority hint. | Add responsive `srcSet`, explicit dimensions, `fetchpriority="high"`, and keep the overlay fixed at mobile. |
 | A16 | P2 | Consistency | `CourseCard` colors instructor avatars using hardcoded name markers (`mark`, `michael`, `elena`). | Derive from stable data or use one neutral treatment. |
 
@@ -87,8 +87,8 @@ This is a **scoped refinement**, not a new visual world. I did not run the full 
 Preserve the `code.html` order:
 
 1. Demo bar — fixed, `top 0`, `h 32`, `z-40`.
-2. Header — floating, `top 44`, `h 64`, `inset-x-3 / sm:inset-x-6 / lg:inset-x-16`, `z-50`.
-3. Main — `mt-[112px]`, `max-w-[1440px]`, gutter `16 / 32 / 64`.
+2. Header — full-width frosted bar, `top 32`, `h 64`, `inset-x-0`, `z-50`; inner nav gutters `28 / 56 / 96` preserve the previous content width.
+3. Main — `mt-24`, `max-w-[1440px]`, gutter `16 / 32 / 64`.
 4. Hero — 12-column grid, `6/6` at `lg`, `gap 48` desktop / `32` tablet.
 5. Featured banner — full container width, above latest courses.
 6. Latest courses header + category tabs.
@@ -129,7 +129,7 @@ Exact scale to enforce in `index.css`:
 
 | Class | Family | Size / line-height | Weight | Tracking |
 |---|---|---:|---:|---:|
-| `type-display-hero` | Plus Jakarta Sans | 44/47 mobile → 64/68 desktop | 800 | -0.03em |
+| `type-display-hero` | Plus Jakarta Sans | fluid 36px → 64px (line-height 1.1) | 800 | -0.035em |
 | `type-headline-lg` | Plus Jakarta Sans | 28/36 mobile → 40/48 desktop | 700 | -0.02em → -0.025em |
 | `type-headline-md` | Plus Jakarta Sans | 28/36 | 700 | -0.02em |
 | `type-headline-sm` | Plus Jakarta Sans | 20/28 | 600 | -0.015em |
@@ -206,7 +206,7 @@ CTA inventory and proposed defaults:
 
 | Location | Current label | Current target | Proposed rule |
 |---|---|---|---|
-| Hero primary | Browse courses | `#latest-courses` | Keep label; add `scroll-mt-[132px]` to target. |
+| Hero primary | Browse courses | `#latest-courses` | Keep label; add `scroll-mt-[116px]` to target. |
 | Hero secondary | See how it works | `/about` | Rename to `About Mentora` unless a real “how it works” page/anchor is added. |
 | Hero overlay | View course | `/courses/course-1` | Bind to the first real course ID from demo data. |
 | Category tabs | All Courses + 5 categories | state | Keep labels/order; count uses the same dataset shown in the grid. |
@@ -256,7 +256,7 @@ Rules:
 - Equal left/right content edges at every breakpoint.
 - Header remains above demo bar; main remains below header.
 - Mobile menu: Escape closes, focus is trapped, background scroll locked, focus returns to toggle.
-- Anchored sections use `scroll-mt-[132px]`.
+- Anchored sections use `scroll-mt-[116px]`.
 
 ### 3.7 Accessibility (WCAG 2.1 A/AA)
 
@@ -420,13 +420,13 @@ Exit: all acceptance criteria below pass. Only then request commit approval.
 4. **Category counts:** Server-side category filtering. The unfiltered view uses `View all 10 courses`; filtered views use `View all courses`.
 5. **Mobile promo:** Compact promo text below `sm` with a full `aria-label`; the mobile reset control also has an explicit `aria-label`.
 6. **Dark callouts:** Both dark banners were retained with differentiated content density; pulses and radial glows were removed.
-7. **Hero type refinement:** The hero title uses Plus Jakarta Sans at weight 800 with 44/47 mobile and 64/68 desktop size/line-height and -0.03em tracking at both sizes. All headings share the same family.
+7. **Hero type refinement:** The hero title uses three explicit lines — `Practcial course for` / `the future you are` / `building` — in Plus Jakarta Sans at weight 800. Size is fluid from 36px to 64px with 1.1 line-height and -0.035em tracking so each line holds at mobile, tablet, and desktop widths. All headings share the same family.
 
 These defaults were confirmed and implemented.
 
 ### Verification completed
 
-- Full-load DOM checks at 390, 768, 1040, 1188, and 1440: demo bar `top 0 / h 32`, header `top 44 / h 64` with a 12px gap, `main` at `top 112`, one `<main>` landmark, exactly 8 default cards, correct section order, footer links and `© 2026` present, and no horizontal overflow.
+- Full-load DOM checks at 390, 768, 1040, 1188, and 1440: demo bar `top 0 / h 32`, full-width header `top 32 / h 64` with no gap, `main` at `top 96`, one `<main>` landmark, exactly 8 default cards, correct section order, footer links and `© 2026` present, and no horizontal overflow.
 - Server-side category filters return 2 Web Development, 3 Data & AI, 2 Design, 2 Business, and 1 Growth Marketing course; every category is non-empty and the badge uses the canonical `Growth Marketing` label.
 - Keyboard checks: mobile menu focuses its first item, traps Tab, locks body scroll, closes on Escape, and returns focus; profile menu closes on Escape and returns focus.
 - Live-region copy uses the correct singular/plural noun for filtered results.
@@ -434,4 +434,6 @@ These defaults were confirmed and implemented.
 - Browser console: 0 warnings/errors. Captured network: no failed requests.
 - Root `DESIGN.md` and `.impeccable/design.json` were added from the shipped code. Typeset refinements rechecked at 390, 768, and 1440: featured copy 15/24px Inter at 512px max width, hero benefits 13/20px Inter, `text-wrap: pretty` on prose, hero display Plus Jakarta Sans 800 at 44/47px / -0.03em mobile and 64/68px / -0.03em at `>=640px`, nav-to-hero hero padding reduced by 50%, compact centered course bar, learning-facts strip between the CTA and footer, equal-width footer CTAs, with no overflow.
 - The exact detector rerun was unavailable in the parent session; the typeset run's scoped detector returned 0 findings on its four changed files.
-- No commit or push has been made.
+- Header logo alignment: the nav container now uses the same `px-4 / sm:px-8 / lg:px-16` gutters as the hero container. A browser measurement at 1203px put the logo's left edge and the hero title's left edge at the same x position (`64px`).
+- Route sweep: all public, auth, admin, instructor, student, billing, payment, and restored alias routes rendered seeded demo content. `/admin/reports`, `/student/grades`, `/certificates`, and `/my-courses` were repaired after the sweep; no blank routes or console errors remain.
+- Final verification passed before commit.

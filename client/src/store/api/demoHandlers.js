@@ -268,12 +268,85 @@ const userStats = () => {
   }
 }
 
-const adminReports = () => ({
-  ...userStats(),
-  revenue: all('payments').reduce((sum, item) => sum + (item.finalAmount || 0), 0),
-  requests: all('enrollmentRequests').length,
-  payouts: all('payoutRequests').length,
-})
+const adminReports = () => {
+  const users = all('users')
+  const courses = all('courses')
+  const enrollments = all('enrollments')
+  const payments = all('payments').filter((item) => item.status === 'paid')
+
+  const enrolledCount = (course) =>
+    Number(course?.students ?? course?.enrolledStudents?.length ?? 0) || 0
+
+  const categories = all('categories').map((category) => ({
+    category: category.name,
+    count: courses.filter((course) => course.categoryId === category._id).length,
+  }))
+
+  const popular = [...courses]
+    .sort((a, b) => enrolledCount(b) - enrolledCount(a))
+    .slice(0, 5)
+    .map((course) => ({
+      title: course.title,
+      students: enrolledCount(course),
+    }))
+
+  const revenueByCourse = payments.reduce((totals, payment) => {
+    const id = payment.courseId || payment.course?._id
+    const title = payment.course?.title || byId('courses', id)?.title || 'Course'
+    totals.set(title, (totals.get(title) || 0) + Number(payment.finalAmount || payment.amount || 0))
+    return totals
+  }, new Map())
+
+  const recent = (items, dateKey) =>
+    [...items]
+      .sort((a, b) => String(b[dateKey] || '').localeCompare(String(a[dateKey] || '')))
+      .slice(0, 5)
+
+  return {
+    users: {
+      totalUsers: users.length,
+      totalStudents: users.filter((item) => item.role === 'student').length,
+      totalInstructors: users.filter((item) => item.role === 'instructor').length,
+      totalAdmins: users.filter((item) => item.role === 'admin').length,
+      newUsersThisMonth: users.filter((item) => {
+        const created = new Date(item.createdAt)
+        const monthAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+        return created >= monthAgo
+      }).length,
+    },
+    courses: {
+      totalCourses: courses.length,
+      coursesByCategory: categories,
+      mostPopularCourses: popular,
+    },
+    enrollments: {
+      totalEnrollments: enrollments.length,
+      recentEnrollments: recent(enrollments, 'createdAt').map((item) => ({
+        _id: item._id,
+        student: publicUser(byId('users', item.userId)),
+        course: byId('courses', item.courseId),
+        createdAt: item.createdAt,
+      })),
+    },
+    revenue: {
+      totalRevenue: payments.reduce(
+        (sum, item) => sum + Number(item.finalAmount || item.amount || 0),
+        0,
+      ),
+      recentPayments: recent(payments, 'createdAt').map((item) => ({
+        _id: item._id,
+        student: publicUser(byId('users', item.userId)),
+        course: item.course || byId('courses', item.courseId),
+        amount: Number(item.finalAmount || item.amount || 0),
+        paidAt: item.createdAt,
+      })),
+      topEarningCourses: [...revenueByCourse.entries()].map(([title, total]) => ({
+        title,
+        total,
+      })),
+    },
+  }
+}
 
 const instructorStudents = ({ captures }) => {
   const courseIds = coursesForInstructor(captures[0]).map((item) => item._id)

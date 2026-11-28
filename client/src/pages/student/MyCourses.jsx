@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BookOpen } from "lucide-react";
@@ -7,18 +6,9 @@ import { useGetEnrolledCoursesQuery } from "../../store/services/enrollmentReque
 import { ProgressLoader } from "../../components/common";
 
 const MyCourses = () => {
-  const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   const { data, isLoading, error } = useGetEnrolledCoursesQuery();
-
-  useEffect(() => {
-    // Redirect if not student
-    if (user && user.role !== "student") {
-      navigate("/");
-      return;
-    }
-  }, [user, navigate]);
 
   useEffect(() => {
     if (error) {

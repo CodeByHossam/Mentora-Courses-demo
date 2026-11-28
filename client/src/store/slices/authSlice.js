@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getSession, setDemoSession } from "../../services/demoStorage";
+import { clearSession, getSession, setDemoSession } from "../../services/demoStorage";
 
 // Demo sessions are seeded in localStorage. The demo always starts as admin
 // unless another demo user was selected during this browser session.
@@ -36,6 +36,7 @@ const authSlice = createSlice({
       state.isRefreshing = false;
     },
     sendLogout: (state) => {
+      clearSession();
       state.user = null;
       state.accessToken = null;
       state.isRefreshing = false;

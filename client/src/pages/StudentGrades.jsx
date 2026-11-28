@@ -27,6 +27,8 @@ const StudentGrades = () => {
   const [filterCourse, setFilterCourse] = useState("all");
   const [sortBy, setSortBy] = useState("newest");
 
+  const fixed = (value, digits = 1) => Number(value ?? 0).toFixed(digits);
+
   // Get student grades from API
   const {
     data: gradesData,
@@ -172,7 +174,7 @@ const StudentGrades = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Overall GPA</p>
-                <p className="text-2xl font-bold text-success-dark">{overallGPA.toFixed(2)}</p>
+                <p className="text-2xl font-bold text-success-dark">{fixed(overallGPA, 2)}</p>
               </div>
               <div className="p-3 bg-success-soft rounded-full">
                 <GraduationCap className="w-6 h-6 text-success-dark" />
@@ -274,7 +276,7 @@ const StudentGrades = () => {
             </div>
           ) : (
             filteredCourseGrades.map((courseGrade) => (
-              <div key={courseGrade.course._id} className="bg-white rounded-xl p-6 shadow-lg">
+              <div key={courseGrade._id || courseGrade.course?._id || "course"} className="bg-white rounded-xl p-6 shadow-lg">
                 {/* Course Header */}
                 <div className="flex items-start justify-between mb-6">
                   <div className="flex items-center gap-4">
@@ -296,18 +298,18 @@ const StudentGrades = () => {
                   {courseGrade.finalGrade && (
                     <div className="text-right">
                       <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg ${
-                        getGradeColor(courseGrade.finalGrade.finalGrade.percentage)
+                        getGradeColor(courseGrade.finalGrade?.finalGrade?.percentage)
                       }`}>
                         <Award className="w-5 h-5" />
                         <span className="font-bold text-lg">
-                          {courseGrade.finalGrade.finalGrade.letter}
+                          {courseGrade.finalGrade?.finalGrade?.letter || "—"}
                         </span>
                         <span className="text-sm">
-                          ({courseGrade.finalGrade.finalGrade.percentage.toFixed(1)}%)
+                          ({fixed(courseGrade.finalGrade?.finalGrade?.percentage)}%)
                         </span>
                       </div>
                       <p className="text-sm text-gray-600 mt-1">
-                        GPA: {courseGrade.finalGrade.finalGrade.gpa.toFixed(2)}
+                        GPA: {fixed(courseGrade.finalGrade?.finalGrade?.gpa, 2)}
                       </p>
                     </div>
                   )}
@@ -322,23 +324,23 @@ const StudentGrades = () => {
                     </h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {courseGrade.testGrades.map((testGrade) => (
-                        <div key={testGrade._id} className="border border-gray-200 rounded-lg p-4">
+                        <div key={testGrade._id || testGrade.testGrade?.testId || "test"} className="border border-gray-200 rounded-lg p-4">
                           <div className="flex items-center justify-between mb-2">
                             <h5 className="font-medium text-gray-900">
-                              {testGrade.testGrade.testName}
+                              {testGrade.testGrade?.testName || "Test"}
                             </h5>
                             <span className={`px-2 py-1 rounded text-sm font-medium ${
-                              getGradeColor(testGrade.testGrade.percentage)
+                              getGradeColor(testGrade.testGrade?.percentage)
                             }`}>
-                              {testGrade.testGrade.percentage.toFixed(1)}%
+                              {fixed(testGrade.testGrade?.percentage)}%
                             </span>
                           </div>
                           <div className="text-sm text-gray-600 space-y-1">
                             <p>
-                              Score: {testGrade.testGrade.earnedPoints}/{testGrade.testGrade.totalPoints} points
+                              Score: {testGrade.testGrade?.earnedPoints ?? 0}/{testGrade.testGrade?.totalPoints ?? 0} points
                             </p>
                             <p>
-                              Weight: {testGrade.testGrade.weight}%
+                              Weight: {testGrade.testGrade?.weight ?? 0}%
                             </p>
                             <p className="flex items-center gap-1">
                               <Calendar className="w-3 h-3" />
@@ -354,7 +356,7 @@ const StudentGrades = () => {
                           {/* Download Answer Key Button */}
                           <div className="mt-3">
                             <button
-                              onClick={() => handleDownloadAnswerKey(courseGrade.course._id, testGrade.testGrade.testId)}
+                              onClick={() => handleDownloadAnswerKey(courseGrade.course._id, testGrade.testGrade?.testId)}
                               className="btn-primary flex items-center gap-2 text-sm w-full justify-center"
                               title="Download answer key (available after completing test)"
                             >
@@ -370,7 +372,7 @@ const StudentGrades = () => {
                     {courseGrade.summary?.testAverage && (
                       <div className="mt-4 p-3 bg-gray-50 rounded-lg">
                         <p className="text-sm text-gray-600">
-                          <strong>Test Average:</strong> {courseGrade.summary.testAverage.toFixed(1)}%
+                          <strong>Test Average:</strong> {fixed(courseGrade.summary?.testAverage)}%
                         </p>
                       </div>
                     )}

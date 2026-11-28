@@ -302,13 +302,13 @@ textarea {
    ========================================================================== */
 @layer components {
   /* Plus Jakarta Sans ships through 800; the hero uses that real 800 face with
-     controlled tracking so the compact title stays bold without crowding. */
+     controlled tracking so its three explicit lines stay bold without crowding. */
   .type-display-hero {
     font-family: var(--font-display);
-    font-size: 2.75rem;
+    font-size: clamp(2.25rem, 9vw, 4rem);
     font-weight: 800;
-    line-height: 2.9375rem;
-    letter-spacing: -0.03em;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
   }
 
   .type-headline-lg {
@@ -390,13 +390,19 @@ textarea {
   }
 }
 
-@media (min-width: 640px) {
+@media (min-width: 1024px) {
   .type-display-hero {
-    font-size: 4rem;
-    line-height: 4.25rem;
-    letter-spacing: -0.03em;
+    font-size: clamp(3rem, 4.7vw, 4rem);
   }
+}
 
+@media (max-width: 359px) {
+  .type-display-hero {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 640px) {
   .type-headline-lg {
     font-size: 2.5rem;
     line-height: 3rem;
@@ -741,11 +747,10 @@ textarea {
 .font-body { font-family: var(--font-sans); }
 .font-heading { font-family: var(--font-display); font-weight: 700; }
 
-/* Floating frosted navigation shell from DESIGN.md. */
+/* Full-width frosted navigation shell; the inner nav keeps its original gutters. */
 .nav-shell {
   background: rgb(255 255 255 / 0.88);
-  border: 1px solid #e2e8f0;
-  border-radius: 1rem;
+  border-bottom: 1px solid #e2e8f0;
   box-shadow: var(--shadow-nav);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
@@ -897,3 +902,43 @@ textarea {
   .skeleton::after { display: none; }
   .loader-progress { width: 100%; }
 }
+
+/* Legacy pages inherit the same neutral and action vocabulary as the
+   design-system pages. These mappings are deliberately scoped to main so the
+   dark role sidebars and footer keep their own foreground colors. */
+:where(main) h1,
+:where(main) h2,
+:where(main) h3,
+:where(main) h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+:where(main) .text-gray-900,
+:where(main) .text-gray-800 { color: var(--color-ink); }
+:where(main) .text-gray-700,
+:where(main) .text-gray-600 { color: var(--color-ink-soft); }
+:where(main) .text-gray-500,
+:where(main) .text-gray-400 { color: var(--color-ink-muted); }
+
+:where(main) .bg-gray-50 { background-color: var(--color-canvas); }
+:where(main) .bg-gray-100,
+:where(main) .bg-gray-200 { background-color: var(--color-surface-muted); }
+
+:where(main) .border-gray-200,
+:where(main) .border-gray-300 { border-color: var(--color-line); }
+
+/* Conflicting utility hovers fall back to the one-brand rule. */
+:where(main) .bg-brand-600:hover,
+:where(main) .bg-brand:hover { background-color: var(--color-brand-dark); }
+:where(main) .hover\:bg-success:hover,
+:where(main) .hover\:bg-success-dark:hover { background-color: var(--color-brand-dark); }
+
+/* Keep secondary text legible on the dark surfaces that live inside main. */
+:where(main) .bg-footer .text-gray-300,
+:where(main) .bg-footer .text-gray-400,
+:where(main) .bg-footer .text-gray-500,
+:where(main) .bg-darkColor .text-gray-300,
+:where(main) .bg-darkColor .text-gray-400,
+:where(main) .bg-brand-900 .text-gray-300,
+:where(main) .bg-brand-900 .text-gray-400 { color: #cbd5e1; }

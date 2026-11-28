@@ -71,7 +71,21 @@ const StudentCertificates = () => {
     }
   };
   if (user?.role !== 'student') {
-    return null;
+    return (
+      <Card className="p-6 sm:p-8">
+        <div className="mx-auto max-w-md text-center">
+          <Award className="mx-auto h-10 w-10 text-brand-600" aria-hidden="true" />
+          <h1 className="mt-4 text-2xl font-bold text-ink">Student certificates</h1>
+          <p className="mt-2 text-sm text-ink-soft">
+            Certificates are issued to student demo accounts. Switch to Lina, Omar, or
+            Nora from the demo bar to view earned certificates.
+          </p>
+          <Button to="/courses" className="mt-5">
+            Browse courses
+          </Button>
+        </div>
+      </Card>
+    );
   }
 
   if (loading) {

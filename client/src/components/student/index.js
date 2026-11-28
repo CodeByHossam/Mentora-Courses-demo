@@ -1,5 +1,5 @@
 // Import from this barrel only. Never deep-path into this folder.
-export { default as StudentBills } from './StudentBills';
+export { default as StudentBills } from '../StudentBills';
 export { default as StudentCertificates } from './StudentCertificates';
 export { default as StudentCoursesAndBills } from './StudentCoursesAndBills';
 export { default as StudentLearningProgress } from './StudentLearningProgress';
