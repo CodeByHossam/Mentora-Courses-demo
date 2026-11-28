@@ -28,7 +28,7 @@ export default function WhyMentora() {
   return (
     <section
       id="why-mentora"
-      className="mx-auto max-w-[1440px] scroll-mt-[116px] px-4 py-10 sm:px-8 lg:h-[75vh] lg:min-h-[560px] lg:px-16 lg:py-8"
+      className="mx-auto max-w-[1440px] scroll-mt-[116px] px-4 py-10 sm:px-8 lg:h-[85vh] lg:min-h-[640px] lg:px-16 lg:py-8"
       aria-labelledby="why-mentora-title"
     >
       <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-[linear-gradient(120deg,#0F172A_0%,#1E1B4B_100%)] p-5 text-white shadow-soft sm:p-8">

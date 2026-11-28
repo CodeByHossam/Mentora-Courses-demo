@@ -976,3 +976,11 @@ textarea {
 :where(main) .bg-darkColor .text-gray-400,
 :where(main) .bg-brand-900 .text-gray-300,
 :where(main) .bg-brand-900 .text-gray-400 { color: #cbd5e1; }
+
+/* Short laptop viewports need a taller showcase so the mentorship photo can
+   render at its full natural width instead of being height-constrained. */
+@media (min-width: 1024px) and (max-height: 820px) {
+  #why-mentora {
+    height: 92vh;
+  }
+}
