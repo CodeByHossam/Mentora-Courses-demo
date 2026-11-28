@@ -53,7 +53,7 @@ const FeaturedCourseCard = memo(({ course }) => {
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition duration-150 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-soft">
-      <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+      <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
         {course.imageUrl && !imageFailed ? (
           <img
             src={course.imageUrl}
@@ -84,32 +84,18 @@ const FeaturedCourseCard = memo(({ course }) => {
         </button>
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-4">
-        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-xs font-medium">
-          <div className="flex min-w-0 items-center gap-1.5 text-slate-500">
-            <span className="truncate font-semibold text-teal-700">
-              {categoryLabel}
-            </span>
-            <span aria-hidden="true">·</span>
-            <span className="whitespace-nowrap">{course.duration || "Self-paced"}</span>
-            <span aria-hidden="true">·</span>
-            <span className="whitespace-nowrap">{course.level || "All levels"}</span>
-          </div>
-          <span className="flex shrink-0 items-center gap-1 text-slate-700 tabular-nums">
-            <Star
-              className="h-3.5 w-3.5 fill-amber-400 text-amber-400"
-              aria-hidden="true"
-            />
-            {rating.toFixed(1)}
-            {ratingsCount > 0 ? (
-              <span className="sr-only">out of 5 from {ratingsCount} ratings</span>
-            ) : (
-              <span className="sr-only">out of 5</span>
-            )}
+      <div className="flex flex-1 flex-col gap-2 p-3">
+        <div className="flex min-w-0 items-center gap-1.5 overflow-hidden whitespace-nowrap text-[11px] font-medium text-slate-500">
+          <span className="truncate font-semibold text-teal-700">
+            {categoryLabel}
           </span>
+          <span aria-hidden="true">·</span>
+          <span>{course.duration || "Self-paced"}</span>
+          <span aria-hidden="true">·</span>
+          <span>{course.level || "All levels"}</span>
         </div>
 
-        <h3 className="type-title-md line-clamp-2 text-slate-900 transition-colors group-hover:text-brand-600">
+        <h3 className="type-title-md line-clamp-2 leading-snug text-slate-900 transition-colors group-hover:text-brand-600">
           <Link
             to={detailPath}
             className="rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
@@ -118,17 +104,32 @@ const FeaturedCourseCard = memo(({ course }) => {
           </Link>
         </h3>
 
-        <p className="type-body-sm line-clamp-2 text-slate-500">
+        <div className="flex items-center gap-1 text-xs font-semibold text-slate-700 tabular-nums">
+          <Star
+            className="h-3.5 w-3.5 fill-amber-400 text-amber-400"
+            aria-hidden="true"
+          />
+          {rating.toFixed(1)}
+          {ratingsCount > 0 ? (
+            <span className="sr-only">out of 5 from {ratingsCount} ratings</span>
+          ) : (
+            <span className="sr-only">out of 5</span>
+          )}
+        </div>
+
+        <p className="type-body-sm line-clamp-2 leading-snug text-slate-500">
           {course.description || "A practical, expert-led course."}
         </p>
 
-        <div className="mt-auto flex items-end justify-between gap-3 border-t border-slate-100 pt-3">
+        <div className="mt-auto flex items-end justify-between gap-2 border-t border-slate-100 pt-2">
           <div className="min-w-0">
-            <p className="type-label-md truncate text-slate-900">{instructorName}</p>
-            <p className="type-body-sm mt-0.5 text-slate-500 tabular-nums">
+            <p className="type-label-md leading-tight text-slate-900">
+              {instructorName}
+            </p>
+            <p className="type-body-sm leading-tight text-slate-500 tabular-nums">
               {lessonsCount} lessons
             </p>
-            <p className="type-title-md mt-1 font-bold text-slate-900 tabular-nums">
+            <p className="type-title-md mt-0.5 font-bold leading-tight text-slate-900 tabular-nums">
               {originalPrice > price ? (
                 <span className="mr-1.5 type-body-sm text-slate-400 line-through">
                   ${originalPrice}
@@ -140,7 +141,7 @@ const FeaturedCourseCard = memo(({ course }) => {
 
           <Link
             to={detailPath}
-            className="type-label-md inline-flex min-h-9 shrink-0 items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-2 text-white transition-colors hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            className="type-label-md inline-flex min-h-8 shrink-0 items-center gap-1 rounded-lg bg-brand-600 px-2.5 py-1.5 text-white transition-colors hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
           >
             <span>View syllabus</span>
             <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
