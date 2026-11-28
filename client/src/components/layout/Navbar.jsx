@@ -1,305 +1,361 @@
 /**
- * Navigation Bar Component
- *
- * Main navigation component that provides site-wide navigation with role-based
- * menu items and responsive design. Handles user authentication state and
- * provides appropriate navigation options based on user role.
- *
- * Features:
- * - Responsive design (mobile hamburger menu, desktop horizontal menu)
- * - Role-based navigation (Admin, Instructor, Student, Public)
- * - User profile dropdown with logout functionality
- * - Authentication state management
- * - Mobile-first design with progressive enhancement
- *
- * @component
- * @returns {JSX.Element} Navigation bar with role-based menu items
+ * Site-wide navigation with role-based links, notifications and profile menu.
  */
-
-import React, { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useLogoutMutation } from "../../store/services/authApi";
+import { toast } from "react-toastify";
+import {
+  BookOpen,
+  HelpCircle,
+  Home,
+  Info,
+  LayoutDashboard,
+  LogIn,
+  LogOut,
+  Mail,
+  Menu,
+  User,
+  UserPlus,
+  X,
+} from "lucide-react";
+
 import {
   selectIsAuthenticated,
   selectCurrentUser,
 } from "../../store/slices/authSlice";
-import { toast } from "react-toastify";
+import { useLogoutMutation } from "../../store/services/authApi";
+import { Button, NotificationBell } from "../common";
 
-// Import Lucide React icons for consistent UI
-import {
-  Home, // Home page icon
-  BookOpen, // Courses and learning icon
-  Info, // About page icon
-  Mail, // Contact page icon
-  LayoutDashboard, // Dashboard icon
-  User, // User profile icon
-  LogOut, // Logout icon
-  LogIn, // Login icon
-  UserPlus, // Registration icon
-  Menu, // Mobile menu open icon
-  X, // Mobile menu close icon
-  HelpCircle, // Help page icon
-} from "lucide-react";
+const BASE_NAV_ITEMS = [
+  { label: "Home", to: "/", icon: Home, isPrimary: true },
+  { label: "Courses", to: "/courses", icon: BookOpen, isPrimary: true },
+  { label: "Contact", to: "/contact", icon: Mail },
+  { label: "About", to: "/about", icon: Info },
+  { label: "Help", to: "/help", icon: HelpCircle },
+];
 
-// Import NotificationBell component
-import { NotificationBell } from "../common";
+const getDashboardPath = (role) => {
+  if (role === "admin") return "/admin";
+  if (role === "instructor") return "/instructor";
+  return "/student/dashboard";
+};
 
-/**
- * Main Navbar Component
- * Manages navigation state, user authentication, and responsive menu behavior
- */
+const getInitials = (name) =>
+  name
+    ?.split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part.charAt(0).toUpperCase())
+    .join("") || "U";
+
+const navItemClass = (isActive) =>
+  `nav-link whitespace-nowrap ${
+    isActive
+      ? "bg-brand-50 text-brand-700"
+      : "text-slate-600 hover:text-brand-600"
+  }`;
+
+function NavItem({ item, isActive, onClick, className = "" }) {
+  const Icon = item.icon;
+  return (
+    <li className={className}>
+      <Link
+        to={item.to}
+        onClick={onClick}
+        aria-current={isActive ? "page" : undefined}
+        className={navItemClass(isActive)}
+      >
+        <Icon className="h-4 w-4" aria-hidden="true" />
+        {item.label}
+      </Link>
+    </li>
+  );
+}
+
 function Navbar() {
-  // State management for mobile menu and profile dropdown
-  const [menuOpen, setMenuOpen] = useState(false); // Controls mobile hamburger menu
-  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false); // Controls profile dropdown
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const user = useSelector(selectCurrentUser);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [logout] = useLogoutMutation();
+  const profileRef = useRef(null);
+  const profileToggleRef = useRef(null);
+  const menuRef = useRef(null);
+  const menuToggleRef = useRef(null);
 
-  // Redux state selectors for authentication
-  const isAuthenticated = useSelector(selectIsAuthenticated); // Check if user is logged in
-  const user = useSelector(selectCurrentUser); // Get current user data
-
-  // Navigation and API hooks
-  const navigate = useNavigate(); // For programmatic navigation
-  const [logout] = useLogoutMutation(); // Logout API mutation
-  const profileDropdownRef = useRef(null); // Ref for dropdown click outside detection
-
-  /**
-   * Effect to handle clicking outside profile dropdown
-   * Closes dropdown when user clicks elsewhere on the page
-   */
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      // Check if click is outside the profile dropdown
+    const closeOnOutsideClick = (event) => {
       if (
-        profileDropdownRef.current &&
-        !profileDropdownRef.current.contains(event.target)
+        profileRef.current &&
+        !profileRef.current.contains(event.target)
       ) {
-        setIsProfileDropdownOpen(false);
+        setProfileOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", closeOnOutsideClick);
+    return () => document.removeEventListener("mousedown", closeOnOutsideClick);
+  }, []);
+
+  useEffect(() => {
+    if (!profileOpen) return undefined;
+
+    const closeOnEscape = (event) => {
+      if (event.key !== "Escape") return;
+      setProfileOpen(false);
+      profileToggleRef.current?.focus();
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [profileOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const getFocusableItems = () =>
+      Array.from(
+        menuRef.current?.querySelectorAll(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ) ?? [],
+      );
+
+    getFocusableItems()[0]?.focus();
+
+    const handleMenuKeys = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuToggleRef.current?.focus();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+      const items = getFocusableItems();
+      if (items.length === 0) return;
+
+      const first = items[0];
+      const last = items[items.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
 
-    // Add event listener for clicks
-    document.addEventListener("mousedown", handleClickOutside);
-
-    // Cleanup event listener on component unmount
+    document.addEventListener("keydown", handleMenuKeys);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleMenuKeys);
+      document.body.style.overflow = previousOverflow;
     };
-  }, []);
+  }, [menuOpen]);
 
-  /**
-   * Handle user logout
-   * Calls logout API, navigates to login page, and shows success message
-   */
   const handleLogout = async () => {
     try {
-      // Call logout API to clear server-side session
       await logout().unwrap();
-
-      // Navigate to login page
+      setProfileOpen(false);
+      setMenuOpen(false);
       navigate("/login");
-
-      // Show success message to user
       toast.success("Logout successful!");
-    } catch (err) {
-      // Logout error handled silently
+    } catch (error) {
+      toast.error(error?.message || "Could not log out.");
     }
   };
 
+  const navItems = isAuthenticated
+    ? [
+        ...BASE_NAV_ITEMS,
+        {
+          label: "Dashboard",
+          to: getDashboardPath(user?.role),
+          icon: LayoutDashboard,
+          isPrimary: true,
+        },
+      ]
+    : BASE_NAV_ITEMS;
+
+  const isActive = (to) =>
+    to === "/" ? location.pathname === "/" : location.pathname.startsWith(to);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
-    <nav className="relative z-10 mx-auto flex h-full w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-      {/* Logo */}
+    <nav className="relative z-10 mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-4 sm:px-8 lg:px-8">
       <Link
         to="/"
-        className="text-lg sm:text-xl md:text-2xl lg:text-2xl transition-colors duration-300 flex items-center gap-2 flex-shrink-0"
-        style={{color: 'var(--primary)'}}
-        onMouseEnter={(e) => e.target.style.color = 'var(--primary-dark)'}
-        onMouseLeave={(e) => e.target.style.color = 'var(--primary)'}
+        onClick={closeMenu}
+        className="group flex shrink-0 items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
       >
-        <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 lg:w-7 lg:h-7" />
-        <span className="flex flex-col items-start leading-none">
-          <span className="font-heading font-bold truncate">Mentora</span>
-          <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-600">
-            Demo
+        <span className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-brand-600 text-white shadow-md shadow-brand-500/25 transition group-hover:bg-brand-700">
+          <BookOpen className="h-5 w-5" aria-hidden="true" />
+          <span
+            className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-accent-400 ring-2 ring-white"
+            aria-hidden="true"
+          />
+        </span>
+        <span className="flex flex-col leading-none">
+          <span className="type-headline-sm block text-slate-900">
+            Mentora
+          </span>
+          <span className="type-label-sm mt-0.5 block uppercase text-accent-700">
+            Learning Hub
           </span>
         </span>
       </Link>
 
-      {/* Navigation Links */}
-      <ul
-        className={`fixed top-0 left-0 w-full h-screen backdrop-blur-md flex flex-col items-center justify-center gap-6 transition-all duration-500 ease-in-out z-40
-          ${
-            menuOpen
-              ? "translate-x-0 opacity-100 bg-secondary"
-              : "translate-x-full opacity-0"
-          }
-          lg:static lg:w-auto lg:h-auto lg:bg-transparent lg:backdrop-blur-none lg:flex-row lg:translate-x-0 lg:opacity-100 lg:gap-3 xl:gap-4`}
-      >
-        <li>
-          <Link
-            to="/"
-            onClick={() => setMenuOpen(false)}
-            className="nav-item nav-underline py-2 text-base lg:text-sm font-medium transition-all duration-300 lg:px-2 xl:px-3 flex items-center gap-2 whitespace-nowrap"
-            style={{color: 'var(--text-secondary)'}}
-          >
-            <Home className="w-5 h-5" />
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/courses"
-            onClick={() => setMenuOpen(false)}
-            className="nav-item nav-underline py-2 text-base lg:text-sm font-medium transition-all duration-300 lg:px-2 xl:px-3 flex items-center gap-2 whitespace-nowrap"
-            style={{color: 'var(--text-secondary)'}}
-          >
-            <BookOpen className="w-5 h-5" />
-            Courses
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/contact"
-            onClick={() => setMenuOpen(false)}
-            className="nav-item nav-underline py-2 text-base lg:text-sm font-medium transition-all duration-300 lg:px-2 xl:px-3 flex items-center gap-2 whitespace-nowrap"
-            style={{color: 'var(--text-secondary)'}}
-          >
-            <Mail className="w-5 h-5" />
-            Contact
-          </Link>
-        </li>
-
-        <li>
-          <Link
-            to="/about"
-            onClick={() => setMenuOpen(false)}
-            className="nav-item nav-underline py-2 text-base lg:text-sm font-medium transition-all duration-300 lg:px-2 xl:px-3 flex items-center gap-2 whitespace-nowrap"
-            style={{color: 'var(--text-secondary)'}}
-          >
-            <Info className="w-5 h-5" />
-            About
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/help"
-            onClick={() => setMenuOpen(false)}
-            className="nav-item nav-underline py-2 text-base lg:text-sm font-medium transition-all duration-300 lg:px-2 xl:px-3 flex items-center gap-2 whitespace-nowrap"
-            style={{color: 'var(--text-secondary)'}}
-          >
-            <HelpCircle className="w-5 h-5" />
-            Help
-          </Link>
-        </li>
-        {/* {appear only after logging in} */}
-        {isAuthenticated ? (
-          <>
-            <li>
-              <Link
-                to={
-                  user?.role === "admin"
-                    ? "/admin"
-                    : user?.role === "instructor"
-                    ? "/instructor"
-                    : "/student"
-                }
-                onClick={() => setMenuOpen(false)}
-                className="nav-item nav-underline py-2 text-base lg:text-sm font-medium transition-all duration-300 lg:px-2 xl:px-3 flex items-center gap-2 whitespace-nowrap"
-            style={{color: 'var(--text-secondary)'}}
-              >
-                <LayoutDashboard className="w-5 h-5" />
-                Dashboard
-              </Link>
-            </li>
-
-            {/* Notification Bell */}
-            <li className="lg:ml-2">
-              <NotificationBell className="text-secondary hover:text-primary transition-all duration-300" />
-            </li>
-
-            <li className="lg:ml-2 xl:ml-4 nav-underline">
-              <div className="relative" ref={profileDropdownRef}>
-                <button
-                  onClick={() =>
-                    setIsProfileDropdownOpen(!isProfileDropdownOpen)
-                  }
-                  className="flex items-center space-x-1 lg:space-x-2 text-secondary hover:text-primary transition-all duration-300 p-1 rounded-md"
-                >
-                  <User className="w-5 h-5 " />
-                  <span className="hidden md:block text-sm lg:text-base truncate max-w-24 lg:max-w-none">
-                    {user?.name || "Profile"}
-                  </span>
-                </button>
-                {isProfileDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-44 md:w-48 bg-white rounded-md shadow-lg py-1 z-50 border">
-                    <Link
-                      to="/profile"
-                      onClick={() => {
-                        setIsProfileDropdownOpen(false);
-                        setMenuOpen(false);
-                      }}
-                      className="block px-3 md:px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      <User className="inline h-4 w-4 mr-2" />
-                      Profile
-                    </Link>
-                    <button
-                      onClick={() => {
-                        handleLogout();
-                        setIsProfileDropdownOpen(false);
-                        setMenuOpen(false);
-                      }}
-                      className="block w-full text-left px-3 md:px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      <LogOut className="inline h-4 w-4 mr-2" />
-                      Logout
-                    </button>
-                  </div>
-                )}
-              </div>
-            </li>
-          </>
-        ) : (
-          <>
-            <li className="lg:ml-2 xl:ml-4">
-              <Link
-                to="/login"
-                onClick={() => setMenuOpen(false)}
-                className="btn-primary py-2 px-3 lg:px-3 xl:px-4 text-sm lg:text-sm font-medium rounded-lg transition-all duration-300 flex items-center gap-2 whitespace-nowrap"
-              >
-                <LogIn className="w-4 h-4 lg:w-5 lg:h-5" />
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/register"
-                onClick={() => setMenuOpen(false)}
-                className="btn-secondary py-2 px-3 lg:px-3 xl:px-4 text-sm lg:text-sm font-medium rounded-lg transition-all duration-300 flex items-center gap-2 whitespace-nowrap"
-              >
-                <UserPlus className="w-4 h-4 lg:w-5 lg:h-5" />
-                Sign Up
-              </Link>
-            </li>
-          </>
-        )}
+      <ul className="hidden items-center gap-1 lg:flex lg:gap-3">
+        {navItems.map((item) => (
+          <NavItem
+            key={item.label}
+            item={item}
+            isActive={isActive(item.to)}
+            onClick={closeMenu}
+            className={item.isPrimary ? "" : "hidden xl:list-item"}
+          />
+        ))}
       </ul>
 
-      {/* Burger Button */}
-      <span className="lg:hidden">
+      <div className="flex items-center gap-4">
+        {isAuthenticated ? (
+          <>
+            <NotificationBell className="rounded-full text-slate-500 transition-colors hover:bg-brand-50 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500" />
+
+            <div
+              className="relative flex items-center gap-2 border-l border-slate-200 pl-4"
+              ref={profileRef}
+              id="profile-menu"
+            >
+              <button
+                type="button"
+                ref={profileToggleRef}
+                onClick={() => setProfileOpen((open) => !open)}
+                aria-expanded={profileOpen}
+                aria-controls="profile-menu-options"
+                aria-label={profileOpen ? "Close profile menu" : "Open profile menu"}
+                className="flex items-center gap-2 rounded-full p-1 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+              >
+                <span className="type-label-md flex h-8 w-8 items-center justify-center rounded-full border border-brand-200 bg-brand-100 text-brand-800">
+                  {getInitials(user?.name)}
+                </span>
+                <span className="type-label-lg hidden text-slate-700 lg:inline">
+                  {user?.name || "Profile"}
+                </span>
+              </button>
+
+              {profileOpen ? (
+                <div
+                  className="absolute right-0 top-full mt-2 w-44 rounded-lg border border-slate-200 bg-white py-1 shadow-lg"
+                  id="profile-menu-options"
+                >
+                  <Link
+                    to="/profile"
+                    onClick={() => setProfileOpen(false)}
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 transition hover:bg-slate-100"
+                  >
+                    <User className="h-4 w-4" aria-hidden="true" />
+                    Profile
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={handleLogout}
+                    className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm text-slate-700 transition hover:bg-slate-100"
+                  >
+                    <LogOut className="h-4 w-4" aria-hidden="true" />
+                    Logout
+                  </button>
+                </div>
+              ) : null}
+            </div>
+          </>
+        ) : (
+          <div className="hidden items-center gap-2 lg:flex">
+            <Button to="/login" size="sm" leftIcon={<LogIn className="h-4 w-4" />}>
+              Login
+            </Button>
+            <Button
+              to="/register"
+              variant="ghost"
+              size="sm"
+              className="text-slate-700"
+              leftIcon={<UserPlus className="h-4 w-4" />}
+            >
+              Sign Up
+            </Button>
+          </div>
+        )}
 
         <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="relative w-8 h-8 md:w-10 md:h-10 flex flex-col justify-center items-center z-50 lg:hidden p-1 rounded-md hover:bg-gray-100 transition-colors "
+          type="button"
+          ref={menuToggleRef}
+          onClick={() => setMenuOpen((open) => !open)}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          className="relative z-50 flex h-9 w-9 items-center justify-center rounded-md p-1 text-slate-700 transition hover:bg-slate-100 lg:hidden"
         >
           {menuOpen ? (
-            <X className="w-6 h-6 md:w-7 md:h-7" />
+            <X className="h-6 w-6" aria-hidden="true" />
           ) : (
-            <Menu className="w-6 h-6 md:w-7 md:h-7" />
+            <Menu className="h-6 w-6" aria-hidden="true" />
           )}
         </button>
-      </span>
+      </div>
+
+      <div
+        id="mobile-menu"
+        ref={menuRef}
+        hidden={!menuOpen}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site menu"
+        className={`fixed inset-0 z-40 flex flex-col items-center justify-center bg-white/95 backdrop-blur-md transition-opacity duration-200 lg:hidden ${
+          menuOpen ? "visible opacity-100" : "invisible opacity-0"
+        }`}
+      >
+        <ul className="flex flex-col items-center gap-6">
+          {navItems.map((item) => (
+            <NavItem
+              key={item.label}
+              item={item}
+              isActive={isActive(item.to)}
+              onClick={closeMenu}
+            />
+          ))}
+          {!isAuthenticated ? (
+            <>
+              <li>
+                <Button
+                  to="/login"
+                  size="sm"
+                  onClick={closeMenu}
+                  leftIcon={<LogIn className="h-4 w-4" />}
+                >
+                  Login
+                </Button>
+              </li>
+              <li>
+                <Button
+                  to="/register"
+                  variant="ghost"
+                  size="sm"
+                  className="text-slate-700"
+                  onClick={closeMenu}
+                  leftIcon={<UserPlus className="h-4 w-4" />}
+                >
+                  Sign Up
+                </Button>
+              </li>
+            </>
+          ) : null}
+        </ul>
+      </div>
     </nav>
   );
 }

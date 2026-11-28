@@ -4,7 +4,7 @@ import { useGetCoursesQuery } from "../../store/services/courseApi";
 import { useGetCategoriesQuery } from "../../store/services/categoryApi";
 import { selectCurrentUser } from "../../store/slices/authSlice";
 
-export const useCourseList = ({ limit }) => {
+export const useCourseList = ({ limit } = {}) => {
   const user = useSelector(selectCurrentUser);
   const { data: categoriesData, error: categoriesError } = useGetCategoriesQuery();
   const categories = Array.isArray(categoriesData)
@@ -14,7 +14,12 @@ export const useCourseList = ({ limit }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const coursesPerPage = 10;
 
-  const [filters, setFilters] = useState({ search: "", category: "", level: "", sort: "newest" });
+  const [filters, setFilters] = useState({
+    search: "",
+    category: "",
+    level: "",
+    sort: "newest",
+  });
   const [debouncedSearch, setDebouncedSearch] = useState(filters.search);
   const [viewMode, setViewMode] = useState("grid");
 
@@ -23,77 +28,90 @@ export const useCourseList = ({ limit }) => {
     return () => clearTimeout(handler);
   }, [filters.search]);
 
+  // All filtering happens in the demo API so the returned courses and meta.total
+  // always describe the same result set.
   const memoizedQueryParams = useMemo(() => {
-    if (limit) {
-      return { sort: filters.sort, limit: limit, page: 1 };
-    } else {
-      const params = { sort: filters.sort, limit: coursesPerPage, page: currentPage };
-      if (debouncedSearch.trim()) params.search = debouncedSearch;
-      if (filters.category && filters.category !== "") params.category = filters.category;
-      if (filters.level && filters.level !== "") params.level = filters.level;
-      return params;
-    }
-  }, [filters.sort, filters.category, filters.level, debouncedSearch, limit, coursesPerPage, currentPage]);
+    const params = {
+      sort: filters.sort,
+      limit: limit || coursesPerPage,
+      page: limit ? 1 : currentPage,
+    };
+    if (debouncedSearch.trim()) params.search = debouncedSearch;
+    if (filters.category) params.category = filters.category;
+    if (filters.level) params.level = filters.level;
+    return params;
+  }, [
+    filters.sort,
+    filters.category,
+    filters.level,
+    debouncedSearch,
+    limit,
+    coursesPerPage,
+    currentPage,
+  ]);
 
-  const { data: response, isLoading, error, refetch } = useGetCoursesQuery(memoizedQueryParams, { refetchOnMountOrArgChange: true });
+  const { data: response, isLoading, error, refetch } = useGetCoursesQuery(
+    memoizedQueryParams,
+    { refetchOnMountOrArgChange: true },
+  );
   const allCourses = useMemo(() => response?.data ?? [], [response]);
-  const meta = response?.meta ?? { page: 1, pages: 1, total: 0 };
+  // Demo envelopes spread pagination fields at the top level; keep support for
+  // a nested `meta` envelope in case the API is swapped for a real backend.
+  const meta = response?.meta ?? response ?? { page: 1, pages: 1, total: 0 };
 
   useEffect(() => {
     if (error) console.error("Course list failed to load", error);
     if (categoriesError) console.error("Categories failed to load", categoriesError);
   }, [error, categoriesError]);
 
-  const paginatedCourses = useMemo(() => {
-    if (limit) {
-      let filtered = [...allCourses];
-      if (debouncedSearch.trim()) {
-        const searchTerm = debouncedSearch.toLowerCase();
-        filtered = filtered.filter((course) =>
-          course.title?.toLowerCase().includes(searchTerm) ||
-          course.description?.toLowerCase().includes(searchTerm) ||
-          course.instructor?.name?.toLowerCase().includes(searchTerm) ||
-          course.category?.name?.toLowerCase().includes(searchTerm)
-        );
-      }
-      if (filters.category && filters.category !== "") {
-        filtered = filtered.filter((course) => course.category?.name === filters.category || course.category?.name?.toLowerCase() === filters.category.toLowerCase());
-      }
-      if (filters.level && filters.level !== "") {
-        filtered = filtered.filter((course) => course.level?.toLowerCase() === filters.level.toLowerCase());
-      }
-      return filtered.slice(0, limit);
-    } else {
-      return allCourses;
-    }
-  }, [allCourses, debouncedSearch, filters.category, filters.level, limit]);
-
+  const paginatedCourses = allCourses;
   const totalPages = limit ? 1 : meta.pages;
-  const totalCourses = limit ? paginatedCourses.length : meta.total;
+  const totalCourses = meta.total;
 
-  const handleFilterChange = (e) => {
-    const { name, value } = e.target;
-    setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
+  const handleFilterChange = (event) => {
+    const { name, value } = event.target;
+    setFilters((previous) => ({ ...previous, [name]: value }));
     if (!limit) setCurrentPage(1);
   };
+
   const resetFilters = () => {
     setFilters({ search: "", category: "", level: "", sort: "newest" });
     setCurrentPage(1);
   };
+
   const handlePreviousPage = () => {
-    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+    if (currentPage > 1) setCurrentPage((previous) => previous - 1);
   };
+
   const handleNextPage = () => {
-    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+    if (currentPage < totalPages) setCurrentPage((previous) => previous + 1);
   };
 
   return {
-    user, categories, isLoading, error, refetch,
-    currentPage, setCurrentPage, coursesPerPage,
-    filters, setFilters, debouncedSearch, viewMode, setViewMode,
-    allCourses, paginatedCourses, totalPages, totalCourses, meta,
-    handleFilterChange, resetFilters, handlePreviousPage, handleNextPage,
+    user,
+    categories,
+    isLoading,
+    error,
+    refetch,
+    currentPage,
+    setCurrentPage,
+    coursesPerPage,
+    filters,
+    setFilters,
+    debouncedSearch,
+    viewMode,
+    setViewMode,
+    allCourses,
+    paginatedCourses,
+    totalPages,
+    totalCourses,
+    meta,
+    handleFilterChange,
+    resetFilters,
+    handlePreviousPage,
+    handleNextPage,
     limit,
   };
 };
+
 export default useCourseList;

@@ -15,12 +15,12 @@ const InstructorLayout = () => {
         setIsSidebarOpen={setIsSidebarOpen}
       />
       {/* Main content area with responsive padding based on sidebar state */}
-      <div className={`transition-all duration-300 ${
+      <div className={`transition-[margin] duration-300 ${
         isSidebarOpen ? (isCollapsed ? 'lg:ml-20' : 'lg:ml-64') : 'lg:ml-0'
       }`}>
-        <div className="min-h-screen p-4 lg:p-6">
+        <main className="min-h-screen p-4 lg:p-6">
           <Outlet />
-        </div>
+        </main>
       </div>
     </div>
   );

@@ -193,7 +193,7 @@ const InstructorPage = () => {
         </header>
 
         {/* Enhanced Content */}
-        <main className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left column - Stats & Quick Info */}
           <div className="space-y-6 lg:col-span-1">
             {/* Stats Cards */}
@@ -361,7 +361,7 @@ const InstructorPage = () => {
               </div>
             </div>
           </div>
-        </main>
+        </div>
       </div>
     </div>
   );

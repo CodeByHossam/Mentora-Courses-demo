@@ -1,46 +1,58 @@
-import React from "react";
+import React, { memo, useState } from "react";
 import PropTypes from "prop-types";
 import DOMPurify from "dompurify";
 import { Link } from "react-router-dom";
-import { GraduationCap } from "lucide-react";
+import { ArrowRight, GraduationCap } from "lucide-react";
 
 const InstructorCard = ({ instructor }) => {
+  const [imageFailed, setImageFailed] = useState(false);
+
   if (!instructor) return null;
 
   const sanitizedBio = DOMPurify.sanitize(instructor.bio || "No bio available.");
-  const trimmedBio = sanitizedBio.length > 120 ? sanitizedBio.substring(0, 120) + '...' : sanitizedBio;
+  const trimmedBio =
+    sanitizedBio.length > 120 ? `${sanitizedBio.substring(0, 120)}...` : sanitizedBio;
 
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 h-80 flex flex-col">
-      <Link to={`/instructor/${encodeURIComponent(instructor._id)}`} className="block flex-1 flex flex-col">
-        <div className="h-48 w-full overflow-hidden flex-shrink-0 bg-brand-600 flex items-center justify-center">
-          {instructor.avatar ? (
+    <article className="group card card-hover flex h-full flex-col overflow-hidden p-0">
+      <Link
+        to={`/instructor/${encodeURIComponent(instructor._id)}`}
+        className="flex flex-1 flex-col rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand"
+      >
+        <div className="card-media relative aspect-[4/3] w-full shrink-0">
+          {instructor.avatar && !imageFailed ? (
             <img
               src={instructor.avatar}
-              alt={instructor.name}
-              className="w-full h-full object-cover"
+              alt=""
+              className="h-full w-full object-cover"
               loading="lazy"
-              onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.nextSibling.style.display = 'flex';
-              }}
+              onError={() => setImageFailed(true)}
             />
-          ) : null}
-          <div className={`${instructor.avatar ? 'hidden' : 'flex'} items-center justify-center w-full h-full`}>
-            <GraduationCap className="w-16 h-16 text-white" />
-          </div>
+          ) : (
+            <div className="flex h-full w-full items-center justify-center bg-brand-50">
+              <GraduationCap className="h-10 w-10 text-brand-400" aria-hidden="true" />
+            </div>
+          )}
         </div>
-        <div className="p-4 flex flex-col flex-1">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+
+        <div className="flex flex-1 flex-col p-5">
+          <h3 className="text-lg font-semibold leading-snug text-ink">
             {instructor.name}
           </h3>
           <p
-            className="text-sm text-gray-600 flex-1"
+            className="mt-2 line-clamp-2 text-sm leading-6 text-ink-soft"
             dangerouslySetInnerHTML={{ __html: trimmedBio }}
           />
+          <span className="mt-4 inline-flex items-center gap-1.5 border-t border-line pt-4 text-sm font-semibold text-brand-700">
+            View profile
+            <ArrowRight
+              className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5"
+              aria-hidden="true"
+            />
+          </span>
         </div>
       </Link>
-    </div>
+    </article>
   );
 };
 
@@ -53,5 +65,4 @@ InstructorCard.propTypes = {
   }).isRequired,
 };
 
-export default React.memo(InstructorCard);
-// React.memo is used to prevent unnecessary re-renders
+export default memo(InstructorCard);

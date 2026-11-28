@@ -26,11 +26,11 @@ function App() {
         <ScrollToTop />
         <DemoChrome />
         <ErrorBoundary>
-          <main>
+          <div>
             <Suspense fallback={<PageLoader />}>
               <AppRoutes />
             </Suspense>
-          </main>
+          </div>
         </ErrorBoundary>
       </Router>
       <ToastContainer position="bottom-right" />

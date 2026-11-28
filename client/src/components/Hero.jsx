@@ -1,102 +1,133 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, CheckCircle2, Clock3 } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
-const HERO_IMAGE = "/images/photo-1522202176988-66273c2fd55f.jpg";
+import { Button } from "./common";
+import {
+  getCourseLessonsCount,
+  getCoursePrice,
+  getInstructorName,
+} from "../utils/coursePresentation";
 
-/**
- * The single landing hero. One outcome claim, one primary action, and one real
- * course artifact — no competing stat wall or decorative illustration.
- */
-export default function Hero() {
+const HERO_IMAGE = "/images/hero-modern-university-students.png";
+const HERO_BULLETS = [
+  "Expert-led lessons",
+  "Learn at your pace",
+  "Certificate included",
+];
+
+/** Landing hero: one outcome, one primary action, and one real course artifact. */
+export default function Hero({ course }) {
+  const instructorName =
+    course?.instructor?.name || getInstructorName(course);
+  const lessonsCount = getCourseLessonsCount(course);
+  const price = getCoursePrice(course);
+  const originalPrice = Number(course?.originalPrice ?? 0) || 0;
+
   return (
-    <section
-      className="relative overflow-hidden bg-canvas"
-      aria-labelledby="hero-title"
-    >
-      <div className="hero-reveal mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-center lg:gap-16 lg:px-8 lg:py-24">
-        <div className="max-w-2xl">
-          <h1
-            id="hero-title"
-            className="text-balance text-4xl font-bold leading-[1.1] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]"
-          >
-            Practical courses for the <span className="text-brand">future</span>{" "}
+    <section className="bg-transparent" aria-labelledby="hero-title">
+      <div className="hero-reveal mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-12 px-4 py-6 sm:px-8 lg:grid-cols-12 lg:gap-8 lg:px-16 lg:py-10">
+        <div className="space-y-7 lg:col-span-6">
+          <div className="type-label-md inline-flex items-center gap-2 rounded-full border border-accent-200 bg-accent-50 px-3 py-1 text-accent-800">
+            <span className="h-2 w-2 rounded-full bg-accent-500" aria-hidden="true" />
+            <span>Freshly updated catalog</span>
+            <span className="text-accent-700">★ New releases</span>
+          </div>
+
+          <h1 id="hero-title" className="type-display-hero text-slate-900">
+            Practical courses for the{" "}
+            <span className="text-brand-600">future</span>{" "}
             you are building.
           </h1>
 
-          <p className="mt-6 max-w-[58ch] text-lg leading-8 text-ink-soft">
+          <p className="type-body-lg max-w-xl text-slate-600">
             Learn web development, data, and design with short, expert-led
             lessons you can put to work right away.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link
-              to="/courses"
-              className="btn-primary inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-base font-semibold"
-            >
+          <div className="flex flex-wrap items-center gap-4 pt-2">
+            <Button to="#latest-courses" rightIcon={<ArrowRight className="h-4 w-4" />}>
               Browse courses
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-            <Link
+            </Button>
+            <Button
               to="/about"
-              className="btn-secondary inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-base font-semibold"
+              variant="ghost"
+              rightIcon={<ArrowRight className="h-4 w-4" />}
             >
-              See how it works
-              <BookOpen className="h-4 w-4" aria-hidden="true" />
-            </Link>
+              About Mentora
+            </Button>
           </div>
 
-          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-soft">
-            <li className="inline-flex items-center gap-2">
-              <CheckCircle2
-                className="h-4 w-4 text-brand-600"
-                aria-hidden="true"
-              />
-              Expert-led lessons
-            </li>
-            <li className="inline-flex items-center gap-2">
-              <Clock3 className="h-4 w-4 text-brand-600" aria-hidden="true" />
-              Learn at your pace
-            </li>
-            <li className="inline-flex items-center gap-2">
-              <BookOpen className="h-4 w-4 text-brand-600" aria-hidden="true" />
-              Certificate included
-            </li>
+          <ul className="type-body-sm grid grid-cols-1 gap-3 pt-4 text-slate-600 sm:grid-cols-3">
+            {HERO_BULLETS.map((bullet) => (
+              <li key={bullet} className="flex items-center gap-2">
+                <span
+                  className="flex h-4 w-4 items-center justify-center rounded-full bg-brand-50 text-xs text-brand-600"
+                  aria-hidden="true"
+                >
+                  <Check className="h-3 w-3" />
+                </span>
+                {bullet}
+              </li>
+            ))}
           </ul>
         </div>
 
-        <div className="relative">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-brand-100 shadow-[0_18px_45px_rgba(15,23,42,0.14)] sm:aspect-[5/4] lg:aspect-[4/5]">
+        <div className="flex justify-center lg:col-span-6 lg:justify-end">
+          <div className="relative w-full max-w-md overflow-hidden rounded-3xl border border-slate-100 bg-slate-100 shadow-soft lg:max-w-lg">
             <img
               src={HERO_IMAGE}
-              alt="Learners collaborating around laptops in a coding session"
-              width="800"
-              height="1000"
-              className="h-full w-full object-cover"
+              alt="Students learning and collaborating together"
+              width="1200"
+              height="900"
+              loading="eager"
+              decoding="async"
+              className="h-[460px] w-full object-cover object-center"
             />
-            <div className="image-scrim absolute inset-0" aria-hidden="true" />
 
-            <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
-              <div className="max-w-sm rounded-xl bg-white p-4 shadow-[0_10px_30px_rgba(15,23,42,0.16)]">
-                <p className="text-base font-semibold text-ink">
-                  Modern React from Scratch
-                </p>
-                <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-sm text-ink-soft">
-                  <span>Dr. Sarah Hassan</span>
-                  <span className="inline-flex items-center gap-1.5">
-                    <BookOpen className="h-4 w-4" aria-hidden="true" />
-                    6 lessons
-                  </span>
-                </div>
-                <Link
-                  to="/courses/course-1"
-                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+            {course ? (
+              <div
+                className="absolute inset-x-3 bottom-3 mx-auto flex max-w-[19rem] items-center gap-2 rounded-full border border-white/70 bg-white/95 p-1.5 pl-2 shadow-lg backdrop-blur-md sm:inset-x-4 sm:bottom-4 sm:max-w-[20rem]"
+                role="group"
+                aria-label={`Popular course: ${course.title}`}
+              >
+                <span
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent-100 text-sm text-accent-700"
+                  aria-hidden="true"
                 >
-                  View course
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
+                  ★
+                </span>
+                <div className="min-w-0 flex-1">
+                  <h2
+                    className="type-label-md truncate text-slate-900"
+                    title={course.title}
+                  >
+                    {course.title}
+                  </h2>
+                  <p className="type-body-sm truncate text-slate-500">
+                    {instructorName} · {lessonsCount} lessons
+                  </p>
+                </div>
+                <span
+                  className="type-label-md shrink-0 text-accent-700 tabular-nums"
+                  title={`$${price} USD`}
+                >
+                  {originalPrice > price ? (
+                    <span className="mr-1 text-slate-400 line-through">
+                      ${originalPrice}
+                    </span>
+                  ) : null}
+                  ${price}
+                </span>
+                <Button
+                  to={`/courses/${course._id}`}
+                  variant="ghost"
+                  size="sm"
+                  className="!min-h-8 !rounded-full !border-slate-200 !px-3 !py-1 !text-xs !text-brand-600 hover:!text-brand-700"
+                  rightIcon={<ArrowRight className="h-3.5 w-3.5" />}
+                >
+                  View
+                </Button>
               </div>
-            </div>
+            ) : null}
           </div>
         </div>
       </div>

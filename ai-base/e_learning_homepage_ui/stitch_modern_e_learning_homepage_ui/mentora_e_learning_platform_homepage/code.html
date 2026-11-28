@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mentora - Practical Courses for the Future</title>
+<!-- Tailwind CSS v3 with Forms & Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#EEF2FF',
+              100: '#E0E7FF',
+              500: '#6366F1',
+              600: '#4F46E5',
+              700: '#4338CA',
+              800: '#3730A3',
+              900: '#312E81',
+            },
+            accent: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              coral: '#F97316',
+              'coral-light': '#FFEDD5',
+            }
+          },
+          boxShadow: {
+            'soft': '0 8px 30px rgba(0,0,0,0.06)',
+            'card': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+            'warm-glow': '0 4px 18px rgba(245, 158, 11, 0.22)',
+            'brand-glow': '0 4px 20px rgba(79, 70, 229, 0.28)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Typography & Layout Tweaks -->
+<style data-purpose="base-styling">
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F8FAFC;
+      color: #0F172A;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50/60 selection:bg-brand-600 selection:text-white">
+<!-- BEGIN: TopBar Notification & Demo Indicator -->
+<div class="w-full bg-white border-b border-slate-200 py-1.5 px-6 text-xs text-slate-500 flex justify-between sm:justify-end items-center gap-6" data-purpose="demo-bar">
+<div class="hidden sm:flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 font-semibold border border-amber-200/80 text-[11px]">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+        Summer Enrollment: 20% off all bundles
+      </span>
+</div>
+<div class="flex items-center gap-2 ml-auto sm:ml-0">
+<span class="inline-flex items-center gap-1.5 text-slate-600 font-medium">
+<svg class="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+        DEMO USER:
+      </span>
+<select class="text-xs bg-slate-50 border border-slate-200 rounded px-2 py-0.5 text-slate-700 focus:ring-1 focus:ring-brand-500 focus:outline-none">
+<option>Alex Morgan — Admin</option>
+</select>
+</div>
+<div class="h-3 w-[1px] bg-slate-200 hidden sm:block"></div>
+<button class="hover:text-brand-600 flex items-center gap-1 text-slate-600 transition-colors">
+<svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 4v5h.582m15.356 2A8.01 8.01 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+      Reset Demo Data
+    </button>
+</div>
+<!-- END: TopBar Notification & Demo Indicator -->
+<!-- BEGIN: MainHeader -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm transition-all">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<!-- Brand Logo -->
+<a class="flex items-center gap-2.5 group" href="#">
+<div class="w-9 h-9 rounded-lg bg-brand-600 flex items-center justify-center text-white shadow-md shadow-brand-500/25 group-hover:bg-brand-700 transition relative">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M12 14l9-5-9-5-9 5 9 5z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 ring-2 ring-white"></span>
+</div>
+<div>
+<span class="text-xl font-bold tracking-tight text-slate-900 leading-none block">Mentora</span>
+<span class="text-[10px] font-bold text-amber-600 uppercase tracking-widest leading-none block mt-0.5">LEARNING HUB</span>
+</div>
+</a>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center space-x-7 text-sm font-medium text-slate-600">
+<a class="flex items-center gap-1.5 text-brand-600 font-semibold hover:text-brand-700 transition" href="#">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Home
+        </a>
+<a class="flex items-center gap-1.5 hover:text-brand-600 transition" href="#latest-courses">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Courses
+        </a>
+<a class="flex items-center gap-1.5 hover:text-brand-600 transition" href="#">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Contact
+        </a>
+<a class="flex items-center gap-1.5 hover:text-brand-600 transition" href="#">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          About
+        </a>
+<a class="flex items-center gap-1.5 hover:text-brand-600 transition" href="#">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Help
+        </a>
+<a class="flex items-center gap-1.5 hover:text-brand-600 transition" href="#">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Dashboard
+        </a>
+</nav>
+<!-- Right Header Actions (Bell & Profile) -->
+<div class="flex items-center space-x-4">
+<button aria-label="Notifications" class="relative p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-full transition">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-amber-500 rounded-full ring-2 ring-white"></span>
+</button>
+<div class="flex items-center space-x-2 pl-2 border-l border-slate-200">
+<div class="w-8 h-8 rounded-full bg-brand-100 text-brand-800 flex items-center justify-center font-bold text-xs border border-brand-200">
+            AM
+          </div>
+<span class="text-sm font-semibold text-slate-700 hidden lg:inline-block">Alex Morgan</span>
+</div>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: HeroSection -->
+<main class="flex-grow">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+<!-- Left Text Content -->
+<div class="lg:col-span-6 space-y-7">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-xs font-semibold text-amber-800">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<span>Updated catalog for 2025</span>
+<span class="text-amber-500 font-bold">★ New releases</span>
+</div>
+<h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
+            Practical courses for the <span class="text-brand-600 relative inline-block">future<span class="absolute left-0 right-0 -bottom-1 h-1.5 bg-amber-400 rounded-full opacity-80"></span></span> you are building.
+          </h1>
+<p class="text-lg text-slate-600 max-w-xl leading-relaxed">
+            Learn web development, data, and design with short, expert-led lessons you can put to work right away.
+          </p>
+<!-- Buttons Group -->
+<div class="flex flex-wrap items-center gap-4 pt-2">
+<a class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-medium px-6 py-3.5 rounded-lg shadow-brand-glow transition" href="#latest-courses">
+<span>Browse courses</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+<a class="inline-flex items-center justify-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 font-medium px-6 py-3.5 rounded-lg border border-brand-200/80 transition" href="#">
+<span>See how it works</span>
+<svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+</div>
+<!-- Feature Bullets -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 text-xs font-semibold text-slate-500">
+<div class="flex items-center gap-2">
+<span class="w-4 h-4 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-[10px]">✓</span>
+<span>Expert-led lessons</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-4 h-4 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-[10px]">✓</span>
+<span>Learn at your pace</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-4 h-4 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-[10px]">✓</span>
+<span>Certificate included</span>
+</div>
+</div>
+</div>
+<!-- Right Hero Visual with Floating Card -->
+<div class="lg:col-span-6 flex justify-center lg:justify-end">
+<div class="relative w-full max-w-md lg:max-w-lg rounded-3xl overflow-hidden shadow-2xl border border-slate-100 bg-slate-100">
+<!-- Main Hero Image -->
+<img alt="Students learning and collaborating together" class="w-full h-[460px] object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPAVVsf1Gyrt-cVlm5wvuzzvsrpvbWrFT6ijm0-WQG8fEkFLL_tUQKutr2BCh1RI2Dl4WpI0miKFpGQA27hN5hx3jkrmKKPSpPj4ElrvlKSgOZT3zTd4mOtT8EdmAKvi9WBvnioY53S4W6uVDhev81qr5itEgY77v_IK2cHxbwxD_217nr0IXXFDYEIB8VbOrY8I_X5-XfW2Qb2rwzyhWN_SZQA_RAnlVNw6YZTgQ"/>
+<!-- Floating Course Overlay Card -->
+<div class="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-slate-200/90 shadow-lg">
+<div class="flex items-start justify-between">
+<div>
+<div class="inline-flex items-center gap-1 text-[10px] font-bold text-amber-700 bg-amber-100/90 px-2 py-0.5 rounded-full mb-1">
+<span class="text-amber-500">★</span> Popular Choice
+</div>
+<h3 class="font-bold text-slate-900 text-sm">Modern React from Scratch</h3>
+<p class="text-xs text-slate-500 mt-0.5">Dr. Sarah Hassan</p>
+</div>
+<div class="flex items-center gap-1 text-slate-500 text-xs font-medium bg-slate-100 px-2 py-1 rounded">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  6 lessons
+                </div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
+<span class="text-xs font-bold text-amber-600 flex items-center gap-1">
+<span class="text-slate-400 line-through font-normal text-[11px]">$99</span>
+<span>$79 USD</span>
+</span>
+<a class="text-xs font-bold text-brand-600 hover:text-brand-700 flex items-center gap-1 group/link" href="#courses">
+                  View course <span aria-hidden="true" class="group-hover/link:translate-x-0.5 transition-transform">→</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: SectionHeader -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8 pb-4" id="latest-courses">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-bold uppercase tracking-wider mb-2 border border-amber-200">
+<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+        Freshly Added This Month
+      </div>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Latest courses</h2>
+<p class="text-sm text-slate-500 mt-2 max-w-xl mx-auto">
+        Explore practical lessons in web development, data, and design, taught by working experts.
+      </p>
+<!-- Category Filter Tabs -->
+<div class="flex flex-wrap items-center justify-center gap-2 mt-7 max-w-3xl mx-auto">
+<button class="px-4 py-2 text-xs font-bold rounded-full bg-brand-600 text-white shadow-brand-glow transition hover:bg-brand-700">
+        All Courses <span class="ml-1.5 px-1.5 py-0.2 rounded-full bg-white/20 text-[10px]">10</span>
+</button>
+<button class="px-4 py-2 text-xs font-semibold rounded-full bg-white text-slate-600 border border-slate-200 hover:border-brand-500 hover:text-brand-600 transition">
+        Web Development
+      </button>
+<button class="px-4 py-2 text-xs font-semibold rounded-full bg-white text-slate-600 border border-slate-200 hover:border-brand-500 hover:text-brand-600 transition">
+        Data &amp; AI
+      </button>
+<button class="px-4 py-2 text-xs font-semibold rounded-full bg-white text-slate-600 border border-slate-200 hover:border-brand-500 hover:text-brand-600 transition">
+        Design
+      </button>
+<button class="px-4 py-2 text-xs font-semibold rounded-full bg-white text-slate-600 border border-slate-200 hover:border-brand-500 hover:text-brand-600 transition">
+        Business
+      </button>
+<button class="px-4 py-2 text-xs font-semibold rounded-full bg-white text-slate-600 border border-slate-200 hover:border-brand-500 hover:text-brand-600 transition">
+        Growth Marketing
+      </button>
+</div>
+</section>
+<!-- END: SectionHeader -->
+<!-- BEGIN: FeaturedCoursesBanner -->
+<section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+<div class="relative overflow-hidden bg-gradient-to-r from-brand-900 via-brand-800 to-indigo-900 border border-brand-700/50 rounded-2xl py-6 px-6 text-center shadow-lg text-white">
+<div class="absolute -top-12 -right-12 w-40 h-40 bg-amber-400/10 rounded-full blur-2xl"></div>
+<div class="absolute -bottom-12 -left-12 w-40 h-40 bg-brand-500/20 rounded-full blur-2xl"></div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-amber-400 text-slate-900 mb-2 font-bold shadow-warm-glow">
+<svg class="w-6 h-6 text-brand-900" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</div>
+<h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">Featured &amp; Trending Courses</h3>
+<p class="text-xs sm:text-sm text-brand-100 mt-1 max-w-lg">Hand-picked by industry mentors with real-world capstone projects and live weekly office hours.</p>
+</div>
+</div>
+</section>
+<!-- END: FeaturedCoursesBanner -->
+<!-- BEGIN: CourseCardsGrid -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10" id="courses">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1: Modern React from Scratch -->
+<article class="bg-white rounded-2xl border border-slate-200/80 shadow-soft overflow-hidden flex flex-col justify-between hover:shadow-xl hover:-translate-y-0.5 transition duration-200 group">
+<div>
+<!-- Thumbnail Header -->
+<div class="relative h-44 bg-slate-900 overflow-hidden">
+<img alt="React Code Screen" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY8KI_mf03oI7CzsfhLixKlcx8ZiqeB4yiUmrqn2nyEQPWdq77iQnwp1vK31KUl074v4hBdJ1-wAzGkD8okb3A3wm9so2ZlTiJoYKcRQFC0a7VRdi4T6bpLwnM_AkoXmB0NjMZAUHUBh_C1U1qn7L4-NVyIU_aPCNXzt6ppliiAF0V2Mmz9SjzbgpD7bG_tkrqaXMqmQMuP8C-V0_AaJr5aNYupWyZU3sYcGrfIvg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-brand-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full shadow-xs border border-brand-100">
+                Web Development
+              </span>
+<span class="absolute top-3 right-3 bg-amber-400 text-slate-950 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full shadow-warm-glow tracking-wider">
+                NEW
+              </span>
+<div class="absolute bottom-2.5 left-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-semibold px-2 py-0.5 rounded-full">
+<span class="text-amber-400 font-bold">★</span> 4.8
+              </div>
+<div class="absolute bottom-2.5 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-medium px-2 py-0.5 rounded-full">
+<svg class="w-3 h-3 text-rose-400" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" fill-rule="evenodd"></path></svg>
+                42
+              </div>
+</div>
+<!-- Card Body -->
+<div class="p-4 space-y-3">
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-1.5">
+<div class="w-5 h-5 rounded-full bg-brand-50 border border-brand-200 flex items-center justify-center font-bold text-[9px] text-brand-700">D</div>
+<span class="text-slate-600 font-medium">Dr. Sarah H...</span>
+</div>
+<span class="bg-blue-50 text-blue-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-100">Beginner</span>
+</div>
+<h4 class="font-bold text-slate-900 text-sm leading-snug group-hover:text-brand-600 transition">Modern React from Scratch</h4>
+<p class="text-slate-500 text-xs line-clamp-2 leading-relaxed">Learn React with hooks, routing, state management, and modern patterns.</p>
+<div class="flex items-center gap-4 text-[11px] text-slate-500 pt-1 border-t border-slate-100">
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  12 hours
+                </div>
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  6 lessons
+                </div>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="px-4 pb-4 pt-2 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div>
+<div class="flex items-baseline gap-1.5">
+<span class="text-base font-extrabold text-slate-900 leading-none">$79</span>
+<span class="text-[10px] text-amber-700 font-bold bg-amber-100 px-1 py-0.2 rounded">Save 20%</span>
+</div>
+<div class="text-[10px] text-slate-500 mt-1">120 enrolled</div>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="text-xs px-2.5 py-1.5 font-medium text-slate-700 bg-white hover:bg-slate-100 rounded-md border border-slate-200 transition">Details</button>
+<button class="text-xs px-3 py-1.5 font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-md shadow-xs transition">Enroll</button>
+</div>
+</div>
+</article>
+<!-- Card 2: Node.js API Design -->
+<article class="bg-white rounded-2xl border border-slate-200/80 shadow-soft overflow-hidden flex flex-col justify-between hover:shadow-xl hover:-translate-y-0.5 transition duration-200 group">
+<div>
+<!-- Thumbnail Header -->
+<div class="relative h-44 bg-slate-900 overflow-hidden">
+<img alt="Node Code Screen" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDybvDuxeHs5xgrC64nAyTpJ0NIpRd0xyz2sqiqRULPS2FbOGWgxZ1uvkvzLnTrLze3jvbaiU4V0dfy6zSIKG3xRx1osuntsnzPBFuflYa_oukPB3shVsWv5AR5Fy1DOAszyJLJAaKrJYcGSRgYtEU6ffN3XaEVlNeXJ3EWoYS1wK2KU6ucL7LZzEBRluvUp7PufJMIgC4_iq1-ftDtJzLQ8HUbhJeJnZIIKJFOpcw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-brand-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full shadow-xs border border-brand-100">
+                Web Development
+              </span>
+<div class="absolute bottom-2.5 left-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-semibold px-2 py-0.5 rounded-full">
+<span class="text-amber-400 font-bold">★</span> 4.7
+              </div>
+<div class="absolute bottom-2.5 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-medium px-2 py-0.5 rounded-full">
+<svg class="w-3 h-3 text-rose-400" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" fill-rule="evenodd"></path></svg>
+                31
+              </div>
+</div>
+<!-- Card Body -->
+<div class="p-4 space-y-3">
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-1.5">
+<div class="w-5 h-5 rounded-full bg-brand-50 border border-brand-200 flex items-center justify-center font-bold text-[9px] text-brand-700">D</div>
+<span class="text-slate-600 font-medium">Dr. Sara...</span>
+</div>
+<span class="bg-purple-50 text-purple-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-purple-100">Intermediate</span>
+</div>
+<h4 class="font-bold text-slate-900 text-sm leading-snug group-hover:text-brand-600 transition">Node.js API Design</h4>
+<p class="text-slate-500 text-xs line-clamp-2 leading-relaxed">Design secure, maintainable REST APIs with Node, Express, and JWT authentication.</p>
+<div class="flex items-center gap-4 text-[11px] text-slate-500 pt-1 border-t border-slate-100">
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  10 hours
+                </div>
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  6 lessons
+                </div>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="px-4 pb-4 pt-2 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div>
+<div class="text-base font-extrabold text-slate-900 leading-none">$99</div>
+<div class="text-[10px] text-slate-500 mt-1">86 enrolled</div>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="text-xs px-2.5 py-1.5 font-medium text-slate-700 bg-white hover:bg-slate-100 rounded-md border border-slate-200 transition">Details</button>
+<button class="text-xs px-3 py-1.5 font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-md shadow-xs transition">Enroll</button>
+</div>
+</div>
+</article>
+<!-- Card 3: Python for Data Analysis -->
+<article class="bg-white rounded-2xl border border-slate-200/80 shadow-soft overflow-hidden flex flex-col justify-between hover:shadow-xl hover:-translate-y-0.5 transition duration-200 group">
+<div>
+<!-- Thumbnail Header -->
+<div class="relative h-44 bg-slate-900 overflow-hidden">
+<img alt="Data Analytics Chart Screen" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4uXuAgSJa-M3ofV5eJwdAMnh6MZjaL6PKOprLRktT_8uQwq1q-24iBCb-kHEimSV-XRZ3-M35Ngtxn0uKRE7kpE0FXjOQySSVtqvBnitWmWIKq_rOptqi37-tucgokuSshE_CLokGM0spkVTVkrKxHTmBde0uaI-R6P5PM8I6c-ZgjxC7qfhtPTD_PBeVKEBsVnAaQW4CgRDhvRZyqGSMeg9CdL0Ov3s4orBvTNQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-brand-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full shadow-xs border border-brand-100">
+                Data &amp; AI
+              </span>
+<span class="absolute top-3 right-3 bg-amber-400 text-slate-950 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full shadow-warm-glow tracking-wider">
+                TOP RATED
+              </span>
+<div class="absolute bottom-2.5 left-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-semibold px-2 py-0.5 rounded-full">
+<span class="text-amber-400 font-bold">★</span> 4.9
+              </div>
+<div class="absolute bottom-2.5 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-medium px-2 py-0.5 rounded-full">
+<svg class="w-3 h-3 text-rose-400" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" fill-rule="evenodd"></path></svg>
+                58
+              </div>
+</div>
+<!-- Card Body -->
+<div class="p-4 space-y-3">
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-1.5">
+<div class="w-5 h-5 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center font-bold text-[9px] text-amber-800">P</div>
+<span class="text-slate-600 font-medium">Prof. Mark ...</span>
+</div>
+<span class="bg-blue-50 text-blue-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-100">Beginner</span>
+</div>
+<h4 class="font-bold text-slate-900 text-sm leading-snug group-hover:text-brand-600 transition">Python for Data Analysis</h4>
+<p class="text-slate-500 text-xs line-clamp-2 leading-relaxed">Turn raw datasets into clear insights with pandas, NumPy and visualizations.</p>
+<div class="flex items-center gap-4 text-[11px] text-slate-500 pt-1 border-t border-slate-100">
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  14 hours
+                </div>
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  6 lessons
+                </div>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="px-4 pb-4 pt-2 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div>
+<div class="text-base font-extrabold text-slate-900 leading-none">$89</div>
+<div class="text-[10px] text-slate-500 mt-1">151 enrolled</div>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="text-xs px-2.5 py-1.5 font-medium text-slate-700 bg-white hover:bg-slate-100 rounded-md border border-slate-200 transition">Details</button>
+<button class="text-xs px-3 py-1.5 font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-md shadow-xs transition">Enroll</button>
+</div>
+</div>
+</article>
+<!-- Card 4: Applied Machine Learning -->
+<article class="bg-white rounded-2xl border border-slate-200/80 shadow-soft overflow-hidden flex flex-col justify-between hover:shadow-xl hover:-translate-y-0.5 transition duration-200 group">
+<div>
+<!-- Thumbnail Header -->
+<div class="relative h-44 bg-slate-900 overflow-hidden">
+<img alt="AI Neural Net Visual" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe4TAYYszxcZkxMoSTFfSJF9r6LJVzdEey7kOQemLI4eZC1ARaTIwErAB3P_1uPwCv8hr5d7FIJLrDEAa8uuyXfRsx4Y5erDrG5r-QrQPheNZitT_v8y-3wProzkmNBtNzUE_5fT2NtpV1_ShsICZuvE3IH6oFnDpoi7tj5S7B4xixrJX9oyLjwjY-UfAzAvoTkhgYCptnjbz86pq5yw3tqDyrLW8Ox-n1c6jAA1o"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-brand-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full shadow-xs border border-brand-100">
+                Data &amp; AI
+              </span>
+<div class="absolute bottom-2.5 left-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-semibold px-2 py-0.5 rounded-full">
+<span class="text-amber-400 font-bold">★</span> 4.6
+              </div>
+<div class="absolute bottom-2.5 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-medium px-2 py-0.5 rounded-full">
+<svg class="w-3 h-3 text-rose-400" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" fill-rule="evenodd"></path></svg>
+                24
+              </div>
+</div>
+<!-- Card Body -->
+<div class="p-4 space-y-3">
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-1.5">
+<div class="w-5 h-5 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center font-bold text-[9px] text-amber-800">P</div>
+<span class="text-slate-600 font-medium">Prof. Mark ...</span>
+</div>
+<span class="bg-emerald-50 text-emerald-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-emerald-100">Advanced</span>
+</div>
+<h4 class="font-bold text-slate-900 text-sm leading-snug group-hover:text-brand-600 transition">Applied Machine Learning</h4>
+<p class="text-slate-500 text-xs line-clamp-2 leading-relaxed">Build, evaluate and deploy practical machine learning models with Scikit-Learn.</p>
+<div class="flex items-center gap-4 text-[11px] text-slate-500 pt-1 border-t border-slate-100">
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  16 hours
+                </div>
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  6 lessons
+                </div>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="px-4 pb-4 pt-2 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div>
+<div class="text-base font-extrabold text-slate-900 leading-none">$129</div>
+<div class="text-[10px] text-slate-500 mt-1">72 enrolled</div>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="text-xs px-2.5 py-1.5 font-medium text-slate-700 bg-white hover:bg-slate-100 rounded-md border border-slate-200 transition">Details</button>
+<button class="text-xs px-3 py-1.5 font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-md shadow-xs transition">Enroll</button>
+</div>
+</div>
+</article>
+<!-- Card 5: Product Design Foundations -->
+<article class="bg-white rounded-2xl border border-slate-200/80 shadow-soft overflow-hidden flex flex-col justify-between hover:shadow-xl hover:-translate-y-0.5 transition duration-200 group">
+<div>
+<!-- Thumbnail Header -->
+<div class="relative h-44 bg-slate-900 overflow-hidden">
+<img alt="Color Swatches Design" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB--6v7dsjxPo9wVSOUYUQFmuKSzlLDBplS8okDwyte6x5EBeMvlzd4SYFMbxQ9RFPBZoHqDYbRSlfH0huVB_r61RLL57N5nEk_M1rJbiQnzePkMTZFyqmUIQwl8mkcxJsyLSTcrR94NH8Ewue7Xda8VXTt85tI3r42Fyq5lUiJ6ON87O-QutAOjplbmtaCFPKHI-BgzoYiXr47zR-uxaFNeDjQUZsKxdz4CnCRAzs"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-brand-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full shadow-xs border border-brand-100">
+                Design
+              </span>
+<span class="absolute top-3 right-3 bg-amber-400 text-slate-950 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full shadow-warm-glow tracking-wider">
+                NEW
+              </span>
+<div class="absolute bottom-2.5 left-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-semibold px-2 py-0.5 rounded-full">
+<span class="text-amber-400 font-bold">★</span> 4.9
+              </div>
+<div class="absolute bottom-2.5 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-medium px-2 py-0.5 rounded-full">
+<svg class="w-3 h-3 text-rose-400" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" fill-rule="evenodd"></path></svg>
+                27
+              </div>
+</div>
+<!-- Card Body -->
+<div class="p-4 space-y-3">
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-1.5">
+<div class="w-5 h-5 rounded-full bg-brand-50 border border-brand-200 flex items-center justify-center font-bold text-[9px] text-brand-700">D</div>
+<span class="text-slate-600 font-medium">Dr. Sarah H...</span>
+</div>
+<span class="bg-blue-50 text-blue-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-blue-100">Beginner</span>
+</div>
+<h4 class="font-bold text-slate-900 text-sm leading-snug group-hover:text-brand-600 transition">Product Design Foundations</h4>
+<p class="text-slate-500 text-xs line-clamp-2 leading-relaxed">A practical introduction to interface design, typography, systems, and Figma tokens.</p>
+<div class="flex items-center gap-4 text-[11px] text-slate-500 pt-1 border-t border-slate-100">
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  8 hours
+                </div>
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  6 lessons
+                </div>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="px-4 pb-4 pt-2 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div>
+<div class="text-base font-extrabold text-slate-900 leading-none">$69</div>
+<div class="text-[10px] text-slate-500 mt-1">95 enrolled</div>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="text-xs px-2.5 py-1.5 font-medium text-slate-700 bg-white hover:bg-slate-100 rounded-md border border-slate-200 transition">Details</button>
+<button class="text-xs px-3 py-1.5 font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-md shadow-xs transition">Enroll</button>
+</div>
+</div>
+</article>
+<!-- Card 6: Digital Product Strategy -->
+<article class="bg-white rounded-2xl border border-slate-200/80 shadow-soft overflow-hidden flex flex-col justify-between hover:shadow-xl hover:-translate-y-0.5 transition duration-200 group">
+<div>
+<!-- Thumbnail Header -->
+<div class="relative h-44 bg-slate-900 overflow-hidden">
+<img alt="Team Discussion" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMAy-zokxnaX95pMI_lzHu-uVTES0AgWWtj2qak_ClrY-UWttwDWhuB5w91rJmFQYfQ6aQFbPZgx4qXPF4o5WLOaqI6htkpfAY_djq1AmYSiwxJVWj8aj1Y64uiMsvbFks6FGevPKkeqvmNHo_XfwnIoF5j5BnxlP_3sW8gtLF25jHBFAAcmkgbDSsqhoZw0ImVfeHYBquj8Db29CkIGppbSgTdj5mbINn_xivDUA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-brand-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full shadow-xs border border-brand-100">
+                Business
+              </span>
+<div class="absolute bottom-2.5 left-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-semibold px-2 py-0.5 rounded-full">
+<span class="text-amber-400 font-bold">★</span> 4.8
+              </div>
+<div class="absolute bottom-2.5 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-medium px-2 py-0.5 rounded-full">
+<svg class="w-3 h-3 text-rose-400" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" fill-rule="evenodd"></path></svg>
+                18
+              </div>
+</div>
+<!-- Card Body -->
+<div class="p-4 space-y-3">
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-1.5">
+<div class="w-5 h-5 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center font-bold text-[9px] text-amber-800">P</div>
+<span class="text-slate-600 font-medium">Prof. Ma...</span>
+</div>
+<span class="bg-purple-50 text-purple-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-purple-100">Intermediate</span>
+</div>
+<h4 class="font-bold text-slate-900 text-sm leading-snug group-hover:text-brand-600 transition">Digital Product Strategy</h4>
+<p class="text-slate-500 text-xs line-clamp-2 leading-relaxed">Connect customer problems to product decisions, roadmap prioritization, and KPI tracking.</p>
+<div class="flex items-center gap-4 text-[11px] text-slate-500 pt-1 border-t border-slate-100">
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  7 hours
+                </div>
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  6 lessons
+                </div>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="px-4 pb-4 pt-2 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div>
+<div class="text-base font-extrabold text-slate-900 leading-none">$59</div>
+<div class="text-[10px] text-slate-500 mt-1">64 enrolled</div>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="text-xs px-2.5 py-1.5 font-medium text-slate-700 bg-white hover:bg-slate-100 rounded-md border border-slate-200 transition">Details</button>
+<button class="text-xs px-3 py-1.5 font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-md shadow-xs transition">Enroll</button>
+</div>
+</div>
+</article>
+<!-- Card 7: Generative AI for Engineers (NEW ENRICHMENT) -->
+<article class="bg-white rounded-2xl border border-slate-200/80 shadow-soft overflow-hidden flex flex-col justify-between hover:shadow-xl hover:-translate-y-0.5 transition duration-200 group">
+<div>
+<!-- Thumbnail Header -->
+<div class="relative h-44 bg-slate-900 overflow-hidden">
+<img alt="Generative AI Neural Code Visual" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe4TAYYszxcZkxMoSTFfSJF9r6LJVzdEey7kOQemLI4eZC1ARaTIwErAB3P_1uPwCv8hr5d7FIJLrDEAa8uuyXfRsx4Y5erDrG5r-QrQPheNZitT_v8y-3wProzkmNBtNzUE_5fT2NtpV1_ShsICZuvE3IH6oFnDpoi7tj5S7B4xixrJX9oyLjwjY-UfAzAvoTkhgYCptnjbz86pq5yw3tqDyrLW8Ox-n1c6jAA1o"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-brand-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full shadow-xs border border-brand-100">
+                Data &amp; AI
+              </span>
+<span class="absolute top-3 right-3 bg-amber-400 text-slate-950 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full shadow-warm-glow tracking-wider">
+                NEW RELEASE
+              </span>
+<div class="absolute bottom-2.5 left-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-semibold px-2 py-0.5 rounded-full">
+<span class="text-amber-400 font-bold">★</span> 5.0
+              </div>
+<div class="absolute bottom-2.5 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-medium px-2 py-0.5 rounded-full">
+<svg class="w-3 h-3 text-rose-400" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" fill-rule="evenodd"></path></svg>
+                67
+              </div>
+</div>
+<!-- Card Body -->
+<div class="p-4 space-y-3">
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-1.5">
+<div class="w-5 h-5 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center font-bold text-[9px] text-amber-800">M</div>
+<span class="text-slate-600 font-medium">Michael Chen</span>
+</div>
+<span class="bg-emerald-50 text-emerald-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-emerald-100">Advanced</span>
+</div>
+<h4 class="font-bold text-slate-900 text-sm leading-snug group-hover:text-brand-600 transition">Generative AI for Engineers</h4>
+<p class="text-slate-500 text-xs line-clamp-2 leading-relaxed">Build production-grade LLM applications with LangChain, embeddings, and RAG architectures.</p>
+<div class="flex items-center gap-4 text-[11px] text-slate-500 pt-1 border-t border-slate-100">
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  15 hours
+                </div>
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  8 lessons
+                </div>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="px-4 pb-4 pt-2 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div>
+<div class="flex items-baseline gap-1.5">
+<span class="text-base font-extrabold text-slate-900 leading-none">$139</span>
+<span class="text-[10px] text-amber-700 font-bold bg-amber-100 px-1 py-0.2 rounded">Save $30</span>
+</div>
+<div class="text-[10px] text-slate-500 mt-1">112 enrolled</div>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="text-xs px-2.5 py-1.5 font-medium text-slate-700 bg-white hover:bg-slate-100 rounded-md border border-slate-200 transition">Details</button>
+<button class="text-xs px-3 py-1.5 font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-md shadow-xs transition">Enroll</button>
+</div>
+</div>
+</article>
+<!-- Card 8: Growth Marketing & Product Analytics (NEW ENRICHMENT) -->
+<article class="bg-white rounded-2xl border border-slate-200/80 shadow-soft overflow-hidden flex flex-col justify-between hover:shadow-xl hover:-translate-y-0.5 transition duration-200 group">
+<div>
+<!-- Thumbnail Header -->
+<div class="relative h-44 bg-slate-900 overflow-hidden">
+<img alt="Marketing Growth Metrics Dashboard" class="w-full h-full object-cover opacity-85 group-hover:scale-105 transition duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4uXuAgSJa-M3ofV5eJwdAMnh6MZjaL6PKOprLRktT_8uQwq1q-24iBCb-kHEimSV-XRZ3-M35Ngtxn0uKRE7kpE0FXjOQySSVtqvBnitWmWIKq_rOptqi37-tucgokuSshE_CLokGM0spkVTVkrKxHTmBde0uaI-R6P5PM8I6c-ZgjxC7qfhtPTD_PBeVKEBsVnAaQW4CgRDhvRZyqGSMeg9CdL0Ov3s4orBvTNQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-brand-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full shadow-xs border border-brand-100">
+                Marketing
+              </span>
+<span class="absolute top-3 right-3 bg-amber-400 text-slate-950 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full shadow-warm-glow tracking-wider">
+                NEW
+              </span>
+<div class="absolute bottom-2.5 left-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-semibold px-2 py-0.5 rounded-full">
+<span class="text-amber-400 font-bold">★</span> 4.8
+              </div>
+<div class="absolute bottom-2.5 right-3 flex items-center gap-1 bg-black/60 backdrop-blur-xs text-white text-[11px] font-medium px-2 py-0.5 rounded-full">
+<svg class="w-3 h-3 text-rose-400" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" fill-rule="evenodd"></path></svg>
+                39
+              </div>
+</div>
+<!-- Card Body -->
+<div class="p-4 space-y-3">
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center gap-1.5">
+<div class="w-5 h-5 rounded-full bg-amber-100 border border-amber-300 flex items-center justify-center font-bold text-[9px] text-amber-800">E</div>
+<span class="text-slate-600 font-medium">Elena Rostova</span>
+</div>
+<span class="bg-purple-50 text-purple-700 text-[10px] font-semibold px-2 py-0.5 rounded border border-purple-100">Intermediate</span>
+</div>
+<h4 class="font-bold text-slate-900 text-sm leading-snug group-hover:text-brand-600 transition">Growth Marketing &amp; Analytics</h4>
+<p class="text-slate-500 text-xs line-clamp-2 leading-relaxed">Master funnel analysis, user retention cohorts, and conversion rate experimentation frameworks.</p>
+<div class="flex items-center gap-4 text-[11px] text-slate-500 pt-1 border-t border-slate-100">
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  9 hours
+                </div>
+<div class="flex items-center gap-1 font-medium">
+<svg class="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  7 lessons
+                </div>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="px-4 pb-4 pt-2 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div>
+<div class="text-base font-extrabold text-slate-900 leading-none">$85</div>
+<div class="text-[10px] text-slate-500 mt-1">88 enrolled</div>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="text-xs px-2.5 py-1.5 font-medium text-slate-700 bg-white hover:bg-slate-100 rounded-md border border-slate-200 transition">Details</button>
+<button class="text-xs px-3 py-1.5 font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-md shadow-xs transition">Enroll</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Bottom Pagination / Show More Action -->
+<div class="mt-12 text-center">
+<button class="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-slate-800 font-bold px-7 py-3 rounded-xl border border-slate-300 shadow-sm transition hover:border-brand-500 hover:text-brand-600">
+<span>View all 34 courses</span>
+<svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</section>
+<!-- END: CourseCardsGrid -->
+<!-- BEGIN: Complementary CTA Banner -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<div class="rounded-3xl bg-gradient-to-r from-brand-900 via-indigo-900 to-slate-900 p-8 sm:p-12 text-white relative overflow-hidden shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 border border-brand-800">
+<div class="absolute -right-16 -top-16 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="space-y-3 text-center lg:text-left relative z-10 max-w-xl">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400 text-slate-950 font-bold text-xs">
+<span>✦</span> Mentora All-Access Pass
+        </div>
+<h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Level up your career with unlimited course access</h3>
+<p class="text-slate-300 text-sm">Subscribe today to unlock all courses, private community discord, and weekly mentor code reviews.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-3 relative z-10 w-full sm:w-auto">
+<a class="inline-flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold px-6 py-3.5 rounded-xl shadow-warm-glow transition text-center" href="#">
+<span>Start 7-Day Free Trial</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+<a class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white font-semibold px-6 py-3.5 rounded-xl border border-white/20 transition text-center" href="#">
+<span>Compare plans</span>
+</a>
+</div>
+</div>
+</section>
+<!-- END: Complementary CTA Banner -->
+</main>
+<!-- BEGIN: MinimalFooter -->
+<footer class="mt-12 border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-500">
+<div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<span class="font-bold text-slate-800">Mentora</span>
+<span>© 2025 Mentora Platform. All rights reserved.</span>
+</div>
+<div class="flex space-x-6">
+<a class="hover:text-brand-600 transition" href="#">Privacy</a>
+<a class="hover:text-brand-600 transition" href="#">Terms</a>
+<a class="hover:text-brand-600 transition" href="#">Support</a>
+<a class="hover:text-brand-600 text-amber-600 font-semibold transition" href="#">Student Discount</a>
+</div>
+</div>
+</footer>
+<!-- END: MinimalFooter -->
+</body></html>

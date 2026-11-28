@@ -1,54 +1,62 @@
-import React, { memo } from 'react';
+import React, { memo } from "react";
 
 /**
- * Card container. Cards are content surfaces, not decorative blocks: no blur,
- * no scale-on-hover. Hover changes border and shadow only.
+ * The single card surface. `.card` owns the border, radius and base elevation;
+ * this component only chooses padding and one elevation step through a CSS
+ * variable, so a Tailwind shadow utility can never stack a second shadow.
  */
+const PADDING = {
+  sm: "p-4",
+  md: "p-6",
+  lg: "p-8",
+  none: "p-0",
+};
+
+const SHADOW = {
+  none: "none",
+  xs: "var(--shadow-xs)",
+  sm: "var(--shadow-sm)",
+  base: "var(--shadow-card)",
+  md: "var(--shadow-md)",
+  lg: "var(--shadow-lg)",
+  xl: "var(--shadow-xl)",
+};
+
 const Card = memo(
   ({
     children,
-    className = '',
+    as: Tag = "div",
+    className = "",
     hover = false,
-    padding = 'md',
-    shadow = 'base',
+    interactive = false,
+    padding = "md",
+    shadow = "base",
     border = true,
+    style,
     ...props
   }) => {
-    const paddingClasses = {
-      sm: 'p-4',
-      md: 'p-6',
-      lg: 'p-8',
-      none: 'p-0',
-    };
-
-    const shadowClasses = {
-      none: '',
-      sm: 'shadow-sm',
-      base: 'shadow-md',
-      lg: 'shadow-lg',
-      xl: 'shadow-xl',
-    };
-
-    const baseClasses = [
-      'card min-w-0 rounded-xl',
-      'transition-[box-shadow,border-color] duration-150 ease-out',
-      paddingClasses[padding] || paddingClasses.md,
-      shadowClasses[shadow] || shadowClasses.base,
-      border ? 'border' : 'border-0',
-      hover ? 'cursor-pointer hover:border-brand-200 hover:shadow-lg' : '',
+    const classes = [
+      "card",
+      PADDING[padding] || PADDING.md,
+      border ? "" : "border-0",
+      interactive || hover ? "card-hover group" : "",
       className,
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     return (
-      <div className={baseClasses} {...props}>
+      <Tag
+        className={classes}
+        style={{ "--card-shadow": SHADOW[shadow] || SHADOW.base, ...style }}
+        {...props}
+      >
         {children}
-      </div>
+      </Tag>
     );
-  }
+  },
 );
 
-Card.displayName = 'Card';
+Card.displayName = "Card";
 
 export default Card;

@@ -5,21 +5,25 @@ import Footer from "./Footer";
 
 export default function Layout() {
   return (
-    <div className="flex flex-col min-h-screen bg-primary font-body">
-      {/* Header */}
-      <header className="fixed top-0 left-0 z-50 h-16 w-full border-b border-line bg-white shadow-sm md:h-20">
-          <Navbar />
+    <div className="flex min-h-screen flex-col bg-canvas font-sans">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-brand-700 focus:shadow-lg"
+      >
+        Skip to content
+      </a>
+
+      <header className="nav-shell fixed inset-x-3 top-[44px] z-50 h-16 sm:inset-x-6 lg:inset-x-16">
+        <Navbar />
       </header>
 
-      {/* Main Content */}
-      <main className="flex-grow w-full overflow-x-hidden mt-20 pt-8">
-          <Outlet />
+      <main id="main-content" className="mt-[112px] w-full flex-grow overflow-x-hidden">
+        <Outlet />
       </main>
 
-      {/* Footer */}
-      <footer className="w-full mt-auto border-t border-gray-100">
-          <Footer />
-      </footer>
+      <div className="mt-auto w-full">
+        <Footer />
+      </div>
     </div>
   );
 }

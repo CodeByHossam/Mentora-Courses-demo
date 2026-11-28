@@ -6,7 +6,11 @@
    the single source for custom CSS classes; keep the two in sync.
    ========================================================================== */
 @theme {
-  /* Brand: one indigo accent. primary-* / secondary-* are aliases kept for
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui,
+    sans-serif;
+
+  /* Brand: one indigo anchor. primary-* / secondary-* are aliases kept for
      existing markup; both resolve to the same indigo scale. */
   --color-brand: #4f46e5;
   --color-brand-dark: #4338ca;
@@ -21,6 +25,24 @@
   --color-brand-700: #4338ca;
   --color-brand-800: #3730a3;
   --color-brand-900: #312e81;
+
+  /* Modern Kinetic Academy tokens from DESIGN.md. Existing brand aliases below
+     resolve to the same royal-violet anchor so legacy markup stays consistent. */
+  --color-surface: #faf8ff;
+  --color-surface-dim: #d2d9f4;
+  --color-surface-bright: #faf8ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f3ff;
+  --color-surface-container: #eaedff;
+  --color-surface-container-high: #e2e7ff;
+  --color-surface-container-highest: #dae2fd;
+  --color-on-surface: #131b2e;
+  --color-on-surface-variant: #464555;
+  --color-inverse-surface: #283044;
+  --color-inverse-on-surface: #eef0ff;
+  --color-outline: #777587;
+  --color-outline-variant: #c7c4d8;
+  --color-surface-tint: #4d44e3;
 
   --color-primary-50: #eef2ff;
   --color-primary-100: #e0e7ff;
@@ -44,6 +66,17 @@
   --color-secondary-800: #3730a3;
   --color-secondary-900: #312e81;
 
+  /* Warm amber is the design's conversion and accomplishment accent. */
+  --color-accent-50: #fffbeb;
+  --color-accent-100: #fef3c7;
+  --color-accent-200: #fde68a;
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #f59e0b;
+  --color-accent-600: #d97706;
+  --color-accent-700: #b45309;
+  --color-accent-coral: #f97316;
+  --color-accent-coral-light: #ffedd5;
+
   /* Semantic states. These keep their meaning across roles and surfaces. */
   --color-success: #10b981;
   --color-success-soft: #d1fae5;
@@ -58,15 +91,91 @@
   --color-info-soft: #dbeafe;
   --color-info-dark: #2563eb;
 
+  /* Fixed accent tokens from DESIGN.md. */
+  --color-primary-fixed: #e2dfff;
+  --color-primary-fixed-dim: #c3c0ff;
+  --color-on-primary-fixed: #0f0069;
+  --color-on-primary-fixed-variant: #3323cc;
+  --color-secondary-fixed: #ffddb8;
+  --color-secondary-fixed-dim: #ffb95f;
+  --color-on-secondary-fixed: #2a1700;
+  --color-on-secondary-fixed-variant: #653e00;
+  --color-tertiary-fixed: #6ffbbe;
+  --color-tertiary-fixed-dim: #4edea3;
+  --color-on-tertiary-fixed: #002113;
+  --color-on-tertiary-fixed-variant: #005236;
+
   /* Neutrals */
-  --color-ink: #111827;
-  --color-ink-soft: #374151;
-  --color-ink-muted: #6b7280;
-  --color-line: #e5e7eb;
+  --color-ink: #0f172a;
+  --color-ink-soft: #334155;
+  --color-ink-muted: #64748b;
+  --color-line: #e2e8f0;
   --color-canvas: #f8fafc;
+  --color-surface-muted: #f1f5f9;
+
+  /* One radius scale. Every surface and control resolves to these four steps. */
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+
+  /* One elevation ramp: a visible offset and a soft blur, never a colored halo. */
+  --shadow-xs: 0 1px 2px rgb(15 23 42 / 0.05);
+  --shadow-sm: 0 1px 3px rgb(15 23 42 / 0.06), 0 1px 2px rgb(15 23 42 / 0.04);
+  --shadow-card: 0 2px 8px -2px rgb(15 23 42 / 0.07),
+    0 1px 3px -1px rgb(15 23 42 / 0.04);
+  --shadow-md: 0 6px 16px -4px rgb(15 23 42 / 0.09),
+    0 2px 5px -2px rgb(15 23 42 / 0.04);
+  --shadow-lg: 0 14px 30px -8px rgb(15 23 42 / 0.13),
+    0 4px 10px -5px rgb(15 23 42 / 0.05);
+  --shadow-xl: 0 22px 44px -12px rgb(15 23 42 / 0.16),
+    0 8px 14px -8px rgb(15 23 42 / 0.05);
+  --shadow-2xl: 0 28px 56px -14px rgb(15 23 42 / 0.2);
+
+  /* Named surfaces from DESIGN.md and the supplied home-page design. */
+  --shadow-soft: 0 1px 3px rgb(15 23 42 / 0.04),
+    0 6px 16px rgb(15 23 42 / 0.03);
+  --shadow-card-hover: 0 12px 28px -4px rgb(79 70 229 / 0.08),
+    0 4px 12px -2px rgb(15 23 42 / 0.04);
+  --shadow-nav: 0 8px 24px rgb(15 23 42 / 0.04);
+  --shadow-warm-glow: 0 4px 18px rgb(245 158 11 / 0.22);
+  --shadow-brand-glow: 0 4px 20px rgb(79 70 229 / 0.28);
+  --shadow-brand-hover: 0 4px 14px rgb(79 70 229 / 0.3);
 }
 
 :root {
+  /* DESIGN.md primary / secondary / tertiary ramps, namespaced so Tailwind
+     does not generate utilities that collide with legacy classes. */
+  --md-primary: #3525cd;
+  --md-on-primary: #ffffff;
+  --md-primary-container: #4f46e5;
+  --md-on-primary-container: #dad7ff;
+  --md-inverse-primary: #c3c0ff;
+  --md-secondary: #855300;
+  --md-on-secondary: #ffffff;
+  --md-secondary-container: #fea619;
+  --md-on-secondary-container: #684000;
+  --md-tertiary: #005338;
+  --md-on-tertiary: #ffffff;
+  --md-tertiary-container: #006e4b;
+  --md-on-tertiary-container: #67f4b7;
+  --md-error: #ba1a1a;
+  --md-on-error: #ffffff;
+  --md-error-container: #ffdad6;
+  --md-on-error-container: #93000a;
+  --md-primary-fixed: #e2dfff;
+  --md-primary-fixed-dim: #c3c0ff;
+  --md-on-primary-fixed: #0f0069;
+  --md-on-primary-fixed-variant: #3323cc;
+  --md-secondary-fixed: #ffddb8;
+  --md-secondary-fixed-dim: #ffb95f;
+  --md-on-secondary-fixed: #2a1700;
+  --md-on-secondary-fixed-variant: #653e00;
+  --md-tertiary-fixed: #6ffbbe;
+  --md-tertiary-fixed-dim: #4edea3;
+  --md-on-tertiary-fixed: #002113;
+  --md-on-tertiary-fixed-variant: #005236;
+
   --primary: var(--color-brand);
   --primary-dark: var(--color-brand-dark);
   --secondary: var(--color-brand);
@@ -89,17 +198,17 @@
   --info-light: var(--color-info-soft);
   --info-dark: var(--color-info-dark);
 
-  /* One restrained indigo-tinted canvas, not a three-hue gradient. */
-  --bg-primary: linear-gradient(180deg, #ffffff 0%, var(--color-brand-50) 100%);
-  --bg-secondary: linear-gradient(180deg, var(--color-brand-50) 0%, var(--color-brand-100) 100%);
-  --footer-gradient: linear-gradient(180deg, var(--color-brand-900), #1e1b4b);
+  /* Restrained surfaces follow the DESIGN.md ambient zones. */
+  --bg-primary: linear-gradient(180deg, #ffffff 0%, #faf8ff 100%);
+  --bg-secondary: linear-gradient(180deg, #faf8ff 0%, #f2f3ff 100%);
+  --footer-gradient: linear-gradient(180deg, #0f172a, #1e1b4b);
 
   --text-primary: var(--color-ink);
   --text-secondary: var(--color-ink-soft);
   --text-muted: var(--color-ink-muted);
 
   --card-bg: #ffffff;
-  --card-border: rgba(17, 24, 39, 0.08);
+  --card-border: #e2e8f0;
   --surface-tint: rgba(255, 255, 255, 0.92);
 }
 
@@ -119,20 +228,27 @@ body {
   overflow-x: hidden;
   color: var(--text-primary);
   background: var(--color-canvas);
-  font-family: "Inter", "Roboto", system-ui, -apple-system, "Segoe UI", Helvetica,
-    Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 1rem;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: inherit;
-  font-weight: 700;
-  text-wrap: balance;
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  /* Balance headings, tidy prose rags. Both are progressive: browsers that
+     ignore text-wrap keep their default wrap. */
+  p {
+    text-wrap: pretty;
+  }
 }
 
 button,
@@ -150,8 +266,8 @@ a[disabled] {
 
 /* Browser surfaces belong to the design, not to the browser default. */
 ::selection {
-  background: var(--color-brand-200);
-  color: var(--color-ink);
+  background: var(--color-brand-600);
+  color: #fff;
 }
 
 input,
@@ -181,24 +297,132 @@ textarea {
 }
 
 /* ==========================================================================
+   DESIGN.md type scale. Component-layer classes keep exact px/line-height
+   values; Tailwind utilities can still override color and responsive sizing.
+   ========================================================================== */
+@layer components {
+  /* Plus Jakarta Sans ships through 800; the hero uses that real 800 face with
+     controlled tracking so the compact title stays bold without crowding. */
+  .type-display-hero {
+    font-family: var(--font-display);
+    font-size: 2.75rem;
+    font-weight: 800;
+    line-height: 2.9375rem;
+    letter-spacing: -0.03em;
+  }
+
+  .type-headline-lg {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 2.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .type-headline-md {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 2.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .type-headline-sm {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    letter-spacing: -0.015em;
+  }
+
+  .type-title-md {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .type-body-lg {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.75rem;
+    letter-spacing: -0.005em;
+  }
+
+  .type-body-md {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+  }
+
+  .type-body-sm {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+  }
+
+  .type-label-lg {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    letter-spacing: 0.01em;
+  }
+
+  .type-label-md {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  .type-label-sm {
+    font-family: var(--font-display);
+    font-size: 0.625rem;
+    font-weight: 700;
+    line-height: 0.875rem;
+    letter-spacing: 0.04em;
+  }
+}
+
+@media (min-width: 640px) {
+  .type-display-hero {
+    font-size: 4rem;
+    line-height: 4.25rem;
+    letter-spacing: -0.03em;
+  }
+
+  .type-headline-lg {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    letter-spacing: -0.025em;
+  }
+}
+
+/* ==========================================================================
    Layout utilities
    ========================================================================== */
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1440px;
   margin-inline: auto;
   padding-inline: 1rem;
 }
 
 @media (min-width: 640px) {
   .container {
-    padding-inline: 1.25rem;
+    padding-inline: 2rem;
   }
 }
 
 @media (min-width: 1024px) {
   .container {
-    padding-inline: 2rem;
+    padding-inline: 4rem;
   }
 }
 
@@ -206,48 +430,116 @@ textarea {
 .section-sm { padding-block: 1.5rem; }
 .section-lg { padding-block: 4.5rem; }
 
-.surface-white {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 1rem;
-}
-
+/* Component classes live in the components layer so Tailwind utilities
+   (p-0, shadow-sm, rounded-full, ...) can override their defaults. */
+@layer components {
+.surface-white,
 .surface-tint {
-  background: var(--surface-tint);
   border: 1px solid var(--card-border);
-  border-radius: 1rem;
+  border-radius: var(--radius-xl);
 }
 
+.surface-white { background: var(--card-bg); }
+.surface-tint { background: var(--surface-tint); }
+
+/* The single card surface. Elevation is set once through --card-shadow so a
+   Tailwind shadow utility can never stack a second shadow on top of it. */
 .card {
   min-width: 0;
+  isolation: isolate;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 1rem;
+  border-radius: var(--radius-xl);
   padding: 1rem;
-  box-shadow: 0 6px 20px rgba(17, 24, 39, 0.06);
+  box-shadow: var(--card-shadow, var(--shadow-card));
 }
 
 .card-lg { padding: 1.5rem; }
 .card-sm { padding: 0.75rem; }
 
+/* Linked cards answer a pointer with a 2px lift and an indigo border; the
+   image inside a group zooms 1.03. Nothing tilts and nothing moves on scroll. */
 .card-hover {
-  transition: box-shadow 200ms ease-out, border-color 200ms ease-out;
+  transition: box-shadow 180ms ease-out, border-color 180ms ease-out,
+    transform 180ms ease-out;
 }
 
 .card-hover:hover {
-  border-color: var(--color-brand-200);
-  box-shadow: 0 12px 28px rgba(17, 24, 39, 0.1);
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
 }
+
+.card-hover:active { transform: translateY(0); }
+
+.card-media {
+  overflow: hidden;
+  background: var(--color-surface-muted);
+}
+
+.card-media img {
+  transition: transform 300ms ease-out;
+}
+
+.group:hover .card-media img,
+.card-hover:hover .card-media img {
+  transform: scale(1.03);
+}
+
+/* Course cards use the resting/hover elevation pair from DESIGN.md. */
+.course-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-soft);
+  transition: transform 180ms ease-out, box-shadow 180ms ease-out,
+    border-color 180ms ease-out;
+}
+
+.course-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+.course-card:active { transform: translateY(0); }
 
 /* Pill / badge */
 .pill {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.625rem;
   border-radius: 9999px;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 0.875rem;
+  letter-spacing: 0.04em;
+}
+
+.pill-new {
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.pill-rating {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.pill-completed {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.pill-category {
+  background: rgb(255 255 255 / 0.95);
+  color: #4f46e5;
+  border: 1px solid #c7d2fe;
   font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1rem;
+  letter-spacing: 0.02em;
 }
 
 .pill-accent {
@@ -341,6 +633,84 @@ textarea {
   outline-offset: 2px;
 }
 
+/* DESIGN.md button treatments. Utility classes may override padding/radius. */
+.btn-gradient-primary {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #fff;
+  text-shadow: 0 1px 2px rgb(15 23 42 / 0.2);
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  letter-spacing: 0.01em;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: filter 160ms ease-out, box-shadow 160ms ease-out;
+}
+
+.btn-gradient-primary:hover {
+  filter: brightness(1.06);
+  box-shadow: var(--shadow-brand-hover);
+}
+
+.btn-gradient-primary:active {
+  filter: brightness(0.96);
+  box-shadow: none;
+}
+
+.btn-ghost {
+  border: 1.5px solid #e2e8f0;
+  background: transparent;
+  color: #334155;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  letter-spacing: 0.01em;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: background-color 160ms ease-out, color 160ms ease-out;
+}
+
+.btn-ghost:hover {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.btn-ghost:active {
+  background: rgb(15 23 42 / 0.04);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #0f172a;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+  letter-spacing: 0.01em;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: filter 160ms ease-out, box-shadow 160ms ease-out;
+}
+
+.btn-accent:hover {
+  filter: brightness(1.04);
+}
+
+.btn-accent:active {
+  filter: brightness(0.96);
+}
+
+.btn-gradient-primary:disabled,
+.btn-ghost:disabled,
+.btn-accent:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  filter: none;
+}
+
 .bg-primary { background: var(--bg-primary); }
 .bg-secondary { background: var(--bg-secondary); }
 .bg-footer { background: var(--footer-gradient); }
@@ -368,28 +738,61 @@ textarea {
 .text-secondary { color: var(--text-secondary); }
 .text-muted { color: var(--text-muted); }
 
-.font-body { font-family: inherit; }
-.font-heading { font-family: inherit; font-weight: 700; }
+.font-body { font-family: var(--font-sans); }
+.font-heading { font-family: var(--font-display); font-weight: 700; }
+
+/* Floating frosted navigation shell from DESIGN.md. */
+.nav-shell {
+  background: rgb(255 255 255 / 0.88);
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-nav);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  letter-spacing: 0.01em;
+  transition: background-color 160ms ease-out, color 160ms ease-out;
+}
+
+.nav-link:hover {
+  background: #eef2ff;
+  color: #4f46e5;
+}
 
 /* Form controls that use the legacy className-only pattern */
-.form-input {
+.form-input,
+.input-search {
   display: block;
   width: 100%;
+  min-height: 2.75rem;
   padding: 0.625rem 0.75rem;
-  border: 1px solid var(--color-line);
+  border: 1px solid #e2e8f0;
   border-radius: 0.5rem;
   color: var(--text-primary);
-  background: #fff;
+  background: #f8fafc;
   font-size: 1rem;
   transition: border-color 160ms ease-out, box-shadow 160ms ease-out;
 }
 
-.form-input::placeholder { color: var(--text-muted); }
+.form-input::placeholder,
+.input-search::placeholder { color: var(--text-muted); }
 
-.form-input:focus {
+.form-input:focus,
+.input-search:focus {
   outline: none;
-  border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px var(--color-brand-soft);
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgb(79 70 229 / 0.15);
 }
 
 .form-input:disabled {
@@ -418,6 +821,7 @@ textarea {
 .nav-underline:focus-visible::before {
   width: 100%;
 }
+}
 
 /* One restrained entrance for the landing hero. */
 @keyframes hero-in {
@@ -432,10 +836,52 @@ textarea {
 }
 
 .hero-reveal {
-  animation: hero-in 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: hero-in 300ms ease-out both;
 }
 
-/* Reduced motion is a preference, not an edge case. */
+/* ==========================================================================
+   Loading states. Skeletons hold the shape of the content so a page never
+   jumps; one quiet shimmer is the only motion, and it stops on request.
+   ========================================================================== */
+@keyframes skeleton-shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+@layer components {
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--color-surface-muted);
+  }
+
+  .skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgb(255 255 255 / 0.7),
+      transparent
+    );
+    transform: translateX(-100%);
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  }
+
+  .loader-progress {
+    animation: loader-progress 1.3s ease-in-out infinite;
+  }
+}
+
+@keyframes loader-progress {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(350%); }
+}
+
+/* Reduced motion is a preference, not an edge case. Skeletons rest as plain
+   shapes and the progress line holds still instead of flickering. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
@@ -446,4 +892,8 @@ textarea {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  .hero-reveal { opacity: 1; transform: none; }
+  .skeleton::after { display: none; }
+  .loader-progress { width: 100%; }
 }

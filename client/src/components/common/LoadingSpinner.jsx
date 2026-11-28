@@ -1,65 +1,80 @@
-import React, { memo } from 'react';
-import { Loader2 } from 'lucide-react';
+import React, { memo } from "react";
 
-/** One spinner primitive: token colors, no pulsing text, and a live status. */
-const LoadingSpinner = memo(({
-  size = 'md',
-  color = 'primary',
-  className = '',
-  text,
-  fullScreen = false,
-}) => {
-  const sizeClasses = {
-    sm: 'h-4 w-4',
-    md: 'h-6 w-6',
-    lg: 'h-8 w-8',
-    xl: 'h-12 w-12',
-  };
+/**
+ * One inline loading indicator: a restrained indigo ring on a static track.
+ * It announces its state once and never pulses its label.
+ */
+const SIZES = {
+  xs: "h-3.5 w-3.5 border-2",
+  sm: "h-4 w-4 border-2",
+  md: "h-6 w-6 border-2",
+  lg: "h-8 w-8 border-[3px]",
+  xl: "h-12 w-12 border-4",
+};
 
-  const colorClasses = {
-    primary: 'text-brand',
-    secondary: 'text-brand-400',
-    gray: 'text-ink-muted',
-    white: 'text-white',
-  };
+const COLORS = {
+  primary: "border-brand-100 border-t-brand",
+  secondary: "border-brand-100 border-t-brand-400",
+  gray: "border-line border-t-ink-muted",
+  white: "border-white/30 border-t-white",
+};
 
-  const status = (
-    <div
-      role="status"
-      aria-live="polite"
-      className={[
-        'flex flex-col items-center justify-center gap-2',
-        fullScreen ? 'text-ink-soft' : '',
-        className,
-      ].filter(Boolean).join(' ')}
-    >
-      <Loader2
+const LoadingSpinner = memo(
+  ({
+    size = "md",
+    color = "primary",
+    className = "",
+    text,
+    fullScreen = false,
+    label = "Loading",
+  }) => {
+    const ring = (
+      <span
         className={[
-          'animate-spin',
-          sizeClasses[size] || sizeClasses.md,
-          colorClasses[color] || colorClasses.primary,
-        ].join(' ')}
+          "inline-block shrink-0 animate-spin rounded-full",
+          SIZES[size] || SIZES.md,
+          COLORS[color] || COLORS.primary,
+        ]
+          .filter(Boolean)
+          .join(" ")}
         aria-hidden="true"
       />
-      {text ? (
-        <p className="text-sm text-ink-soft">{text}</p>
-      ) : (
-        <span className="sr-only">Loading</span>
-      )}
-    </div>
-  );
+    );
 
-  if (fullScreen) {
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-canvas/85 p-6">
-        {status}
+    const status = (
+      <div
+        role="status"
+        aria-live="polite"
+        className={[
+          "flex items-center justify-center gap-2.5 text-ink-soft",
+          text ? "flex-row" : "",
+          fullScreen ? "flex-col gap-3 text-center" : "",
+          className,
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      >
+        {ring}
+        {text ? (
+          <span className="text-sm font-medium text-ink-soft">{text}</span>
+        ) : (
+          <span className="sr-only">{label}</span>
+        )}
       </div>
     );
-  }
 
-  return status;
-});
+    if (fullScreen) {
+      return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-canvas/90 p-6">
+          {status}
+        </div>
+      );
+    }
 
-LoadingSpinner.displayName = 'LoadingSpinner';
+    return status;
+  },
+);
+
+LoadingSpinner.displayName = "LoadingSpinner";
 
 export default LoadingSpinner;

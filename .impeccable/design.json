@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-28T04:02:13.4948759Z",
+  "title": "Design System: Mentora Courses",
+  "extensions": {
+    "colorMeta": {
+      "royal-violet": { "role": "primary", "displayName": "Royal Violet", "canonical": "#4f46e5", "tonalRamp": ["#1e1b4b", "#312e81", "#3730a3", "#4338ca", "#4f46e5", "#6366f1", "#a5b4fc", "#eef2ff"] },
+      "royal-violet-deep": { "role": "primary", "displayName": "Deep Royal Violet", "canonical": "#4338ca", "tonalRamp": ["#1e1b4b", "#312e81", "#3730a3", "#4338ca", "#4f46e5", "#6366f1", "#a5b4fc", "#eef2ff"] },
+      "royal-violet-bright": { "role": "primary", "displayName": "Bright Royal Violet", "canonical": "#6366f1", "tonalRamp": ["#1e1b4b", "#312e81", "#3730a3", "#4338ca", "#4f46e5", "#6366f1", "#a5b4fc", "#eef2ff"] },
+      "royal-violet-soft": { "role": "primary", "displayName": "Violet Mist", "canonical": "#e0e7ff", "tonalRamp": ["#312e81", "#4338ca", "#6366f1", "#a5b4fc", "#c7d2fe", "#e0e7ff", "#f2f3ff", "#faf8ff"] },
+      "royal-violet-wash": { "role": "primary", "displayName": "Violet Wash", "canonical": "#eef2ff", "tonalRamp": ["#312e81", "#4338ca", "#6366f1", "#a5b4fc", "#c7d2fe", "#e0e7ff", "#f2f3ff", "#faf8ff"] },
+      "royal-violet-ink": { "role": "primary", "displayName": "Royal Violet Ink", "canonical": "#3525cd", "tonalRamp": ["#1e1b4b", "#312e81", "#3730a3", "#4338ca", "#4f46e5", "#6366f1", "#a5b4fc", "#eef2ff"] },
+      "royal-violet-night": { "role": "primary", "displayName": "Royal Violet Night", "canonical": "#312e81", "tonalRamp": ["#1e1b4b", "#312e81", "#3730a3", "#4338ca", "#4f46e5", "#6366f1", "#a5b4fc", "#eef2ff"] },
+      "amber": { "role": "secondary", "displayName": "Purposeful Amber", "canonical": "#f59e0b", "tonalRamp": ["#78350f", "#92400e", "#b45309", "#d97706", "#f59e0b", "#fbbf24", "#fde68a", "#fef3c7"] },
+      "amber-deep": { "role": "secondary", "displayName": "Deep Amber", "canonical": "#d97706", "tonalRamp": ["#78350f", "#92400e", "#b45309", "#d97706", "#f59e0b", "#fbbf24", "#fde68a", "#fef3c7"] },
+      "amber-bright": { "role": "secondary", "displayName": "Bright Amber", "canonical": "#fbbf24", "tonalRamp": ["#78350f", "#92400e", "#b45309", "#d97706", "#f59e0b", "#fbbf24", "#fde68a", "#fef3c7"] },
+      "amber-wash": { "role": "secondary", "displayName": "Amber Wash", "canonical": "#fef3c7", "tonalRamp": ["#78350f", "#92400e", "#b45309", "#d97706", "#f59e0b", "#fbbf24", "#fde68a", "#fef3c7"] },
+      "amber-ink": { "role": "secondary", "displayName": "Amber Ink", "canonical": "#b45309", "tonalRamp": ["#78350f", "#92400e", "#b45309", "#d97706", "#f59e0b", "#fbbf24", "#fde68a", "#fef3c7"] },
+      "emerald": { "role": "tertiary", "displayName": "Verified Emerald", "canonical": "#10b981", "tonalRamp": ["#022c22", "#064e3b", "#047857", "#059669", "#10b981", "#34d399", "#6ee7b7", "#ecfdf5"] },
+      "emerald-wash": { "role": "tertiary", "displayName": "Emerald Wash", "canonical": "#ecfdf5", "tonalRamp": ["#022c22", "#064e3b", "#047857", "#059669", "#10b981", "#34d399", "#6ee7b7", "#ecfdf5"] },
+      "emerald-ink": { "role": "tertiary", "displayName": "Deep Emerald", "canonical": "#047857", "tonalRamp": ["#022c22", "#064e3b", "#047857", "#059669", "#10b981", "#34d399", "#6ee7b7", "#ecfdf5"] },
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#ffffff", "tonalRamp": ["#475569", "#64748b", "#94a3b8", "#cbd5e1", "#e2e8f0", "#f1f5f9", "#f8fafc", "#ffffff"] },
+      "canvas": { "role": "neutral", "displayName": "Canvas", "canonical": "#f8fafc", "tonalRamp": ["#475569", "#64748b", "#94a3b8", "#cbd5e1", "#e2e8f0", "#f1f5f9", "#f8fafc", "#ffffff"] },
+      "surface-muted": { "role": "neutral", "displayName": "Surface Muted", "canonical": "#f1f5f9", "tonalRamp": ["#475569", "#64748b", "#94a3b8", "#cbd5e1", "#e2e8f0", "#f1f5f9", "#f8fafc", "#ffffff"] },
+      "lavender-mist": { "role": "neutral", "displayName": "Lavender Mist", "canonical": "#faf8ff", "tonalRamp": ["#312e81", "#4338ca", "#6366f1", "#a5b4fc", "#c7d2fe", "#e0e7ff", "#f2f3ff", "#faf8ff"] },
+      "lavender-container": { "role": "neutral", "displayName": "Lavender Container", "canonical": "#f2f3ff", "tonalRamp": ["#312e81", "#4338ca", "#6366f1", "#a5b4fc", "#c7d2fe", "#e0e7ff", "#f2f3ff", "#faf8ff"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#0f172a", "tonalRamp": ["#020617", "#0f172a", "#1e293b", "#334155", "#475569", "#64748b", "#cbd5e1", "#f1f5f9"] },
+      "ink-soft": { "role": "neutral", "displayName": "Ink Soft", "canonical": "#334155", "tonalRamp": ["#020617", "#0f172a", "#1e293b", "#334155", "#475569", "#64748b", "#cbd5e1", "#f1f5f9"] },
+      "ink-muted": { "role": "neutral", "displayName": "Ink Muted", "canonical": "#64748b", "tonalRamp": ["#020617", "#0f172a", "#1e293b", "#334155", "#475569", "#64748b", "#cbd5e1", "#f1f5f9"] },
+      "line": { "role": "neutral", "displayName": "Line", "canonical": "#e2e8f0", "tonalRamp": ["#475569", "#64748b", "#94a3b8", "#cbd5e1", "#e2e8f0", "#f1f5f9", "#f8fafc", "#ffffff"] },
+      "outline": { "role": "neutral", "displayName": "Outline", "canonical": "#777587", "tonalRamp": ["#020617", "#0f172a", "#1e293b", "#334155", "#475569", "#64748b", "#cbd5e1", "#f1f5f9"] },
+      "night-navy": { "role": "neutral", "displayName": "Night Navy", "canonical": "#1e1b4b", "tonalRamp": ["#020617", "#0f172a", "#1e293b", "#334155", "#475569", "#64748b", "#cbd5e1", "#f1f5f9"] },
+      "callout-ink": { "role": "neutral", "displayName": "Callout Ink", "canonical": "#0b0f19", "tonalRamp": ["#020617", "#0b0f19", "#0f172a", "#1e293b", "#334155", "#475569", "#94a3b8", "#cbd5e1"] }
+    },
+    "typographyMeta": {
+      "hero": { "displayName": "Hero Display", "purpose": "Scoped hero title only; Plus Jakarta Sans weight 800, 64px desktop, 44px mobile, -0.03em tracking." },
+      "display": { "displayName": "Display", "purpose": "Plus Jakarta Sans structural headings outside the hero." },
+      "headline": { "displayName": "Headline", "purpose": "Page and section titles." },
+      "title": { "displayName": "Title", "purpose": "Card titles and group leads." },
+      "body": { "displayName": "Body", "purpose": "Sustained reading in syllabi, notes, and overviews." },
+      "label": { "displayName": "Label", "purpose": "Navigation, chips, and metadata." }
+    },
+    "shadows": [
+      { "name": "ambient-low", "value": "0 1px 2px rgb(15 23 42 / 0.05)", "purpose": "Subtle resting separation." },
+      { "name": "soft", "value": "0 1px 3px rgb(15 23 42 / 0.04), 0 6px 16px rgb(15 23 42 / 0.03)", "purpose": "Course cards at rest." },
+      { "name": "card", "value": "0 2px 8px -2px rgb(15 23 42 / 0.07), 0 1px 3px -1px rgb(15 23 42 / 0.04)", "purpose": "Standard card surface at rest." },
+      { "name": "card-hover", "value": "0 12px 28px -4px rgb(79 70 229 / 0.08), 0 4px 12px -2px rgb(15 23 42 / 0.04)", "purpose": "Linked cards and course cards on hover." },
+      { "name": "nav", "value": "0 8px 24px rgb(15 23 42 / 0.04)", "purpose": "Frosted navigation shell." },
+      { "name": "brand-hover", "value": "0 4px 14px rgb(79 70 229 / 0.3)", "purpose": "Primary button hover." },
+      { "name": "warm-glow", "value": "0 4px 18px rgb(245 158 11 / 0.22)", "purpose": "Amber callout accents." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "ease-out", "purpose": "Default easing for state transitions." },
+      { "name": "duration-control", "value": "160ms", "purpose": "Buttons, inputs, and navigation links." },
+      { "name": "duration-card", "value": "180ms", "purpose": "Card border, shadow, and lift transitions." },
+      { "name": "duration-image", "value": "300ms", "purpose": "Course card image zoom." },
+      { "name": "hero-in", "value": "300ms ease-out", "purpose": "One-shot landing hero entrance." },
+      { "name": "skeleton-shimmer", "value": "1.5s ease-in-out infinite", "purpose": "Loading sheen; disabled under reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "shell", "value": "1440px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The violet gradient action for enrollment and main navigation.",
+      "html": "<button class=\"ds-btn-primary\">ENROLL NOW</button>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; justify-content:center; gap:8px; background:linear-gradient(135deg,#6366f1,#4f46e5); color:#fff; padding:12px 24px; border:0; border-radius:12px; font-family:'Plus Jakarta Sans',Inter,sans-serif; font-size:14px; font-weight:600; line-height:20px; letter-spacing:0.01em; text-shadow:0 1px 2px rgb(15 23 42 / 0.2); cursor:pointer; transition:filter 160ms ease-out,box-shadow 160ms ease-out; } .ds-btn-primary:hover { filter:brightness(1.06); box-shadow:0 4px 14px rgb(79 70 229 / 0.3); } .ds-btn-primary:active { filter:brightness(0.96); box-shadow:none; } .ds-btn-primary:focus-visible { outline:2px solid #4f46e5; outline-offset:2px; } .ds-btn-primary:disabled { opacity:0.5; cursor:not-allowed; filter:none; box-shadow:none; }"
+    },
+    {
+      "name": "Accent Button",
+      "kind": "button",
+      "refersTo": "button-accent",
+      "description": "Amber CTA reserved for high-intent conversion moments.",
+      "html": "<button class=\"ds-btn-accent\">GET CERTIFICATE</button>",
+      "css": ".ds-btn-accent { display:inline-flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#f59e0b,#d97706); color:#0f172a; padding:12px 24px; border:0; border-radius:12px; font-family:'Plus Jakarta Sans',Inter,sans-serif; font-size:14px; font-weight:700; line-height:20px; letter-spacing:0.01em; cursor:pointer; transition:filter 160ms ease-out,box-shadow 160ms ease-out; } .ds-btn-accent:hover { filter:brightness(1.04); box-shadow:0 4px 18px rgb(245 158 11 / 0.22); } .ds-btn-accent:active { filter:brightness(0.96); } .ds-btn-accent:focus-visible { outline:2px solid #d97706; outline-offset:2px; } .ds-btn-accent:disabled { opacity:0.5; cursor:not-allowed; filter:none; box-shadow:none; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Quiet secondary action with a hairline border.",
+      "html": "<button class=\"ds-btn-ghost\">VIEW DETAILS</button>",
+      "css": ".ds-btn-ghost { display:inline-flex; align-items:center; justify-content:center; background:transparent; color:#334155; padding:12px 24px; border:1.5px solid #e2e8f0; border-radius:12px; font-family:'Plus Jakarta Sans',Inter,sans-serif; font-size:14px; font-weight:600; line-height:20px; letter-spacing:0.01em; cursor:pointer; transition:background-color 160ms ease-out,color 160ms ease-out; } .ds-btn-ghost:hover { background:#f8fafc; color:#0f172a; } .ds-btn-ghost:active { background:rgb(15 23 42 / 0.04); } .ds-btn-ghost:focus-visible { outline:2px solid #4f46e5; outline-offset:2px; } .ds-btn-ghost:disabled { opacity:0.5; cursor:not-allowed; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Search and form field with a violet focus halo.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Search courses\" aria-label=\"Search courses\">",
+      "css": ".ds-input { display:block; width:100%; min-height:44px; padding:10px 12px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc; color:#0f172a; font-family:Inter,ui-sans-serif,sans-serif; font-size:16px; caret-color:#4f46e5; transition:border-color 160ms ease-out,box-shadow 160ms ease-out; } .ds-input::placeholder { color:#64748b; } .ds-input:hover { border-color:#cbd5e1; } .ds-input:focus { outline:none; border-color:#4f46e5; box-shadow:0 0 0 3px rgb(79 70 229 / 0.15); } .ds-input:focus-visible { outline:2px solid #4f46e5; outline-offset:2px; } .ds-input:disabled { background:#f8fafc; color:#64748b; cursor:not-allowed; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "The shared hairline-bordered surface for dashboards and details.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Course progress</h3><p class=\"ds-card-body\">Four of six lessons complete.</p></div>",
+      "css": ".ds-card { min-width:0; background:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; box-shadow:0 2px 8px -2px rgb(15 23 42 / 0.07),0 1px 3px -1px rgb(15 23 42 / 0.04); font-family:Inter,ui-sans-serif,sans-serif; transition:border-color 180ms ease-out,box-shadow 180ms ease-out,transform 180ms ease-out; } .ds-card-title { margin:0 0 8px; color:#0f172a; font-family:'Plus Jakarta Sans',Inter,sans-serif; font-size:20px; font-weight:600; line-height:28px; letter-spacing:-0.015em; } .ds-card-body { margin:0; color:#334155; font-size:15px; line-height:24px; } .ds-card:hover { border-color:#cbd5e1; box-shadow:0 12px 28px -4px rgb(79 70 229 / 0.08),0 4px 12px -2px rgb(15 23 42 / 0.04); transform:translateY(-2px); } .ds-card:focus-visible { outline:2px solid #4f46e5; outline-offset:2px; }"
+    },
+    {
+      "name": "Course Card",
+      "kind": "custom",
+      "refersTo": "course-card",
+      "description": "Signature catalog card with media scrim, rating, and split actions.",
+      "html": "<article class=\"ds-course-card\"><div class=\"ds-course-media\"><span class=\"ds-course-badge\">NEW</span><div class=\"ds-course-rating\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 20 20\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M10 1.5l2.6 5.3 5.9.9-4.3 4.2 1 5.9-5.2-2.8-5.2 2.8 1-5.9L1.5 7.7l5.9-.9z\"/></svg> 4.8</div></div><div class=\"ds-course-body\"><h3 class=\"ds-course-title\">Practical Web Development</h3><div class=\"ds-course-actions\"><button class=\"ds-course-ghost\">Details</button><button class=\"ds-course-primary\">Enroll</button></div></div></article>",
+      "css": ".ds-course-card { width:100%; overflow:hidden; background:#fff; border:1px solid #e2e8f0; border-radius:24px; box-shadow:0 1px 3px rgb(15 23 42 / 0.04),0 6px 16px rgb(15 23 42 / 0.03); font-family:Inter,ui-sans-serif,sans-serif; transition:border-color 180ms ease-out,box-shadow 180ms ease-out,transform 180ms ease-out; } .ds-course-card:hover { border-color:#cbd5e1; box-shadow:0 12px 28px -4px rgb(79 70 229 / 0.08),0 4px 12px -2px rgb(15 23 42 / 0.04); transform:translateY(-2px); } .ds-course-card:focus-visible { outline:2px solid #4f46e5; outline-offset:2px; } .ds-course-media { position:relative; height:96px; background:linear-gradient(to top,rgb(15 23 42 / 0.65),rgb(15 23 42 / 0.12) 55%,transparent); } .ds-course-badge { position:absolute; top:12px; right:12px; background:#4f46e5; color:#fff; padding:4px 10px; border-radius:9999px; font-family:'Plus Jakarta Sans',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.04em; } .ds-course-rating { position:absolute; bottom:12px; left:12px; display:flex; align-items:center; gap:4px; color:#f59e0b; font-size:14px; font-weight:600; } .ds-course-body { padding:16px; } .ds-course-title { margin:0 0 16px; color:#0f172a; font-family:'Plus Jakarta Sans',sans-serif; font-size:20px; font-weight:600; line-height:28px; letter-spacing:-0.015em; } .ds-course-actions { display:flex; gap:8px; } .ds-course-ghost,.ds-course-primary { flex:1; padding:8px 12px; border-radius:12px; font-size:14px; font-weight:600; cursor:pointer; } .ds-course-ghost { background:#e0e7ff; color:#4338ca; border:1px solid #c7d2fe; } .ds-course-primary { background:#4f46e5; color:#fff; border:0; } .ds-course-ghost:hover { background:#c7d2fe; } .ds-course-primary:hover { background:#4338ca; } .ds-course-ghost:focus-visible,.ds-course-primary:focus-visible { outline:2px solid #4f46e5; outline-offset:2px; }"
+    },
+    {
+      "name": "Status Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Round metadata pill for status, level, and category tags.",
+      "html": "<span class=\"ds-chip-new\">NEW</span> <span class=\"ds-chip-rating\">TOP RATED</span> <span class=\"ds-chip-done\">COMPLETED</span>",
+      "css": ".ds-chip-new,.ds-chip-rating,.ds-chip-done { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:9999px; font-family:'Plus Jakarta Sans',sans-serif; font-size:10px; font-weight:700; line-height:14px; letter-spacing:0.04em; } .ds-chip-new { background:#eef2ff; color:#4f46e5; } .ds-chip-rating { background:#fef3c7; color:#b45309; } .ds-chip-done { background:#ecfdf5; color:#047857; } .ds-chip-new:hover,.ds-chip-rating:hover,.ds-chip-done:hover { filter:brightness(0.96); } .ds-chip-new:focus-visible,.ds-chip-rating:focus-visible,.ds-chip-done:focus-visible { outline:2px solid #4f46e5; outline-offset:2px; }"
+    },
+    {
+      "name": "Navigation Shell",
+      "kind": "nav",
+      "refersTo": "nav-shell",
+      "description": "Frosted navigation bar with pill links and violet hover.",
+      "html": "<nav class=\"ds-nav-shell\" aria-label=\"Primary\"><a class=\"ds-nav-link\" href=\"#courses\">Courses</a><a class=\"ds-nav-link\" href=\"#about\">About</a></nav>",
+      "css": ".ds-nav-shell { display:flex; align-items:center; gap:12px; padding:8px 16px; background:rgb(255 255 255 / 0.88); border:1px solid #e2e8f0; border-radius:16px; box-shadow:0 8px 24px rgb(15 23 42 / 0.04); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px); } .ds-nav-link { display:inline-flex; align-items:center; gap:6px; padding:8px 12px; border-radius:9999px; color:#334155; text-decoration:none; font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; font-weight:600; line-height:20px; letter-spacing:0.01em; transition:background-color 160ms ease-out,color 160ms ease-out; } .ds-nav-link:hover { background:#eef2ff; color:#4f46e5; } .ds-nav-link:focus-visible { outline:2px solid #4f46e5; outline-offset:2px; }"
+    },
+    {
+      "name": "Callout Banner",
+      "kind": "custom",
+      "refersTo": "button-accent",
+      "description": "Dark conversion callout with amber highlights and a split action pair.",
+      "html": "<section class=\"ds-callout\"><span class=\"ds-callout-label\">✦ ALL-ACCESS PASS</span><h2 class=\"ds-callout-title\">Level up your career</h2><p class=\"ds-callout-copy\">Unlimited courses and weekly mentor reviews.</p><div class=\"ds-callout-actions\"><button class=\"ds-btn-accent\">START FREE TRIAL</button><button class=\"ds-btn-ghost\">BROWSE COURSES</button></div></section>",
+      "css": ".ds-callout { max-width:720px; padding:32px; border:1px solid rgb(255 255 255 / 0.1); border-radius:24px; background:linear-gradient(120deg,#0b0f19 0%,#1e1b4b 100%); box-shadow:0 1px 3px rgb(15 23 42 / 0.04),0 6px 16px rgb(15 23 42 / 0.03); color:#fff; font-family:Inter,ui-sans-serif,sans-serif; } .ds-callout-label { display:inline-block; padding:4px 12px; border-radius:9999px; background:#fbbf24; color:#020617; font-family:'Plus Jakarta Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.02em; } .ds-callout-title { margin:12px 0 8px; font-family:'Plus Jakarta Sans',sans-serif; font-size:28px; font-weight:700; line-height:36px; letter-spacing:-0.02em; } .ds-callout-copy { margin:0 0 24px; color:#cbd5e1; font-size:15px; line-height:24px; } .ds-callout-actions { display:flex; flex-wrap:wrap; gap:12px; } .ds-callout .ds-btn-accent,.ds-callout .ds-btn-ghost { display:inline-flex; align-items:center; justify-content:center; padding:12px 24px; border-radius:12px; font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; font-weight:700; cursor:pointer; transition:filter 160ms ease-out,background-color 160ms ease-out; } .ds-callout .ds-btn-accent { border:0; background:linear-gradient(135deg,#f59e0b,#d97706); color:#0f172a; } .ds-callout .ds-btn-ghost { border:1px solid rgb(255 255 255 / 0.2); background:rgb(255 255 255 / 0.05); color:#fff; } .ds-callout .ds-btn-accent:hover { filter:brightness(1.04); } .ds-callout .ds-btn-ghost:hover { background:rgb(255 255 255 / 0.1); } .ds-callout .ds-btn-accent:focus-visible,.ds-callout .ds-btn-ghost:focus-visible { outline:2px solid #fbbf24; outline-offset:2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Kinetic Academy",
+    "overview": "The Kinetic Academy is a decisive, high-value place to learn: structured enough to feel like an institution, close enough to feel like a mentor's studio. It joins modern neo-corporate refinement with tactile digital craft — hairline containment, precise shadows, tight headline tracking, and a single violet anchor. The same system serves the public marketing pages, the course catalog, and the dense admin, instructor, and student dashboards without changing its voice.\n\nIt deliberately avoids the sterile detachment of legacy enterprise LMS software and the chaotic gamification of mass-market consumer learning apps. Information is allowed to be dense; visual noise is not. Amber is earned — it appears on conversion paths, ratings, and milestones — while emerald confirms completed or verified work. Motion answers a pointer or a state change; nothing tilts and nothing moves on scroll.",
+    "keyCharacteristics": [
+      "Violet-first palette with amber reserved for conversion and accomplishment",
+      "Hairline-bordered containment instead of open, floating canvases",
+      "Two-family core: Plus Jakarta Sans for the hero title and structure, Inter for sustained reading",
+      "Compact density on an eight-point rhythm with fluid grids",
+      "Restrained, pointer-driven motion with a real reduced-motion path"
+    ],
+    "rules": [
+      { "name": "The One Anchor Rule", "body": "Royal violet is the only structural accent. Amber marks conversion and accomplishment; emerald marks verified success.", "section": "colors" },
+      { "name": "The Contained-Density Rule", "body": "Dense information belongs inside a 1px hairline surface, not in an unbounded field.", "section": "overview" },
+      { "name": "The Quiet-Motion Rule", "body": "Motion answers a pointer or a state change. Nothing tilts, drifts, or animates on scroll.", "section": "overview" },
+      { "name": "The Amber Reservation Rule", "body": "Amber is a decision and achievement signal, not decoration. Keep it under roughly 10% of any screen.", "section": "colors" },
+      { "name": "The Hairline Rule", "body": "Borders do the separating. Shadows add ambient depth; they never replace a boundary.", "section": "colors" },
+      { "name": "The Tight-Headline Rule", "body": "Display and headline tracking stays between -0.015em and -0.03em; body copy remains neutrally tracked.", "section": "typography" },
+      { "name": "The Tabular-Number Rule", "body": "Counts, lesson timers, and percentage trackers hold alignment while their values change.", "section": "typography" },
+      { "name": "The Single-Shadow Rule", "body": "One surface owns one shadow. Set it through --card-shadow; never add a second shadow utility on the same element.", "section": "elevation" },
+      { "name": "The Two-Pixel Lift Rule", "body": "Cards lift 2px on hover, shift their border to #cbd5e1, and return to rest on active. The ambient shadow at rest is not a lift.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do start primary actions with the violet gradient (`linear-gradient(135deg, #6366f1, #4f46e5)`) at a 12px radius and 0.75rem / 1.5rem padding.",
+      "Do reserve amber for conversion, ratings, and milestones, keeping it under roughly 10% of a screen.",
+      "Do set exactly one shadow through `--card-shadow` on `.card`, then let hover add the 2px lift and shift the border to #cbd5e1.",
+      "Do keep focus visible with a 2px violet ring and 2px offset, and let `prefers-reduced-motion` stop hero and skeleton motion.",
+      "Do keep dark callouts on the #0b0f19 → #1e1b4b gradient with a white/10 border and amber highlights.",
+      "Do keep the hero title in Plus Jakarta Sans with the tightest tracking in the type scale."
+    ],
+    "donts": [
+      "Don't introduce a second structural accent or recolor violet to another hue.",
+      "Don't stack a shadow utility on top of `.card`, or swap ambient shadows for colored halos at rest.",
+      "Don't tilt, scroll-animate, or continuously pulse cards; only pointer and state transitions belong in the vocabulary.",
+      "Don't collapse data tables into stacked cards on mobile; allow horizontal scroll instead.",
+      "Don't synthesize a fourth family for the hero; it shares Plus Jakarta Sans with the rest of the display scale."
+    ]
+  }
+}
