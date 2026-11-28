@@ -31,36 +31,34 @@ export default function WhyMentora() {
       className="mx-auto max-w-[1440px] scroll-mt-[116px] px-4 py-10 sm:px-8 lg:h-[75vh] lg:min-h-[560px] lg:px-16 lg:py-8"
       aria-labelledby="why-mentora-title"
     >
-      <div className="h-full overflow-hidden rounded-3xl border border-white/10 bg-[linear-gradient(120deg,#0F172A_0%,#1E1B4B_100%)] p-5 text-white shadow-soft sm:p-8">
-        <div className="grid h-full grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8">
-          <div className="flex flex-col gap-4 lg:col-span-5">
-            <div className="shrink-0 space-y-2">
-              <p className="type-label-md text-teal-300">Built for Real Mastery</p>
-              <h2
-                id="why-mentora-title"
-                className="type-headline-lg text-white sm:text-[2rem] sm:leading-[2.5rem] sm:tracking-[-0.025em]"
-              >
-                Why Learn With Mentora
-              </h2>
-              <p className="type-body-md max-w-lg text-slate-300">
-                Most video courses leave you stranded at the blank-editor stage.
-                Mentora pairs focused lessons with structured feedback from
-                industry practitioners.
-              </p>
-            </div>
+      <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-[linear-gradient(120deg,#0F172A_0%,#1E1B4B_100%)] p-5 text-white shadow-soft sm:p-8">
+        <div className="shrink-0 space-y-2 text-center">
+          <p className="type-label-md text-teal-300">Built for Real Mastery</p>
+          <h2
+            id="why-mentora-title"
+            className="type-headline-lg text-white sm:text-[2rem] sm:leading-[2.5rem] sm:tracking-[-0.025em]"
+          >
+            Why Learn With Mentora
+          </h2>
+          <p className="type-body-sm mx-auto max-w-2xl leading-relaxed text-slate-300">
+            Most video courses leave you stranded at the blank-editor stage.
+            Mentora pairs focused lessons with structured feedback from
+            industry practitioners.
+          </p>
+        </div>
 
-            <div className="min-h-[200px] flex-1 overflow-hidden rounded-2xl border border-white/10 bg-slate-900 lg:min-h-0">
-              <img
-                src={MENTORSHIP_IMAGE}
-                alt="Mentor and learner reviewing architecture diagrams together"
-                loading="lazy"
-                decoding="async"
-                className="h-full w-full object-cover"
-              />
-            </div>
+        <div className="mt-6 grid min-h-0 flex-1 grid-cols-1 items-center gap-6 lg:grid-cols-2 lg:gap-10">
+          <div className="flex h-full min-h-0 items-center justify-center">
+            <img
+              src={MENTORSHIP_IMAGE}
+              alt="Mentor and learner reviewing architecture diagrams together"
+              loading="lazy"
+              decoding="async"
+              className="max-h-full w-auto max-w-full rounded-2xl border border-white/10 object-contain"
+            />
           </div>
 
-          <div className="flex flex-col justify-center gap-3 lg:col-span-7">
+          <div className="flex flex-col justify-center gap-3">
             {VALUE_PILLARS.map((pillar) => (
               <article
                 key={pillar.number}
