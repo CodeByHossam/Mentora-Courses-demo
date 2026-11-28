@@ -1,7 +1,7 @@
 import { AlertCircle, RotateCcw, Search } from "lucide-react";
 
-import { CourseCard } from "../course";
 import { Button, Card, EmptyState, SkeletonGrid } from "../common";
+import FeaturedCourseCard from "./FeaturedCourseCard";
 
 export default function HomeCourseGrid({ courses, isLoading, error, onRetry, onReset }) {
   if (isLoading) {
@@ -62,7 +62,7 @@ export default function HomeCourseGrid({ courses, isLoading, error, onRetry, onR
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {courses.map((course) => (
-        <CourseCard key={course._id} course={course} />
+        <FeaturedCourseCard key={course._id} course={course} />
       ))}
     </div>
   );

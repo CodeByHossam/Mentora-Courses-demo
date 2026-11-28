@@ -7,6 +7,7 @@ import CategoryTabs from "../../components/home/CategoryTabs";
 import FeaturedBanner from "../../components/home/FeaturedBanner";
 import HomeCourseGrid from "../../components/home/HomeCourseGrid";
 import LearningFactsStrip from "../../components/home/LearningFactsStrip";
+import WhyMentora from "../../components/home/WhyMentora";
 import { Button } from "../../components/common";
 import { useGetCoursesQuery } from "../../store/services/courseApi";
 import { getCourseRating } from "../../utils/coursePresentation";
@@ -115,6 +116,8 @@ function HomePage() {
           </Button>
         </div>
       </section>
+
+      <WhyMentora />
 
       <AllAccessCta />
 
