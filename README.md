@@ -67,7 +67,7 @@ Any static host works too (Netlify, Vercel, GitHub Pages with an SPA rewrite, Ng
 - A persistent **Demo user** dropdown at the top right (below the nav bar, under the Demo Mode badge) switches between the seeded admin, two instructors, and three students. It updates the local session, clears cached RTK Query data, and opens the matching role dashboard; the choice survives a reload.
 - **Reset Demo Data** (top-right, next to the badge) restores the original seed data and admin session and returns to `/admin`.
 - `Login`, `Register`, `Forgot Password`, and `Instructor Request` still work as interactive demos and write local session/user state where relevant.
-- Payments, certificate downloads, Zoom links, and mail links are simulated locally — no third-party SDK is contacted. External images were replaced with a bundled `/demo-placeholder.svg`.
+- Payments, certificate downloads, Zoom links, and mail links are simulated locally — no third-party SDK is contacted. Photos, course art, icons, and fonts are bundled in `client/public` (or `client/src/assets`) so the app makes no third-party asset requests.
 
 ### Demo credentials
 

@@ -1,6 +1,6 @@
 # Mentora Homepage Enhancement Plan
 
-Status: **Implemented locally — not committed, not pushed**  
+Status: **Implemented and pushed**  
 Date: 2026-11-28  
 Target: `client/src/pages/public/HomePage.jsx` and its homepage components
 
@@ -39,7 +39,7 @@ This is a **scoped refinement**, not a new visual world. I did not run the full 
 - 10 courses, 5 categories, and 8 cards in the default `All Courses` view.
 - `Featured & Trending Courses` above `Latest courses`.
 - Original footer links: `Privacy`, `Terms`, `Support`, `Student Discount`.
-- No commit or push until the user approves completed fixes.
+- Commit and push after verification, per the user's standing instruction to finish without stopping for approval.
 
 ---
 
@@ -408,7 +408,7 @@ Exit: all acceptance criteria below pass. Only then request commit approval.
 - `npm run build`: success.
 - Detector reports no findings on changed React files.
 - No console warnings/errors and no failed requests.
-- No commit or push before explicit approval.
+- Commit and push once verification passes, without waiting for explicit approval.
 
 ---
 
@@ -438,3 +438,4 @@ These defaults were confirmed and implemented.
 - Route sweep: all public, auth, admin, instructor, student, billing, payment, and restored alias routes rendered seeded demo content. `/admin/reports`, `/student/grades`, `/certificates`, and `/my-courses` were repaired after the sweep; no blank routes or console errors remain.
 - Final verification passed before commit.
 - Later catalog update (user request): the demo seed now contains 12 courses and the catalog page size is 12. Verified at `/courses`: 12 course cards, `Total Courses: 12`, `Showing all 12 courses`, `Page 1 of 1`, no overflow, and no console errors. The homepage still shows 8 cards (`Showing 8 of 12 courses`) and links to `View all 12 courses`; the two added courses have working detail pages.
+- Local assets update (user request): all runtime photos, course art, avatars, icons, and fonts are bundled. Google Fonts links were removed; Inter and Plus Jakarta Sans now load from `client/public/fonts/*.woff2` via local `@font-face` rules. The favicon is bundled at `/favicon.png`. Browser checks on `/`, `/courses`, `/courses/course-11`, and `/login` found no remote asset requests, no broken images, no horizontal overflow, and no console errors; the hero still computes to Plus Jakarta Sans 800 at 64px with 1.1 line-height and -0.035em tracking.
