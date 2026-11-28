@@ -12,7 +12,7 @@ export const useCourseList = ({ limit } = {}) => {
     : categoriesData?.data ?? [];
 
   const [currentPage, setCurrentPage] = useState(1);
-  const coursesPerPage = 10;
+  const coursesPerPage = 12;
 
   const [filters, setFilters] = useState({
     search: "",
